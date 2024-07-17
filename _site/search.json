@@ -81,7 +81,7 @@
     "href": "FinalReport.html#performance-assessment-1",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Performance assessment",
-    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.5283189633485064\n\n\n\n\n\nRequest times depending on zoom level"
+    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 1.9391304347826084\n\n\n\n\n\nRequest times depending on zoom level"
   },
   {
     "objectID": "FinalReport.html#gantt-chart",
