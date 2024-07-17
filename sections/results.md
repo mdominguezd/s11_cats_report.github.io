@@ -34,6 +34,24 @@ IDEA: GET requests and time them
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+COG_t = [2.97, 3.93, 3.45]
+ZARR_t = [5.90, 7.74, 6.43]
+
+data = pd.DataFrame([COG_t, ZARR_t]).T
+data.columns = ['COG', 'ZARR']
+
+fig = plt.figure(figsize= (10,5))
+
+ax = sns.boxplot(data, palette = 'deep')
+sns.despine(trim = True, offset = -10)
+
+a = ax.set_ylabel('Render time [s]')
+
+print("Speed up (COG)", data['ZARR'].mean()/data['COG'].mean())
+```
+
+<!-- 
 import requests
 import random
 
@@ -99,22 +117,5 @@ sns.regplot(x = z_level, y=times_cog)
 sns.regplot(x = z_level, y=times_zarr)
 
 Z_level = [12, 18, 14]
-
-COG_t = times_cog #[2.97, 3.93, 3.45]
-ZARR_t = times_zarr #[5.90, 7.74, 6.43]
-
-data = pd.DataFrame([COG_t, ZARR_t]).T
-data.columns = ['COG', 'ZARR']
-
-fig = plt.figure(figsize= (10,5))
-
-ax = sns.boxplot(data, palette = 'deep')
-sns.despine(trim = True, offset = -10)
-
-a = ax.set_ylabel('Render time [s]')
-
-print("Speed up (COG)", data['ZARR'].mean()/data['COG'].mean())
-```
-
-
+ -->
 
