@@ -47,34 +47,7 @@ format:
 
 # Results
 
-## Baseline scenario
-
-### Main findings
-
-The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.
-
-![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
-
-The major pitfalls found on the process of data discovery in the company could be summarized in ....
-
-## Service integration
-
-*Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it*
-
-Kubernetes
-
-STAC-API, pgSTAC, TiTiler
-
-## Multi-format data visualization
-
-TiTiler-PgSTAC & TiTiler-xarray
-
-## Performance assessment
-
-### Data discovery
-
-### Data visualization
-IDEA: GET requests and time them
+{{< include sections/results.qmd >}}
 
 # Discussion
 
@@ -87,50 +60,6 @@ IDEA: GET requests and time them
 # Internship planning
 
 **Internship duration:** 08/04/2024 - 08/08/2024 (4 months)
-
-## Gantt chart
-
-```{mermaid}
-%%| fig-width: 100%
-gantt
-    title Internship Gantt Chart
-    dateFormat  DD-MM-YYYY
-    excludes weekends
-    todayMarker off
-    axisFormat %d-%m
-
-    section Proposal
-    Writing & reviewing           :active, 08-04-2024, 29-04-2024
-
-    section Data & Code familiarization
-    General code      :29-04-2024, 4d
-    Cloud servives    :01-05-2024, 4d
-
-    section Baseline scenario determination
-    Define the components of a baseline scenario  : 06-05-2024, 1d
-    Test the baseline times                       : 07-05-2024, 3d
-
-    section Data integration
-    Local STAC creation & Browsing              : done, 08-04-2024, 25-04-2024
-    Main STAC structure                         : main_s, 10-05-2024, 2d
-    Build main STAC v0.1                        : after main_s, 21d
-    Set up STAC browser                         : stac_b, 28-05-2024, 15d
-    Automation via CI pipeline                  : end_data_int, after stac_b, 15d
-    Refinement                                  : after end_data_int, 21d
-
-    section Performance assessment
-    Evaluate new discovery times                : after stac_b, 2d
-
-    section Report writing
-    Writing                                     : 29-04-2024, 19-07-2024
-    Review                                      : 19-07-2024, 26-07-2024
-    Reflection paper writing                    : 26-07-2024, 07-08-2024
-
-    section Important dates
-    Midterm evaluation                          :milestone, 10-06-2024, 24h
-    Submission of report                        :milestone, 26-07-2024, 24h
-    Final examination                           :milestone, 22-08-2024, 24h
-```
 
 # References
 
