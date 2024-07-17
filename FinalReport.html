@@ -189,12 +189,23 @@ window.Quarto = {
   </ul></li>
   <li><a href="#performance-assessment" id="toc-performance-assessment" class="nav-link" data-scroll-target="#performance-assessment">Performance assessment</a></li>
   </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#baseline-scenario" id="toc-baseline-scenario" class="nav-link" data-scroll-target="#baseline-scenario">Baseline scenario</a>
+  <ul class="collapse">
+  <li><a href="#main-findings" id="toc-main-findings" class="nav-link" data-scroll-target="#main-findings">Main findings</a></li>
+  </ul></li>
+  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a></li>
+  <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a></li>
+  <li><a href="#performance-assessment-1" id="toc-performance-assessment-1" class="nav-link" data-scroll-target="#performance-assessment-1">Performance assessment</a>
+  <ul class="collapse">
+  <li><a href="#data-discovery" id="toc-data-discovery" class="nav-link" data-scroll-target="#data-discovery">Data discovery</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future work</a></li>
-  <li><a href="#internship-planning" id="toc-internship-planning" class="nav-link" data-scroll-target="#internship-planning">Internship planning</a>
-  <ul class="collapse">
-  <li><a href="#gantt-chart" id="toc-gantt-chart" class="nav-link" data-scroll-target="#gantt-chart">Gantt chart</a></li>
-  </ul></li>
+  <li><a href="#internship-planning" id="toc-internship-planning" class="nav-link" data-scroll-target="#internship-planning">Internship planning</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="FinalReport.pdf"><i class="bi bi-file-pdf"></i>PDF (titlepage)</a></li></ul></div></nav>
@@ -402,52 +413,59 @@ Required libraries:
 <p>The assessment of the performance of the new Data Catalog will be measured using the baseline scenario established at the beginning of the internship and the Speed Up metric proposed by <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>:</p>
 <p><span class="math display">\[ SpeedUp = \frac{t_{baseline}}{t_{catalog}} \]</span></p>
 <p>This metric explains how much the process to access data has sped up thanks to the integration of cloud-based storage, the data catalog and the browsing interface.</p>
-<!-- # Results
-
-
-## Baseline scenario
-
-### Main findings
-
-The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.
-
-![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
-
-The major pitfalls found on the process of data discovery in the company could be summarized in ....
-
-## Service integration
-
-*Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it*
-
-Kubernetes
-
-STAC-API, pgSTAC, TiTiler
-
-## Multi-format data visualization
-
-TiTiler-PgSTAC & TiTiler-xarray
-
-## Performance assessment
-
-### Data discovery
-
-### Data visualization
-IDEA: GET requests and time them
-
-::: {#98303710 .cell execution_count=1}
-
-::: {.cell-output .cell-output-stdout}
-```
-Speed up (COG) 1.9391304347826084
-```
-:::
-
-::: {.cell-output .cell-output-display}
-![Request times depending on zoom level](FinalReport_files/figure-html/cell-2-output-2.png){width=786 height=398}
-:::
-:::
-
-
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<section id="baseline-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
+<section id="main-findings" class="level3">
+<h3 class="anchored" data-anchor-id="main-findings">Main findings</h3>
+<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;3</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
+<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Baseline workflow
+</figcaption>
+</figure>
+</div>
+<p>The major pitfalls found on the process of data discovery in the company could be summarized in ….</p>
+</section>
+</section>
+<section id="service-integration" class="level2">
+<h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
+<p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
+<p>Kubernetes</p>
+<p>STAC-API, pgSTAC, TiTiler</p>
+</section>
+<section id="multi-format-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
+<p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
+</section>
+<section id="performance-assessment-1" class="level2">
+<h2 class="anchored" data-anchor-id="performance-assessment-1">Performance assessment</h2>
+<section id="data-discovery" class="level3">
+<h3 class="anchored" data-anchor-id="data-discovery">Data discovery</h3>
+</section>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
+<p>IDEA: GET requests and time them</p>
+<div id="cd11ace5" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>Speed up (COG) 1.9391304347826084</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="FinalReport_files/figure-html/cell-2-output-2.png" width="786" height="398" class="figure-img"></p>
+<figcaption>Request times depending on zoom level</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <!-- 
 import requests
 import random
@@ -517,6 +535,7 @@ Z_level = [12, 18, 14]
  -->
 </section>
 </section>
+</section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
 </section>
@@ -526,42 +545,6 @@ Z_level = [12, 18, 14]
 <section id="internship-planning" class="level1">
 <h1>Internship planning</h1>
 <p><strong>Internship duration:</strong> 08/04/2024 - 08/08/2024 (4 months)</p>
-<section id="gantt-chart" class="level2">
-<h2 class="anchored" data-anchor-id="gantt-chart">Gantt chart</h2>
-<p>%%| fig-width: 100% gantt title Internship Gantt Chart dateFormat DD-MM-YYYY excludes weekends todayMarker off axisFormat %d-%m</p>
-<pre><code>section Proposal
-Writing &amp; reviewing           :active, 08-04-2024, 29-04-2024
-
-section Data &amp; Code familiarization
-General code      :29-04-2024, 4d
-Cloud servives    :01-05-2024, 4d
-
-section Baseline scenario determination
-Define the components of a baseline scenario  : 06-05-2024, 1d
-Test the baseline times                       : 07-05-2024, 3d
-
-section Data integration
-Local STAC creation &amp; Browsing              : done, 08-04-2024, 25-04-2024
-Main STAC structure                         : main_s, 10-05-2024, 2d
-Build main STAC v0.1                        : after main_s, 21d
-Set up STAC browser                         : stac_b, 28-05-2024, 15d
-Automation via CI pipeline                  : end_data_int, after stac_b, 15d
-Refinement                                  : after end_data_int, 21d
-
-section Performance assessment
-Evaluate new discovery times                : after stac_b, 2d
-
-section Report writing
-Writing                                     : 29-04-2024, 19-07-2024
-Review                                      : 19-07-2024, 26-07-2024
-Reflection paper writing                    : 26-07-2024, 07-08-2024
-
-section Important dates
-Midterm evaluation                          :milestone, 10-06-2024, 24h
-Submission of report                        :milestone, 26-07-2024, 24h
-Final examination                           :milestone, 22-08-2024, 24h</code></pre>
-<p>``` –&gt;</p>
-</section>
 </section>
 <section id="references" class="level1">
 <h1>References</h1>

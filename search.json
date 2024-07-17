@@ -91,11 +91,32 @@
     "text": "Performance assessment\nThe assessment of the performance of the new Data Catalog will be measured using the baseline scenario established at the beginning of the internship and the Speed Up metric proposed by (Durbha et al., 2023):\n\\[ SpeedUp = \\frac{t_{baseline}}{t_{catalog}} \\]\nThis metric explains how much the process to access data has sped up thanks to the integration of cloud-based storage, the data catalog and the browsing interface."
   },
   {
-    "objectID": "FinalReport.html#gantt-chart",
-    "href": "FinalReport.html#gantt-chart",
+    "objectID": "FinalReport.html#baseline-scenario",
+    "href": "FinalReport.html#baseline-scenario",
     "title": "Cataloguing and visualizing big Geodata",
-    "section": "Gantt chart",
-    "text": "Gantt chart\n%%| fig-width: 100% gantt title Internship Gantt Chart dateFormat DD-MM-YYYY excludes weekends todayMarker off axisFormat %d-%m\nsection Proposal\nWriting & reviewing           :active, 08-04-2024, 29-04-2024\n\nsection Data & Code familiarization\nGeneral code      :29-04-2024, 4d\nCloud servives    :01-05-2024, 4d\n\nsection Baseline scenario determination\nDefine the components of a baseline scenario  : 06-05-2024, 1d\nTest the baseline times                       : 07-05-2024, 3d\n\nsection Data integration\nLocal STAC creation & Browsing              : done, 08-04-2024, 25-04-2024\nMain STAC structure                         : main_s, 10-05-2024, 2d\nBuild main STAC v0.1                        : after main_s, 21d\nSet up STAC browser                         : stac_b, 28-05-2024, 15d\nAutomation via CI pipeline                  : end_data_int, after stac_b, 15d\nRefinement                                  : after end_data_int, 21d\n\nsection Performance assessment\nEvaluate new discovery times                : after stac_b, 2d\n\nsection Report writing\nWriting                                     : 29-04-2024, 19-07-2024\nReview                                      : 19-07-2024, 26-07-2024\nReflection paper writing                    : 26-07-2024, 07-08-2024\n\nsection Important dates\nMidterm evaluation                          :milestone, 10-06-2024, 24h\nSubmission of report                        :milestone, 26-07-2024, 24h\nFinal examination                           :milestone, 22-08-2024, 24h\n``` –&gt;"
+    "section": "Baseline scenario",
+    "text": "Baseline scenario\n\nMain findings\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\nThe major pitfalls found on the process of data discovery in the company could be summarized in …."
+  },
+  {
+    "objectID": "FinalReport.html#service-integration",
+    "href": "FinalReport.html#service-integration",
+    "title": "Cataloguing and visualizing big Geodata",
+    "section": "Service integration",
+    "text": "Service integration\nExplain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it\nKubernetes\nSTAC-API, pgSTAC, TiTiler"
+  },
+  {
+    "objectID": "FinalReport.html#multi-format-data-visualization",
+    "href": "FinalReport.html#multi-format-data-visualization",
+    "title": "Cataloguing and visualizing big Geodata",
+    "section": "Multi-format data visualization",
+    "text": "Multi-format data visualization\nTiTiler-PgSTAC & TiTiler-xarray"
+  },
+  {
+    "objectID": "FinalReport.html#performance-assessment-1",
+    "href": "FinalReport.html#performance-assessment-1",
+    "title": "Cataloguing and visualizing big Geodata",
+    "section": "Performance assessment",
+    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 1.9391304347826084\n\n\n\n\n\nRequest times depending on zoom level"
   },
   {
     "objectID": "FinalReport.html#footnotes",
