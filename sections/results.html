@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>results – s11_cats_report</title>
+<title>results – S11-CATS Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -79,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">s11_cats_report</span>
+    <span class="navbar-title">S11-CATS Report</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -113,12 +147,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#main-findings" id="toc-main-findings" class="nav-link active" data-scroll-target="#main-findings">Main findings</a></li>
-  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a></li>
-  <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a></li>
-  <li><a href="#performance-assessment" id="toc-performance-assessment" class="nav-link" data-scroll-target="#performance-assessment">Performance assessment</a>
+  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
   <ul class="collapse">
-  <li><a href="#data-discovery" id="toc-data-discovery" class="nav-link" data-scroll-target="#data-discovery">Data discovery</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  <li><a href="#data-discovery-improvement" id="toc-data-discovery-improvement" class="nav-link" data-scroll-target="#data-discovery-improvement">Data discovery improvement</a></li>
+  </ul></li>
+  <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
+  <ul class="collapse">
+  <li><a href="#raster-formats" id="toc-raster-formats" class="nav-link" data-scroll-target="#raster-formats">Raster formats</a></li>
+  <li><a href="#effects-of-zoom-level" id="toc-effects-of-zoom-level" class="nav-link" data-scroll-target="#effects-of-zoom-level">Effects of zoom level</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -165,28 +201,52 @@ Figure&nbsp;1: Baseline workflow
 <p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
 <p>Kubernetes</p>
 <p>STAC-API, pgSTAC, TiTiler</p>
+<section id="data-discovery-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
+<p>Flowchart with STAC</p>
 </section>
-<section id="multi-format-data-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
+</section>
+<section id="performance-of-multi-format-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
-</section>
-<section id="performance-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="performance-assessment">Performance assessment</h2>
-<section id="data-discovery" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery">Data discovery</h3>
-</section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
-<p>IDEA: GET requests and time them</p>
-<div id="4ac239e9" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<pre><code>Speed up (COG) 2.6340253183618714</code></pre>
+<section id="raster-formats" class="level3">
+<h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
+<div id="e7e9af95" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>speed_up <span class="op">=</span> <span class="bu">round</span>(data[<span class="st">'ZARR'</span>].mean()<span class="op">/</span>data[<span class="st">'COG'</span>].mean(), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested np.float64(2.85) times faster than the same file in ZARR format.</p>
+<div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="results_files/figure-html/cell-2-output-2.png" width="1179" height="423" class="figure-img"></p>
-<figcaption>Request times depending on data format and zoom level</figcaption>
+<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-format-comp-output-1.png" width="621" height="423" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Request times depending on data format and zoom level
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="effects-of-zoom-level" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
+<p>As seen on <strong>?@fig-fig-comp-zoom</strong>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of np.float64(-0.012) and np.float64(-0.015) per zoom level for COGs and ZARRs respectively.</p>
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="621" height="423" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Request times depending on zoom level
+</figcaption>
 </figure>
 </div>
 </div>

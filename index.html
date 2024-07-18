@@ -8,7 +8,7 @@
 
 <meta name="author" content="Martín Domínguez Durán">
 
-<title>Cataloguing and visualizing big Geodata – s11_cats_report</title>
+<title>Cataloguing and visualizing big Geodata – S11-CATS Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -163,7 +163,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">s11_cats_report</span>
+    <span class="navbar-title">S11-CATS Report</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -229,12 +229,14 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#main-findings" id="toc-main-findings" class="nav-link" data-scroll-target="#main-findings">Main findings</a></li>
   </ul></li>
-  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a></li>
-  <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a></li>
-  <li><a href="#performance-assessment-1" id="toc-performance-assessment-1" class="nav-link" data-scroll-target="#performance-assessment-1">Performance assessment</a>
+  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
   <ul class="collapse">
-  <li><a href="#data-discovery" id="toc-data-discovery" class="nav-link" data-scroll-target="#data-discovery">Data discovery</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  <li><a href="#data-discovery-improvement" id="toc-data-discovery-improvement" class="nav-link" data-scroll-target="#data-discovery-improvement">Data discovery improvement</a></li>
+  </ul></li>
+  <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
+  <ul class="collapse">
+  <li><a href="#raster-formats" id="toc-raster-formats" class="nav-link" data-scroll-target="#raster-formats">Raster formats</a></li>
+  <li><a href="#effects-of-zoom-level" id="toc-effects-of-zoom-level" class="nav-link" data-scroll-target="#effects-of-zoom-level">Effects of zoom level</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
@@ -478,28 +480,52 @@ Figure&nbsp;3: Baseline workflow
 <p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
 <p>Kubernetes</p>
 <p>STAC-API, pgSTAC, TiTiler</p>
+<section id="data-discovery-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
+<p>Flowchart with STAC</p>
 </section>
-<section id="multi-format-data-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
+</section>
+<section id="performance-of-multi-format-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
-</section>
-<section id="performance-assessment-1" class="level2">
-<h2 class="anchored" data-anchor-id="performance-assessment-1">Performance assessment</h2>
-<section id="data-discovery" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery">Data discovery</h3>
-</section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
-<p>IDEA: GET requests and time them</p>
-<div id="f5585a5b" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<pre><code>Speed up (COG) 2.6340253183618714</code></pre>
+<section id="raster-formats" class="level3">
+<h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
+<div id="81290bff" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>speed_up <span class="op">=</span> <span class="bu">round</span>(data[<span class="st">'ZARR'</span>].mean()<span class="op">/</span>data[<span class="st">'COG'</span>].mean(), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested np.float64(2.85) times faster than the same file in ZARR format.</p>
+<div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/cell-2-output-2.png" width="1179" height="423" class="figure-img"></p>
-<figcaption>Request times depending on data format and zoom level</figcaption>
+<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-format-comp-output-1.png" width="621" height="423" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Request times depending on data format and zoom level
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="effects-of-zoom-level" class="level3">
+<h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
+<p>As seen on <strong>?@fig-fig-comp-zoom</strong>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of np.float64(-0.012) and np.float64(-0.015) per zoom level for COGs and ZARRs respectively.</p>
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-comp-zoom-output-1.png" width="621" height="423" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Request times depending on zoom level
+</figcaption>
 </figure>
 </div>
 </div>
@@ -558,7 +584,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>Sys
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="55e87d38" class="cell" data-execution_count="2">
+<div id="6e0bae62" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
