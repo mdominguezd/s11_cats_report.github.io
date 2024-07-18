@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -211,20 +177,13 @@ Figure&nbsp;1: Baseline workflow
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<div id="e7e9af95" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>speed_up <span class="op">=</span> <span class="bu">round</span>(data[<span class="st">'ZARR'</span>].mean()<span class="op">/</span>data[<span class="st">'COG'</span>].mean(), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested np.float64(2.85) times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-format-comp-output-1.png" width="621" height="423" class="figure-img">
+<img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Request times depending on data format and zoom level
@@ -236,19 +195,37 @@ Figure&nbsp;2: Request times depending on data format and zoom level
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <strong>?@fig-fig-comp-zoom</strong>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of np.float64(-0.012) and np.float64(-0.015) per zoom level for COGs and ZARRs respectively.</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.012 and -0.015 per zoom level for COGs and ZARRs respectively.</p>
+<div class="cell" data-execution_count="4">
+<div id="fig-comp-zoom" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="621" height="423" class="figure-img">
+<div id="fig-comp-zoom-1" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-comp-zoom-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-comp-zoom-1" class="cell-output cell-output-display" data-execution_count="4"><code>Text(0, 0.5, 'Request time [s]')</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Request times depending on zoom level
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-comp-zoom-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
+<div class="cell-output cell-output-display">
+<div id="fig-comp-zoom-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="634" height="436">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-comp-zoom-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-comp-zoom-output-2.png" id="fig-comp-zoom-2" data-ref-parent="fig-comp-zoom" width="634" height="436" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-comp-zoom-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
 </div>
 </div>
 
