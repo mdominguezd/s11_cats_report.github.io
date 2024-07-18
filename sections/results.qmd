@@ -108,7 +108,7 @@ s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
 background_color = '#180066'
 text_color = 'white'
 
-data = pd.read_csv('request_time_results_2iter.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_2iter.csv')
 
 sns.set(rc={'axes.facecolor':background_color, 
 'figure.facecolor':background_color, 
