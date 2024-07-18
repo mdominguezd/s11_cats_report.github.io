@@ -70,7 +70,7 @@ z_level = []
 
 cmap = ["=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]","_name=greens_r&rescale=0,70"]
 
-for i in range(2):
+for i in range(4):
 
     mod_tiles = [modify_tile(tile) for tile in tiles]
     k = int(i/2-i//2 + 0.5)
@@ -92,7 +92,7 @@ for i in range(2):
 data = pd.DataFrame([z_level, times_cog, times_zarr]).T
 data.columns = ['z_level','COG', 'ZARR']
 
-data.to_csv('request_time_results_1iter.csv')
+data.to_csv('request_time_results_2iter.csv')
 ```
 
 ```{python}
@@ -108,7 +108,7 @@ s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
 background_color = '#180066'
 text_color = 'white'
 
-data = pd.read_csv('request_time_results_1iter.csv')
+data = pd.read_csv('request_time_results_2iter.csv')
 
 sns.set(rc={'axes.facecolor':background_color, 
 'figure.facecolor':background_color, 
