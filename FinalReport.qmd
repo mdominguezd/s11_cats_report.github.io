@@ -66,4 +66,4 @@ format:
 ::: {#refs}
 :::
 
-{{<include sections/appendix.qmd>}}
+{{< include sections/appendix.qmd >}}
