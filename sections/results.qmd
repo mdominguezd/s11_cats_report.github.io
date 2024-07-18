@@ -40,7 +40,7 @@ s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
 background_color = '#180066'
 text_color = 'white'
 
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv')
 
 sns.set(rc={'axes.facecolor':background_color, 
 'figure.facecolor':background_color, 
@@ -56,6 +56,8 @@ sns.despine(trim = True, offset = -10, ax = ax[0])
 
 ax[0].set_ylabel('Request time [s]')
 ax[0].set_xlabel('Data format')
+
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
 
 sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax[1], color=s11_cmap(0))
 sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax[1], color=s11_cmap(255))
