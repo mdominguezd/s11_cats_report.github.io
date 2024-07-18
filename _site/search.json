@@ -67,7 +67,7 @@
     "href": "FinalReport.html#service-integration",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Service integration",
-    "text": "Service integration\nExplain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it\nKubernetes\nSTAC-API, pgSTAC, TiTiler"
+    "text": "Service integration\nExplain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it\nKubernetes\nSTAC-API, pgSTAC, TiTiler\n\nData discovery improvement\nFlowchart with STAC"
   },
   {
     "objectID": "FinalReport.html#multi-format-data-visualization",
@@ -96,5 +96,19 @@
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nSTAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)↩︎"
+  },
+  {
+    "objectID": "FinalReport.html#performance-of-multi-format-data-visualization",
+    "href": "FinalReport.html#performance-of-multi-format-data-visualization",
+    "title": "Cataloguing and visualizing big Geodata",
+    "section": "Performance of multi-format data visualization",
+    "text": "Performance of multi-format data visualization\nTiTiler-PgSTAC & TiTiler-xarray\n\nRaster formats\nThe comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on Figure 4. In the figure it can be obesrved that COG tiles are requested np.float64(2.85) times faster than the same file in ZARR format.\n\n\n\n\n\n\n\n\nFigure 4: Request times depending on data format and zoom level\n\n\n\n\n\n\n\nEffects of zoom level\nAs seen on Figure 5, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.012 and -0.015 per zoom level for COGs and ZARRs respectively.\n\n\n\n\n\n\n\nText(0, 0.5, 'Request time [s]')\n\n\n(a) Request times depending on zoom level\n\n\n\n\n\n\n\n\n\n\n(b)\n\n\n\n\n\n\nFigure 5"
+  },
+  {
+    "objectID": "FinalReport.html#code-to-evaluate-request-times",
+    "href": "FinalReport.html#code-to-evaluate-request-times",
+    "title": "Cataloguing and visualizing big Geodata",
+    "section": "Code to evaluate request times",
+    "text": "Code to evaluate request times\n\nimport pandas as pd\nimport requests\nimport random\n\ntiles = [\"9/399/254\", \"10/800/505\", \"11/1603/1012\",  \"12/3209/2042\", \n\"13/6407/4075\", \"14/12817/8159\", \"15/25678/16271\", \"16/51268/32552\", \n\"17/102503/65134\", \"18/205062/130211\"]\n\n# Tiles are slightly modified to try to avoid getting cached tiles\ndef modify_tile(tile):\n    parts = tile.split('/')\n    z = int(parts[0])\n    x = int(parts[1])\n    y = int(parts[2])\n\n    # Determine the range of change based on the value of z\n    if z &lt;= 9:\n        change_range = 2\n    elif z &lt;= 12:\n        change_range = 5\n    elif z &lt;= 15:\n        change_range = 10\n    elif z &lt;= 18:\n        change_range = 50\n\n    # Apply the change to x and y\n    x_change = random.randint(-change_range, change_range)\n    y_change = random.randint(-change_range, change_range)\n\n    new_x = x + x_change\n    new_y = y + y_change\n\n    # Return the modified tile as a string\n    return f\"{z}/{new_x}/{new_y}\"\n\ntimes_zarr = []\ntimes_cog = []\nz_level = []\ncmap_picked = []\n\n# The colormaps picked can be either a customized one for S11 Forest baseline or greens_r\ncmap = [\"=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\",\"_name=greens_r&rescale=0,70\"]\n\nfor i in range(2):\n\n    mod_tiles = [modify_tile(tile) for tile in tiles]\n    k = int(i/2-i//2 + 0.5)\n\n    for tile in mod_tiles:\n\n        url_zarr = f\"http://localhost:8084/tiles/WebMercatorQuad/{tile}%401x?url=gs://s11-tiles/zarr/separate&variable=band_data&reference=false&decode_times=true&consolidated=true&colormap{cmap[k]}&return_mask=true\"\n\n        url_cog = f\"http://localhost:8082/collections/Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{tile}%401x?bidx=1&assets=data&unscale=false&resampling=nearest&reproject=nearest&colormap{cmap[k]}&return_mask=true\"\n\n        x = requests.get(url_zarr)\n        times_zarr.append(x.elapsed.total_seconds())\n\n        x = requests.get(url_cog)\n        times_cog.append(x.elapsed.total_seconds())\n\n        z_level.append(int(tile.split('/')[0]))\n\n        cmap_picked.append(k)\n\ndata = pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T\ndata.columns = ['colormap','zoom level','COG', 'ZARR']\n\ndata.to_csv('request_time_results_1iter.csv')"
   }
 ]

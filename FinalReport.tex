@@ -49,6 +49,46 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
@@ -773,34 +813,81 @@ Kubernetes
 
 STAC-API, pgSTAC, TiTiler
 
-\section{Multi-format data
-visualization}\label{multi-format-data-visualization}
+\subsection{Data discovery
+improvement}\label{data-discovery-improvement}
+
+Flowchart with STAC
+
+\section{Performance of multi-format data
+visualization}\label{performance-of-multi-format-data-visualization}
 
 TiTiler-PgSTAC \& TiTiler-xarray
 
-\section{Performance assessment}\label{performance-assessment-1}
+\subsection{Raster formats}\label{raster-formats}
 
-\subsection{Data discovery}\label{data-discovery}
-
-\subsection{Data visualization}\label{data-visualization}
-
-IDEA: GET requests and time them
-
-\begin{verbatim}
-Speed up (COG) 1.9391304347826084
-\end{verbatim}
+The comparison of visualization speeds with TiTiler-xarray for Zarr
+datasets and TiTiler-PgSTAC for COGs are presented on
+Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
+tiles are requested np.float64(2.85) times faster than the same file in
+ZARR format.
 
 \begin{figure}[H]
 
-{\centering \includegraphics{FinalReport_files/figure-pdf/cell-2-output-2.pdf}
+\centering{
+
+\includegraphics{FinalReport_files/figure-pdf/fig-format-comp-output-1.pdf}
 
 }
 
-\caption{Request times depending on zoom level}
+\caption{\label{fig-format-comp}Request times depending on data format
+and zoom level}
+
+\end{figure}%
+
+\subsection{Effects of zoom level}\label{effects-of-zoom-level}
+
+As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
+have an effect on the time spent requesting and getting a tile from a
+tile server. In this study, it was found that the request times
+decreased by a factor of -0.012 and -0.015 per zoom level for COGs and
+ZARRs respectively.
+
+\begin{figure}[H]
+
+\centering{
+
+\captionsetup{labelsep=none}
+
+\centering{
+
+\begin{verbatim}
+Text(0, 0.5, 'Request time [s]')
+\end{verbatim}
+
+}
+
+\subcaption{\label{fig-comp-zoom-1}Request times depending on zoom
+level}
+
+\centering{
+
+\captionsetup{labelsep=none}\includegraphics{FinalReport_files/figure-pdf/fig-comp-zoom-output-2.pdf}
+
+}
+
+\subcaption{\label{fig-comp-zoom-2}}
+
+}
+
+\caption{\label{fig-comp-zoom}}
 
 \end{figure}%
 
 \chapter{Discussion}\label{discussion}
+
+hgdcjfc rah fdxh sdfhfn dfayhgn d
+
+gadfh
 
 \chapter{Future work}\label{future-work}
 
@@ -870,6 +957,85 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A {Scalable} {System} for
 \url{https://doi.org/10.1109/BigData52589.2021.9671679}
 
 \end{CSLReferences}
+
+\chapter{Appendix}\label{appendix}
+
+\section{Code to evaluate request
+times}\label{code-to-evaluate-request-times}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\ImportTok{import}\NormalTok{ requests}
+\ImportTok{import}\NormalTok{ random}
+
+\NormalTok{tiles }\OperatorTok{=}\NormalTok{ [}\StringTok{"9/399/254"}\NormalTok{, }\StringTok{"10/800/505"}\NormalTok{, }\StringTok{"11/1603/1012"}\NormalTok{,  }\StringTok{"12/3209/2042"}\NormalTok{, }
+\StringTok{"13/6407/4075"}\NormalTok{, }\StringTok{"14/12817/8159"}\NormalTok{, }\StringTok{"15/25678/16271"}\NormalTok{, }\StringTok{"16/51268/32552"}\NormalTok{, }
+\StringTok{"17/102503/65134"}\NormalTok{, }\StringTok{"18/205062/130211"}\NormalTok{]}
+
+\CommentTok{\# Tiles are slightly modified to try to avoid getting cached tiles}
+\KeywordTok{def}\NormalTok{ modify\_tile(tile):}
+\NormalTok{    parts }\OperatorTok{=}\NormalTok{ tile.split(}\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{)}
+\NormalTok{    z }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(parts[}\DecValTok{0}\NormalTok{])}
+\NormalTok{    x }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(parts[}\DecValTok{1}\NormalTok{])}
+\NormalTok{    y }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(parts[}\DecValTok{2}\NormalTok{])}
+
+    \CommentTok{\# Determine the range of change based on the value of z}
+    \ControlFlowTok{if}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{9}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{2}
+    \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{12}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{5}
+    \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{15}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{10}
+    \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{18}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{50}
+
+    \CommentTok{\# Apply the change to x and y}
+\NormalTok{    x\_change }\OperatorTok{=}\NormalTok{ random.randint(}\OperatorTok{{-}}\NormalTok{change\_range, change\_range)}
+\NormalTok{    y\_change }\OperatorTok{=}\NormalTok{ random.randint(}\OperatorTok{{-}}\NormalTok{change\_range, change\_range)}
+
+\NormalTok{    new\_x }\OperatorTok{=}\NormalTok{ x }\OperatorTok{+}\NormalTok{ x\_change}
+\NormalTok{    new\_y }\OperatorTok{=}\NormalTok{ y }\OperatorTok{+}\NormalTok{ y\_change}
+
+    \CommentTok{\# Return the modified tile as a string}
+    \ControlFlowTok{return} \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{z}\SpecialCharTok{\}}\SpecialStringTok{/}\SpecialCharTok{\{}\NormalTok{new\_x}\SpecialCharTok{\}}\SpecialStringTok{/}\SpecialCharTok{\{}\NormalTok{new\_y}\SpecialCharTok{\}}\SpecialStringTok{"}
+
+\NormalTok{times\_zarr }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{times\_cog }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{z\_level }\OperatorTok{=}\NormalTok{ []}
+\NormalTok{cmap\_picked }\OperatorTok{=}\NormalTok{ []}
+
+\CommentTok{\# The colormaps picked can be either a customized one for S11 Forest baseline or greens\_r}
+\NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{2}\NormalTok{):}
+
+\NormalTok{    mod\_tiles }\OperatorTok{=}\NormalTok{ [modify\_tile(tile) }\ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ tiles]}
+\NormalTok{    k }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(i}\OperatorTok{/}\DecValTok{2}\OperatorTok{{-}}\NormalTok{i}\OperatorTok{//}\DecValTok{2} \OperatorTok{+} \FloatTok{0.5}\NormalTok{)}
+
+    \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
+
+\NormalTok{        url\_zarr }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8084/tiles/WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?url=gs://s11{-}tiles/zarr/separate\&variable=band\_data\&reference=false\&decode\_times=true\&consolidated=true\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
+
+\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8082/collections/Example\%20FBL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?bidx=1\&assets=data\&unscale=false\&resampling=nearest\&reproject=nearest\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
+
+\NormalTok{        x }\OperatorTok{=}\NormalTok{ requests.get(url\_zarr)}
+\NormalTok{        times\_zarr.append(x.elapsed.total\_seconds())}
+
+\NormalTok{        x }\OperatorTok{=}\NormalTok{ requests.get(url\_cog)}
+\NormalTok{        times\_cog.append(x.elapsed.total\_seconds())}
+
+\NormalTok{        z\_level.append(}\BuiltInTok{int}\NormalTok{(tile.split(}\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{)[}\DecValTok{0}\NormalTok{]))}
+
+\NormalTok{        cmap\_picked.append(k)}
+
+\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.DataFrame([cmap\_picked, z\_level, times\_cog, times\_zarr]).T}
+\NormalTok{data.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}colormap\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}zoom level\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}COG\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ZARR\textquotesingle{}}\NormalTok{]}
+
+\NormalTok{data.to\_csv(}\StringTok{\textquotesingle{}request\_time\_results\_1iter.csv\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 
 
 \backmatter

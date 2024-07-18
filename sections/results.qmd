@@ -27,6 +27,8 @@ TiTiler-PgSTAC & TiTiler-xarray
 ### Raster formats
 
 ```{python}
+#| echo: false
+
 import pandas as pd
 
 data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv')
@@ -59,7 +61,7 @@ sns.set(rc={'axes.facecolor':background_color,
 fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
 sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax, linecolor=text_color)
-sns.despine(trim = True, offset = -10, ax = ax)
+# sns.despine(trim = True, offset = -10, ax = ax)
 
 ax.set_ylabel('Request time [s]')
 a = ax.set_xlabel('Data format')
@@ -71,19 +73,20 @@ a = ax.set_xlabel('Data format')
 
 ```{python}
 #| echo: false
+
 import statsmodels.api as sm
 
 data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
 
 
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
-cog_slope = round(fit_results.params['zoom level'], 3)
+cog_slope = float(round(fit_results.params['zoom level'], 3))
 
 fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
-zarr_slope = round(fit_results.params['zoom level'], 3)
+zarr_slope = float(round(fit_results.params['zoom level'], 3))
 ```
 
-As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
+As seen on @fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
 
 ```{python}
 #| echo: false
@@ -91,9 +94,10 @@ As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on 
 #| label: fig-comp-zoom
 fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
-sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95)
-sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95)
+sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95, label='COG')
+sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
 ax.set_ylabel('Request time [s]')
-a= sns.despine(trim = True, offset = -10, ax = ax)
+
+# a= sns.despine(trim = True, offset = -10, ax = ax)
 ```
 
