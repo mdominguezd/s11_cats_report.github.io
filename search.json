@@ -81,7 +81,7 @@
     "href": "sections/results.html#performance-assessment",
     "title": "Baseline scenario",
     "section": "Performance assessment",
-    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.079857624791251\n\n\n\n\n\nRequest times depending on data format and zoom level"
+    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.6340253183618714\n\n\n\n\n\nRequest times depending on data format and zoom level"
   },
   {
     "objectID": "index.html",
@@ -165,7 +165,7 @@
     "href": "index.html#performance-assessment-1",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Performance assessment",
-    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.079857624791251\n\n\n\n\n\nRequest times depending on data format and zoom level"
+    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.6340253183618714\n\n\n\n\n\nRequest times depending on data format and zoom level"
   },
   {
     "objectID": "index.html#code-to-evaluate-request-times",
@@ -263,7 +263,7 @@
     "href": "FinalReport.html#performance-assessment-1",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Performance assessment",
-    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.079857624791251\n\n\n\n\n\nRequest times depending on data format and zoom level"
+    "text": "Performance assessment\n\nData discovery\n\n\nData visualization\nIDEA: GET requests and time them\n\n\nSpeed up (COG) 2.6340253183618714\n\n\n\n\n\nRequest times depending on data format and zoom level"
   },
   {
     "objectID": "FinalReport.html#code-to-evaluate-request-times",
