@@ -212,7 +212,7 @@ Figure&nbsp;1: Baseline workflow
 <section id="data-visualization" class="level3">
 <h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
 <p>IDEA: GET requests and time them</p>
-<div id="e6d7d52d" class="cell" data-execution_count="1">
+<div id="0b314925" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -274,16 +274,16 @@ Figure&nbsp;1: Baseline workflow
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([z_level, times_cog, times_zarr]).T</span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'z_level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_2iter.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_1iter.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f20442e1" class="cell" data-execution_count="2">
+<div id="8e80e0ad" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
-<pre><code>Speed up (COG) 2.114165565127724</code></pre>
+<pre><code>Speed up (COG) 2.2588851980147395</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="results_files/figure-html/cell-3-output-2.png" width="1179" height="423" class="figure-img"></p>
+<p><img src="results_files/figure-html/cell-3-output-2.png" width="1188" height="423" class="figure-img"></p>
 <figcaption>Request times depending on zoom level</figcaption>
 </figure>
 </div>
