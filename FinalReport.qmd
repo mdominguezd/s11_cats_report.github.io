@@ -65,3 +65,5 @@ format:
 
 ::: {#refs}
 :::
+
+{{<include sections/appendix.qmd>}}
