@@ -98,6 +98,7 @@ sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 
 sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
 ax.set_ylabel('Request time [s]')
 
+a = plt.legend()
 # a= sns.despine(trim = True, offset = -10, ax = ax)
 ```
 
