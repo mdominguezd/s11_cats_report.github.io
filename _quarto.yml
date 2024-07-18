@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "s11_cats_report"
+  title: "S11-CATS Report"
   navbar:
     left:
       - href: index.qmd

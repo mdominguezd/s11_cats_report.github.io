@@ -16,22 +16,31 @@ Kubernetes
 
 STAC-API, pgSTAC, TiTiler
 
-## Multi-format data visualization
+### Data discovery improvement
+
+Flowchart with STAC
+
+## Performance of multi-format data visualization
 
 TiTiler-PgSTAC & TiTiler-xarray
 
-## Performance assessment
+### Raster formats
 
-### Data discovery
+```{python}
+import pandas as pd
 
-### Data visualization
-IDEA: GET requests and time them
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv')
+
+speed_up = round(data['ZARR'].mean()/data['COG'].mean(), 2)
+```
+
+The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be obesrved that COG tiles are requested `{python} speed_up` times faster than the same file in ZARR format.
 
 ```{python}
 #| echo: false
 #| fig-cap: "Request times depending on data format and zoom level"
+#| label: fig-format-comp
 
-import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
@@ -40,8 +49,6 @@ s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
 background_color = '#180066'
 text_color = 'white'
 
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv')
-
 sns.set(rc={'axes.facecolor':background_color, 
 'figure.facecolor':background_color, 
 'text.color' : text_color,
@@ -49,24 +56,47 @@ sns.set(rc={'axes.facecolor':background_color,
 'xtick.color': text_color,
 'ytick.color': text_color,})
 
-fig, ax = plt.subplots(1,2,figsize= (15,5))
+fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
-sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax[0], linecolor=text_color)
-sns.despine(trim = True, offset = -10, ax = ax[0])
+sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax, linecolor=text_color)
+sns.despine(trim = True, offset = -10, ax = ax)
 
-ax[0].set_ylabel('Request time [s]')
-ax[0].set_xlabel('Data format')
+ax.set_ylabel('Request time [s]')
+a = ax.set_xlabel('Data format')
 
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
-
-sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax[1], color=s11_cmap(0))
-sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax[1], color=s11_cmap(255))
-ax[1].set_ylabel('Request time [s]')
-sns.despine(trim = True, offset = -10, ax = ax[1])
-
-
-print("Speed up (COG)", data['ZARR'].mean()/data['COG'].mean())
 ```
 
 
+### Effects of zoom level
+
+```{python}
+#| echo: false
+
+
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
+
+
+fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
+cog_slope = round(fit_results.params['zoom level'], 3)
+
+fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
+zarr_slope = round(fit_results.params['zoom leve
+```
+
+As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
+
+```{python}
+#| echo: false
+#| fig-cap: "Request times depending on zoom level"
+#| label: fig-comp-zoom
+
+import statsmodels.api as sm
+
+fig, ax = plt.subplots(1,1,figsize= (7.5,5))
+
+sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95)
+sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95)
+ax.set_ylabel('Request time [s]')
+a= sns.despine(trim = True, offset = -10, ax = ax)
+```
 
