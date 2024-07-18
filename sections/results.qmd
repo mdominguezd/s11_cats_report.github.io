@@ -71,7 +71,7 @@ a = ax.set_xlabel('Data format')
 
 ```{python}
 #| echo: false
-
+import statsmodels.api as sm
 
 data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
 
@@ -80,7 +80,7 @@ fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
 cog_slope = round(fit_results.params['zoom level'], 3)
 
 fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
-zarr_slope = round(fit_results.params['zoom leve'], 3)
+zarr_slope = round(fit_results.params['zoom level'], 3)
 ```
 
 As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
@@ -89,9 +89,6 @@ As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on 
 #| echo: false
 #| fig-cap: "Request times depending on zoom level"
 #| label: fig-comp-zoom
-
-import statsmodels.api as sm
-
 fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
 sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95)
