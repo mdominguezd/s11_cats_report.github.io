@@ -80,7 +80,7 @@ fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
 cog_slope = round(fit_results.params['zoom level'], 3)
 
 fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
-zarr_slope = round(fit_results.params['zoom leve
+zarr_slope = round(fit_results.params['zoom leve'], 3)
 ```
 
 As seen on @fig-fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
