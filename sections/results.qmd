@@ -51,15 +51,17 @@ s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
 background_color = '#180066'
 text_color = 'white'
 
-sns.set(rc={'text.color' : background_color,
-'axes.labelcolor' : background_color,
-'xtick.color': background_color,
-'ytick.color': background_color,})
+sns.set(rc={'axes.facecolor' : 'white',
+    'grid.color' : 'lightgray',
+    'text.color' : background_color,
+    'axes.labelcolor' : background_color,
+    'xtick.color': background_color,
+    'ytick.color': background_color,})
 
 fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
-sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax)
-sns.despine(trim = True, offset = -10, ax = ax)
+sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax, linecolor=background_color)
+# sns.despine(trim = True, offset = -10, ax = ax)
 
 ax.set_ylabel('Request time [s]')
 a = ax.set_xlabel('Data format')
