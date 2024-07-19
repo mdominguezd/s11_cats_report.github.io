@@ -509,37 +509,18 @@ Figure&nbsp;4: Request times depending on data format and zoom level
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
 <p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.012 and -0.015 per zoom level for COGs and ZARRs respectively.</p>
-<div class="cell" data-execution_count="4">
-<div id="fig-comp-zoom" class="cell quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="4">
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="fig-comp-zoom-1" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="28">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-comp-zoom-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre id="fig-comp-zoom-1" class="cell-output cell-output-display" data-execution_count="28"><code>Text(0, 0.5, 'Request time [s]')</code></pre>
+<img src="FinalReport_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-comp-zoom-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Request times depending on zoom level
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
-<div class="cell-output cell-output-display">
-<div id="fig-comp-zoom-2" class="quarto-figure quarto-figure-center quarto-float anchored" height="436" width="634">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-comp-zoom-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="FinalReport_files/figure-html/fig-comp-zoom-output-2.png" id="fig-comp-zoom-2" data-ref-parent="fig-comp-zoom" width="634" height="436" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-comp-zoom-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b)
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5
-</figcaption>
-</figure>
 </div>
 </div>
 </section>
@@ -596,7 +577,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>Sys
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="0dee0f83" class="cell" data-execution_count="5">
+<div id="79669e3b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
