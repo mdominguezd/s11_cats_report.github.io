@@ -72,7 +72,15 @@ Required libraries:
 
 **Deliverable:** Containerized application to visualize the data  -->
 
-## Performance assessment
+## Multi-format data visualization
+
+To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. A COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This preprocessing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. 
+
+The [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) service was then customized to work with the specific folder structure of the ZARR overviews previously created. Dockerized versions of both [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) (for Zarr files) and [TiTiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac) (for COG files) were deployed locally. 
+
+Performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geospatial visualization context.
+
+### Speed up 
 
 The assessment of the performance of the new Data Catalog will be measured using the baseline scenario established at the beginning of the internship and the Speed Up metric proposed by [@durbha_advances_2023]:
 

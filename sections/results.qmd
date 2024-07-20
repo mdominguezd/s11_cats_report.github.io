@@ -31,7 +31,7 @@ TiTiler-PgSTAC & TiTiler-xarray
 
 import pandas as pd
 
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_10iter.csv')
+6data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
 
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
@@ -75,8 +75,7 @@ a = ax.set_xlabel('Data format')
 #| echo: false
 
 import statsmodels.api as sm
-
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_1iter.csv')
+data = pd.read_csv('request_time_results_6iter.csv')
 
 
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
