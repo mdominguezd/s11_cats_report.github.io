@@ -154,7 +154,10 @@ window.Quarto = {
   <li><a href="#set-up-stac-browser-on-gcp" id="toc-set-up-stac-browser-on-gcp" class="nav-link" data-scroll-target="#set-up-stac-browser-on-gcp">Set up STAC browser on GCP</a></li>
   <li><a href="#automate-processes-via-ci-pipeline" id="toc-automate-processes-via-ci-pipeline" class="nav-link" data-scroll-target="#automate-processes-via-ci-pipeline">Automate processes via CI pipeline</a></li>
   </ul></li>
-  <li><a href="#performance-assessment" id="toc-performance-assessment" class="nav-link" data-scroll-target="#performance-assessment">Performance assessment</a></li>
+  <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a>
+  <ul class="collapse">
+  <li><a href="#speed-up" id="toc-speed-up" class="nav-link" data-scroll-target="#speed-up">Speed up</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -246,13 +249,19 @@ Required libraries:
 **Deliverable:** Containerized application to visualize the data  -->
 </section>
 </section>
-<section id="performance-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="performance-assessment">Performance assessment</h2>
+<section id="multi-format-data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
+<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. A COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This preprocessing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison.</p>
+<p>The <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Dockerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed locally.</p>
+<p>Performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geospatial visualization context.</p>
+<section id="speed-up" class="level3">
+<h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
 <p>The assessment of the performance of the new Data Catalog will be measured using the baseline scenario established at the beginning of the internship and the Speed Up metric proposed by <span class="citation" data-cites="durbha_advances_2023">[@durbha_advances_2023]</span>:</p>
 <p><span class="math display">\[ SpeedUp = \frac{t_{baseline}}{t_{catalog}} \]</span></p>
 <p>This metric explains how much the process to access data has sped up thanks to the integration of cloud-based storage, the data catalog and the browsing interface.</p>
 
 
+</section>
 </section>
 
 
