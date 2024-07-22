@@ -30,7 +30,7 @@ Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data
 
 ###### ZARR
 
-Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service [@desruisseaux_og_2021].
+Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service [@desruisseaux_ogc_2021].
 
 #### Data discovery services
 
