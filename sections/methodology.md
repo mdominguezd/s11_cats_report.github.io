@@ -1,4 +1,4 @@
-To address the proposed research questions, a series of activities and the deliverables expected from them are presented on @fig-fc. Additionally, a detailed description of each activity is presented in the following subsections.
+<!-- To address the proposed research questions, a series of activities and the deliverables expected from them are presented on @fig-fc. Additionally, a detailed description of each activity is presented in the following subsections.
 
 ![Internship flowchart](img/FlowChart_Internship.png){#fig-fc width="60%"}
 
@@ -16,7 +16,7 @@ An overview of the cloud services used by the company will be described. This wi
 
 -   How often certain data is updated?
 
--   How is the data updated?
+-   How is the data updated? -->
 
 ## Baseline scenario definition
 
@@ -26,7 +26,7 @@ The questions asked during the interviews were oriented towards two main topics 
 
 ## Data integration
 
-### Local STAC creation and browsing
+<!-- ### Local STAC creation and browsing
 
 This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:
 
@@ -50,7 +50,7 @@ This step will focus on the building of the initial version of the main STAC cat
 
 The **deliverable** of this step will be a GitLab repository with code to create a catalog, create collections, add assets from a directory on the cloud and update them.
 
-### Set up STAC browser on GCP
+### Set up APIs on GCP
 
 In this step a version of the STAC Browser application will be deployed using the tools from Google Cloud Platform (GCP). This application will allow users to browse and interact with the STAC catalog through a user-friendly interface. Additionally, this step will involve the definition of resources and tools from GCP that will be employed to deploy the application. For instance, the decision of doing it through a virtual machine or on a containerized way will be made.
 
@@ -58,7 +58,7 @@ The **deliverable** of this step will be a the STAC browser application running 
 
 ### Automate processes via CI pipeline
 
-Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence's Satellite Data Processing engine. 
+Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence's Satellite Data Processing engine.  -->
 
 <!-- ### Visualization tool development (Optional)
 
