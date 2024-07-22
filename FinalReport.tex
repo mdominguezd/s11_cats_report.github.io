@@ -422,6 +422,26 @@ Geodata}}}}\par
 }
 \listoffigures
 \mainmatter
+\chapter*{Abstract}\label{abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+The abstract goes here.
+
+\newpage
+
+\chapter*{List of abreviations}\label{list-of-abreviations}
+\addcontentsline{toc}{chapter}{List of abreviations}
+
+\begin{center}
+\begin{tabular}{ c | c }
+ STAC & Spatio-Temporal Asset Catalog \\ 
+ COG & Cloud-Optimized GeoTiff \\  
+ OGC & Open Geospatial Consortium \\
+ SDI & Spatial Data Infrastructure \\
+
+\end{tabular}
+\end{center}
+
 \chapter{Introduction}\label{introduction}
 
 \section{Internship organization
@@ -761,7 +781,36 @@ integration of this catalog with other tools from the company. For
 instance, the Distributed Processing Framework (DPROF), which is
 satelligence's Satellite Data Processing engine.
 
-\section{Performance assessment}\label{performance-assessment}
+\section{Multi-format data
+visualization}\label{multi-format-data-visualization}
+
+To assess the performance of dynamic tiling services for visualizing
+Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following
+approach was undertaken. A COG containing forest baseline information
+for the Riau region of Indonesia was used to create a series of Zarr
+files, each representing different overviews corresponding to various
+zoom levels. This preprocessing step, completed by the company prior to
+the study, ensured that the same data was used across both data formats,
+allowing for direct comparison.
+
+The
+\href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
+service was then customized to work with the specific folder structure
+of the ZARR overviews previously created. Dockerized versions of both
+\href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
+(for Zarr files) and
+\href{https://github.com/stac-utils/titiler-pgstac}{TiTiler-PgSTAC} (for
+COG files) were deployed locally.
+
+Performance was measured by recording the response times for random tile
+requests at zoom levels ranging from 9 to 18. Finally, to mitigate the
+influence of cached data on response times, each iteration used a
+different colormap, with a total of six colormaps employed. This
+methodology enabled a systematic evaluation of the performance
+differences between the two data formats in a geospatial visualization
+context.
+
+\subsection{Speed up}\label{speed-up}
 
 The assessment of the performance of the new Data Catalog will be
 measured using the baseline scenario established at the beginning of the
@@ -828,8 +877,7 @@ TiTiler-PgSTAC \& TiTiler-xarray
 The comparison of visualization speeds with TiTiler-xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented on
 Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
-tiles are requested np.float64(2.85) times faster than the same file in
-ZARR format.
+tiles are requested 2.73 times faster than the same file in ZARR format.
 
 \begin{figure}[H]
 
@@ -849,7 +897,7 @@ and zoom level}
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
 have an effect on the time spent requesting and getting a tile from a
 tile server. In this study, it was found that the request times
-decreased by a factor of -0.012 and -0.015 per zoom level for COGs and
+decreased by a factor of -0.003 and 0.003 per zoom level for COGs and
 ZARRs respectively.
 
 \begin{figure}[H]
@@ -963,7 +1011,7 @@ times}\label{code-to-evaluate-request-times}
 
     \CommentTok{\# Determine the range of change based on the value of z}
     \ControlFlowTok{if}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{9}\NormalTok{:}
-\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{2}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{3}
     \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{12}\NormalTok{:}
 \NormalTok{        change\_range }\OperatorTok{=} \DecValTok{5}
     \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{15}\NormalTok{:}
@@ -987,12 +1035,14 @@ times}\label{code-to-evaluate-request-times}
 \NormalTok{cmap\_picked }\OperatorTok{=}\NormalTok{ []}
 
 \CommentTok{\# The colormaps picked can be either a customized one for S11 Forest baseline or greens\_r}
-\NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{]}
+\NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"\_name=greens\&rescale=0,70"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{,}
+        \StringTok{"\_name=seismic\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=seismic\_r\&rescale=0,90"}\NormalTok{,}
+        \StringTok{"\_name=accent\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=accent\_r\&rescale=0,80"}\NormalTok{]}
 
-\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\DecValTok{2}\NormalTok{):}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(cmap)):}
 
 \NormalTok{    mod\_tiles }\OperatorTok{=}\NormalTok{ [modify\_tile(tile) }\ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ tiles]}
-\NormalTok{    k }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(i}\OperatorTok{/}\DecValTok{2}\OperatorTok{{-}}\NormalTok{i}\OperatorTok{//}\DecValTok{2} \OperatorTok{+} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{    k }\OperatorTok{=}\NormalTok{ i}
 
     \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
 
@@ -1013,7 +1063,7 @@ times}\label{code-to-evaluate-request-times}
 \NormalTok{data }\OperatorTok{=}\NormalTok{ pd.DataFrame([cmap\_picked, z\_level, times\_cog, times\_zarr]).T}
 \NormalTok{data.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}colormap\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}zoom level\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}COG\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ZARR\textquotesingle{}}\NormalTok{]}
 
-\NormalTok{data.to\_csv(}\StringTok{\textquotesingle{}request\_time\_results\_1iter.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{data.to\_csv(}\StringTok{\textquotesingle{}request\_time\_results\_6iter.csv\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

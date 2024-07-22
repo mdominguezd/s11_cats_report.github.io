@@ -37,6 +37,10 @@ format:
     keep-tex: true
 ---
 
+{{< include sections/abstract.md >}}
+
+
+
 # Introduction
 
 {{< include sections/introduction.md >}}
