@@ -60,7 +60,7 @@
     "href": "FinalReport.html#baseline-scenario",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Baseline scenario",
-    "text": "Baseline scenario\n\nMain findings\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\nThe major pitfalls found on the process of data discovery in the company could be summarized in …."
+    "text": "Baseline scenario\n\nMain findings\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\nThe major pitfalls found on the process of data discovery in the company could be summarized in:\n\nHigh dependency on colleagues.\nDisorganized structure of Google Storage Buckets.\nExperienced study subjects would find the data location faster.\nData discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).\nNot intuitive naming of repositories."
   },
   {
     "objectID": "FinalReport.html#service-integration",

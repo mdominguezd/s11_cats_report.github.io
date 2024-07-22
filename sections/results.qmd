@@ -6,7 +6,13 @@ The main finding of the interviews were the steps followed currently to discover
 
 ![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
 
-The major pitfalls found on the process of data discovery in the company could be summarized in ....
+The major pitfalls found on the process of data discovery in the company could be summarized in:
+
+-   High dependency on colleagues.
+-   Disorganized structure of Google Storage Buckets.
+-   Experienced study subjects would find the data location faster.
+-   Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
+-   Not intuitive naming of repositories.
 
 ## Service integration
 
@@ -68,7 +74,6 @@ a = ax.set_xlabel('Data format')
 
 ```
 
-
 ### Effects of zoom level
 
 ```{python}
@@ -101,3 +106,4 @@ a = plt.legend()
 # a= sns.despine(trim = True, offset = -10, ax = ax)
 ```
 
+\hl{Talk about how this figure also might indicate that the way the tiles are being called by titiler xarray is not ideal?}
