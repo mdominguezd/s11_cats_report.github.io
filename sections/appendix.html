@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="d292ae81" class="cell" data-execution_count="1">
+<div id="b4fe2c77" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -217,8 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11 Forest baseline or greens_r</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=seismic&amp;rescale=0,90"</span>, <span class="st">"_name=seismic_r&amp;rescale=0,90"</span>,</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=accent&amp;rescale=0,80"</span>, <span class="st">"_name=accent_r&amp;rescale=0,80"</span>]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>]</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
