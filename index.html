@@ -213,19 +213,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
   <ul class="collapse">
-  <li><a href="#data-and-processing-code-familiarization" id="toc-data-and-processing-code-familiarization" class="nav-link" data-scroll-target="#data-and-processing-code-familiarization">Data and processing code familiarization</a>
-  <ul class="collapse">
-  <li><a href="#cloud-services-familiarization" id="toc-cloud-services-familiarization" class="nav-link" data-scroll-target="#cloud-services-familiarization">Cloud services familiarization</a></li>
-  </ul></li>
   <li><a href="#baseline-scenario-definition" id="toc-baseline-scenario-definition" class="nav-link" data-scroll-target="#baseline-scenario-definition">Baseline scenario definition</a></li>
-  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data integration</a>
-  <ul class="collapse">
-  <li><a href="#local-stac-creation-and-browsing" id="toc-local-stac-creation-and-browsing" class="nav-link" data-scroll-target="#local-stac-creation-and-browsing">Local STAC creation and browsing</a></li>
-  <li><a href="#sec-structure" id="toc-sec-structure" class="nav-link" data-scroll-target="#sec-structure">Organization of main STAC structure &amp; extensions per asset</a></li>
-  <li><a href="#build-main-stac-v.0.1" id="toc-build-main-stac-v.0.1" class="nav-link" data-scroll-target="#build-main-stac-v.0.1">Build main STAC v.0.1</a></li>
-  <li><a href="#set-up-stac-browser-on-gcp" id="toc-set-up-stac-browser-on-gcp" class="nav-link" data-scroll-target="#set-up-stac-browser-on-gcp">Set up STAC browser on GCP</a></li>
-  <li><a href="#automate-processes-via-ci-pipeline" id="toc-automate-processes-via-ci-pipeline" class="nav-link" data-scroll-target="#automate-processes-via-ci-pipeline">Automate processes via CI pipeline</a></li>
-  </ul></li>
+  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data integration</a></li>
   <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a>
   <ul class="collapse">
   <li><a href="#speed-up" id="toc-speed-up" class="nav-link" data-scroll-target="#speed-up">Speed up</a></li>
@@ -461,31 +450,25 @@ Table&nbsp;1: STAC components
 </section>
 <section id="methodology" class="level1">
 <h1>Methodology</h1>
-<p>To address the proposed research questions, a series of activities and the deliverables expected from them are presented on <a href="#fig-fc" class="quarto-xref">Figure&nbsp;1</a>. Additionally, a detailed description of each activity is presented in the following subsections.</p>
-<div id="fig-fc" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/FlowChart_Internship.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Internship flowchart
-</figcaption>
-</figure>
-</div>
-<section id="data-and-processing-code-familiarization" class="level2">
-<h2 class="anchored" data-anchor-id="data-and-processing-code-familiarization">Data and processing code familiarization</h2>
-<p>In this step, I will familiarize myself with the current tools used for the processing of the images and its storage. This step will include the understanding of cloud services and internal image processing tools and the main datasets to be referenced on the catalog (STAC data). Moreover, in this step an initial description of the STAC data metadata will be performed.</p>
-<section id="cloud-services-familiarization" class="level3">
-<h3 class="anchored" data-anchor-id="cloud-services-familiarization">Cloud services familiarization</h3>
-<p>An overview of the cloud services used by the company will be described. This will be mainly with the objective to understand, but not limited to:</p>
-<ul>
-<li><p>Who access the data?</p></li>
-<li><p>What are the costs of accessing it?</p></li>
-<li><p>How often certain data is updated?</p></li>
-<li><p>How is the data updated?</p></li>
-</ul>
-</section>
-</section>
+<!-- To address the proposed research questions, a series of activities and the deliverables expected from them are presented on @fig-fc. Additionally, a detailed description of each activity is presented in the following subsections.
+
+![Internship flowchart](img/FlowChart_Internship.png){#fig-fc width="60%"}
+
+## Data and processing code familiarization
+
+In this step, I will familiarize myself with the current tools used for the processing of the images and its storage. This step will include the understanding of cloud services and internal image processing tools and the main datasets to be referenced on the catalog (STAC data). Moreover, in this step an initial description of the STAC data metadata will be performed.
+
+### Cloud services familiarization
+
+An overview of the cloud services used by the company will be described. This will be mainly with the objective to understand, but not limited to:
+
+-    Who access the data?
+
+-   What are the costs of accessing it?
+
+-   How often certain data is updated?
+
+-   How is the data updated? -->
 <section id="baseline-scenario-definition" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-scenario-definition">Baseline scenario definition</h2>
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
@@ -493,43 +476,39 @@ Figure&nbsp;1: Internship flowchart
 </section>
 <section id="data-integration" class="level2">
 <h2 class="anchored" data-anchor-id="data-integration">Data integration</h2>
-<section id="local-stac-creation-and-browsing" class="level3">
-<h3 class="anchored" data-anchor-id="local-stac-creation-and-browsing">Local STAC creation and browsing</h3>
-<p>This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:</p>
-<ol type="1">
-<li>Creation of a virtual environment or Docker container with all the required packages to create a STAC catalog.</li>
-<li>Creation of Local STAC using sample data from the company.</li>
-<li>Browse through the STAC catalog using tools like STAC browser.</li>
-</ol>
-<p>The <strong>deliverable</strong> of this step will be a GitLab repository with code to create a catalog, add assets from a local directory and browse through them locally using STAC browser.</p>
-</section>
-<section id="sec-structure" class="level3">
-<h3 class="anchored" data-anchor-id="sec-structure">Organization of main STAC structure &amp; extensions per asset</h3>
-<p>In this step the structure of the STAC catalog will be defined. This will involve the selection of datasets that will be referenced on the catalog, the definition of subcatalogs and/or collections to group items with similar metadata. An initial idea of the structure of the main STAC catalog can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;2</a>. Initially, the creation of two different subcatalogs is proposed to keep the static and dynamic dataset separated. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
-<div id="fig-stac-str" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/STAC_Satelligence_structure.png" class="img-fluid figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Initial proposed STAC structure
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="build-main-stac-v.0.1" class="level3">
-<h3 class="anchored" data-anchor-id="build-main-stac-v.0.1">Build main STAC v.0.1</h3>
-<p>This step will focus on the building of the initial version of the main STAC catalog, once the datasets and the overall structure has been defined. It will involve the population of the catalog with STAC components following the defined structure on <a href="#sec-structure" class="quarto-xref">Section&nbsp;2.3.2</a>. Furthermote, on this step a series of validation tools will be used to check that the STAC catalog created is followins the STAC spcification. These tools are part of the python package <a href="https://github.com/stac-utils/stactools">stac-tools</a>.</p>
-<p>The <strong>deliverable</strong> of this step will be a GitLab repository with code to create a catalog, create collections, add assets from a directory on the cloud and update them.</p>
-</section>
-<section id="set-up-stac-browser-on-gcp" class="level3">
-<h3 class="anchored" data-anchor-id="set-up-stac-browser-on-gcp">Set up STAC browser on GCP</h3>
-<p>In this step a version of the STAC Browser application will be deployed using the tools from Google Cloud Platform (GCP). This application will allow users to browse and interact with the STAC catalog through a user-friendly interface. Additionally, this step will involve the definition of resources and tools from GCP that will be employed to deploy the application. For instance, the decision of doing it through a virtual machine or on a containerized way will be made.</p>
-<p>The <strong>deliverable</strong> of this step will be a the STAC browser application running on GCP.</p>
-</section>
-<section id="automate-processes-via-ci-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="automate-processes-via-ci-pipeline">Automate processes via CI pipeline</h3>
-<p>Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence’s Satellite Data Processing engine.</p>
+<!-- ### Local STAC creation and browsing
+
+This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:
+
+1. Creation of a virtual environment or Docker container with all the required packages to create a STAC catalog.
+2. Creation of Local STAC using sample data from the company.
+3. Browse through the STAC catalog using tools like STAC browser.
+
+The **deliverable** of this step will be a GitLab repository with code to create a catalog, add assets from a local directory and browse through them locally using STAC browser.
+
+### Organization of main STAC structure & extensions per asset {#sec-structure}
+
+In this step the structure of the STAC catalog will be defined. This will involve the selection of datasets that will be referenced on the catalog, the definition of subcatalogs and/or collections to group items with similar metadata. An initial idea of the structure of the main STAC catalog can be seen on @fig-stac-str. Initially, the creation of two different subcatalogs is proposed to keep the static and dynamic dataset separated. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step. 
+
+![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width='90%'}
+
+[^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
+
+### Build main STAC v.0.1
+
+This step will focus on the building of the initial version of the main STAC catalog, once the datasets and the overall structure has been defined. It will involve the population of the catalog with STAC components following the defined structure on @sec-structure. Furthermote, on this step a series of validation tools will be used to check that the STAC catalog created is followins the STAC spcification. These tools are part of the python package [stac-tools](https://github.com/stac-utils/stactools). 
+
+The **deliverable** of this step will be a GitLab repository with code to create a catalog, create collections, add assets from a directory on the cloud and update them.
+
+### Set up APIs on GCP
+
+In this step a version of the STAC Browser application will be deployed using the tools from Google Cloud Platform (GCP). This application will allow users to browse and interact with the STAC catalog through a user-friendly interface. Additionally, this step will involve the definition of resources and tools from GCP that will be employed to deploy the application. For instance, the decision of doing it through a virtual machine or on a containerized way will be made.
+
+The **deliverable** of this step will be a the STAC browser application running on GCP.
+
+### Automate processes via CI pipeline
+
+Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence's Satellite Data Processing engine.  -->
 <!-- ### Visualization tool development (Optional)
 
 Finally, if time allows, an internal application will be developed to access and visualize the data from the STAC catalog created.
@@ -541,7 +520,6 @@ Required libraries:
 -   [Leafmap](https://leafmap.org/) for spatial data visualization
 
 **Deliverable:** Containerized application to visualize the data  -->
-</section>
 </section>
 <section id="multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
@@ -562,14 +540,14 @@ Required libraries:
 <h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
 <section id="main-findings" class="level3">
 <h3 class="anchored" data-anchor-id="main-findings">Main findings</h3>
-<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;3</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
+<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
 <div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Baseline workflow
+Figure&nbsp;1: Baseline workflow
 </figcaption>
 </figure>
 </div>
@@ -598,7 +576,7 @@ Figure&nbsp;3: Baseline workflow
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -607,7 +585,7 @@ Figure&nbsp;3: Baseline workflow
 <img src="index_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Request times depending on data format and zoom level
+Figure&nbsp;2: Request times depending on data format and zoom level
 </figcaption>
 </figure>
 </div>
@@ -616,7 +594,7 @@ Figure&nbsp;4: Request times depending on data format and zoom level
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -625,7 +603,7 @@ Figure&nbsp;4: Request times depending on data format and zoom level
 <img src="index_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Request times depending on zoom level
+Figure&nbsp;3: Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
@@ -637,11 +615,15 @@ Figure&nbsp;5: Request times depending on zoom level
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
-<p>hgdcjfc rah fdxh sdfhfn dfayhgn d</p>
-<p>gadfh</p>
 </section>
 <section id="future-work" class="level1">
 <h1>Future work</h1>
+<ul>
+<li>ndpyramids</li>
+<li>STAC API authentication</li>
+<li>Inclusion of Vector data on STAC</li>
+<li></li>
+</ul>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
@@ -697,7 +679,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 <h1 class="unnumbered">Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="d6349e80" class="cell" data-execution_count="5">
+<div id="a0b39362" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -774,13 +756,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>STAC extensions are additional metadata properties that can be added to a dataset. (e.g.&nbsp;Classes, bands, sensor-type, etc.)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
