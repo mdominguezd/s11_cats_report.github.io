@@ -424,8 +424,8 @@ Geodata}}}}\par
 }
 \listoffigures
 \mainmatter
-\chapter*{Abstract}\label{abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+\chapter*{Executive summary}\label{executive-summary}
+\addcontentsline{toc}{chapter}{Executive summary}
 
 The abstract goes here.
 
@@ -463,7 +463,7 @@ OGC & Open Geospatial Consortium \\
 SDI & Spatial Data Infrastructure \\
 S11 & Satelligence \\
 K8 & Kubernetes \\
-DPROF & Distributed Processing Framework (?) \\
+DPROF & Distributed Processing Framework \\
 \end{longtable}
 
 \chapter{Introduction}\label{introduction}
@@ -471,27 +471,32 @@ DPROF & Distributed Processing Framework (?) \\
 \section{Internship organization
 background}\label{internship-organization-background}
 
-Satelligence is a company founded in 2016 that specializes in providing
-satellite-based actionable information by monitoring environmental risks
-in commodity supply chains and financial investment planning
-(\citeproc{ref-satelligence_home_nodate}{Satelligence, n.d.}). More
-specifically, the company processes terabytes of satellite imagery to
-detect environmental risks and presents this information to their
+Satelligence (S11) is a company founded in 2016 that specializes in
+providing satellite-based actionable information by monitoring
+environmental risks in commodity supply chains and financial investment
+planning (\citeproc{ref-satelligence_home_nodate}{Satelligence, n.d.}).
+More specifically, the company processes terabytes of satellite imagery
+to detect environmental risks and presents this information to their
 clients in a web application to assist them in the migration towards
 more sustainable sourcing models and the compliance with
-deforestation-free regulations, such as the EUDR
-(\citeproc{ref-satelligence_internship_2023}{Satelligence, 2023}).
-
-\hl{Add info about how most of their work, if not all is cloud based. (DSHUB, DPROF, Google)}
+deforestation-free commodities regulations, such as the European Union
+Deforestation Regulation (EUDR)
+(\citeproc{ref-satelligence_internship_2023}{Satelligence, 2023}). S11's
+main focus is deforestation monitoring in the tropics using freely
+accessible satellite imagery. This is a data-intensive task that is
+achieved by leveraging the benefits of cloud computing, specifically
+Google Cloud Platform.
 
 \section{Context and justification of
 research}\label{context-and-justification-of-research}
 
-Satelligence currently employs cloud computing, specifically Kubernetes,
-to process extensive volumes of satellite imagery amounting to
-terabytes. While this processing workflow currently runs smoothly, the
-company's data team faces challenges when going deeper into the analysis
-and accessing intermediate results due to the big nature of this data
+Satelligence strongly relies on cloud computing for their services. They
+process extensive volumes of satellite imagery amounting to terabytes
+using DPROF, a distributed processing framework created within the
+company to efficiently process multidimensional spatial datasets. While
+this processing workflow currently runs smoothly, the company's data and
+operations teams face challenges when going deeper into the analysis and
+accessing intermediate results due to the big nature of this data
 (\citeproc{ref-satelligence_internship_2023}{Satelligence, 2023}).
 Scholars have defined big data as datasets characterized by their high
 Volume, Velocity, and Variety, which makes it paramount to use advanced
@@ -503,11 +508,12 @@ day), high velocity (Near -- real time processing of these images) and
 high variety (Imagery coming from different sensors and regions). All
 these datasets are a specific case of big data: Big Geodata.
 
-\subsection{Significance of the topic}\label{significance-of-the-topic}
+\subsection{Significance of the topic and previous
+research}\label{significance-of-the-topic-and-previous-research}
 
 In the past decades there has been a rapid increase in the amount and
-size of geospatial information that can be accessed. Nowadays, more than
-150 satellites orbit the earth collecting thousands of images every
+size of geo-spatial information that can be accessed. Nowadays, more
+than 150 satellites orbit the earth collecting thousands of images every
 single day (\citeproc{ref-zhao_scalable_2021}{Zhao et al., 2021}). This
 has made data handling and the introduction of spatial data
 infrastructures (SDIs) paramount when working with such big datasets.
@@ -518,15 +524,18 @@ and analysis of spatial data
 2001}). However, in practice SDIs have been built upon technologies that
 focus on data preservation rather than accessibility
 (\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}). Due to this,
-an important shift is underway towards more cloud-based SDIs. These
+an important shift is underway towards more cloud-based SDIs
+(\citeproc{ref-tripathi_cloud_2020}{Tripathi et al., 2020}). These
 platforms need the emergence of new technologies that prioritize
 seamless access to cloud-stored data, efficient discovery services that
 ensure the easy location of extensive spatial data, and data
 visualization interfaces where multiple datasets can be depicted.
 
-\subsubsection{Cloud-based data storage}\label{cloud-based-data-storage}
+\subsubsection*{Cloud-based data
+storage}\label{cloud-based-data-storage}
+\addcontentsline{toc}{subsubsection}{Cloud-based data storage}
 
-Spatial data, just like any other type of data, can be catalogued into
+Spatial data, just like any other type of data, can be cataloged into
 structured and unstructured data. Structured datasets are often
 organized and follow a specific structure (i.e.~A traditional table with
 rows (objects) and columns (features)). On the other hand, unstructured
@@ -550,35 +559,62 @@ across networks to access it makes it essential to develop new data
 formats suited for such purposes
 (\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}).
 
+At S11, the storage of large geo-spatial data is already managed using
+Google Storage Buckets, and they are currently in the process of
+incorporating the conversion to cloud-optimized data formats like Cloud
+Optimized GeoTIFFs (COGs) and ZARRs in their processing framework
+(DPROF) to improve efficiency and accessibility.
+
+\paragraph*{Cloud-optimized data
+formats}\label{cloud-optimized-data-formats}
+\addcontentsline{toc}{paragraph}{Cloud-optimized data formats}
+
+\subparagraph*{COG}\label{cog}
+\addcontentsline{toc}{subparagraph}{COG}
+
 Cloud-Optimized GeoTIFFs (\href{https://www.cogeo.org/}{COGs}) are an
 example of data formats that have been created to ease the access of
 data stored in the cloud. They improve the readability by including the
-metadata in the initial bytes of the file stored and storing different
-image tiles for different scales. These characteristics make COGs
-heavier than traditional image formats, however, they also greatly
-enhance accessibility by enabling the selective transfer of only the
-necessary tiles (\citeproc{ref-durbha_advances_2023}{Durbha et al.,
-2023}).
+metadata in the initial bytes of the file stored, storing different
+image overviews for different scales and tiling the images in smaller
+blocks. These characteristics make COG files heavier than traditional
+image formats, however, they also greatly enhance accessibility by
+enabling the selective transfer of only the necessary tiles using HTTP
+GET requests (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
+2021}).
+
+\subparagraph*{ZARR}\label{zarr}
+\addcontentsline{toc}{subparagraph}{ZARR}
 
 Another cloud native data format that has gained popularity recently is
 \href{https://zarr.readthedocs.io/en/stable/}{Zarr}. This data format
 and python library focuses on the cloud-optimization of n-dimensional
 arrays. Zarr differently than COGs store the metadata separately from
-the data chunks. Normally, using external JSON files
+the data chunks using lightweight external JSON files
 (\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}).
+Additionally, this data format stores the N-dimensional arrays in
+smaller chunks that can be accessed more easily. Finally, while the
+storage of ZARR files in chunks facilitates more efficient data access,
+the absence of overviews hinders the visualization of this data in a web
+map service (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
+2021}).
 
-\subsubsection{Data discovery services}\label{data-discovery-services}
+\subsubsection*{Data discovery services}\label{data-discovery-services}
+\addcontentsline{toc}{subsubsection}{Data discovery services}
 
-A discovery service widely used for the exploration of big geodata
-(e.g.~COGs) is Spatio-Temporal Asset Catalog (STAC). Through the
-standardization of spatial data, STAC simplifies the management and
-discovery of big geodata (\citeproc{ref-brodeur_geographic_2019}{Brodeur
-et al., 2019}). This service works by organizing the data into catalogs,
-collections, items, and assets that will only be read when a computation
-is required (\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}).
-This feature optimizes workflows by reducing unnecessary data loading.
+\hl{AMPLIAR. Maybe include other data discovery services? }
 
-\paragraph{STAC fundamentals}\label{stac-fundamentals}
+A discovery service widely used for the exploration of big geo-data is
+Spatio-Temporal Asset Catalog (STAC). Through the standardization of
+spatial data, STAC simplifies the management and discovery of big
+geo-data (\citeproc{ref-brodeur_geographic_2019}{Brodeur et al., 2019}).
+This service works by organizing the data into catalogs, collections,
+items, and assets that will only be read when a computation is required
+(\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}). This feature
+optimizes workflows by reducing unnecessary data loading.
+
+\paragraph*{STAC fundamentals}\label{stac-fundamentals}
+\addcontentsline{toc}{paragraph}{STAC fundamentals}
 
 A Catalog built under STAC specifications is composed by:
 
@@ -614,7 +650,13 @@ of Items that share properties and metadata \\
 contain child catalogs. \\
 \end{longtable}
 
-\subsubsection{Visualization interfaces}\label{visualization-interfaces}
+\hl{Talk about the integration with sturctured data base management (PgSTAC)}
+
+\subsubsection*{Visualization
+interfaces}\label{visualization-interfaces}
+\addcontentsline{toc}{subsubsection}{Visualization interfaces}
+
+\hl{Mention also that there are multiple TiTiler services}
 
 The visualization of spatial data brings with it a series of challenges
 due to its big nature. Dynamic tiling libraries such as TiTiler have
@@ -627,9 +669,11 @@ image file formats are more easily transferred through the web.
 \subsection{Added value of this
 research}\label{added-value-of-this-research}
 
+\hl{expand}
+
 This research aims to develop a STAC catalog to facilitate the discovery
-of diverse big geospatial datasets created by different teams within the
-company. Depending on the time available for the thesis, data
+of diverse big geo-spatial datasets created by different teams within
+the company. Depending on the time available for the thesis, data
 visualization functionalities may be integrated. Moreover, the research
 will explore tools to efficiently manage a STAC catalog containing both
 static and dynamic datasets.
@@ -903,7 +947,7 @@ TiTiler-PgSTAC \& TiTiler-xarray
 The comparison of visualization speeds with TiTiler-xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented on
 Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
-tiles are requested 1.74 times faster than the same file in ZARR format.
+tiles are requested 2.38 times faster than the same file in ZARR format.
 
 \begin{figure}[H]
 
@@ -923,7 +967,7 @@ and zoom level}
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
 have an effect on the time spent requesting and getting a tile from a
 tile server. In this study, it was found that the request times
-decreased by a factor of -0.009 and 0.007 per zoom level for COGs and
+decreased by a factor of -0.013 and -0.005 per zoom level for COGs and
 ZARRs respectively.
 
 \begin{figure}[H]
@@ -956,35 +1000,39 @@ gadfh
 \begin{CSLReferences}{1}{0}
 \bibitem[\citeproctext]{ref-brodeur_geographic_2019}
 Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J.
-(2019). Geographic {Information} {Metadata}---{An} {Outlook} from the
-{International} {Standardization} {Perspective}. \emph{ISPRS
-International Journal of Geo-Information}, \emph{8}(6), 280. p.
+(2019). Geographic information metadata---an outlook from the
+international standardization perspective. \emph{{ISPRS} International
+Journal of Geo-Information}, \emph{8}(6), 280. p.
 \url{https://doi.org/10.3390/ijgi8060280}
+
+\bibitem[\citeproctext]{ref-desruisseaux_ogc_2021}
+Desruisseaux, M., Giacco, G., Goncalves, P., Manente, M. and Rouault, E.
+(2021). \emph{{OGC} testbed 17: {COG}/zarr evaluation engineering
+report}. \url{https://docs.ogc.org/per/21-032.html\#toc11}
 
 \bibitem[\citeproctext]{ref-durbha_advances_2023}
 Durbha, S. S., Sanyal, J., Yang, L., S Chaudhari, S., Bhangale, U.,
-Bharambe, U. and Kurte, K. (2023). \emph{Advances in {Scalable} and
-{Intelligent} {Geospatial} {Analytics}: {Challenges} and {Applications}}
-(1st ed.). CRC Press. \url{https://doi.org/10.1201/9781003270928}
+Bharambe, U. and Kurte, K. (2023). \emph{Advances in scalable and
+intelligent geospatial analytics: Challenges and applications} (1st
+ed.). {CRC} Press. \url{https://doi.org/10.1201/9781003270928}
 
 \bibitem[\citeproctext]{ref-giri_big_2014}
-Giri, K. and Lone, T. (2014). Big {Data} -{Overview} and {Challenges}.
+Giri, K. and Lone, T. (2014). Big data -overview and challenges.
 \emph{International Journal of Advanced Research in Computer Science and
 Software Engineering}, \emph{4}.
 
 \bibitem[\citeproctext]{ref-kaufmann_database_2023}
-Kaufmann, M. and Meier, A. (2023). Database {Management}. In M. Kaufmann
-and A. Meier (Eds.), \emph{{SQL} and {NoSQL} {Databases}: {Modeling},
-{Languages}, {Security} and {Architectures} for {Big} {Data}
-{Management}} (1--24. pp.). Springer Nature Switzerland.
+Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann
+and A. Meier (Eds.), \emph{{SQL} and {NoSQL} databases: Modeling,
+languages, security and architectures for big data management} (1--24.
+pp.). Springer Nature Switzerland.
 \url{https://doi.org/10.1007/978-3-031-27908-9_1}
 
 \bibitem[\citeproctext]{ref-mishra_structured_2017}
-Mishra, S. and Misra, A. (2017). Structured and {Unstructured} {Big}
-{Data} {Analytics}. \emph{2017 {International} {Conference} on {Current}
-{Trends} in {Computer}, {Electrical}, {Electronics} and {Communication}
-({CTCEEC})}, 740--746. pp.
-\url{https://doi.org/10.1109/CTCEEC.2017.8454999}
+Mishra, S. and Misra, A. (2017). Structured and unstructured big data
+analytics. \emph{2017 International Conference on Current Trends in
+Computer, Electrical, Electronics and Communication ({CTCEEC})},
+740--746. pp. \url{https://doi.org/10.1109/CTCEEC.2017.8454999}
 
 \bibitem[\citeproctext]{ref-rajabifard_spatial_2001}
 Rajabifard, A. and Williamson, I. P. (2001). \emph{Spatial data
@@ -992,24 +1040,29 @@ infrastructures: Concept, {SDI} hierarchy and future directions}.
 \url{http://hdl.handle.net/11343/33897}
 
 \bibitem[\citeproctext]{ref-satelligence_home_nodate}
-Satelligence. (n.d.). Home - {Satelligence} - {Sustainability}
-monitoring simplified. In \emph{Satelligence}. Retrieved February 5,
-2024, from \url{https://satelligence.com/}
+Satelligence. (n.d.). \emph{Home - satelligence - sustainability
+monitoring simplified. Satelligence}. Retrieved February 5, 2024, from
+\url{https://satelligence.com/}
 
 \bibitem[\citeproctext]{ref-satelligence_internship_2023}
-Satelligence. (2023). \emph{Internship: {Cataloguing} and visualizing
-big geodata}.
+Satelligence. (2023). \emph{Internship: Cataloguing and visualizing big
+geodata}.
 
 \bibitem[\citeproctext]{ref-noauthor_titiler_nodate}
 \emph{{TiTiler}}. (n.d.). Retrieved February 19, 2024, from
 \url{https://developmentseed.org/titiler/}
 
+\bibitem[\citeproctext]{ref-tripathi_cloud_2020}
+Tripathi, A. K., Agrawal, S. and Gupta, R. D. (2020). Cloud enabled
+{SDI} architecture: A review. \emph{Earth Science Informatics},
+\emph{13}(2), 211--231. pp.
+\url{https://doi.org/10.1007/s12145-020-00446-9}
+
 \bibitem[\citeproctext]{ref-zhao_scalable_2021}
-Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A {Scalable} {System} for
-{Searching} {Large}-scale {Multi}-sensor {Remote} {Sensing} {Image}
-{Collections}. \emph{2021 {IEEE} {International} {Conference} on {Big}
-{Data} ({Big} {Data})}, 3780--3783. pp.
-\url{https://doi.org/10.1109/BigData52589.2021.9671679}
+Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for
+searching large-scale multi-sensor remote sensing image collections.
+\emph{2021 {IEEE} International Conference on Big Data (Big Data)},
+3780--3783. pp. \url{https://doi.org/10.1109/BigData52589.2021.9671679}
 
 \end{CSLReferences}
 
@@ -1062,8 +1115,8 @@ times}\label{code-to-evaluate-request-times}
 
 \CommentTok{\# The colormaps picked can be either a customized one for S11 Forest baseline or greens\_r}
 \NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"\_name=greens\&rescale=0,70"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{,}
-        \StringTok{"\_name=seismic\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=seismic\_r\&rescale=0,90"}\NormalTok{,}
-        \StringTok{"\_name=accent\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=accent\_r\&rescale=0,80"}\NormalTok{]}
+        \StringTok{"\_name=blues\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=blues\_r\&rescale=0,90"}\NormalTok{,}
+        \StringTok{"\_name=reds\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=reds\_r\&rescale=0,80"}\NormalTok{]}
 
 \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(cmap)):}
 
