@@ -293,7 +293,7 @@ window.Quarto = {
 
 <section id="executive-summary" class="level1 unnumbered">
 <h1 class="unnumbered">Executive summary</h1>
-<p>The abstract goes here.</p>
+
 </section>
 <section id="list-of-abreviations" class="level1 unnumbered">
 <h1 class="unnumbered">List of abreviations</h1>
@@ -342,6 +342,10 @@ window.Quarto = {
 <td>DPROF</td>
 <td>Distributed Processing Framework</td>
 </tr>
+<tr class="odd">
+<td>JSON</td>
+<td>JavaScript Object Notation</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -349,7 +353,7 @@ window.Quarto = {
 <h1>Introduction</h1>
 <section id="internship-organization-background" class="level2">
 <h2 class="anchored" data-anchor-id="internship-organization-background">Internship organization background</h2>
-<p>Satelligence (S11) is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning <span class="citation" data-cites="satelligence_home_nodate">(<a href="#ref-satelligence_home_nodate" role="doc-biblioref">Satelligence, n.d.</a>)</span>. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free commodities regulations, such as the European Union Deforestation Regulation (EUDR) <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref">Satelligence, 2023</a>)</span>. S11’s main focus is deforestation monitoring in the tropics using freely accessible satellite imagery. This is a data-intensive task that is achieved by leveraging the benefits of cloud computing, specifically Google Cloud Platform.</p>
+<p>Satelligence (S11) is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning <span class="citation" data-cites="satelligence_home_nodate">(<a href="#ref-satelligence_home_nodate" role="doc-biblioref">Satelligence, n.d.</a>)</span>. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free commodities regulations, such as the European Union Deforestation Regulation (EUDR) <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref">Satelligence, 2023</a>)</span>. S11’s main focus is continuous deforestation monitoring (CDM) in the tropics using freely accessible satellite imagery. This is a data-intensive task that is achieved by leveraging the benefits of cloud computing, specifically Google Cloud Platform.</p>
 </section>
 <section id="context-and-justification-of-research" class="level2">
 <h2 class="anchored" data-anchor-id="context-and-justification-of-research">Context and justification of research</h2>
@@ -362,28 +366,33 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="cloud-based-data-storage">Cloud-based data storage</h4>
 <p>Spatial data, just like any other type of data, can be cataloged into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e.&nbsp;A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g.&nbsp;Satellite imagery and Time series data) <span class="citation" data-cites="mishra_structured_2017">(<a href="#ref-mishra_structured_2017" role="doc-biblioref">Mishra and Misra, 2017</a>)</span>. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e.&nbsp;With the help of Structured Query Language (SQL)) <span class="citation" data-cites="kaufmann_database_2023">(<a href="#ref-kaufmann_database_2023" role="doc-biblioref">Kaufmann and Meier, 2023</a>)</span>. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.</p>
 <p>The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e.&nbsp;Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
-<p>At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and ZARRs in their processing framework (DPROF) to improve efficiency and accessibility.</p>
+<p>At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.</p>
 <section id="cloud-optimized-data-formats" class="level5 unnumbered">
 <h5 class="unnumbered anchored" data-anchor-id="cloud-optimized-data-formats">Cloud-optimized data formats</h5>
 <section id="cog" class="level6 unnumbered">
 <h6 class="unnumbered anchored" data-anchor-id="cog">COG</h6>
-<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>.</p>
+<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability <span class="citation" data-cites="ogc_ogc_2023">(<a href="#ref-ogc_ogc_2023" role="doc-biblioref">OGC, 2023</a>)</span>.</p>
 </section>
 <section id="zarr" class="level6 unnumbered">
-<h6 class="unnumbered anchored" data-anchor-id="zarr">ZARR</h6>
-<p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>.</p>
+<h6 class="unnumbered anchored" data-anchor-id="zarr">Zarr</h6>
+<p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr, differently than COGs store the metadata separately from the data chunks using lightweight external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. While the storage of Zarr files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Due to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed Zarr V2 as a community standard. Nevertheless, efforts are still being made to have a geo-spatial Zarr standard adopted by OGC <span class="citation" data-cites="chester_ogc_2024">(<a href="#ref-chester_ogc_2024" role="doc-biblioref">Chester, 2024</a>)</span>.</p>
 </section>
 </section>
 </section>
 <section id="data-discovery-services" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
-<p></p>
-<p>A discovery service widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geo-data <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. This feature optimizes workflows by reducing unnecessary data loading.</p>
+<p>A discovery service that recently has become widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatio-temporal metadata, STAC simplifies the management and discovery of big geo-data <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets stored as lightweight JSON formats (See <a href="#tbl-stac-comps" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
+<p>Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as HTTP- based APIs ([STAC API](<a href="https://github.com/radiantearth/stac-api-spec/" class="uri">https://github.com/radiantearth/stac-api-spec/</a>)) that respond to queries dynamically. More specifically, these catalogs will show different views of the same catalog depending on queries that usually focus on the spatio-temporal aspect of the data <span class="citation" data-cites="noauthor_stac-specbest-practicesmd_nodate">(<a href="#ref-noauthor_stac-specbest-practicesmd_nodate" role="doc-biblioref"><em>Stac-Spec/Best-Practices.md at Master · Radiantearth/Stac-Spec</em>, n.d.</a>)</span>.</p>
 <section id="stac-fundamentals" class="level5 unnumbered">
 <h5 class="unnumbered anchored" data-anchor-id="stac-fundamentals">STAC fundamentals</h5>
 <p>A Catalog built under STAC specifications is composed by:</p>
+<div id="tbl-stac-comps" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stac-comps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: STAC components
+</figcaption>
+<div aria-describedby="tbl-stac-comps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
-<caption>STAC components</caption>
 <colgroup>
 <col style="width: 55%">
 <col style="width: 44%">
@@ -413,6 +422,9 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p></p>
 </section>
 </section>
@@ -625,11 +637,14 @@ Figure&nbsp;5: Request times depending on zoom level
 <h1>Internship planning</h1>
 <p><strong>Internship duration:</strong> 08/04/2024 - 08/08/2024 (4 months)</p>
 </section>
-<section id="references" class="level1">
-<h1>References</h1>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-brodeur_geographic_2019" class="csl-entry" role="listitem">
 Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J. (2019). Geographic information metadata—an outlook from the international standardization perspective. <em><span>ISPRS</span> International Journal of Geo-Information</em>, <em>8</em>(6), 280. p. <a href="https://doi.org/10.3390/ijgi8060280">https://doi.org/10.3390/ijgi8060280</a>
+</div>
+<div id="ref-chester_ogc_2024" class="csl-entry" role="listitem">
+Chester, S. (2024(e)ko Januaryk 18). <em><span>OGC</span> forms new <span>GeoZarr</span> standards working group to establish a zarr encoding for geospatial data. Open geospatial consortium</em>. <a href="https://www.ogc.org/press-release/ogc-forms-new-geozarr-standards-working-group-to-establish-a-zarr-encoding-for-geospatial-data/">https://www.ogc.org/press-release/ogc-forms-new-geozarr-standards-working-group-to-establish-a-zarr-encoding-for-geospatial-data/</a>
 </div>
 <div id="ref-desruisseaux_ogc_2021" class="csl-entry" role="listitem">
 Desruisseaux, M., Giacco, G., Goncalves, P., Manente, M. and Rouault, E. (2021). <em><span>OGC</span> testbed 17: <span>COG</span>/zarr evaluation engineering report</em>. <a href="https://docs.ogc.org/per/21-032.html#toc11">https://docs.ogc.org/per/21-032.html#toc11</a>
@@ -646,6 +661,9 @@ Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann and A. Me
 <div id="ref-mishra_structured_2017" class="csl-entry" role="listitem">
 Mishra, S. and Misra, A. (2017). Structured and unstructured big data analytics. <em>2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (<span>CTCEEC</span>)</em>, 740–746. pp. <a href="https://doi.org/10.1109/CTCEEC.2017.8454999">https://doi.org/10.1109/CTCEEC.2017.8454999</a>
 </div>
+<div id="ref-ogc_ogc_2023" class="csl-entry" role="listitem">
+OGC. (2023). <em><span>OGC</span> cloud optimized <span>GeoTIFF</span> standard</em>. <a href="https://docs.ogc.org/is/21-026/21-026.html">https://docs.ogc.org/is/21-026/21-026.html</a>
+</div>
 <div id="ref-rajabifard_spatial_2001" class="csl-entry" role="listitem">
 Rajabifard, A. and Williamson, I. P. (2001). <em>Spatial data infrastructures: Concept, <span>SDI</span> hierarchy and future directions</em>. <a href="http://hdl.handle.net/11343/33897">http://hdl.handle.net/11343/33897</a>
 </div>
@@ -654,6 +672,9 @@ Satelligence. (n.d.). <em>Home - satelligence - sustainability monitoring simpli
 </div>
 <div id="ref-satelligence_internship_2023" class="csl-entry" role="listitem">
 Satelligence. (2023). <em>Internship: Cataloguing and visualizing big geodata</em>.
+</div>
+<div id="ref-noauthor_stac-specbest-practicesmd_nodate" class="csl-entry" role="listitem">
+<em>Stac-spec/best-practices.md at master · radiantearth/stac-spec. <span>GitHub</span></em>. (n.d.). Retrieved July 22, 2024, from <a href="https://github.com/radiantearth/stac-spec/blob/master/best-practices.md">https://github.com/radiantearth/stac-spec/blob/master/best-practices.md</a>
 </div>
 <div id="ref-noauthor_titiler_nodate" class="csl-entry" role="listitem">
 <em><span>TiTiler</span></em>. (n.d.). Retrieved February 19, 2024, from <a href="https://developmentseed.org/titiler/">https://developmentseed.org/titiler/</a>
@@ -666,11 +687,11 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 </div>
 </div>
 </section>
-<section id="appendix" class="level1">
-<h1>Appendix</h1>
+<section id="appendix" class="level1 unnumbered">
+<h1 class="unnumbered">Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="140e8748" class="cell" data-execution_count="5">
+<div id="ee70b3e8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
