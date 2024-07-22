@@ -196,7 +196,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive summary</a></li>
   <li><a href="#list-of-abreviations" id="toc-list-of-abreviations" class="nav-link" data-scroll-target="#list-of-abreviations">List of abreviations</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
@@ -291,8 +291,8 @@ window.Quarto = {
 </header>
 
 
-<section id="abstract" class="level1 unnumbered">
-<h1 class="unnumbered">Abstract</h1>
+<section id="executive-summary" class="level1 unnumbered">
+<h1 class="unnumbered">Executive summary</h1>
 <p>The abstract goes here.</p>
 </section>
 <section id="list-of-abreviations" class="level1 unnumbered">
@@ -340,7 +340,7 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td>DPROF</td>
-<td>Distributed Processing Framework (?)</td>
+<td>Distributed Processing Framework</td>
 </tr>
 </tbody>
 </table>
@@ -358,18 +358,27 @@ window.Quarto = {
 <section id="significance-of-the-topic" class="level3">
 <h3 class="anchored" data-anchor-id="significance-of-the-topic">Significance of the topic</h3>
 <p>In the past decades there has been a rapid increase in the amount and size of geo-spatial information that can be accessed. Nowadays, more than 150 satellites orbit the earth collecting thousands of images every single day <span class="citation" data-cites="zhao_scalable_2021">(<a href="#ref-zhao_scalable_2021" role="doc-biblioref">Zhao et al., 2021</a>)</span>. This has made data handling and the introduction of spatial data infrastructures (SDIs) paramount when working with such big datasets.</p>
-<p>Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data <span class="citation" data-cites="rajabifard_spatial_2001">(<a href="#ref-rajabifard_spatial_2001" role="doc-biblioref">Rajabifard and Williamson, 2001</a>)</span>. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Due to this, an important shift is underway towards more cloud-based SDIs <span class="citation" data-cites="schaffer_towards_2010">(<a href="#ref-schaffer_towards_2010" role="doc-biblioref">Schäffer et al., 2010</a>)</span>. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.</p>
+<p>Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data <span class="citation" data-cites="rajabifard_spatial_2001">(<a href="#ref-rajabifard_spatial_2001" role="doc-biblioref">Rajabifard and Williamson, 2001</a>)</span>. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Due to this, an important shift is underway towards more cloud-based SDIs <span class="citation" data-cites="tripathi_cloud_2020">(<a href="#ref-tripathi_cloud_2020" role="doc-biblioref">Tripathi et al., 2020</a>)</span>. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.</p>
 <section id="cloud-based-data-storage" class="level4">
 <h4 class="anchored" data-anchor-id="cloud-based-data-storage">Cloud-based data storage</h4>
 <p>Spatial data, just like any other type of data, can be cataloged into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e.&nbsp;A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g.&nbsp;Satellite imagery and Time series data) <span class="citation" data-cites="mishra_structured_2017">(<a href="#ref-mishra_structured_2017" role="doc-biblioref">Mishra and Misra, 2017</a>)</span>. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e.&nbsp;With the help of Structured Query Language (SQL)) <span class="citation" data-cites="kaufmann_database_2023">(<a href="#ref-kaufmann_database_2023" role="doc-biblioref">Kaufmann and Meier, 2023</a>)</span>. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.</p>
 <p>The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e.&nbsp;Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
-<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored and storing different image tiles for different scales. These characteristics make COGs heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
-<p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks. Normally, using external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
-<p></p>
+<p>At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and ZARRs in their processing framework (DPROF) to improve efficiency and accessibility.</p>
+<section id="cloud-optimized-data-formats" class="level5">
+<h5 class="anchored" data-anchor-id="cloud-optimized-data-formats">Cloud-optimized data formats</h5>
+<section id="cog" class="level6">
+<h6 class="anchored" data-anchor-id="cog">COG</h6>
+<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref"><strong>desruisseaux_ogc_2021?</strong></a>)</span>.</p>
+</section>
+<section id="zarr" class="level6">
+<h6 class="anchored" data-anchor-id="zarr">ZARR</h6>
+<p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a map service <span class="citation" data-cites="desruisseaux_og_2021">(<a href="#ref-desruisseaux_og_2021" role="doc-biblioref"><strong>desruisseaux_og_2021?</strong></a>)</span>.</p>
+</section>
+</section>
 </section>
 <section id="data-discovery-services" class="level4">
 <h4 class="anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
-<p>A discovery service widely used for the exploration of big geodata (e.g.&nbsp;COGs) is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geodata <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. This feature optimizes workflows by reducing unnecessary data loading.</p>
+<p>A discovery service widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geo-data <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. This feature optimizes workflows by reducing unnecessary data loading.</p>
 <section id="stac-fundamentals" class="level5">
 <h5 class="anchored" data-anchor-id="stac-fundamentals">STAC fundamentals</h5>
 <p>A Catalog built under STAC specifications is composed by:</p>
@@ -629,11 +638,11 @@ Rajabifard, A. and Williamson, I. P. (2001). <em>Spatial data infrastructures: C
 <div id="ref-satelligence_home_nodate" class="csl-entry" role="listitem">
 Satelligence. (n.d.). <em>Home - satelligence - sustainability monitoring simplified. Satelligence</em>. Retrieved February 5, 2024, from <a href="https://satelligence.com/">https://satelligence.com/</a>
 </div>
-<div id="ref-schaffer_towards_2010" class="csl-entry" role="listitem">
-Schäffer, B., Baranski, B. and Foerster, T. (2010). Towards spatial data infrastructures in the clouds. In M. Painho, M. Y. Santos and H. Pundt (Eds.), <em>Geospatial thinking</em> (399–418. pp.). Springer. <a href="https://doi.org/10.1007/978-3-642-12326-9_21">https://doi.org/10.1007/978-3-642-12326-9_21</a>
-</div>
 <div id="ref-noauthor_titiler_nodate" class="csl-entry" role="listitem">
 <em><span>TiTiler</span></em>. (n.d.). Retrieved February 19, 2024, from <a href="https://developmentseed.org/titiler/">https://developmentseed.org/titiler/</a>
+</div>
+<div id="ref-tripathi_cloud_2020" class="csl-entry" role="listitem">
+Tripathi, A. K., Agrawal, S. and Gupta, R. D. (2020). Cloud enabled <span>SDI</span> architecture: A review. <em>Earth Science Informatics</em>, <em>13</em>(2), 211–231. pp. <a href="https://doi.org/10.1007/s12145-020-00446-9">https://doi.org/10.1007/s12145-020-00446-9</a>
 </div>
 <div id="ref-zhao_scalable_2021" class="csl-entry" role="listitem">
 Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching large-scale multi-sensor remote sensing image collections. <em>2021 <span>IEEE</span> International Conference on Big Data (Big Data)</em>, 3780–3783. pp. <a href="https://doi.org/10.1109/BigData52589.2021.9671679">https://doi.org/10.1109/BigData52589.2021.9671679</a>
@@ -644,7 +653,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="56a885f6" class="cell" data-execution_count="5">
+<div id="6aafbbc6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
