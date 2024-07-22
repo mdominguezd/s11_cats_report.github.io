@@ -246,7 +246,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future work</a></li>
-  <li><a href="#internship-planning" id="toc-internship-planning" class="nav-link" data-scroll-target="#internship-planning">Internship planning</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
   <ul class="collapse">
@@ -346,6 +345,18 @@ window.Quarto = {
 <td>JSON</td>
 <td>JavaScript Object Notation</td>
 </tr>
+<tr class="even">
+<td>API</td>
+<td>Application Programming Interfaces</td>
+</tr>
+<tr class="odd">
+<td>HTTP</td>
+<td>HyperText Transfer Protocol</td>
+</tr>
+<tr class="even">
+<td>SQL</td>
+<td>Standard Query Language</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -382,10 +393,7 @@ window.Quarto = {
 <section id="data-discovery-services" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
 <p>A discovery service that recently has become widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatio-temporal metadata, STAC simplifies the management and discovery of big geo-data <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets stored as lightweight JSON formats (See <a href="#tbl-stac-comps" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
-<p>Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as HTTP- based APIs ([STAC API](<a href="https://github.com/radiantearth/stac-api-spec/" class="uri">https://github.com/radiantearth/stac-api-spec/</a>)) that respond to queries dynamically. More specifically, these catalogs will show different views of the same catalog depending on queries that usually focus on the spatio-temporal aspect of the data <span class="citation" data-cites="noauthor_stac-specbest-practicesmd_nodate">(<a href="#ref-noauthor_stac-specbest-practicesmd_nodate" role="doc-biblioref"><em>Stac-Spec/Best-Practices.md at Master · Radiantearth/Stac-Spec</em>, n.d.</a>)</span>.</p>
-<section id="stac-fundamentals" class="level5 unnumbered">
-<h5 class="unnumbered anchored" data-anchor-id="stac-fundamentals">STAC fundamentals</h5>
-<p>A Catalog built under STAC specifications is composed by:</p>
+<p>Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as APIs that respond to queries dynamically. Notably, dynamic catalogs will show different views of the same catalog depending on queries which usually focus on the spatio-temporal aspect of the data <span class="citation" data-cites="noauthor_stac-specbest-practicesmd_nodate">(<a href="#ref-noauthor_stac-specbest-practicesmd_nodate" role="doc-biblioref">RadiantEarth, 2024</a>)</span>.</p>
 <div id="tbl-stac-comps" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stac-comps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -425,19 +433,18 @@ Table&nbsp;1: STAC components
 </div>
 </figure>
 </div>
-<p></p>
-</section>
+<p>In the specific case of dynamic catalogs, the concept of <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geospatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geospatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a> standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a>, <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> enhances functionality by providing additional features that users needed (e.g.&nbsp;cross-collection search, versioning).</p>
 </section>
 <section id="visualization-interfaces" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="visualization-interfaces">Visualization interfaces</h4>
 <p></p>
-<p>The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as TiTiler have tackled multiple of these challenges by dynamically generating PNG/JPEG image tiles only when requested without reading the entire source file into memory <span class="citation" data-cites="noauthor_titiler_nodate">(<a href="#ref-noauthor_titiler_nodate" role="doc-biblioref"><em><span>TiTiler</span></em>, n.d.</a>)</span>. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.</p>
+<p>The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as <a href="https://developmentseed.org/titiler/">TiTiler</a> have tackled multiple of these challenges by creating APIs that dynamically generate PNG/JPEG image tiles when requested without reading the entire source file into memory <span class="citation" data-cites="noauthor_titiler_nodate">(<a href="#ref-noauthor_titiler_nodate" role="doc-biblioref"><em><span>TiTiler</span></em>, n.d.</a>)</span>. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.</p>
+<p>TiTiler supports various data structures including STAC (SpatioTemporal Asset Catalog), Cloud Optimized GeoTIFFs (COGs), and is currently working on adding support for Zarrs. For the first two the <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler PgSTAC</a> specialized extension integrates with PostgreSQL to enhance STAC catalog querying capabilities. For the case of Zarrs, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> extension is being developed to facilitate the handling of multidimensional data arrays.</p>
 </section>
 </section>
 <section id="added-value-of-this-research" class="level3">
 <h3 class="anchored" data-anchor-id="added-value-of-this-research">Added value of this research</h3>
-<p></p>
-<p>This research aims to develop a STAC catalog to facilitate the discovery of diverse big geo-spatial datasets created by different teams within the company. Depending on the time available for the thesis, data visualization functionalities may be integrated. Moreover, the research will explore tools to efficiently manage a STAC catalog containing both static and dynamic datasets.</p>
+<p>This research aims to identify efficient solutions for the company’s current challenges in discovering and visualizing large geospatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.</p>
 </section>
 </section>
 <section id="research-questions" class="level2">
@@ -633,10 +640,6 @@ Figure&nbsp;5: Request times depending on zoom level
 <section id="future-work" class="level1">
 <h1>Future work</h1>
 </section>
-<section id="internship-planning" class="level1">
-<h1>Internship planning</h1>
-<p><strong>Internship duration:</strong> 08/04/2024 - 08/08/2024 (4 months)</p>
-</section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
@@ -664,6 +667,9 @@ Mishra, S. and Misra, A. (2017). Structured and unstructured big data analytics.
 <div id="ref-ogc_ogc_2023" class="csl-entry" role="listitem">
 OGC. (2023). <em><span>OGC</span> cloud optimized <span>GeoTIFF</span> standard</em>. <a href="https://docs.ogc.org/is/21-026/21-026.html">https://docs.ogc.org/is/21-026/21-026.html</a>
 </div>
+<div id="ref-noauthor_stac-specbest-practicesmd_nodate" class="csl-entry" role="listitem">
+RadiantEarth. (2024). <em>Stac-spec/best-practices.md at master · radiantearth/stac-spec. <span>GitHub</span></em>. <a href="https://github.com/radiantearth/stac-spec/blob/master/best-practices.md">https://github.com/radiantearth/stac-spec/blob/master/best-practices.md</a>
+</div>
 <div id="ref-rajabifard_spatial_2001" class="csl-entry" role="listitem">
 Rajabifard, A. and Williamson, I. P. (2001). <em>Spatial data infrastructures: Concept, <span>SDI</span> hierarchy and future directions</em>. <a href="http://hdl.handle.net/11343/33897">http://hdl.handle.net/11343/33897</a>
 </div>
@@ -672,9 +678,6 @@ Satelligence. (n.d.). <em>Home - satelligence - sustainability monitoring simpli
 </div>
 <div id="ref-satelligence_internship_2023" class="csl-entry" role="listitem">
 Satelligence. (2023). <em>Internship: Cataloguing and visualizing big geodata</em>.
-</div>
-<div id="ref-noauthor_stac-specbest-practicesmd_nodate" class="csl-entry" role="listitem">
-<em>Stac-spec/best-practices.md at master · radiantearth/stac-spec. <span>GitHub</span></em>. (n.d.). Retrieved July 22, 2024, from <a href="https://github.com/radiantearth/stac-spec/blob/master/best-practices.md">https://github.com/radiantearth/stac-spec/blob/master/best-practices.md</a>
 </div>
 <div id="ref-noauthor_titiler_nodate" class="csl-entry" role="listitem">
 <em><span>TiTiler</span></em>. (n.d.). Retrieved February 19, 2024, from <a href="https://developmentseed.org/titiler/">https://developmentseed.org/titiler/</a>
@@ -691,7 +694,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 <h1 class="unnumbered">Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="c02b86e0" class="cell" data-execution_count="5">
+<div id="09f49fa2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
