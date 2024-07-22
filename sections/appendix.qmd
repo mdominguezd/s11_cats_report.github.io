@@ -48,8 +48,8 @@ cmap_picked = []
 
 # The colormaps picked can be either a customized one for S11 Forest baseline or greens_r
 cmap = ["_name=greens&rescale=0,70","_name=greens_r&rescale=0,70",
-        "_name=seismic&rescale=0,90", "_name=seismic_r&rescale=0,90",
-        "_name=accent&rescale=0,80", "_name=accent_r&rescale=0,80"]
+        "_name=blues&rescale=0,90", "_name=blues_r&rescale=0,90",
+        "_name=reds&rescale=0,80", "_name=reds_r&rescale=0,80"]
 
 for i in range(len(cmap)):
 
