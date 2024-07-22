@@ -196,7 +196,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#list-of-abreviations" id="toc-list-of-abreviations" class="nav-link" data-scroll-target="#list-of-abreviations">List of abreviations</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#internship-organization-background" id="toc-internship-organization-background" class="nav-link" data-scroll-target="#internship-organization-background">Internship organization background</a></li>
   <li><a href="#context-and-justification-of-research" id="toc-context-and-justification-of-research" class="nav-link" data-scroll-target="#context-and-justification-of-research">Context and justification of research</a>
@@ -289,6 +291,14 @@ window.Quarto = {
 </header>
 
 
+<section id="abstract" class="level1 unnumbered">
+<h1 class="unnumbered">Abstract</h1>
+<p>The abstract goes here.</p>
+</section>
+<section id="list-of-abreviations" class="level1 unnumbered">
+<h1 class="unnumbered">List of abreviations</h1>
+
+</section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <section id="internship-organization-background" class="level2">
@@ -499,7 +509,7 @@ Figure&nbsp;3: Baseline workflow
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested 2.73 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested 1.74 times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -517,7 +527,7 @@ Figure&nbsp;4: Request times depending on data format and zoom level
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.003 and 0.003 per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.009 and 0.007 per zoom level for COGs and ZARRs respectively.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -586,7 +596,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>Sys
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="908e217e" class="cell" data-execution_count="5">
+<div id="2c2dad71" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
