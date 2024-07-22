@@ -43,8 +43,6 @@ format:
 
 {{< include sections/abstract.md >}}
 
-
-
 # Introduction
 
 {{< include sections/introduction.md >}}
@@ -65,13 +63,10 @@ format:
 
 {{< include sections/future_work.md >}}
 
-# Internship planning
-
-**Internship duration:** 08/04/2024 - 08/08/2024 (4 months)
-
 # References {-}
 
 ::: {#refs}
 :::
 
 {{< include sections/appendix.qmd >}}
+

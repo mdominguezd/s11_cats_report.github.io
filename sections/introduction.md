@@ -34,11 +34,7 @@ Another cloud native data format that has gained popularity recently is [Zarr](h
 
 A discovery service that recently has become widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatio-temporal metadata, STAC simplifies the management and discovery of big geo-data [@brodeur_geographic_2019]. This service works by organizing the data into catalogs, collections, items, and assets stored as lightweight JSON formats (See @tbl-stac-comps) [@durbha_advances_2023].
 
-Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as HTTP- based APIs (\[STAC API\](<https://github.com/radiantearth/stac-api-spec/>)) that respond to queries dynamically. More specifically, these catalogs will show different views of the same catalog depending on queries that usually focus on the spatio-temporal aspect of the data [@noauthor_stac-specbest-practicesmd_nodate].
-
-##### STAC fundamentals {.unnumbered}
-
-A Catalog built under STAC specifications is composed by:
+Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as APIs that respond to queries dynamically. Notably, dynamic catalogs will show different views of the same catalog depending on queries which usually focus on the spatio-temporal aspect of the data [@noauthor_stac-specbest-practicesmd_nodate].
 
 | **STAC components** | **Description**                                                                                          |
 |----------------------------------------|--------------------------------|
@@ -49,19 +45,19 @@ A Catalog built under STAC specifications is composed by:
 
 : STAC components {#tbl-stac-comps .striped .hover}
 
-\hl{Talk about the integration with sturctured data base management (PgSTAC)}
+In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geospatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geospatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning).
 
 #### Visualization interfaces {.unnumbered}
 
 \hl{Mention also that there are multiple TiTiler services}
 
-The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as TiTiler have tackled multiple of these challenges by dynamically generating PNG/JPEG image tiles only when requested without reading the entire source file into memory [@noauthor_titiler_nodate]. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.
+The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as [TiTiler](https://developmentseed.org/titiler/) have tackled multiple of these challenges by creating APIs that dynamically generate PNG/JPEG image tiles when requested without reading the entire source file into memory [@noauthor_titiler_nodate]. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.
+
+TiTiler supports various data structures including STAC (SpatioTemporal Asset Catalog), Cloud Optimized GeoTIFFs (COGs), and is currently working on adding support for Zarrs. For the first two the [TiTiler PgSTAC](https://github.com/stac-utils/titiler-pgstac) specialized extension integrates with PostgreSQL to enhance STAC catalog querying capabilities. For the case of Zarrs, the [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) extension is being developed to facilitate the handling of multidimensional data arrays.
 
 ### Added value of this research
 
-\hl{expand}
-
-This research aims to develop a STAC catalog to facilitate the discovery of diverse big geo-spatial datasets created by different teams within the company. Depending on the time available for the thesis, data visualization functionalities may be integrated. Moreover, the research will explore tools to efficiently manage a STAC catalog containing both static and dynamic datasets.
+This research aims to identify efficient solutions for the company's current challenges in discovering and visualizing large geospatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.
 
 ## Research questions
 

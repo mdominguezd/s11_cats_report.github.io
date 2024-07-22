@@ -17,4 +17,7 @@
  K8  | Kubernetes |
  DPROF | Distributed Processing Framework |
  JSON | JavaScript Object Notation |
+ API | Application Programming Interfaces |
+ HTTP | HyperText Transfer Protocol |
+ SQL  | Standard Query Language |
 : Abbreviation list {.striped .hover}
