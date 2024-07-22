@@ -12,7 +12,7 @@ Satelligence strongly relies on cloud computing for their services. They process
 
 In the past decades there has been a rapid increase in the amount and size of geo-spatial information that can be accessed. Nowadays, more than 150 satellites orbit the earth collecting thousands of images every single day [@zhao_scalable_2021]. This has made data handling and the introduction of spatial data infrastructures (SDIs) paramount when working with such big datasets.
 
-Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data [@rajabifard_spatial_2001]. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility [@durbha_advances_2023]. Due to this, an important shift is underway towards more cloud-based SDIs [@schaffer_towards_2010]. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.
+Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data [@rajabifard_spatial_2001]. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility [@durbha_advances_2023]. Due to this, an important shift is underway towards more cloud-based SDIs [@tripathi_cloud_2020]. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.
 
 #### Cloud-based data storage
 
@@ -20,15 +20,21 @@ Spatial data, just like any other type of data, can be cataloged into structured
 
 The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e. Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes [@durbha_advances_2023].
 
-Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored and storing different image tiles for different scales. These characteristics make COGs heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles [@durbha_advances_2023].
+At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and ZARRs in their processing framework (DPROF) to improve efficiency and accessibility.
 
-Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks. Normally, using external JSON files [@durbha_advances_2023].
+##### Cloud-optimized data formats
 
-\hl{This is somehow already done in the company.}
+###### COG
+
+Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021].
+
+###### ZARR
+
+Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a map service [@desruisseaux_og_2021].
 
 #### Data discovery services
 
-A discovery service widely used for the exploration of big geodata (e.g. COGs) is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geodata [@brodeur_geographic_2019]. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required [@durbha_advances_2023]. This feature optimizes workflows by reducing unnecessary data loading.
+A discovery service widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geo-data [@brodeur_geographic_2019]. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required [@durbha_advances_2023]. This feature optimizes workflows by reducing unnecessary data loading.
 
 ##### STAC fundamentals
 

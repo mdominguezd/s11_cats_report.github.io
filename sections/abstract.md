@@ -1,4 +1,4 @@
-# Abstract {-}
+# Executive summary {-}
 
 The abstract goes here.
 
@@ -15,5 +15,5 @@ The abstract goes here.
  SDI | Spatial Data Infrastructure |
  S11 | Satelligence |
  K8  | Kubernetes |
- DPROF | Distributed Processing Framework (?) |
+ DPROF | Distributed Processing Framework |
 : Abbreviation list {.striped .hover}
