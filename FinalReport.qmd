@@ -15,7 +15,7 @@ format:
   titlepage-pdf:
     include-in-header: 
       - text: |
-          \usepackage{tabularx}
+          \usepackage{tabularx, lipsum}
           \usepackage{color,soul}
     fig-pos: 'H'
     fig-width: 200

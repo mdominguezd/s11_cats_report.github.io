@@ -148,7 +148,7 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{tabularx}
+\usepackage{tabularx, lipsum}
 \usepackage{color,soul}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
@@ -427,7 +427,7 @@ Geodata}}}}\par
 \chapter*{Executive summary}\label{executive-summary}
 \addcontentsline{toc}{chapter}{Executive summary}
 
-The abstract goes here.
+\lipsum
 
 \newpage
 
@@ -464,6 +464,7 @@ SDI & Spatial Data Infrastructure \\
 S11 & Satelligence \\
 K8 & Kubernetes \\
 DPROF & Distributed Processing Framework \\
+JSON & JavaScript Object Notation \\
 \end{longtable}
 
 \chapter{Introduction}\label{introduction}
@@ -482,10 +483,10 @@ more sustainable sourcing models and the compliance with
 deforestation-free commodities regulations, such as the European Union
 Deforestation Regulation (EUDR)
 (\citeproc{ref-satelligence_internship_2023}{Satelligence, 2023}). S11's
-main focus is deforestation monitoring in the tropics using freely
-accessible satellite imagery. This is a data-intensive task that is
-achieved by leveraging the benefits of cloud computing, specifically
-Google Cloud Platform.
+main focus is continuous deforestation monitoring (CDM) in the tropics
+using freely accessible satellite imagery. This is a data-intensive task
+that is achieved by leveraging the benefits of cloud computing,
+specifically Google Cloud Platform.
 
 \section{Context and justification of
 research}\label{context-and-justification-of-research}
@@ -562,7 +563,7 @@ formats suited for such purposes
 At S11, the storage of large geo-spatial data is already managed using
 Google Storage Buckets, and they are currently in the process of
 incorporating the conversion to cloud-optimized data formats like Cloud
-Optimized GeoTIFFs (COGs) and ZARRs in their processing framework
+Optimized GeoTIFFs (COGs) and Zarrs in their processing framework
 (DPROF) to improve efficiency and accessibility.
 
 \paragraph*{Cloud-optimized data
@@ -578,40 +579,59 @@ data stored in the cloud. They improve the readability by including the
 metadata in the initial bytes of the file stored, storing different
 image overviews for different scales and tiling the images in smaller
 blocks. These characteristics make COG files heavier than traditional
-image formats, however, they also greatly enhance accessibility by
+image formats. However, they also greatly enhance accessibility by
 enabling the selective transfer of only the necessary tiles using HTTP
 GET requests (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
-2021}).
+2021}). Additionally, this data format has been adopted as an Open
+Geospatial Consortium (OGC) standard. These standards are a set of
+guidelines and specifications created to facilitat data interoperability
+(\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
 
-\subparagraph*{ZARR}\label{zarr}
-\addcontentsline{toc}{subparagraph}{ZARR}
+\subparagraph*{Zarr}\label{zarr}
+\addcontentsline{toc}{subparagraph}{Zarr}
 
 Another cloud native data format that has gained popularity recently is
 \href{https://zarr.readthedocs.io/en/stable/}{Zarr}. This data format
 and python library focuses on the cloud-optimization of n-dimensional
-arrays. Zarr differently than COGs store the metadata separately from
+arrays. Zarr, differently than COGs store the metadata separately from
 the data chunks using lightweight external JSON files
 (\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}).
 Additionally, this data format stores the N-dimensional arrays in
-smaller chunks that can be accessed more easily. Finally, while the
-storage of ZARR files in chunks facilitates more efficient data access,
-the absence of overviews hinders the visualization of this data in a web
-map service (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
-2021}).
+smaller chunks that can be accessed more easily. While the storage of
+Zarr files in chunks facilitates more efficient data access, the absence
+of overviews hinders the visualization of this data in a web map service
+(\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al., 2021}). Due
+to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed
+Zarr V2 as a community standard. Nevertheless, efforts are still being
+made to have a geo-spatial Zarr standard adopted by OGC
+(\citeproc{ref-chester_ogc_2024}{Chester, 2024}).
 
 \subsubsection*{Data discovery services}\label{data-discovery-services}
 \addcontentsline{toc}{subsubsection}{Data discovery services}
 
-\hl{AMPLIAR. Maybe include other data discovery services? }
+A discovery service that recently has become widely used for the
+exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC).
+Through the standardization of spatio-temporal metadata, STAC simplifies
+the management and discovery of big geo-data
+(\citeproc{ref-brodeur_geographic_2019}{Brodeur et al., 2019}). This
+service works by organizing the data into catalogs, collections, items,
+and assets stored as lightweight JSON formats (See
+Table~\ref{tbl-stac-comps}) (\citeproc{ref-durbha_advances_2023}{Durbha
+et al., 2023}).
 
-A discovery service widely used for the exploration of big geo-data is
-Spatio-Temporal Asset Catalog (STAC). Through the standardization of
-spatial data, STAC simplifies the management and discovery of big
-geo-data (\citeproc{ref-brodeur_geographic_2019}{Brodeur et al., 2019}).
-This service works by organizing the data into catalogs, collections,
-items, and assets that will only be read when a computation is required
-(\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}). This feature
-optimizes workflows by reducing unnecessary data loading.
+Moreover, there are two types of STAC catalogs: static and dynamic.
+Static catalogs are pre-generated and stored as static JSON files on a
+cloud storage. Static catalogs follow sensible hierarchical
+relationships between STAC components and this feature makes it easy to
+be browsed and/or crawled by. Nevertheless, these catalogs cannot be
+queried. On the other hand, dynamic catalogs are generated as HTTP-
+based APIs ({[}STAC
+API{]}(\url{https://github.com/radiantearth/stac-api-spec/})) that
+respond to queries dynamically. More specifically, these catalogs will
+show different views of the same catalog depending on queries that
+usually focus on the spatio-temporal aspect of the data
+(\citeproc{ref-noauthor_stac-specbest-practicesmd_nodate}{\emph{Stac-Spec/Best-Practices.md
+at Master · Radiantearth/Stac-Spec}, n.d.}).
 
 \paragraph*{STAC fundamentals}\label{stac-fundamentals}
 \addcontentsline{toc}{paragraph}{STAC fundamentals}
@@ -621,7 +641,7 @@ A Catalog built under STAC specifications is composed by:
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5556}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4444}}@{}}
-\caption{STAC components}\tabularnewline
+\caption{STAC components}\label{tbl-stac-comps}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{STAC components}
@@ -1011,7 +1031,8 @@ gadfh
 
 \textbf{Internship duration:} 08/04/2024 - 08/08/2024 (4 months)
 
-\chapter{References}\label{references}
+\chapter*{References}\label{references}
+\addcontentsline{toc}{chapter}{References}
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
@@ -1021,6 +1042,12 @@ Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J.
 international standardization perspective. \emph{{ISPRS} International
 Journal of Geo-Information}, \emph{8}(6), 280. p.
 \url{https://doi.org/10.3390/ijgi8060280}
+
+\bibitem[\citeproctext]{ref-chester_ogc_2024}
+Chester, S. (2024(e)ko Januaryk 18). \emph{{OGC} forms new {GeoZarr}
+standards working group to establish a zarr encoding for geospatial
+data. Open geospatial consortium}.
+\url{https://www.ogc.org/press-release/ogc-forms-new-geozarr-standards-working-group-to-establish-a-zarr-encoding-for-geospatial-data/}
 
 \bibitem[\citeproctext]{ref-desruisseaux_ogc_2021}
 Desruisseaux, M., Giacco, G., Goncalves, P., Manente, M. and Rouault, E.
@@ -1051,6 +1078,10 @@ analytics. \emph{2017 International Conference on Current Trends in
 Computer, Electrical, Electronics and Communication ({CTCEEC})},
 740--746. pp. \url{https://doi.org/10.1109/CTCEEC.2017.8454999}
 
+\bibitem[\citeproctext]{ref-ogc_ogc_2023}
+OGC. (2023). \emph{{OGC} cloud optimized {GeoTIFF} standard}.
+\url{https://docs.ogc.org/is/21-026/21-026.html}
+
 \bibitem[\citeproctext]{ref-rajabifard_spatial_2001}
 Rajabifard, A. and Williamson, I. P. (2001). \emph{Spatial data
 infrastructures: Concept, {SDI} hierarchy and future directions}.
@@ -1064,6 +1095,11 @@ monitoring simplified. Satelligence}. Retrieved February 5, 2024, from
 \bibitem[\citeproctext]{ref-satelligence_internship_2023}
 Satelligence. (2023). \emph{Internship: Cataloguing and visualizing big
 geodata}.
+
+\bibitem[\citeproctext]{ref-noauthor_stac-specbest-practicesmd_nodate}
+\emph{Stac-spec/best-practices.md at master · radiantearth/stac-spec.
+{GitHub}}. (n.d.). Retrieved July 22, 2024, from
+\url{https://github.com/radiantearth/stac-spec/blob/master/best-practices.md}
 
 \bibitem[\citeproctext]{ref-noauthor_titiler_nodate}
 \emph{{TiTiler}}. (n.d.). Retrieved February 19, 2024, from
@@ -1083,7 +1119,8 @@ searching large-scale multi-sensor remote sensing image collections.
 
 \end{CSLReferences}
 
-\chapter{Appendix}\label{appendix}
+\chapter*{Appendix}\label{appendix}
+\addcontentsline{toc}{chapter}{Appendix}
 
 \section{Code to evaluate request
 times}\label{code-to-evaluate-request-times}
