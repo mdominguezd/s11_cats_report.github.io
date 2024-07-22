@@ -569,12 +569,9 @@ incorporating the conversion to cloud-optimized data formats like Cloud
 Optimized GeoTIFFs (COGs) and Zarrs in their processing framework
 (DPROF) to improve efficiency and accessibility.
 
-\paragraph*{Cloud-optimized data
-formats}\label{cloud-optimized-data-formats}
-\addcontentsline{toc}{paragraph}{Cloud-optimized data formats}
+\textbf{Cloud-optimized data formats}
 
-\subparagraph*{COG}\label{cog}
-\addcontentsline{toc}{subparagraph}{COG}
+\emph{COG}
 
 Cloud-Optimized GeoTIFFs (\href{https://www.cogeo.org/}{COGs}) are an
 example of data formats that have been created to ease the access of
@@ -590,8 +587,7 @@ Geospatial Consortium (OGC) standard. These standards are a set of
 guidelines and specifications created to facilitat data interoperability
 (\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
 
-\subparagraph*{Zarr}\label{zarr}
-\addcontentsline{toc}{subparagraph}{Zarr}
+\emph{Zarr}
 
 Another cloud native data format that has gained popularity recently is
 \href{https://zarr.readthedocs.io/en/stable/}{Zarr}. This data format
@@ -687,8 +683,6 @@ functionality by providing additional features that users needed
 \subsubsection*{Visualization
 interfaces}\label{visualization-interfaces}
 \addcontentsline{toc}{subsubsection}{Visualization interfaces}
-
-\hl{Mention also that there are multiple TiTiler services}
 
 The visualization of spatial data brings with it a series of challenges
 due to its big nature. Dynamic tiling libraries such as
@@ -912,11 +906,17 @@ ZARRs respectively.
 
 \chapter{Discussion}\label{discussion}
 
-hgdcjfc rah fdxh sdfhfn dfayhgn d
-
-gadfh
-
 \chapter{Future work}\label{future-work}
+
+\begin{itemize}
+\tightlist
+\item
+  ndpyramids
+\item
+  STAC API authentication
+\item
+  Inclusion of Vector data on STAC
+\end{itemize}
 
 \chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
@@ -1054,7 +1054,8 @@ times}\label{code-to-evaluate-request-times}
 \NormalTok{z\_level }\OperatorTok{=}\NormalTok{ []}
 \NormalTok{cmap\_picked }\OperatorTok{=}\NormalTok{ []}
 
-\CommentTok{\# The colormaps picked can be either a customized one for S11 Forest baseline or greens\_r}
+\CommentTok{\# The colormaps picked can be either a customized one for S11}
+\CommentTok{\# Forest baseline or greens\_r}
 \NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"\_name=greens\&rescale=0,70"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{,}
         \StringTok{"\_name=blues\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=blues\_r\&rescale=0,90"}\NormalTok{,}
         \StringTok{"\_name=reds\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=reds\_r\&rescale=0,80"}\NormalTok{]}
@@ -1066,9 +1067,16 @@ times}\label{code-to-evaluate-request-times}
 
     \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
 
-\NormalTok{        url\_zarr }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8084/tiles/WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?url=gs://s11{-}tiles/zarr/separate\&variable=band\_data\&reference=false\&decode\_times=true\&consolidated=true\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
+\NormalTok{        url\_zarr }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8084/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"}\SpecialCharTok{\{tile\}\%401x}\StringTok{?url=gs://s11{-}tiles/zarr/separate\&"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"variable=band\_data\&reference=false\&decode\_times=true\&"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"consolidated=true\&colormap}\SpecialCharTok{\{cmap[k]\}}\StringTok{\&return\_mask=true"}
 
-\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8082/collections/Example\%20FBL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?bidx=1\&assets=data\&unscale=false\&resampling=nearest\&reproject=nearest\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
+\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8082/collections/"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"Example}\SpecialCharTok{\%20F}\StringTok{BL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"WebMercatorQuad/}\SpecialCharTok{\{tile\}\%401x}\StringTok{?bidx=1\&assets=data\&"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"unscale=false\&resampling=nearest\&reproject=nearest\&"}\OperatorTok{+\textbackslash{}}
+        \StringTok{"colormap}\SpecialCharTok{\{cmap[k]\}}\StringTok{\&return\_mask=true"}
 
 \NormalTok{        x }\OperatorTok{=}\NormalTok{ requests.get(url\_zarr)}
 \NormalTok{        times\_zarr.append(x.elapsed.total\_seconds())}

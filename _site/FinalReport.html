@@ -370,17 +370,11 @@ window.Quarto = {
 <p>Spatial data, just like any other type of data, can be cataloged into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e.&nbsp;A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g.&nbsp;Satellite imagery and Time series data) <span class="citation" data-cites="mishra_structured_2017">(<a href="#ref-mishra_structured_2017" role="doc-biblioref">Mishra and Misra, 2017</a>)</span>. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e.&nbsp;With the help of Structured Query Language (SQL)) <span class="citation" data-cites="kaufmann_database_2023">(<a href="#ref-kaufmann_database_2023" role="doc-biblioref">Kaufmann and Meier, 2023</a>)</span>. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.</p>
 <p>The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e.&nbsp;Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
 <p>At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.</p>
-<section id="cloud-optimized-data-formats" class="level5 unnumbered">
-<h5 class="unnumbered anchored" data-anchor-id="cloud-optimized-data-formats">Cloud-optimized data formats</h5>
-<section id="cog" class="level6 unnumbered">
-<h6 class="unnumbered anchored" data-anchor-id="cog">COG</h6>
+<p><strong>Cloud-optimized data formats</strong></p>
+<p><em>COG</em></p>
 <p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability <span class="citation" data-cites="ogc_ogc_2023">(<a href="#ref-ogc_ogc_2023" role="doc-biblioref">OGC, 2023</a>)</span>.</p>
-</section>
-<section id="zarr" class="level6 unnumbered">
-<h6 class="unnumbered anchored" data-anchor-id="zarr">Zarr</h6>
+<p><em>Zarr</em></p>
 <p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr, differently than COGs store the metadata separately from the data chunks using lightweight external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. While the storage of Zarr files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Due to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed Zarr V2 as a community standard. Nevertheless, efforts are still being made to have a geo-spatial Zarr standard adopted by OGC <span class="citation" data-cites="chester_ogc_2024">(<a href="#ref-chester_ogc_2024" role="doc-biblioref">Chester, 2024</a>)</span>.</p>
-</section>
-</section>
 </section>
 <section id="data-discovery-services" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
@@ -429,7 +423,6 @@ Table&nbsp;1: STAC components
 </section>
 <section id="visualization-interfaces" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="visualization-interfaces">Visualization interfaces</h4>
-<p></p>
 <p>The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as <a href="https://developmentseed.org/titiler/">TiTiler</a> have tackled multiple of these challenges by creating APIs that dynamically generate PNG/JPEG image tiles when requested without reading the entire source file into memory <span class="citation" data-cites="noauthor_titiler_nodate">(<a href="#ref-noauthor_titiler_nodate" role="doc-biblioref"><em><span>TiTiler</span></em>, n.d.</a>)</span>. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.</p>
 <p>TiTiler supports various data structures including STAC (SpatioTemporal Asset Catalog), Cloud Optimized GeoTIFFs (COGs), and is currently working on adding support for Zarrs. For the first two the <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler PgSTAC</a> specialized extension integrates with PostgreSQL to enhance STAC catalog querying capabilities. For the case of Zarrs, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> extension is being developed to facilitate the handling of multidimensional data arrays.</p>
 </section>
@@ -615,11 +608,14 @@ Figure&nbsp;3: Request times depending on zoom level
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
-<p>hgdcjfc rah fdxh sdfhfn dfayhgn d</p>
-<p>gadfh</p>
 </section>
 <section id="future-work" class="level1">
 <h1>Future work</h1>
+<ul>
+<li>ndpyramids</li>
+<li>STAC API authentication</li>
+<li>Inclusion of Vector data on STAC</li>
+</ul>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
@@ -675,7 +671,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 <h1 class="unnumbered">Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="b93383ab" class="cell" data-execution_count="5">
+<div id="a53cb403" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -716,36 +712,44 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11 Forest baseline or greens_r</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>]</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="ss">f"http://localhost:8084/tiles/WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;variable=band_data&amp;reference=false&amp;decode_times=true&amp;consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"http://localhost:8082/collections/Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>]</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="ss">f"http://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">"</span><span class="sc">{tile}%401x</span><span class="st">?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">"consolidated=true&amp;colormap</span><span class="sc">{cmap[k]}</span><span class="st">&amp;return_mask=true"</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"http://localhost:8082/collections/"</span><span class="op">+\</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Example</span><span class="sc">%20F</span><span class="st">BL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">"WebMercatorQuad/</span><span class="sc">{tile}%401x</span><span class="st">?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">"colormap</span><span class="sc">{cmap[k]}</span><span class="st">&amp;return_mask=true"</span></span>
 <span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

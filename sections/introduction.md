@@ -20,13 +20,13 @@ The emergence of cloud-based archives has been one of the main advancements for 
 
 At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.
 
-##### Cloud-optimized data formats {.unnumbered}
+**Cloud-optimized data formats** 
 
-###### COG {.unnumbered}
+*COG* 
 
 Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021]. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability [@ogc_ogc_2023].
 
-###### Zarr {.unnumbered}
+*Zarr*
 
 Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr, differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. While the storage of Zarr files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service [@desruisseaux_ogc_2021]. Due to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed Zarr V2 as a community standard. Nevertheless, efforts are still being made to have a geo-spatial Zarr standard adopted by OGC [@chester_ogc_2024].
 
@@ -48,8 +48,6 @@ Moreover, there are two types of STAC catalogs: static and dynamic. Static catal
 In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geospatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geospatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning).
 
 #### Visualization interfaces {.unnumbered}
-
-\hl{Mention also that there are multiple TiTiler services}
 
 The visualization of spatial data brings with it a series of challenges due to its big nature. Dynamic tiling libraries such as [TiTiler](https://developmentseed.org/titiler/) have tackled multiple of these challenges by creating APIs that dynamically generate PNG/JPEG image tiles when requested without reading the entire source file into memory [@noauthor_titiler_nodate]. This feature optimizes rendering of images since PNG and JPEG image file formats are more easily transferred through the web.
 
