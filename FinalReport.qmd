@@ -13,6 +13,10 @@ format:
     fig-width: 8
     fig-height: 6
   titlepage-pdf:
+    include-in-header: 
+      - text: |
+          \usepackage{tabularx}
+          \usepackage{color,soul}
     fig-pos: 'H'
     fig-width: 200
     link-citations: true

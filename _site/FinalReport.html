@@ -297,13 +297,60 @@ window.Quarto = {
 </section>
 <section id="list-of-abreviations" class="level1 unnumbered">
 <h1 class="unnumbered">List of abreviations</h1>
-
+<table class="table-striped table-hover table">
+<caption>Abbreviation list</caption>
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Abreviations</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EUDR</td>
+<td>European Union Deforestation Regulation</td>
+</tr>
+<tr class="even">
+<td>STAC</td>
+<td>Spatio-Temporal Asset Catalog</td>
+</tr>
+<tr class="odd">
+<td>COG</td>
+<td>Cloud-Optimized GeoTiff</td>
+</tr>
+<tr class="even">
+<td>OGC</td>
+<td>Open Geospatial Consortium</td>
+</tr>
+<tr class="odd">
+<td>SDI</td>
+<td>Spatial Data Infrastructure</td>
+</tr>
+<tr class="even">
+<td>S11</td>
+<td>Satelligence</td>
+</tr>
+<tr class="odd">
+<td>K8</td>
+<td>Kubernetes</td>
+</tr>
+<tr class="even">
+<td>DPROF</td>
+<td>Distributed Processing Framework (?)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <section id="internship-organization-background" class="level2">
 <h2 class="anchored" data-anchor-id="internship-organization-background">Internship organization background</h2>
 <p>Satelligence is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning <span class="citation" data-cites="satelligence_home_nodate">(<a href="#ref-satelligence_home_nodate" role="doc-biblioref">Satelligence, n.d.</a>)</span>. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free regulations, such as the EUDR <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref">Satelligence, 2023</a>)</span>.</p>
+<p></p>
 </section>
 <section id="context-and-justification-of-research" class="level2">
 <h2 class="anchored" data-anchor-id="context-and-justification-of-research">Context and justification of research</h2>
@@ -509,7 +556,7 @@ Figure&nbsp;3: Baseline workflow
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested 2.73 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be obesrved that COG tiles are requested 1.74 times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -527,7 +574,7 @@ Figure&nbsp;4: Request times depending on data format and zoom level
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.003 and 0.003 per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.009 and 0.007 per zoom level for COGs and ZARRs respectively.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -596,7 +643,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>Sys
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="6ddc3c89" class="cell" data-execution_count="5">
+<div id="8b2aa1d7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>

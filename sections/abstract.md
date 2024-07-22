@@ -6,12 +6,14 @@ The abstract goes here.
 
 # List of abreviations {-}
 
-\begin{center}
-\begin{tabular}{ c | c }
- STAC & Spatio-Temporal Asset Catalog \\ 
- COG & Cloud-Optimized GeoTiff \\  
- OGC & Open Geospatial Consortium \\
- SDI & Spatial Data Infrastructure \\
-
-\end{tabular}
-\end{center}
+| **Abreviations** | **Description**                                                                                          |
+|----------------------------------------|--------------------------------|
+ EUDR | European Union Deforestation Regulation |
+ STAC | Spatio-Temporal Asset Catalog |
+ COG | Cloud-Optimized GeoTiff |  
+ OGC | Open Geospatial Consortium |
+ SDI | Spatial Data Infrastructure |
+ S11 | Satelligence |
+ K8  | Kubernetes |
+ DPROF | Distributed Processing Framework (?) |
+: Abbreviation list {.striped .hover}

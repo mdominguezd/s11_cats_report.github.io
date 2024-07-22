@@ -148,6 +148,8 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+\usepackage{tabularx}
+\usepackage{color,soul}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -432,15 +434,37 @@ The abstract goes here.
 \chapter*{List of abreviations}\label{list-of-abreviations}
 \addcontentsline{toc}{chapter}{List of abreviations}
 
-\begin{center}
-\begin{tabular}{ c | c }
- STAC & Spatio-Temporal Asset Catalog \\ 
- COG & Cloud-Optimized GeoTiff \\  
- OGC & Open Geospatial Consortium \\
- SDI & Spatial Data Infrastructure \\
-
-\end{tabular}
-\end{center}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5556}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4444}}@{}}
+\caption{Abbreviation list}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Abreviations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Description}
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Abreviations}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Description}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EUDR & European Union Deforestation Regulation \\
+STAC & Spatio-Temporal Asset Catalog \\
+COG & Cloud-Optimized GeoTiff \\
+OGC & Open Geospatial Consortium \\
+SDI & Spatial Data Infrastructure \\
+S11 & Satelligence \\
+K8 & Kubernetes \\
+DPROF & Distributed Processing Framework (?) \\
+\end{longtable}
 
 \chapter{Introduction}\label{introduction}
 
@@ -457,6 +481,8 @@ clients in a web application to assist them in the migration towards
 more sustainable sourcing models and the compliance with
 deforestation-free regulations, such as the EUDR
 (\citeproc{ref-satelligence_internship_2023}{Satelligence, 2023}).
+
+\hl{Add info about how most of their work, if not all is cloud based. (DSHUB, DPROF, Google)}
 
 \section{Context and justification of
 research}\label{context-and-justification-of-research}
@@ -877,7 +903,7 @@ TiTiler-PgSTAC \& TiTiler-xarray
 The comparison of visualization speeds with TiTiler-xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented on
 Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
-tiles are requested 2.73 times faster than the same file in ZARR format.
+tiles are requested 1.74 times faster than the same file in ZARR format.
 
 \begin{figure}[H]
 
@@ -897,7 +923,7 @@ and zoom level}
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
 have an effect on the time spent requesting and getting a tile from a
 tile server. In this study, it was found that the request times
-decreased by a factor of -0.003 and 0.003 per zoom level for COGs and
+decreased by a factor of -0.009 and 0.007 per zoom level for COGs and
 ZARRs respectively.
 
 \begin{figure}[H]
