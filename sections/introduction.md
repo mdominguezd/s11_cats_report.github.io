@@ -1,6 +1,6 @@
 ## Internship organization background
 
-Satelligence (S11) is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning [@satelligence_home_nodate]. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free commodities regulations, such as the European Union Deforestation Regulation (EUDR) [@satelligence_internship_2023]. S11's main focus is deforestation monitoring in the tropics using freely accessible satellite imagery. This is a data-intensive task that is achieved by leveraging the benefits of cloud computing, specifically Google Cloud Platform.
+Satelligence (S11) is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning [@satelligence_home_nodate]. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free commodities regulations, such as the European Union Deforestation Regulation (EUDR) [@satelligence_internship_2023]. S11's main focus is continuous deforestation monitoring (CDM) in the tropics using freely accessible satellite imagery. This is a data-intensive task that is achieved by leveraging the benefits of cloud computing, specifically Google Cloud Platform.
 
 ## Context and justification of research
 
@@ -12,31 +12,31 @@ In the past decades there has been a rapid increase in the amount and size of ge
 
 Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data [@rajabifard_spatial_2001]. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility [@durbha_advances_2023]. Due to this, an important shift is underway towards more cloud-based SDIs [@tripathi_cloud_2020]. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.
 
-#### Cloud-based data storage {-}
+#### Cloud-based data storage {.unnumbered}
 
 Spatial data, just like any other type of data, can be cataloged into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e. A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g. Satellite imagery and Time series data) [@mishra_structured_2017]. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e. With the help of Structured Query Language (SQL)) [@kaufmann_database_2023]. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.
 
 The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e. Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes [@durbha_advances_2023].
 
-At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and ZARRs in their processing framework (DPROF) to improve efficiency and accessibility.
+At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.
 
-##### Cloud-optimized data formats {-}
+##### Cloud-optimized data formats {.unnumbered}
 
-###### COG {-}
+###### COG {.unnumbered}
 
-Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021].
+Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021]. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability [@ogc_ogc_2023].
 
-###### ZARR {-}
+###### Zarr {.unnumbered}
 
-Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. Finally, while the storage of ZARR files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service [@desruisseaux_ogc_2021].
+Another cloud native data format that has gained popularity recently is [Zarr](https://zarr.readthedocs.io/en/stable/). This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr, differently than COGs store the metadata separately from the data chunks using lightweight external JSON files [@durbha_advances_2023]. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. While the storage of Zarr files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service [@desruisseaux_ogc_2021]. Due to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed Zarr V2 as a community standard. Nevertheless, efforts are still being made to have a geo-spatial Zarr standard adopted by OGC [@chester_ogc_2024].
 
-#### Data discovery services {-}
+#### Data discovery services {.unnumbered}
 
-\hl{AMPLIAR. Maybe include other data discovery services? }
+A discovery service that recently has become widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatio-temporal metadata, STAC simplifies the management and discovery of big geo-data [@brodeur_geographic_2019]. This service works by organizing the data into catalogs, collections, items, and assets stored as lightweight JSON formats (See @tbl-stac-comps) [@durbha_advances_2023].
 
-A discovery service widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatial data, STAC simplifies the management and discovery of big geo-data [@brodeur_geographic_2019]. This service works by organizing the data into catalogs, collections, items, and assets that will only be read when a computation is required [@durbha_advances_2023]. This feature optimizes workflows by reducing unnecessary data loading.
+Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as HTTP- based APIs (\[STAC API\](<https://github.com/radiantearth/stac-api-spec/>)) that respond to queries dynamically. More specifically, these catalogs will show different views of the same catalog depending on queries that usually focus on the spatio-temporal aspect of the data [@noauthor_stac-specbest-practicesmd_nodate].
 
-##### STAC fundamentals {-}
+##### STAC fundamentals {.unnumbered}
 
 A Catalog built under STAC specifications is composed by:
 
@@ -47,11 +47,11 @@ A Catalog built under STAC specifications is composed by:
 | *Collections*       | Defines a set of common fields to describe a group of Items that share properties and metadata           |
 | *Catalogs*          | Contains a list of STAC collections, items or can also contain child catalogs.                           |
 
-: STAC components {.striped .hover}
+: STAC components {#tbl-stac-comps .striped .hover}
 
 \hl{Talk about the integration with sturctured data base management (PgSTAC)}
 
-#### Visualization interfaces {-}
+#### Visualization interfaces {.unnumbered}
 
 \hl{Mention also that there are multiple TiTiler services}
 

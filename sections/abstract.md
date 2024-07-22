@@ -1,6 +1,6 @@
 # Executive summary {-}
 
-The abstract goes here.
+\lipsum
 
 \newpage
 
@@ -16,4 +16,5 @@ The abstract goes here.
  S11 | Satelligence |
  K8  | Kubernetes |
  DPROF | Distributed Processing Framework |
+ JSON | JavaScript Object Notation |
 : Abbreviation list {.striped .hover}
