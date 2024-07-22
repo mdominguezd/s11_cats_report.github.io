@@ -297,27 +297,75 @@ window.Quarto = {
 </section>
 <section id="list-of-abreviations" class="level1 unnumbered">
 <h1 class="unnumbered">List of abreviations</h1>
-
+<table class="table-striped table-hover caption-top table">
+<caption>Abbreviation list</caption>
+<colgroup>
+<col style="width: 55%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Abreviations</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EUDR</td>
+<td>European Union Deforestation Regulation</td>
+</tr>
+<tr class="even">
+<td>STAC</td>
+<td>Spatio-Temporal Asset Catalog</td>
+</tr>
+<tr class="odd">
+<td>COG</td>
+<td>Cloud-Optimized GeoTiff</td>
+</tr>
+<tr class="even">
+<td>OGC</td>
+<td>Open Geospatial Consortium</td>
+</tr>
+<tr class="odd">
+<td>SDI</td>
+<td>Spatial Data Infrastructure</td>
+</tr>
+<tr class="even">
+<td>S11</td>
+<td>Satelligence</td>
+</tr>
+<tr class="odd">
+<td>K8</td>
+<td>Kubernetes</td>
+</tr>
+<tr class="even">
+<td>DPROF</td>
+<td>Distributed Processing Framework (?)</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <section id="internship-organization-background" class="level2">
 <h2 class="anchored" data-anchor-id="internship-organization-background">Internship organization background</h2>
-<p>Satelligence is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning <span class="citation" data-cites="satelligence_home_nodate">(<a href="#ref-satelligence_home_nodate" role="doc-biblioref">Satelligence, n.d.</a>)</span>. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free regulations, such as the EUDR <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref">Satelligence, 2023</a>)</span>.</p>
+<p>Satelligence (S11) is a company founded in 2016 that specializes in providing satellite-based actionable information by monitoring environmental risks in commodity supply chains and financial investment planning <span class="citation" data-cites="satelligence_home_nodate">(<a href="#ref-satelligence_home_nodate" role="doc-biblioref">Satelligence, n.d.</a>)</span>. More specifically, the company processes terabytes of satellite imagery to detect environmental risks and presents this information to their clients in a web application to assist them in the migration towards more sustainable sourcing models and the compliance with deforestation-free commodities regulations, such as the European Union Deforestation Regulation (EUDR) <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref"><strong>satelligence_internship_2023?</strong></a>)</span>. S11’s main focus is deforestation monitoring in the tropics using freely accessible satellite imagery. This is a data-intensive task that is achieved by leveraging the benefits of cloud computing, specifically Google Cloud Platform.</p>
+<p>for processing with their DPROF framework and analysis with DSHub, a JupyterHub instance mounted on a Kubernetes cluster to further analyze the results.</p>
 </section>
 <section id="context-and-justification-of-research" class="level2">
 <h2 class="anchored" data-anchor-id="context-and-justification-of-research">Context and justification of research</h2>
-<p>Satelligence currently employs cloud computing, specifically Kubernetes, to process extensive volumes of satellite imagery amounting to terabytes. While this processing workflow currently runs smoothly, the company’s data team faces challenges when going deeper into the analysis and accessing intermediate results due to the big nature of this data <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref">Satelligence, 2023</a>)</span>. Scholars have defined big data as datasets characterized by their high Volume, Velocity, and Variety, which makes it paramount to use advanced processing and analytics techniques to derive relevant insights <span class="citation" data-cites="giri_big_2014">(<a href="#ref-giri_big_2014" role="doc-biblioref">Giri and Lone, 2014</a>)</span>. In the specific case of Satelligence, their datasets can be categorized as big data due to their: High volume (Terabytes of satellite images processed every day), high velocity (Near – real time processing of these images) and high variety (Imagery coming from different sensors and regions). All these datasets are a specific case of big data: Big Geodata.</p>
+<p>Satelligence strongly relies on cloud computing for their services. They process extensive volumes of satellite imagery amounting to terabytes using DPROF, a distributed processing framework created within the company to efficiently process multidimensional spatial datasets. While this processing workflow currently runs smoothly, the company’s data and operations teams face challenges when going deeper into the analysis and accessing intermediate results due to the big nature of this data <span class="citation" data-cites="satelligence_internship_2023">(<a href="#ref-satelligence_internship_2023" role="doc-biblioref"><strong>satelligence_internship_2023?</strong></a>)</span>. Scholars have defined big data as datasets characterized by their high Volume, Velocity, and Variety, which makes it paramount to use advanced processing and analytics techniques to derive relevant insights <span class="citation" data-cites="giri_big_2014">(<a href="#ref-giri_big_2014" role="doc-biblioref">Giri and Lone, 2014</a>)</span>. In the specific case of Satelligence, their datasets can be categorized as big data due to their: High volume (Terabytes of satellite images processed every day), high velocity (Near – real time processing of these images) and high variety (Imagery coming from different sensors and regions). All these datasets are a specific case of big data: Big Geodata.</p>
 <section id="significance-of-the-topic" class="level3">
 <h3 class="anchored" data-anchor-id="significance-of-the-topic">Significance of the topic</h3>
-<p>In the past decades there has been a rapid increase in the amount and size of geospatial information that can be accessed. Nowadays, more than 150 satellites orbit the earth collecting thousands of images every single day <span class="citation" data-cites="zhao_scalable_2021">(<a href="#ref-zhao_scalable_2021" role="doc-biblioref">Zhao et al., 2021</a>)</span>. This has made data handling and the introduction of spatial data infrastructures (SDIs) paramount when working with such big datasets.</p>
-<p>Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data <span class="citation" data-cites="rajabifard_spatial_2001">(<a href="#ref-rajabifard_spatial_2001" role="doc-biblioref">Rajabifard and Williamson, 2001</a>)</span>. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Due to this, an important shift is underway towards more cloud-based SDIs. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.</p>
+<p>In the past decades there has been a rapid increase in the amount and size of geo-spatial information that can be accessed. Nowadays, more than 150 satellites orbit the earth collecting thousands of images every single day <span class="citation" data-cites="zhao_scalable_2021">(<a href="#ref-zhao_scalable_2021" role="doc-biblioref">Zhao et al., 2021</a>)</span>. This has made data handling and the introduction of spatial data infrastructures (SDIs) paramount when working with such big datasets.</p>
+<p>Traditionally, SDIs have served to ease the accessibility, integration and analysis of spatial data <span class="citation" data-cites="rajabifard_spatial_2001">(<a href="#ref-rajabifard_spatial_2001" role="doc-biblioref">Rajabifard and Williamson, 2001</a>)</span>. However, in practice SDIs have been built upon technologies that focus on data preservation rather than accessibility <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Due to this, an important shift is underway towards more cloud-based SDIs <span class="citation" data-cites="schaffer_towards_2010">(<a href="#ref-schaffer_towards_2010" role="doc-biblioref">Schäffer et al., 2010</a>)</span>. These platforms need the emergence of new technologies that prioritize seamless access to cloud-stored data, efficient discovery services that ensure the easy location of extensive spatial data, and data visualization interfaces where multiple datasets can be depicted.</p>
 <section id="cloud-based-data-storage" class="level4">
 <h4 class="anchored" data-anchor-id="cloud-based-data-storage">Cloud-based data storage</h4>
-<p>Spatial data, just like any other type of data, can be catalogued into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e.&nbsp;A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g.&nbsp;Satellite imagery and Time series data) <span class="citation" data-cites="mishra_structured_2017">(<a href="#ref-mishra_structured_2017" role="doc-biblioref">Mishra and Misra, 2017</a>)</span>. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e.&nbsp;With the help of Structured Query Language (SQL)) <span class="citation" data-cites="kaufmann_database_2023">(<a href="#ref-kaufmann_database_2023" role="doc-biblioref">Kaufmann and Meier, 2023</a>)</span>. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.</p>
+<p>Spatial data, just like any other type of data, can be cataloged into structured and unstructured data. Structured datasets are often organized and follow a specific structure (i.e.&nbsp;A traditional table with rows (objects) and columns (features)). On the other hand, unstructured data does not have a predefined structure (e.g.&nbsp;Satellite imagery and Time series data) <span class="citation" data-cites="mishra_structured_2017">(<a href="#ref-mishra_structured_2017" role="doc-biblioref">Mishra and Misra, 2017</a>)</span>. The management of structured data has witnessed substantial advancements, making it straightforward to handle it systematically using, for instance, relational databases (i.e.&nbsp;With the help of Structured Query Language (SQL)) <span class="citation" data-cites="kaufmann_database_2023">(<a href="#ref-kaufmann_database_2023" role="doc-biblioref">Kaufmann and Meier, 2023</a>)</span>. In contrast, due to the additional challenges associated with the handling of unstructured data, the developments in this area have taken a longer time to appear.</p>
 <p>The emergence of cloud-based archives has been one of the main advancements for unstructured data management during the last decades. In the specific case of geo-spatial data, it has allowed to store terabytes of unstructured data (i.e.&nbsp;Satellite imagery) on the cloud and access it through the network. However, the necessity transmitting data across networks to access it makes it essential to develop new data formats suited for such purposes <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
 <p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored and storing different image tiles for different scales. These characteristics make COGs heavier than traditional image formats, however, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
 <p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr differently than COGs store the metadata separately from the data chunks. Normally, using external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
+<p></p>
 </section>
 <section id="data-discovery-services" class="level4">
 <h4 class="anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
@@ -561,34 +609,34 @@ Figure&nbsp;5: Request times depending on zoom level
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-brodeur_geographic_2019" class="csl-entry" role="listitem">
-Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J. (2019). Geographic <span>Information</span> <span>Metadata</span>—<span>An</span> <span>Outlook</span> from the <span>International</span> <span>Standardization</span> <span>Perspective</span>. <em>ISPRS International Journal of Geo-Information</em>, <em>8</em>(6), 280. p. <a href="https://doi.org/10.3390/ijgi8060280">https://doi.org/10.3390/ijgi8060280</a>
+Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J. (2019). Geographic information metadata—an outlook from the international standardization perspective. <em><span>ISPRS</span> International Journal of Geo-Information</em>, <em>8</em>(6), 280. p. <a href="https://doi.org/10.3390/ijgi8060280">https://doi.org/10.3390/ijgi8060280</a>
 </div>
 <div id="ref-durbha_advances_2023" class="csl-entry" role="listitem">
-Durbha, S. S., Sanyal, J., Yang, L., S Chaudhari, S., Bhangale, U., Bharambe, U. and Kurte, K. (2023). <em>Advances in <span>Scalable</span> and <span>Intelligent</span> <span>Geospatial</span> <span>Analytics</span>: <span>Challenges</span> and <span>Applications</span></em> (1st ed.). CRC Press. <a href="https://doi.org/10.1201/9781003270928">https://doi.org/10.1201/9781003270928</a>
+Durbha, S. S., Sanyal, J., Yang, L., S Chaudhari, S., Bhangale, U., Bharambe, U. and Kurte, K. (2023). <em>Advances in scalable and intelligent geospatial analytics: Challenges and applications</em> (1st ed.). <span>CRC</span> Press. <a href="https://doi.org/10.1201/9781003270928">https://doi.org/10.1201/9781003270928</a>
 </div>
 <div id="ref-giri_big_2014" class="csl-entry" role="listitem">
-Giri, K. and Lone, T. (2014). Big <span>Data</span> -<span>Overview</span> and <span>Challenges</span>. <em>International Journal of Advanced Research in Computer Science and Software Engineering</em>, <em>4</em>.
+Giri, K. and Lone, T. (2014). Big data -overview and challenges. <em>International Journal of Advanced Research in Computer Science and Software Engineering</em>, <em>4</em>.
 </div>
 <div id="ref-kaufmann_database_2023" class="csl-entry" role="listitem">
-Kaufmann, M. and Meier, A. (2023). Database <span>Management</span>. In M. Kaufmann and A. Meier (Eds.), <em><span>SQL</span> and <span>NoSQL</span> <span>Databases</span>: <span>Modeling</span>, <span>Languages</span>, <span>Security</span> and <span>Architectures</span> for <span>Big</span> <span>Data</span> <span>Management</span></em> (1–24. pp.). Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-27908-9_1">https://doi.org/10.1007/978-3-031-27908-9_1</a>
+Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann and A. Meier (Eds.), <em><span>SQL</span> and <span>NoSQL</span> databases: Modeling, languages, security and architectures for big data management</em> (1–24. pp.). Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-27908-9_1">https://doi.org/10.1007/978-3-031-27908-9_1</a>
 </div>
 <div id="ref-mishra_structured_2017" class="csl-entry" role="listitem">
-Mishra, S. and Misra, A. (2017). Structured and <span>Unstructured</span> <span>Big</span> <span>Data</span> <span>Analytics</span>. <em>2017 <span>International</span> <span>Conference</span> on <span>Current</span> <span>Trends</span> in <span>Computer</span>, <span>Electrical</span>, <span>Electronics</span> and <span>Communication</span> (<span>CTCEEC</span>)</em>, 740–746. pp. <a href="https://doi.org/10.1109/CTCEEC.2017.8454999">https://doi.org/10.1109/CTCEEC.2017.8454999</a>
+Mishra, S. and Misra, A. (2017). Structured and unstructured big data analytics. <em>2017 International Conference on Current Trends in Computer, Electrical, Electronics and Communication (<span>CTCEEC</span>)</em>, 740–746. pp. <a href="https://doi.org/10.1109/CTCEEC.2017.8454999">https://doi.org/10.1109/CTCEEC.2017.8454999</a>
 </div>
 <div id="ref-rajabifard_spatial_2001" class="csl-entry" role="listitem">
 Rajabifard, A. and Williamson, I. P. (2001). <em>Spatial data infrastructures: Concept, <span>SDI</span> hierarchy and future directions</em>. <a href="http://hdl.handle.net/11343/33897">http://hdl.handle.net/11343/33897</a>
 </div>
 <div id="ref-satelligence_home_nodate" class="csl-entry" role="listitem">
-Satelligence. (n.d.). Home - <span>Satelligence</span> - <span>Sustainability</span> monitoring simplified. In <em>Satelligence</em>. Retrieved February 5, 2024, from <a href="https://satelligence.com/">https://satelligence.com/</a>
+Satelligence. (n.d.). <em>Home - satelligence - sustainability monitoring simplified. Satelligence</em>. Retrieved February 5, 2024, from <a href="https://satelligence.com/">https://satelligence.com/</a>
 </div>
-<div id="ref-satelligence_internship_2023" class="csl-entry" role="listitem">
-Satelligence. (2023). <em>Internship: <span>Cataloguing</span> and visualizing big geodata</em>.
+<div id="ref-schaffer_towards_2010" class="csl-entry" role="listitem">
+Schäffer, B., Baranski, B. and Foerster, T. (2010). Towards spatial data infrastructures in the clouds. In M. Painho, M. Y. Santos and H. Pundt (Eds.), <em>Geospatial thinking</em> (399–418. pp.). Springer. <a href="https://doi.org/10.1007/978-3-642-12326-9_21">https://doi.org/10.1007/978-3-642-12326-9_21</a>
 </div>
 <div id="ref-noauthor_titiler_nodate" class="csl-entry" role="listitem">
 <em><span>TiTiler</span></em>. (n.d.). Retrieved February 19, 2024, from <a href="https://developmentseed.org/titiler/">https://developmentseed.org/titiler/</a>
 </div>
 <div id="ref-zhao_scalable_2021" class="csl-entry" role="listitem">
-Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>System</span> for <span>Searching</span> <span>Large</span>-scale <span>Multi</span>-sensor <span>Remote</span> <span>Sensing</span> <span>Image</span> <span>Collections</span>. <em>2021 <span>IEEE</span> <span>International</span> <span>Conference</span> on <span>Big</span> <span>Data</span> (<span>Big</span> <span>Data</span>)</em>, 3780–3783. pp. <a href="https://doi.org/10.1109/BigData52589.2021.9671679">https://doi.org/10.1109/BigData52589.2021.9671679</a>
+Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching large-scale multi-sensor remote sensing image collections. <em>2021 <span>IEEE</span> International Conference on Big Data (Big Data)</em>, 3780–3783. pp. <a href="https://doi.org/10.1109/BigData52589.2021.9671679">https://doi.org/10.1109/BigData52589.2021.9671679</a>
 </div>
 </div>
 </section>
@@ -596,7 +644,7 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A <span>Scalable</span> <span>Sys
 <h1>Appendix</h1>
 <section id="code-to-evaluate-request-times" class="level2">
 <h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="2c2dad71" class="cell" data-execution_count="5">
+<div id="56a885f6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
