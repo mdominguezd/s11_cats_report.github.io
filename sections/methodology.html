@@ -147,7 +147,8 @@ window.Quarto = {
   <li><a href="#baseline-scenario" id="toc-baseline-scenario" class="nav-link active" data-scroll-target="#baseline-scenario">Baseline scenario</a></li>
   <li><a href="#data-and-service-integration" id="toc-data-and-service-integration" class="nav-link" data-scroll-target="#data-and-service-integration">Data and service integration</a>
   <ul class="collapse">
-  <li><a href="#datasets-included" id="toc-datasets-included" class="nav-link" data-scroll-target="#datasets-included">Datasets included</a></li>
+  <li><a href="#dataset-selection" id="toc-dataset-selection" class="nav-link" data-scroll-target="#dataset-selection">Dataset selection</a></li>
+  <li><a href="#proposed-catalog-structure" id="toc-proposed-catalog-structure" class="nav-link" data-scroll-target="#proposed-catalog-structure">Proposed Catalog structure</a></li>
   <li><a href="#s11-cats-repository" id="toc-s11-cats-repository" class="nav-link" data-scroll-target="#s11-cats-repository">S11-cats repository</a></li>
   <li><a href="#pgstac" id="toc-pgstac" class="nav-link" data-scroll-target="#pgstac">PgSTAC</a></li>
   <li><a href="#eoapi" id="toc-eoapi" class="nav-link" data-scroll-target="#eoapi">eoAPI</a></li>
@@ -170,22 +171,36 @@ window.Quarto = {
 <p>To answer the research questions presented a series of tasks were undertaken. These tasks are presented in the following subsections where they are divided by research question.</p>
 <section id="baseline-scenario" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
-<p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
+<p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
 <p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <strong>?@sec-baseline-q</strong> and were meant to be open questions with multiple possible answers.</p>
 <p>Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
-<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">[@anderson_thematic_2007]</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5) using the prompt presented on <strong>?@sec-gpt-prompt</strong> (). Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
+<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">[@anderson_thematic_2007]</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 [openai_chatgpt_2023]) using the prompt presented on <strong>?@sec-gpt-prompt</strong>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
 </section>
 <section id="data-and-service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
-<p>Briefly describe what will be included in the section: Explanation of the datasets included in the catalog, the building of the catalog (s11-cats)</p>
-<section id="datasets-included" class="level3">
-<h3 class="anchored" data-anchor-id="datasets-included">Datasets included</h3>
+<p>To efficiently integrate tools for big geospatial data discovery and visualization, a series of steps had to be followed. Initially, the datasets were selected. Subsequently, the structure of the catalog was defined. Following this, a Git repository containing the code required to generate the catalog was created. Static JSON files were then utilized to construct a dynamic STAC API. Ultimately, this API was deployed alongside other services using a continuous integration (CI) and continuaus deployment (CD) pipeline. A further explanation of each step is presented in the following subsections.</p>
+<section id="dataset-selection" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-selection">Dataset selection</h3>
+<p>Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were also included. Specifically, S11’s long term goal is to store in the catalog datasets that can be classified as follows:</p>
+<ul>
+<li>Static raster data
+<ul>
+<li>Forest baselines (Stored as COGs)</li>
+<li>Third-party elevation data (Stored as VRTs)</li>
+<li>Other static data</li>
+</ul></li>
+<li>DPROF results
+<ul>
+<li>Results of continuous deforestation monitoring (Stored as ZARRs)</li>
+<li>Other DPROF results</li>
+</ul></li>
+<li>Supply chain data (Vector data)</li>
+<li>Complaince data (Vector data)</li>
+</ul>
+<p>Nevertheless, the scope of this internship was limited to raster datasets.</p>
 </section>
-<section id="s11-cats-repository" class="level3">
-<h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
-<p>Description of modules</p>
-<section id="proposed-catalog-structure" class="level4">
-<h4 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h4>
+<section id="proposed-catalog-structure" class="level3">
+<h3 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h3>
 <p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <p>In it a selection of datasets that will be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
 <div id="fig-stac-str" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -199,6 +214,58 @@ Figure&nbsp;1: Initial proposed STAC structure
 </figure>
 </div>
 </section>
+<section id="s11-cats-repository" class="level3">
+<h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
+<p>The s11-cats repository created is composed of a module named <code>cats</code> which consists of five submodules described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;1</a>. Moreover, an overview of the main functionality of cats is presented on <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>. As seen there, ….</p>
+<div id="tbl-cats-modules" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Description of cats submodules
+</figcaption>
+<div aria-describedby="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Submodule</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>gcs_tools</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>general_metadata</em></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><em>get_spatial_info</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>get_temporal_info</em></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><em>stac_tools</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-s11-cats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/s11-cats.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: S11- cats main function
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="pgstac" class="level3">
 <h3 class="anchored" data-anchor-id="pgstac">PgSTAC</h3>
