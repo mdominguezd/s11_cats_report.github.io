@@ -6,9 +6,9 @@ The baseline scenario was defined as the set of methods currently being used by 
 
 The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in @sec-baseline-q and were meant to be open questions with multiple possible answers.
 
-Furthermore, beased on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.
+Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.
 
-Finally, the answers to the questionnaire were analysed qualitatively following a Thematic Context Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5) using the prompt presented on @sec-gpt-prompt. Moreover, the themes identified were further refined based on the interviewer's interpretation.
+Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5) using the prompt presented on @sec-gpt-prompt (\hl{Guess I should include here why I used GPT?}). Moreover, the themes identified were further refined based on the interviewer's interpretation.
 
 ## Data and service integration
 
@@ -22,23 +22,22 @@ Description of modules
 
 #### Proposed Catalog structure
 
-The structure of the STAC catalog proposed can be seen on @fig-stac-str. 
+The structure of the STAC catalog proposed can be seen on @fig-stac-str.
 
-In it a selection of datasets that will be referenced in the catalog is presented and a hierachical structure composed of thematic collections is suggested. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step. 
-
-![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width='90%'}
+In it a selection of datasets that will be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step.
 
 [^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
 
+![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
+
 ### PgSTAC
 
-### eoAPI 
+### eoAPI
 
--  Use of docker containers to run individual applications that can connect to each other.
-- deployment of these containers into the cloud.
+-   Use of docker containers to run individual applications that can connect to each other.
+-   deployment of these containers into the cloud.
 
 ### CI pipeline
-
 
 ```{=html}
 <!-- ### Local STAC creation and browsing
@@ -100,6 +99,6 @@ $$ SpeedUp = \frac{t_{format A}}{t_{format B}} $$ {#eq-speed-up}
 
 ### Zoom level influence
 
-Finally, the effect of the level of zoom in a web map visualization on the response times of requesting tiles from the different tiling services was evaluated by fitting an Ordinary Least Squares (OLS) univariate linear regression that followed @eq-lin-reg. 
+Finally, the effect of the level of zoom in a web map visualization on the response times of requesting tiles from the different tiling services was evaluated by fitting an Ordinary Least Squares (OLS) univariate linear regression that followed @eq-lin-reg.
 
 $$ ResponseTime = \beta_1 \cdot ZoomLevel + \beta_0 + \epsilon $$ {#eq-lin-reg}

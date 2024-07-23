@@ -764,19 +764,21 @@ questions included in the interview can be found in
 Section~\ref{sec-baseline-q} and were meant to be open questions with
 multiple possible answers.
 
-Furthermore, beased on the answers of the interviewees a workflow was
+Furthermore, based on the answers of the interviewees a workflow was
 built to represent visually the traditional steps performed to discover
 and visualize S11 data. This visual representation included estimations
 of the steps where more time was spent on.
 
-Finally, the answers to the questionnaire were analysed qualitatively
-following a Thematic Context Analysis (TCA). This type of qualitative
+Finally, the answers to the questionnaire were analyzed qualitatively
+following a Thematic Content Analysis (TCA). This type of qualitative
 analysis focuses on finding common themes in the interviews undertaken
 (\citeproc{ref-anderson_thematic_2007}{Anderson, 2007}). The extraction
 of common patterns within the interviews was initially done using a
 large language model (i.e.~Chat-GPT 3.5) using the prompt presented on
-Section~\ref{sec-gpt-prompt}. Moreover, the themes identified were
-further refined based on the interviewer's interpretation.
+Section~\ref{sec-gpt-prompt}
+(\hl{Guess I should include here why I used GPT?}). Moreover, the themes
+identified were further refined based on the interviewer's
+interpretation.
 
 \section{Data and service
 integration}\label{data-and-service-integration}
@@ -798,7 +800,7 @@ The structure of the STAC catalog proposed can be seen on
 Figure~\ref{fig-stac-str}.
 
 In it a selection of datasets that will be referenced in the catalog is
-presented and a hierachical structure composed of thematic collections
+presented and a hierarchical structure composed of thematic collections
 is suggested. Moreover, the selection of the
 \href{https://stac-extensions.github.io/}{STAC extensions}\footnote{STAC
   extensions are additional metadata properties that can be added to a
@@ -1161,9 +1163,12 @@ visualization}\label{related-to-data-visualization}
 \section{Thematic Content Analysis prompt}\label{sec-gpt-prompt}
 
 \begin{verbatim}
-I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+I will give you some notes I took from an interview I did to four study subjects:
+W, X, Y and Z.
 
-Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.
+Tell me if you identify any themes or topics that are repeated in the notes that 
+I took from the answers of the individuals. In other words, do a simple Thematic
+Content Analysis of the interviews.
 \end{verbatim}
 
 \section{Code to evaluate request times}\label{sec-request-code}

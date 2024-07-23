@@ -18,9 +18,12 @@
 ## Thematic Content Analysis prompt {#sec-gpt-prompt}
 
 ```
-I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+I will give you some notes I took from an interview I did to four study subjects:
+W, X, Y and Z.
 
-Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.
+Tell me if you identify any themes or topics that are repeated in the notes that 
+I took from the answers of the individuals. In other words, do a simple Thematic
+Content Analysis of the interviews.
 ```
 
 ## Code to evaluate request times {#sec-request-code}
