@@ -427,7 +427,7 @@ Geodata}}}}\par
 \chapter*{Executive summary}\label{executive-summary}
 \addcontentsline{toc}{chapter}{Executive summary}
 
-\lipsum
+\lipsum[100]
 
 \newpage
 
@@ -468,6 +468,8 @@ JSON & JavaScript Object Notation \\
 API & Application Programming Interfaces \\
 HTTP & HyperText Transfer Protocol \\
 SQL & Standard Query Language \\
+FBL & Forest Baseline \\
+DEM & Digital Elevation Map \\
 \end{longtable}
 
 \chapter{Introduction}\label{introduction}
@@ -584,8 +586,8 @@ enabling the selective transfer of only the necessary tiles using HTTP
 GET requests (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
 2021}). Additionally, this data format has been adopted as an Open
 Geospatial Consortium (OGC) standard. These standards are a set of
-guidelines and specifications created to facilitat data interoperability
-(\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
+guidelines and specifications created to facilitate data
+interoperability (\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
 
 \emph{Zarr}
 
@@ -667,9 +669,9 @@ In the specific case of dynamic catalogs, the concept of
 widely used. In general, an API is a set of rules and protocols that
 enables different software applications to communicate with each other.
 In the case of the STAC API, it provides endpoints for searching and
-retrieving geospatial data based on criteria such as location and time,
+retrieving geo-spatial data based on criteria such as location and time,
 delivering results in a standardized format that ensures compatibility
-with various tools and services in the geospatial community. Moreover,
+with various tools and services in the geo-spatial community. Moreover,
 even though STAC API is not an OGC standard or a OGC community standard,
 the basic requests performed in a STAC API adheres to the
 \href{https://ogcapi.ogc.org/features/}{OGC API-Features} standards for
@@ -678,7 +680,8 @@ results that conform to both STAC and OGC specifications. Ultimately,
 compared to \href{https://ogcapi.ogc.org/features/}{OGC API-Features},
 \href{https://github.com/radiantearth/stac-api-spec/}{STAC API} enhances
 functionality by providing additional features that users needed
-(e.g.~cross-collection search, versioning).
+(e.g.~cross-collection search, versioning)
+(\citeproc{ref-holmes_spatiotemporal_2021}{Holmes, 2021}).
 
 \subsubsection*{Visualization
 interfaces}\label{visualization-interfaces}
@@ -708,7 +711,7 @@ multidimensional data arrays.
 research}\label{added-value-of-this-research}
 
 This research aims to identify efficient solutions for the company's
-current challenges in discovering and visualizing large geospatial
+current challenges in discovering and visualizing large geo-spatial
 datasets by integrating cloud-optimized data formats, cloud services,
 STAC specifications, and dynamic tiling services. The outcomes of this
 research will: offer valuable insights into the existing data discovery
@@ -724,9 +727,10 @@ dynamic tiling for various cloud-optimized data formats.
   What are the current challenges, practices, and user experiences
   related to data discovery and data visualization in the company?
 \item
-  How does the integration of cloud-optimized data formats, cloud
-  services and SpatioTemporal Asset Catalog (STAC) specifications
-  influence the process and experiences of discovering big spatial data?
+  How can cloud-optimized data formats, cloud services and
+  SpatioTemporal Asset Catalog (STAC) specifications be integrated to
+  enhance the process and experiences of discovering big spatial data
+  within the company?
 \item
   To what extent do dynamic tiling services can perform in visualizing
   different cloud-optimized data formats?
@@ -734,8 +738,7 @@ dynamic tiling for various cloud-optimized data formats.
 
 \chapter{Methodology}\label{methodology}
 
-\section{Baseline scenario
-definition}\label{baseline-scenario-definition}
+\section{Baseline scenario}\label{baseline-scenario}
 
 The baseline scenario was defined as the set of methods currently being
 used by members of different teams at Satelligence to find, retrieve and
@@ -750,57 +753,114 @@ The questions asked during the interviews were oriented towards two main
 topics that were covered during this internship: Spatial data discovery
 and spatial data visualization. For both topics, the questions were
 divided into questions related to raster and vector datasets. The
-questions included in the interview can be found in appendix
-\textbf{\#\#\#} and were meant to be open questions with multiple
-possible answers.
+questions included in the interview can be found in
+Section~\ref{sec-baseline-q} and were meant to be open questions with
+multiple possible answers.
 
-\section{Data integration}\label{data-integration}
+\section{Data and service
+integration}\label{data-and-service-integration}
+
+Briefly describe what will be included in the section: Explanation of
+the datasets included in the catalog, the building of the catalog
+(s11-cats)
+
+\subsection{Datasets included}\label{datasets-included}
+
+\subsection{S11-cats repository}\label{s11-cats-repository}
+
+Description of modules
+
+\subsubsection{Proposed Catalog
+structure}\label{proposed-catalog-structure}
+
+The structure of the STAC catalog proposed can be seen on
+Figure~\ref{fig-stac-str}.
+
+In it a selection of datasets that will be referenced in the catalog is
+presented and a hierachical structure of
+
+and definition of subcatalogs and/or collections to group items with
+similar metadata. Initially, the creation of two different subcatalogs
+is proposed to keep the static and dynamic dataset separated. Moreover,
+the selection of the \href{https://stac-extensions.github.io/}{STAC
+extensions}\footnote{STAC extensions are additional metadata properties
+  that can be added to a dataset. (e.g.~Classes, bands, sensor-type,
+  etc.)} used for each dataset will be defined in this step.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.9\textwidth,height=\textheight]{img/STAC_Satelligence_structure.png}
+
+}
+
+\caption{\label{fig-stac-str}Initial proposed STAC structure}
+
+\end{figure}%
+
+\subsection{PgSTAC}\label{pgstac}
+
+\subsection{eoAPI}\label{eoapi}
+
+\begin{itemize}
+\tightlist
+\item
+  Use of docker containers to run individual applications that can
+  connect to each other.
+\end{itemize}
+
+\subsection{CI pipeline}\label{ci-pipeline}
 
 \section{Multi-format data
 visualization}\label{multi-format-data-visualization}
 
 To assess the performance of dynamic tiling services for visualizing
 Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following
-approach was undertaken. A COG containing forest baseline information
-for the Riau region of Indonesia was used to create a series of Zarr
-files, each representing different overviews corresponding to various
-zoom levels. This preprocessing step, completed by the company prior to
-the study, ensured that the same data was used across both data formats,
-allowing for direct comparison.
-
-The
+approach was undertaken. Firstly, a COG containing forest baseline
+information for the Riau region of Indonesia was used to create a series
+of Zarr files, each representing different overviews corresponding to
+various zoom levels. This preprocessing step, completed by the company
+prior to the study, ensured that the same data was used across both data
+formats, allowing for direct comparison. Then, the
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 service was then customized to work with the specific folder structure
-of the ZARR overviews previously created. Dockerized versions of both
+of the ZARR overviews previously created. Moreover, containerized
+versions of both
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 (for Zarr files) and
 \href{https://github.com/stac-utils/titiler-pgstac}{TiTiler-PgSTAC} (for
-COG files) were deployed locally.
-
-Performance was measured by recording the response times for random tile
-requests at zoom levels ranging from 9 to 18. Finally, to mitigate the
-influence of cached data on response times, each iteration used a
-different colormap, with a total of six colormaps employed. This
-methodology enabled a systematic evaluation of the performance
-differences between the two data formats in a geospatial visualization
-context.
+COG files) were deployed locally. The performance was measured by
+recording the response times for random tile requests at zoom levels
+ranging from 9 to 18. Finally, to mitigate the influence of cached data
+on response times, each iteration used a different colormap, with a
+total of six colormaps employed. This methodology enabled a systematic
+evaluation of the performance differences between the two data formats
+in a geospatial data visualization context.
 
 \subsection{Speed up}\label{speed-up}
 
-The assessment of the performance of the new Data Catalog will be
-measured using the baseline scenario established at the beginning of the
-internship and the Speed Up metric proposed by
-(\citeproc{ref-durbha_advances_2023}{Durbha et al., 2023}):
+The performance of both TiTiler services to dynamically create tiles for
+the different data formats was evaluated using the Speed Up metric
+proposed in Durbha et al. (\citeproc{ref-durbha_advances_2023}{2023})
+(Equation~\ref{eq-speed-up}). In this case, the Speed Up explains how
+much did the process of requesting tiles sped up by using a data format
+A compared to using a data format B.
 
-\[ SpeedUp = \frac{t_{baseline}}{t_{catalog}} \]
+\begin{equation}\phantomsection\label{eq-speed-up}{ SpeedUp = \frac{t_{format A}}{t_{format B}} }\end{equation}
 
-This metric explains how much the process to access data has sped up
-thanks to the integration of cloud-based storage, the data catalog and
-the browsing interface.
+\subsection{Zoom level influence}\label{zoom-level-influence}
+
+Finally, the effect of the level of zoom in a web map visualization on
+the response times of requesting tiles from the different tiling
+services was evaluated by fitting an Ordinary Least Squares (OLS)
+univariate linear regression that followed Equation~\ref{eq-lin-reg}.
+
+\begin{equation}\phantomsection\label{eq-lin-reg}{ ResponseTime = \beta_1 \cdot ZoomLevel + \beta_0 + \epsilon }\end{equation}
 
 \chapter{Results}\label{results}
 
-\section{Baseline scenario}\label{baseline-scenario}
+\section{Baseline scenario}\label{baseline-scenario-1}
 
 \subsection{Main findings}\label{main-findings}
 
@@ -840,6 +900,11 @@ could be summarized in:
   dataset (Google Console highlighted links).
 \item
   Not intuitive naming of repositories.
+\item
+  Not one place where all existing data can be found.
+\item
+  Big need on going towards a SKI, that is able to provide datasets
+  based on questions like the ones on the questionnaire
 \end{itemize}
 
 \section{Service integration}\label{service-integration}
@@ -952,6 +1017,11 @@ Giri, K. and Lone, T. (2014). Big data -overview and challenges.
 \emph{International Journal of Advanced Research in Computer Science and
 Software Engineering}, \emph{4}.
 
+\bibitem[\citeproctext]{ref-holmes_spatiotemporal_2021}
+Holmes, C. (2021(e)ko Januaryk 19). \emph{{SpatioTemporal} asset
+catalogs and the open geospatial consortium. Radiant earth insights}.
+\url{https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7}
+
 \bibitem[\citeproctext]{ref-kaufmann_database_2023}
 Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann
 and A. Meier (Eds.), \emph{{SQL} and {NoSQL} databases: Modeling,
@@ -1006,11 +1076,45 @@ searching large-scale multi-sensor remote sensing image collections.
 
 \end{CSLReferences}
 
-\chapter*{Appendix}\label{appendix}
-\addcontentsline{toc}{chapter}{Appendix}
+\chapter{Appendix}\label{appendix}
 
-\section{Code to evaluate request
-times}\label{code-to-evaluate-request-times}
+\section{Baseline scenario questionnaire}\label{sec-baseline-q}
+
+\subsection*{Related to data discovery}\label{related-to-data-discovery}
+\addcontentsline{toc}{subsection}{Related to data discovery}
+
+\begin{itemize}
+\tightlist
+\item
+  I am working for Wilmar in South East Asia. Do you know what is the
+  forest baseline that I should use and where can I find it?
+\item
+  I have been checking the results of the Soy map we created. Do you
+  know which DEM was used for it? And where can I find it?
+\item
+  Do you know which DEM is used as the terrain mask when using Sentinel
+  1 data?
+\item
+  I need to access the concessions data provided by Grepalma. Where can
+  I find it?
+\end{itemize}
+
+\subsection*{Related to data
+visualization}\label{related-to-data-visualization}
+\addcontentsline{toc}{subsection}{Related to data visualization}
+
+\begin{itemize}
+\tightlist
+\item
+  I am interested on getting an overview of where was the primary forest
+  present in Colombia in 2007. Could you visualize a layer with this
+  data for me?
+\item
+  I need to visualize the concessions provided by fedepalma. Could you
+  do it for me?
+\end{itemize}
+
+\section{Code to evaluate request times}\label{sec-request-code}
 
 \begin{Shaded}
 \begin{Highlighting}[]

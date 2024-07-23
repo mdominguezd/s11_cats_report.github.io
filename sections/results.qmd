@@ -8,11 +8,13 @@ The main finding of the interviews were the steps followed currently to discover
 
 The major pitfalls found on the process of data discovery in the company could be summarized in:
 
--   High dependency on colleagues.
--   Disorganized structure of Google Storage Buckets.
--   Experienced study subjects would find the data location faster.
--   Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
--   Not intuitive naming of repositories.
+- High dependency on colleagues.
+- Disorganized structure of Google Storage Buckets.
+- Experienced study subjects would find the data location faster.
+- Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
+- Not intuitive naming of repositories.
+- Not one place where all existing data can be found.
+- Big need on  going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire
 
 ## Service integration
 

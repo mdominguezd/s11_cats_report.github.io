@@ -20,11 +20,11 @@ The emergence of cloud-based archives has been one of the main advancements for 
 
 At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.
 
-**Cloud-optimized data formats** 
+**Cloud-optimized data formats**
 
-*COG* 
+*COG*
 
-Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021]. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability [@ogc_ogc_2023].
+Cloud-Optimized GeoTIFFs ([COGs](https://www.cogeo.org/)) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests [@desruisseaux_ogc_2021]. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitate data interoperability [@ogc_ogc_2023].
 
 *Zarr*
 
@@ -45,7 +45,7 @@ Moreover, there are two types of STAC catalogs: static and dynamic. Static catal
 
 : STAC components {#tbl-stac-comps .striped .hover}
 
-In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geospatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geospatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning).
+In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geo-spatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geo-spatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning) [@holmes_spatiotemporal_2021].
 
 #### Visualization interfaces {.unnumbered}
 
@@ -55,10 +55,10 @@ TiTiler supports various data structures including STAC (SpatioTemporal Asset Ca
 
 ### Added value of this research
 
-This research aims to identify efficient solutions for the company's current challenges in discovering and visualizing large geospatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.
+This research aims to identify efficient solutions for the company's current challenges in discovering and visualizing large geo-spatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.
 
 ## Research questions
 
 -   What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?
--   How does the integration of cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications influence the process and experiences of discovering big spatial data?
+-   How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering big spatial data within the company?
 -   To what extent do dynamic tiling services can perform in visualizing different cloud-optimized data formats?

@@ -1,7 +1,21 @@
 
-# Appendix {-}
+# Appendix {.appendix}
 
-## Code to evaluate request times
+## Baseline scenario questionnaire {#sec-baseline-q}
+
+### Related to data discovery {-}
+
+- I am working for Wilmar in South East Asia. Do you know what is the forest baseline that I should use and where can I find it?
+- I have been checking the results of the Soy map we created. Do you know which DEM was used for it? And where can I find it?
+- Do you know which DEM is used as the terrain mask when using Sentinel 1 data?
+- I need to access the concessions data provided by Grepalma. Where can I find it?
+
+### Related to data visualization {-}
+
+- I am interested on getting an overview of where was the primary forest present in Colombia in 2007. Could you visualize a layer with this data for me?
+- I need to visualize the concessions provided by fedepalma. Could you do it for me?
+
+## Code to evaluate request times {#sec-request-code}
 ```{python}
 #| echo: true
 #| eval: false
