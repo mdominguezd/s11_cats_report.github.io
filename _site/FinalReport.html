@@ -219,9 +219,8 @@ window.Quarto = {
   <li><a href="#dataset-selection" id="toc-dataset-selection" class="nav-link" data-scroll-target="#dataset-selection">Dataset selection</a></li>
   <li><a href="#proposed-catalog-structure" id="toc-proposed-catalog-structure" class="nav-link" data-scroll-target="#proposed-catalog-structure">Proposed Catalog structure</a></li>
   <li><a href="#s11-cats-repository" id="toc-s11-cats-repository" class="nav-link" data-scroll-target="#s11-cats-repository">S11-cats repository</a></li>
-  <li><a href="#pgstac" id="toc-pgstac" class="nav-link" data-scroll-target="#pgstac">PgSTAC</a></li>
-  <li><a href="#eoapi" id="toc-eoapi" class="nav-link" data-scroll-target="#eoapi">eoAPI</a></li>
-  <li><a href="#ci-pipeline" id="toc-ci-pipeline" class="nav-link" data-scroll-target="#ci-pipeline">CI pipeline</a></li>
+  <li><a href="#eoapi-other-services" id="toc-eoapi-other-services" class="nav-link" data-scroll-target="#eoapi-other-services">eoAPI + other services</a></li>
+  <li><a href="#cicd-pipeline" id="toc-cicd-pipeline" class="nav-link" data-scroll-target="#cicd-pipeline">CI/CD pipeline</a></li>
   </ul></li>
   <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a>
   <ul class="collapse">
@@ -378,6 +377,10 @@ window.Quarto = {
 <td>TCA</td>
 <td>Thematic Content analysis</td>
 </tr>
+<tr class="even">
+<td>VRT</td>
+<td>Vitual Raster</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -449,6 +452,7 @@ Table&nbsp;1: STAC components
 </figure>
 </div>
 <p>In the specific case of dynamic catalogs, the concept of <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geo-spatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geo-spatial community. Moreover, even though STAC API is not an OGC standard or an OGC community standard, the basic requests performed in a STAC API adheres to the <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a> standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a>, <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> enhances functionality by providing additional features that users needed (e.g.&nbsp;cross-collection search, versioning) <span class="citation" data-cites="holmes_spatiotemporal_2021">(<a href="#ref-holmes_spatiotemporal_2021" role="doc-biblioref">Holmes, 2021</a>)</span>.</p>
+<p>To facilitate easy browsing of both static and dynamic STAC catalogs, <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> was created. This web-application provides a user-friendly interface to search, visualize, and, in the case of dynamic catalogs, query assets within a catalog.</p>
 </section>
 <section id="visualization-interfaces" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="visualization-interfaces">Visualization interfaces</h4>
@@ -478,7 +482,7 @@ Table&nbsp;1: STAC components
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
 <p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <a href="#sec-baseline-q" class="quarto-xref">Section&nbsp;7.1</a> and were meant to be open questions with multiple possible answers.</p>
 <p>Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
-<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 [openai_chatgpt_2023]) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;7.2</a>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
+<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 <span class="citation" data-cites="openai_chatgpt_2023">(<a href="#ref-openai_chatgpt_2023" role="doc-biblioref">OpenAI, 2023</a>)</span>) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;7.2</a>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
 </section>
 <section id="data-and-service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
@@ -501,26 +505,25 @@ Table&nbsp;1: STAC components
 <li>Supply chain data (Vector data)</li>
 <li>Complaince data (Vector data)</li>
 </ul>
-<p>Nevertheless, the scope of this internship was limited to raster datasets.</p>
+<p>Nevertheless, the scope of this internship was limited to raster datasets. Therefore, the creation of the catalog was done using a limited a mount of raster layers and they were incorporated as a proof of concept of how the catalog could be created.</p>
 </section>
 <section id="proposed-catalog-structure" class="level3">
 <h3 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h3>
-<p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<p>In it a selection of datasets that will be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
+<p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>. In it, a selection of datasets that should be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. This structure was not followed in the creation of the proof-of-concept catalog, as the purpose of this catalog was only to demonstrate the process of creating it. The final version of the structure will be determined by the company.</p>
 <div id="fig-stac-str" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/STAC_Satelligence_structure.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Initial proposed STAC structure
+Figure&nbsp;1: Proposed STAC structure
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="s11-cats-repository" class="level3">
 <h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
-<p>The s11-cats repository created is composed of a module named <code>cats</code> which consists of five submodules described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;2</a>. Moreover, an overview of the main functionality of cats is presented on <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>. As seen there, ….</p>
+<p>The <a href="https://gitlab.com/satelligence/s11-cats">s11-cats repository</a> created is composed of a module named <code>cats</code> which consists of five submodules described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;2</a>. Moreover, an overview of the main workflow followed in the main function of cats is presented on <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <div id="tbl-cats-modules" class="quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -528,6 +531,10 @@ Table&nbsp;2: Description of cats submodules
 </figcaption>
 <div aria-describedby="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
 <thead>
 <tr class="header">
 <th><strong>Submodule</strong></th>
@@ -537,23 +544,23 @@ Table&nbsp;2: Description of cats submodules
 <tbody>
 <tr class="odd">
 <td><em>gcs_tools</em></td>
-<td></td>
+<td>Module with functions to interact with data stored at Google Cloud Storage</td>
 </tr>
 <tr class="even">
 <td><em>general_metadata</em></td>
-<td></td>
+<td>Module to extract general metadata for a STAC item.</td>
 </tr>
 <tr class="odd">
 <td><em>get_spatial_info</em></td>
-<td></td>
+<td>Module to get all spatial information from assets.</td>
 </tr>
 <tr class="even">
 <td><em>get_temporal_info</em></td>
-<td></td>
+<td>Module with functions to extract temporal metadata of a dataset.</td>
 </tr>
 <tr class="odd">
 <td><em>stac_tools</em></td>
-<td></td>
+<td>Module with the functions to initialize a STAC, add collections, items and assets to it.</td>
 </tr>
 </tbody>
 </table>
@@ -570,63 +577,17 @@ Figure&nbsp;2: S11- cats main function
 </figcaption>
 </figure>
 </div>
+<p>As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections’ information and the other storing the items’ information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.</p>
 </section>
-<section id="pgstac" class="level3">
-<h3 class="anchored" data-anchor-id="pgstac">PgSTAC</h3>
+<section id="eoapi-other-services" class="level3">
+<h3 class="anchored" data-anchor-id="eoapi-other-services">eoAPI + other services</h3>
+<p>Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging <a href="https://eoapi.dev/">eoAPI</a>. <a href="https://eoapi.dev/">eoAPI</a> is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See <a href="https://github.com/stac-utils/pgstac">PgSTAC</a>), creating a dynamic catalog that can query the Postgres database (See <a href="https://github.com/stac-utils/stac-fastapi">STAC API</a>) and two additional services for visualizing raster (See <a href="https://github.com/stac-utils/titiler-pgstac">Titiler-PgSTAC</a>) and vector data (See <a href="https://github.com/developmentseed/tipg">TiPg</a>).</p>
+<p><a href="https://eoapi.dev/">eoAPI</a> integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Kubernetes (K8). K8 is an open-source platform designed for automating the deployment, scaling, and management of containerized applications <span class="citation" data-cites="poulton_kubernetes_2023">(<a href="#ref-poulton_kubernetes_2023" role="doc-biblioref">Poulton, 2023</a>)</span>. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.</p>
+<p>Since the current version of <a href="https://eoapi.dev/">eoAPI</a> does not include some extra services that were necessary to deploy, a seperate containerized version of these services was deployed in the same kubernetes cluster. Notably, a version of <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> and <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> to browse the catalog created and visualize Zarr datasets respectively.</p>
 </section>
-<section id="eoapi" class="level3">
-<h3 class="anchored" data-anchor-id="eoapi">eoAPI</h3>
-<ul>
-<li>Use of docker containers to run individual applications that can connect to each other.</li>
-<li>deployment of these containers into the cloud.</li>
-</ul>
-</section>
-<section id="ci-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="ci-pipeline">CI pipeline</h3>
-<!-- ### Local STAC creation and browsing
-
-This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:
-
-1. Creation of a virtual environment or Docker container with all the required packages to create a STAC catalog.
-2. Creation of Local STAC using sample data from the company.
-3. Browse through the STAC catalog using tools like STAC browser.
-
-The **deliverable** of this step will be a GitLab repository with code to create a catalog, add assets from a local directory and browse through them locally using STAC browser.
-
-### Organization of main STAC structure & extensions per asset {#sec-structure}
-
-In this step the structure of the STAC catalog will be defined. This will involve the selection of datasets that will be referenced on the catalog, the definition of subcatalogs and/or collections to group items with similar metadata. An initial idea of the structure of the main STAC catalog can be seen on @fig-stac-str. Initially, the creation of two different subcatalogs is proposed to keep the static and dynamic dataset separated. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step. 
-
-![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width='90%'}
-
-[^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
-
-### Build main STAC v.0.1
-
-This step will focus on the building of the initial version of the main STAC catalog, once the datasets and the overall structure has been defined. It will involve the population of the catalog with STAC components following the defined structure on @sec-structure. Furthermote, on this step a series of validation tools will be used to check that the STAC catalog created is followins the STAC spcification. These tools are part of the python package [stac-tools](https://github.com/stac-utils/stactools). 
-
-The **deliverable** of this step will be a GitLab repository with code to create a catalog, create collections, add assets from a directory on the cloud and update them.
-
-### Set up APIs on GCP
-
-In this step a version of the STAC Browser application will be deployed using the tools from Google Cloud Platform (GCP). This application will allow users to browse and interact with the STAC catalog through a user-friendly interface. Additionally, this step will involve the definition of resources and tools from GCP that will be employed to deploy the application. For instance, the decision of doing it through a virtual machine or on a containerized way will be made.
-
-The **deliverable** of this step will be a the STAC browser application running on GCP.
-
-### Automate processes via CI pipeline
-
-Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence's Satellite Data Processing engine.  -->
-<!-- ### Visualization tool development (Optional)
-
-Finally, if time allows, an internal application will be developed to access and visualize the data from the STAC catalog created.
-
-Required libraries:
-
--   [Streamlit](https://docs.streamlit.io/) for user interface
-
--   [Leafmap](https://leafmap.org/) for spatial data visualization
-
-**Deliverable:** Containerized application to visualize the data  -->
+<section id="cicd-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="cicd-pipeline">CI/CD pipeline</h3>
+<p>Finally, a gitlab CI/CD pipeline was created auotamte the creation of the catalog using the s11-cats repository, the deployment of the eoAPI and extra services and the ingestion of the catalog into the deployed version of the catalog.</p>
 </section>
 </section>
 <section id="multi-format-data-visualization" class="level2">
@@ -686,9 +647,7 @@ Figure&nbsp;3: Baseline workflow
 </section>
 <section id="service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
-<p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
-<p>Kubernetes</p>
-<p>STAC-API, pgSTAC, TiTiler</p>
+<p>The web application can be accessed in <a href="https://eoapi.satelligence.com/browser/?.language=en">eoapi.satelligence.com/browser</a>.</p>
 <section id="data-discovery-improvement" class="level3">
 <h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
 <p>Flowchart with STAC</p>
@@ -783,6 +742,12 @@ Mishra, S. and Misra, A. (2017). Structured and unstructured big data analytics.
 <div id="ref-ogc_ogc_2023" class="csl-entry" role="listitem">
 OGC. (2023). <em><span>OGC</span> cloud optimized <span>GeoTIFF</span> standard</em>. <a href="https://docs.ogc.org/is/21-026/21-026.html">https://docs.ogc.org/is/21-026/21-026.html</a>
 </div>
+<div id="ref-openai_chatgpt_2023" class="csl-entry" role="listitem">
+OpenAI. (2023). <em><span>ChatGPT</span></em>. <a href="https://chatgpt.com/">https://chatgpt.com/</a>
+</div>
+<div id="ref-poulton_kubernetes_2023" class="csl-entry" role="listitem">
+Poulton, N. (2023). <em>The kubernetes book</em>. Nigel Poulton Ltd.
+</div>
 <div id="ref-noauthor_stac-specbest-practicesmd_nodate" class="csl-entry" role="listitem">
 RadiantEarth. (2024). <em>Stac-spec/best-practices.md at master · radiantearth/stac-spec. <span>GitHub</span></em>. <a href="https://github.com/radiantearth/stac-spec/blob/master/best-practices.md">https://github.com/radiantearth/stac-spec/blob/master/best-practices.md</a>
 </div>
@@ -839,7 +804,7 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="91bc8489" class="cell" data-execution_count="5">
+<div id="89c76a67" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -924,13 +889,7 @@ Content Analysis of the interviews.</code></pre>
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>STAC extensions are additional metadata properties that can be added to a dataset. (e.g.&nbsp;Classes, bands, sensor-type, etc.)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

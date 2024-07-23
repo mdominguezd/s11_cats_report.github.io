@@ -29,11 +29,7 @@ The major pitfalls found on the process of data discovery in the company could b
 
 ## Service integration
 
-*Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it*
-
-Kubernetes
-
-STAC-API, pgSTAC, TiTiler
+The web application can be accessed in [eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser/?.language=en). 
 
 ### Data discovery improvement
 

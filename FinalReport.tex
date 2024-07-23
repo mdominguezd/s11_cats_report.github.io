@@ -471,6 +471,7 @@ SQL & Standard Query Language \\
 FBL & Forest Baseline \\
 DEM & Digital Elevation Map \\
 TCA & Thematic Content analysis \\
+VRT & Vitual Raster \\
 \end{longtable}
 
 \chapter{Introduction}\label{introduction}
@@ -686,6 +687,12 @@ functionality by providing additional features that users needed
 (e.g.~cross-collection search, versioning)
 (\citeproc{ref-holmes_spatiotemporal_2021}{Holmes, 2021}).
 
+To facilitate easy browsing of both static and dynamic STAC catalogs,
+\href{https://github.com/radiantearth/stac-browser}{STAC Browser} was
+created. This web-application provides a user-friendly interface to
+search, visualize, and, in the case of dynamic catalogs, query assets
+within a catalog.
+
 \subsubsection*{Visualization
 interfaces}\label{visualization-interfaces}
 \addcontentsline{toc}{subsubsection}{Visualization interfaces}
@@ -774,9 +781,10 @@ following a Thematic Content Analysis (TCA). This type of qualitative
 analysis focuses on finding common themes in the interviews undertaken
 (\citeproc{ref-anderson_thematic_2007}{Anderson, 2007}). The extraction
 of common patterns within the interviews was initially done using a
-large language model (i.e.~Chat-GPT 3.5 {[}openai\_chatgpt\_2023{]})
-using the prompt presented on Section~\ref{sec-gpt-prompt}. Moreover,
-the themes identified were further refined based on the interviewer's
+large language model (i.e.~Chat-GPT 3.5
+(\citeproc{ref-openai_chatgpt_2023}{OpenAI, 2023})) using the prompt
+presented on Section~\ref{sec-gpt-prompt}. Moreover, the themes
+identified were further refined based on the interviewer's
 interpretation.
 
 \section{Data and service
@@ -833,21 +841,20 @@ that can be classified as follows:
 \end{itemize}
 
 Nevertheless, the scope of this internship was limited to raster
-datasets.
+datasets. Therefore, the creation of the catalog was done using a
+limited a mount of raster layers and they were incorporated as a proof
+of concept of how the catalog could be created.
 
 \subsection{Proposed Catalog
 structure}\label{proposed-catalog-structure}
 
 The structure of the STAC catalog proposed can be seen on
-Figure~\ref{fig-stac-str}.
-
-In it a selection of datasets that will be referenced in the catalog is
-presented and a hierarchical structure composed of thematic collections
-is suggested. Moreover, the selection of the
-\href{https://stac-extensions.github.io/}{STAC extensions}\footnote{STAC
-  extensions are additional metadata properties that can be added to a
-  dataset. (e.g.~Classes, bands, sensor-type, etc.)} used for each
-dataset will be defined in this step.
+Figure~\ref{fig-stac-str}. In it, a selection of datasets that should be
+referenced in the catalog is presented and a hierarchical structure
+composed of thematic collections is suggested. This structure was not
+followed in the creation of the proof-of-concept catalog, as the purpose
+of this catalog was only to demonstrate the process of creating it. The
+final version of the structure will be determined by the company.
 
 \begin{figure}[H]
 
@@ -857,36 +864,51 @@ dataset will be defined in this step.
 
 }
 
-\caption{\label{fig-stac-str}Initial proposed STAC structure}
+\caption{\label{fig-stac-str}Proposed STAC structure}
 
 \end{figure}%
 
 \subsection{S11-cats repository}\label{s11-cats-repository}
 
-The s11-cats repository created is composed of a module named
-\texttt{cats} which consists of five submodules described in
-Table~\ref{tbl-cats-modules}. Moreover, an overview of the main
-functionality of cats is presented on Figure~\ref{fig-s11-cats}. As seen
-there, \ldots.
+The \href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository}
+created is composed of a module named \texttt{cats} which consists of
+five submodules described in Table~\ref{tbl-cats-modules}. Moreover, an
+overview of the main workflow followed in the main function of cats is
+presented on Figure~\ref{fig-s11-cats}.
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4722}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5278}}@{}}
 \caption{Description of cats
 submodules}\label{tbl-cats-modules}\tabularnewline
 \toprule\noalign{}
-\textbf{Submodule} & \textbf{Description} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Submodule}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Description}
+\end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
-\textbf{Submodule} & \textbf{Description} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Submodule}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Description}
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\emph{gcs\_tools} & \\
-\emph{general\_metadata} & \\
-\emph{get\_spatial\_info} & \\
-\emph{get\_temporal\_info} & \\
-\emph{stac\_tools} & \\
+\emph{gcs\_tools} & Module with functions to interact with data stored
+at Google Cloud Storage \\
+\emph{general\_metadata} & Module to extract general metadata for a STAC
+item. \\
+\emph{get\_spatial\_info} & Module to get all spatial information from
+assets. \\
+\emph{get\_temporal\_info} & Module with functions to extract temporal
+metadata of a dataset. \\
+\emph{stac\_tools} & Module with the functions to initialize a STAC, add
+collections, items and assets to it. \\
 \end{longtable}
 
 \begin{figure}[H]
@@ -901,20 +923,56 @@ submodules}\label{tbl-cats-modules}\tabularnewline
 
 \end{figure}%
 
-\subsection{PgSTAC}\label{pgstac}
+As observed, the code in the repository requires a dictionary containing
+collection titles, descriptions, and tags, along with a list of links
+for each item to be added to each collection. It then generates two JSON
+files: one storing the collections' information and the other storing
+the items' information. This decision to produce two JSON files was made
+to facilitate the transition from the static catalog that has been
+created to the dynamic catalog that is desired.
 
-\subsection{eoAPI}\label{eoapi}
+\subsection{eoAPI + other services}\label{eoapi-other-services}
 
-\begin{itemize}
-\tightlist
-\item
-  Use of docker containers to run individual applications that can
-  connect to each other.
-\item
-  deployment of these containers into the cloud.
-\end{itemize}
+Once a static catalog has been created, the next step involves
+developing the dynamic catalog by leveraging
+\href{https://eoapi.dev/}{eoAPI}. \href{https://eoapi.dev/}{eoAPI} is a
+robust tool designed for managing, discovering and visualizing Earth
+observation data. It integrates several services that include indexing
+of large STAC collections and items using a Postgres database (See
+\href{https://github.com/stac-utils/pgstac}{PgSTAC}), creating a dynamic
+catalog that can query the Postgres database (See
+\href{https://github.com/stac-utils/stac-fastapi}{STAC API}) and two
+additional services for visualizing raster (See
+\href{https://github.com/stac-utils/titiler-pgstac}{Titiler-PgSTAC}) and
+vector data (See \href{https://github.com/developmentseed/tipg}{TiPg}).
 
-\subsection{CI pipeline}\label{ci-pipeline}
+\href{https://eoapi.dev/}{eoAPI} integrates all of these services by
+using containerized versions that are able to communicate seamlessly
+with each other. A container is a lightweight, standalone, and
+executable package of software that includes everything needed to run an
+application. Containerizing the services facilitates deployment to the
+cloud using Kubernetes (K8). K8 is an open-source platform designed for
+automating the deployment, scaling, and management of containerized
+applications (\citeproc{ref-poulton_kubernetes_2023}{Poulton, 2023}). It
+offers various advantages, such as scalability, efficient resource
+utilization, and simplified maintenance, making it an ideal solution for
+managing the dynamic catalog and the integrated services in a cloud
+environment.
+
+Since the current version of \href{https://eoapi.dev/}{eoAPI} does not
+include some extra services that were necessary to deploy, a seperate
+containerized version of these services was deployed in the same
+kubernetes cluster. Notably, a version of
+\href{https://github.com/radiantearth/stac-browser}{STAC Browser} and
+\href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
+to browse the catalog created and visualize Zarr datasets respectively.
+
+\subsection{CI/CD pipeline}\label{cicd-pipeline}
+
+Finally, a gitlab CI/CD pipeline was created auotamte the creation of
+the catalog using the s11-cats repository, the deployment of the eoAPI
+and extra services and the ingestion of the catalog into the deployed
+version of the catalog.
 
 \section{Multi-format data
 visualization}\label{multi-format-data-visualization}
@@ -1031,13 +1089,8 @@ could be summarized in:
 
 \section{Service integration}\label{service-integration}
 
-\emph{Explain here how eoAPI uses multiple services, how each of them
-helps S11 in their data discovery and vizz tasks, and how did I manage
-to deploy it}
-
-Kubernetes
-
-STAC-API, pgSTAC, TiTiler
+The web application can be accessed in
+\href{https://eoapi.satelligence.com/browser/?.language=en}{eoapi.satelligence.com/browser}.
 
 \subsection{Data discovery
 improvement}\label{data-discovery-improvement}
@@ -1166,6 +1219,12 @@ Computer, Electrical, Electronics and Communication ({CTCEEC})},
 \bibitem[\citeproctext]{ref-ogc_ogc_2023}
 OGC. (2023). \emph{{OGC} cloud optimized {GeoTIFF} standard}.
 \url{https://docs.ogc.org/is/21-026/21-026.html}
+
+\bibitem[\citeproctext]{ref-openai_chatgpt_2023}
+OpenAI. (2023). \emph{{ChatGPT}}. \url{https://chatgpt.com/}
+
+\bibitem[\citeproctext]{ref-poulton_kubernetes_2023}
+Poulton, N. (2023). \emph{The kubernetes book}. Nigel Poulton Ltd.
 
 \bibitem[\citeproctext]{ref-noauthor_stac-specbest-practicesmd_nodate}
 RadiantEarth. (2024). \emph{Stac-spec/best-practices.md at master ·

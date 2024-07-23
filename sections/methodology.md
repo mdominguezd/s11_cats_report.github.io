@@ -8,7 +8,7 @@ The questions asked during the interviews were oriented towards two main topics 
 
 Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.
 
-Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5 [openai_chatgpt_2023]) using the prompt presented on @sec-gpt-prompt [@openai_chatgpt_2023]. Moreover, the themes identified were further refined based on the interviewer's interpretation.
+Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5 [@openai_chatgpt_2023]) using the prompt presented on [@sec-gpt-prompt; @openai_chatgpt_2023]. Moreover, the themes identified were further refined based on the interviewer's interpretation.
 
 ## Data and service integration
 
@@ -18,104 +18,54 @@ To efficiently integrate tools for big geospatial data discovery and visualizati
 
 Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were also included. Specifically, S11's long term goal is to store in the catalog datasets that can be classified as follows:
 
-- Static raster data
-    - Forest baselines (Stored as COGs)
-    - Third-party elevation data (Stored as VRTs)
-    - Other static data
-- DPROF results
-    - Results of continuous deforestation monitoring (Stored as ZARRs)
-    - Other DPROF results
-- Supply chain data (Vector data)
-- Complaince data (Vector data)
+-   Static raster data
+    -   Forest baselines (Stored as COGs)
+    -   Third-party elevation data (Stored as VRTs)
+    -   Other static data
+-   DPROF results
+    -   Results of continuous deforestation monitoring (Stored as ZARRs)
+    -   Other DPROF results
+-   Supply chain data (Vector data)
+-   Complaince data (Vector data)
 
-Nevertheless, the scope of this internship was limited to raster datasets.
+Nevertheless, the scope of this internship was limited to raster datasets. Therefore, the creation of the catalog was done using a limited a mount of raster layers and they were incorporated as a proof of concept of how the catalog could be created.
 
 ### Proposed Catalog structure
 
-The structure of the STAC catalog proposed can be seen on @fig-stac-str.
+The structure of the STAC catalog proposed can be seen on @fig-stac-str. In it, a selection of datasets that should be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. This structure was not followed in the creation of the proof-of-concept catalog, as the purpose of this catalog was only to demonstrate the process of creating it. The final version of the structure will be determined by the company.
 
-In it a selection of datasets that will be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step.
-
-[^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
-
-![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
-
+![Proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
 
 ### S11-cats repository
 
-The s11-cats repository created is composed of a module named `cats` which consists of five submodules described in @tbl-cats-modules. Moreover, an overview of the main functionality of cats is presented on @fig-s11-cats. As seen there, ....
+The [s11-cats repository](https://gitlab.com/satelligence/s11-cats) created is composed of a module named `cats` which consists of five submodules described in @tbl-cats-modules. Moreover, an overview of the main workflow followed in the main function of cats is presented on @fig-s11-cats. 
 
-| **Submodule** | **Description** |
-| ------------- | --------------- |
-| *gcs_tools*   | |
-| *general_metadata* | |
-| *get_spatial_info* | |
-| *get_temporal_info* | | 
-| *stac_tools*  | |
+| **Submodule**       | **Description**                                                                          |
+|----------------------------------|--------------------------------------|
+| *gcs_tools*         | Module with functions to interact with data stored at Google Cloud Storage               |
+| *general_metadata*  | Module to extract general metadata for a STAC item.                                      |
+| *get_spatial_info*  | Module to get all spatial information from assets.                                       |
+| *get_temporal_info* | Module with functions to extract temporal metadata of a dataset.                         |
+| *stac_tools*        | Module with the functions to initialize a STAC, add collections, items and assets to it. |
+
 : Description of cats submodules {#tbl-cats-modules}
-
 
 ![S11- cats main function](img/s11-cats.png){#fig-s11-cats}
 
+As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections' information and the other storing the items' information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.
 
+### eoAPI + other services
 
-### PgSTAC
+Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging [eoAPI](https://eoapi.dev/). [eoAPI](https://eoapi.dev/) is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See [PgSTAC](https://github.com/stac-utils/pgstac)), creating a dynamic catalog that can query the Postgres database (See [STAC API](https://github.com/stac-utils/stac-fastapi)) and two additional services for visualizing raster (See [Titiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac)) and vector data (See [TiPg](https://github.com/developmentseed/tipg)).
 
-### eoAPI
+[eoAPI](https://eoapi.dev/) integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Kubernetes (K8). K8 is an open-source platform designed for automating the deployment, scaling, and management of containerized applications [@poulton_kubernetes_2023]. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.
 
--   Use of docker containers to run individual applications that can connect to each other.
--   deployment of these containers into the cloud.
+Since the current version of [eoAPI](https://eoapi.dev/) does not include some extra services that were necessary to deploy, a seperate containerized version of these services was deployed in the same kubernetes cluster. Notably, a version of [STAC Browser](https://github.com/radiantearth/stac-browser) and [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) to browse the catalog created and visualize Zarr datasets respectively.
 
-### CI pipeline
+### CI/CD pipeline
 
-```{=html}
-<!-- ### Local STAC creation and browsing
+Finally, a gitlab CI/CD pipeline was created auotamte the creation of the catalog using the s11-cats repository, the deployment of the eoAPI and extra services and the ingestion of the catalog into the deployed version of the catalog.
 
-This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:
-
-1. Creation of a virtual environment or Docker container with all the required packages to create a STAC catalog.
-2. Creation of Local STAC using sample data from the company.
-3. Browse through the STAC catalog using tools like STAC browser.
-
-The **deliverable** of this step will be a GitLab repository with code to create a catalog, add assets from a local directory and browse through them locally using STAC browser.
-
-### Organization of main STAC structure & extensions per asset {#sec-structure}
-
-In this step the structure of the STAC catalog will be defined. This will involve the selection of datasets that will be referenced on the catalog, the definition of subcatalogs and/or collections to group items with similar metadata. An initial idea of the structure of the main STAC catalog can be seen on @fig-stac-str. Initially, the creation of two different subcatalogs is proposed to keep the static and dynamic dataset separated. Moreover, the selection of the [STAC extensions](https://stac-extensions.github.io/)[^1] used for each dataset will be defined in this step. 
-
-![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width='90%'}
-
-[^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
-
-### Build main STAC v.0.1
-
-This step will focus on the building of the initial version of the main STAC catalog, once the datasets and the overall structure has been defined. It will involve the population of the catalog with STAC components following the defined structure on @sec-structure. Furthermote, on this step a series of validation tools will be used to check that the STAC catalog created is followins the STAC spcification. These tools are part of the python package [stac-tools](https://github.com/stac-utils/stactools). 
-
-The **deliverable** of this step will be a GitLab repository with code to create a catalog, create collections, add assets from a directory on the cloud and update them.
-
-### Set up APIs on GCP
-
-In this step a version of the STAC Browser application will be deployed using the tools from Google Cloud Platform (GCP). This application will allow users to browse and interact with the STAC catalog through a user-friendly interface. Additionally, this step will involve the definition of resources and tools from GCP that will be employed to deploy the application. For instance, the decision of doing it through a virtual machine or on a containerized way will be made.
-
-The **deliverable** of this step will be a the STAC browser application running on GCP.
-
-### Automate processes via CI pipeline
-
-Finally, the code to create, modify and/or deploy the STAC catalog will be merged into a continuous integration pipeline that will allow the integration of this catalog with other tools from the company. For instance, the Distributed Processing Framework (DPROF), which is satelligence's Satellite Data Processing engine.  -->
-```
-```{=html}
-<!-- ### Visualization tool development (Optional)
-
-Finally, if time allows, an internal application will be developed to access and visualize the data from the STAC catalog created.
-
-Required libraries:
-
--   [Streamlit](https://docs.streamlit.io/) for user interface
-
--   [Leafmap](https://leafmap.org/) for spatial data visualization
-
-**Deliverable:** Containerized application to visualize the data  -->
-```
 ## Multi-format data visualization
 
 To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This preprocessing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) (for Zarr files) and [TiTiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac) (for COG files) were deployed locally. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geospatial data visualization context.

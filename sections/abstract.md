@@ -23,4 +23,5 @@
  FBL  | Forest Baseline |
  DEM  | Digital Elevation Map |
  TCA  | Thematic Content analysis |
+ VRT  | Vitual Raster |
 : Abbreviation list {.striped .hover}
