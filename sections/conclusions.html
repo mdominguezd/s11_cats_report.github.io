@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>results – S11-CATS Report</title>
+<title>conclusions – S11-CATS Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,135 +110,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#current-workflow" id="toc-current-workflow" class="nav-link active" data-scroll-target="#current-workflow">Current workflow</a></li>
-  <li><a href="#main-themes-found" id="toc-main-themes-found" class="nav-link" data-scroll-target="#main-themes-found">Main themes found</a></li>
-  <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
-  <ul class="collapse">
-  <li><a href="#data-discovery-improvement" id="toc-data-discovery-improvement" class="nav-link" data-scroll-target="#data-discovery-improvement">Data discovery improvement</a></li>
-  </ul></li>
-  <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
-  <ul class="collapse">
-  <li><a href="#raster-formats" id="toc-raster-formats" class="nav-link" data-scroll-target="#raster-formats">Raster formats</a></li>
-  <li><a href="#effects-of-zoom-level" id="toc-effects-of-zoom-level" class="nav-link" data-scroll-target="#effects-of-zoom-level">Effects of zoom level</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Baseline scenario</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<section id="current-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="current-workflow">Current workflow</h3>
-<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
-<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Baseline workflow
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="main-themes-found" class="level3">
-<h3 class="anchored" data-anchor-id="main-themes-found">Main themes found</h3>
-<p><strong>GPT</strong></p>
-<ul>
-<li>Uncertainty and Dependency on Colleagues</li>
-<li>Sources and Locations of Data</li>
-<li>Data Specificity and Familiarity</li>
-<li>Use of Specific Tools and Methods</li>
-</ul>
-<p><strong>Refined themes</strong></p>
-<p>The major pitfalls found on the process of data discovery in the company could be summarized in:</p>
-<ul>
-<li>High dependency on colleagues.</li>
-<li>Disorganized structure of Google Storage Buckets.</li>
-<li>Experienced study subjects would find the data location faster.</li>
-<li>Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).</li>
-<li>Not intuitive naming of repositories.</li>
-<li>Not one place where all existing data can be found.</li>
-<li>Big need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire</li>
-</ul>
-</section>
-<section id="service-integration" class="level2">
-<h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
-<p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
-<p>Kubernetes</p>
-<p>STAC-API, pgSTAC, TiTiler</p>
-<section id="data-discovery-improvement" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
-<p>Flowchart with STAC</p>
-</section>
-</section>
-<section id="performance-of-multi-format-data-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
-<p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
-<section id="raster-formats" class="level3">
-<h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
-<div id="cell-fig-format-comp" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Request times depending on data format and zoom level
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="effects-of-zoom-level" class="level3">
-<h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Request times depending on zoom level
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p></p>
-
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
