@@ -751,7 +751,7 @@ The baseline scenario was defined as the set of methods currently being
 used by members of different teams at Satelligence to find, retrieve and
 visualize spatial data. This baseline scenario was evaluated
 qualitatively by interviewing four members of two different teams in the
-company (i.e.~The data and the operations team). To keep a balance
+company (i.e.~the data and the operations team). To keep a balance
 regarding experience of the study subjects, both the newest member of
 each team and a member with at least three years in the company were
 interviewed.
@@ -774,26 +774,68 @@ following a Thematic Content Analysis (TCA). This type of qualitative
 analysis focuses on finding common themes in the interviews undertaken
 (\citeproc{ref-anderson_thematic_2007}{Anderson, 2007}). The extraction
 of common patterns within the interviews was initially done using a
-large language model (i.e.~Chat-GPT 3.5) using the prompt presented on
-Section~\ref{sec-gpt-prompt}
-(\hl{Guess I should include here why I used GPT?}). Moreover, the themes
-identified were further refined based on the interviewer's
+large language model (i.e.~Chat-GPT 3.5 {[}openai\_chatgpt\_2023{]})
+using the prompt presented on Section~\ref{sec-gpt-prompt}. Moreover,
+the themes identified were further refined based on the interviewer's
 interpretation.
 
 \section{Data and service
 integration}\label{data-and-service-integration}
 
-Briefly describe what will be included in the section: Explanation of
-the datasets included in the catalog, the building of the catalog
-(s11-cats)
+To efficiently integrate tools for big geospatial data discovery and
+visualization, a series of steps had to be followed. Initially, the
+datasets were selected. Subsequently, the structure of the catalog was
+defined. Following this, a Git repository containing the code required
+to generate the catalog was created. Static JSON files were then
+utilized to construct a dynamic STAC API. Ultimately, this API was
+deployed alongside other services using a continuous integration (CI)
+and continuaus deployment (CD) pipeline. A further explanation of each
+step is presented in the following subsections.
 
-\subsection{Datasets included}\label{datasets-included}
+\subsection{Dataset selection}\label{dataset-selection}
 
-\subsection{S11-cats repository}\label{s11-cats-repository}
+Due to the desire of the company to continue moving towards a
+cloud-based workflow. The datasets that were considered for the catalog,
+were composed of either COGs or Zarrs. Nevertheless, since some of the
+data in the company is stored as virtual rasters (VRTs), methods to also
+index this type of data formats in the STAC catalog were also included.
+Specifically, S11's long term goal is to store in the catalog datasets
+that can be classified as follows:
 
-Description of modules
+\begin{itemize}
+\tightlist
+\item
+  Static raster data
 
-\subsubsection{Proposed Catalog
+  \begin{itemize}
+  \tightlist
+  \item
+    Forest baselines (Stored as COGs)
+  \item
+    Third-party elevation data (Stored as VRTs)
+  \item
+    Other static data
+  \end{itemize}
+\item
+  DPROF results
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Results of continuous deforestation monitoring (Stored as ZARRs)
+  \item
+    Other DPROF results
+  \end{itemize}
+\item
+  Supply chain data (Vector data)
+\item
+  Complaince data (Vector data)
+\end{itemize}
+
+Nevertheless, the scope of this internship was limited to raster
+datasets.
+
+\subsection{Proposed Catalog
 structure}\label{proposed-catalog-structure}
 
 The structure of the STAC catalog proposed can be seen on
@@ -816,6 +858,46 @@ dataset will be defined in this step.
 }
 
 \caption{\label{fig-stac-str}Initial proposed STAC structure}
+
+\end{figure}%
+
+\subsection{S11-cats repository}\label{s11-cats-repository}
+
+The s11-cats repository created is composed of a module named
+\texttt{cats} which consists of five submodules described in
+Table~\ref{tbl-cats-modules}. Moreover, an overview of the main
+functionality of cats is presented on Figure~\ref{fig-s11-cats}. As seen
+there, \ldots.
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Description of cats
+submodules}\label{tbl-cats-modules}\tabularnewline
+\toprule\noalign{}
+\textbf{Submodule} & \textbf{Description} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\textbf{Submodule} & \textbf{Description} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\emph{gcs\_tools} & \\
+\emph{general\_metadata} & \\
+\emph{get\_spatial\_info} & \\
+\emph{get\_temporal\_info} & \\
+\emph{stac\_tools} & \\
+\end{longtable}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{img/s11-cats.png}
+
+}
+
+\caption{\label{fig-s11-cats}S11- cats main function}
 
 \end{figure}%
 

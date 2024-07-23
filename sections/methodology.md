@@ -2,25 +2,35 @@ To answer the research questions presented a series of tasks were undertaken. Th
 
 ## Baseline scenario
 
-The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e. The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.
+The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e. the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.
 
 The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in @sec-baseline-q and were meant to be open questions with multiple possible answers.
 
 Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.
 
-Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5) using the prompt presented on @sec-gpt-prompt (\hl{Guess I should include here why I used GPT?}). Moreover, the themes identified were further refined based on the interviewer's interpretation.
+Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5 [openai_chatgpt_2023]) using the prompt presented on @sec-gpt-prompt [@openai_chatgpt_2023]. Moreover, the themes identified were further refined based on the interviewer's interpretation.
 
 ## Data and service integration
 
-Briefly describe what will be included in the section: Explanation of the datasets included in the catalog, the building of the catalog (s11-cats)
+To efficiently integrate tools for big geospatial data discovery and visualization, a series of steps had to be followed. Initially, the datasets were selected. Subsequently, the structure of the catalog was defined. Following this, a Git repository containing the code required to generate the catalog was created. Static JSON files were then utilized to construct a dynamic STAC API. Ultimately, this API was deployed alongside other services using a continuous integration (CI) and continuaus deployment (CD) pipeline. A further explanation of each step is presented in the following subsections.
 
-### Datasets included
+### Dataset selection
 
-### S11-cats repository
+Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were also included. Specifically, S11's long term goal is to store in the catalog datasets that can be classified as follows:
 
-Description of modules
+- Static raster data
+    - Forest baselines (Stored as COGs)
+    - Third-party elevation data (Stored as VRTs)
+    - Other static data
+- DPROF results
+    - Results of continuous deforestation monitoring (Stored as ZARRs)
+    - Other DPROF results
+- Supply chain data (Vector data)
+- Complaince data (Vector data)
 
-#### Proposed Catalog structure
+Nevertheless, the scope of this internship was limited to raster datasets.
+
+### Proposed Catalog structure
 
 The structure of the STAC catalog proposed can be seen on @fig-stac-str.
 
@@ -29,6 +39,25 @@ In it a selection of datasets that will be referenced in the catalog is presente
 [^1]: STAC extensions are additional metadata properties that can be added to a dataset. (e.g. Classes, bands, sensor-type, etc.)
 
 ![Initial proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
+
+
+### S11-cats repository
+
+The s11-cats repository created is composed of a module named `cats` which consists of five submodules described in @tbl-cats-modules. Moreover, an overview of the main functionality of cats is presented on @fig-s11-cats. As seen there, ....
+
+| **Submodule** | **Description** |
+| ------------- | --------------- |
+| *gcs_tools*   | |
+| *general_metadata* | |
+| *get_spatial_info* | |
+| *get_temporal_info* | | 
+| *stac_tools*  | |
+: Description of cats submodules {#tbl-cats-modules}
+
+
+![S11- cats main function](img/s11-cats.png){#fig-s11-cats}
+
+
 
 ### PgSTAC
 
