@@ -202,14 +202,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-gpt-prompt" class="level2">
 <h2 class="anchored" data-anchor-id="sec-gpt-prompt">Thematic Content Analysis prompt</h2>
-<pre><code>I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+<pre><code>I will give you some notes I took from an interview I did to four study subjects:
+W, X, Y and Z.
 
-Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.</code></pre>
+Tell me if you identify any themes or topics that are repeated in the notes that 
+I took from the answers of the individuals. In other words, do a simple Thematic
+Content Analysis of the interviews.</code></pre>
 </section>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="c7d43e83" class="cell" data-execution_count="1">
+<div id="58ed2f93" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>

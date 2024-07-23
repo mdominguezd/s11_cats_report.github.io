@@ -476,8 +476,8 @@ Table&nbsp;1: STAC components
 <h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
 <p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <a href="#sec-baseline-q" class="quarto-xref">Section&nbsp;7.1</a> and were meant to be open questions with multiple possible answers.</p>
-<p>Furthermore, beased on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
-<p>Finally, the answers to the questionnaire were analysed qualitatively following a Thematic Context Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;7.2</a>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
+<p>Furthermore, based on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
+<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;7.2</a> (). Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
 </section>
 <section id="data-and-service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
@@ -491,7 +491,7 @@ Table&nbsp;1: STAC components
 <section id="proposed-catalog-structure" class="level4">
 <h4 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h4>
 <p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<p>In it a selection of datasets that will be referenced in the catalog is presented and a hierachical structure composed of thematic collections is suggested. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
+<p>In it a selection of datasets that will be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
 <div id="fig-stac-str" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -762,14 +762,17 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 </section>
 <section id="sec-gpt-prompt" class="level2">
 <h2 class="anchored" data-anchor-id="sec-gpt-prompt">Thematic Content Analysis prompt</h2>
-<pre><code>I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+<pre><code>I will give you some notes I took from an interview I did to four study subjects:
+W, X, Y and Z.
 
-Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.</code></pre>
+Tell me if you identify any themes or topics that are repeated in the notes that 
+I took from the answers of the individuals. In other words, do a simple Thematic
+Content Analysis of the interviews.</code></pre>
 </section>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="cd88c5b9" class="cell" data-execution_count="5">
+<div id="b92b989c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
