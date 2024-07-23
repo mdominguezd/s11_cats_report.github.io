@@ -213,16 +213,24 @@ window.Quarto = {
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
   <ul class="collapse">
-  <li><a href="#baseline-scenario-definition" id="toc-baseline-scenario-definition" class="nav-link" data-scroll-target="#baseline-scenario-definition">Baseline scenario definition</a></li>
-  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data integration</a></li>
+  <li><a href="#baseline-scenario" id="toc-baseline-scenario" class="nav-link" data-scroll-target="#baseline-scenario">Baseline scenario</a></li>
+  <li><a href="#data-and-service-integration" id="toc-data-and-service-integration" class="nav-link" data-scroll-target="#data-and-service-integration">Data and service integration</a>
+  <ul class="collapse">
+  <li><a href="#datasets-included" id="toc-datasets-included" class="nav-link" data-scroll-target="#datasets-included">Datasets included</a></li>
+  <li><a href="#s11-cats-repository" id="toc-s11-cats-repository" class="nav-link" data-scroll-target="#s11-cats-repository">S11-cats repository</a></li>
+  <li><a href="#pgstac" id="toc-pgstac" class="nav-link" data-scroll-target="#pgstac">PgSTAC</a></li>
+  <li><a href="#eoapi" id="toc-eoapi" class="nav-link" data-scroll-target="#eoapi">eoAPI</a></li>
+  <li><a href="#ci-pipeline" id="toc-ci-pipeline" class="nav-link" data-scroll-target="#ci-pipeline">CI pipeline</a></li>
+  </ul></li>
   <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a>
   <ul class="collapse">
   <li><a href="#speed-up" id="toc-speed-up" class="nav-link" data-scroll-target="#speed-up">Speed up</a></li>
+  <li><a href="#zoom-level-influence" id="toc-zoom-level-influence" class="nav-link" data-scroll-target="#zoom-level-influence">Zoom level influence</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
-  <li><a href="#baseline-scenario" id="toc-baseline-scenario" class="nav-link" data-scroll-target="#baseline-scenario">Baseline scenario</a>
+  <li><a href="#baseline-scenario-1" id="toc-baseline-scenario-1" class="nav-link" data-scroll-target="#baseline-scenario-1">Baseline scenario</a>
   <ul class="collapse">
   <li><a href="#main-findings" id="toc-main-findings" class="nav-link" data-scroll-target="#main-findings">Main findings</a></li>
   </ul></li>
@@ -239,10 +247,7 @@ window.Quarto = {
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future work</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
-  <ul class="collapse">
-  <li><a href="#code-to-evaluate-request-times" id="toc-code-to-evaluate-request-times" class="nav-link" data-scroll-target="#code-to-evaluate-request-times">Code to evaluate request times</a></li>
-  </ul></li>
+  
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="FinalReport.pdf"><i class="bi bi-file-pdf"></i>PDF (titlepage)</a></li></ul></div></nav>
     </div>
@@ -349,6 +354,14 @@ window.Quarto = {
 <td>SQL</td>
 <td>Standard Query Language</td>
 </tr>
+<tr class="odd">
+<td>FBL</td>
+<td>Forest Baseline</td>
+</tr>
+<tr class="even">
+<td>DEM</td>
+<td>Digital Elevation Map</td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -372,7 +385,7 @@ window.Quarto = {
 <p>At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.</p>
 <p><strong>Cloud-optimized data formats</strong></p>
 <p><em>COG</em></p>
-<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitat data interoperability <span class="citation" data-cites="ogc_ogc_2023">(<a href="#ref-ogc_ogc_2023" role="doc-biblioref">OGC, 2023</a>)</span>.</p>
+<p>Cloud-Optimized GeoTIFFs (<a href="https://www.cogeo.org/">COGs</a>) are an example of data formats that have been created to ease the access of data stored in the cloud. They improve the readability by including the metadata in the initial bytes of the file stored, storing different image overviews for different scales and tiling the images in smaller blocks. These characteristics make COG files heavier than traditional image formats. However, they also greatly enhance accessibility by enabling the selective transfer of only the necessary tiles using HTTP GET requests <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Additionally, this data format has been adopted as an Open Geospatial Consortium (OGC) standard. These standards are a set of guidelines and specifications created to facilitate data interoperability <span class="citation" data-cites="ogc_ogc_2023">(<a href="#ref-ogc_ogc_2023" role="doc-biblioref">OGC, 2023</a>)</span>.</p>
 <p><em>Zarr</em></p>
 <p>Another cloud native data format that has gained popularity recently is <a href="https://zarr.readthedocs.io/en/stable/">Zarr</a>. This data format and python library focuses on the cloud-optimization of n-dimensional arrays. Zarr, differently than COGs store the metadata separately from the data chunks using lightweight external JSON files <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>. Additionally, this data format stores the N-dimensional arrays in smaller chunks that can be accessed more easily. While the storage of Zarr files in chunks facilitates more efficient data access, the absence of overviews hinders the visualization of this data in a web map service <span class="citation" data-cites="desruisseaux_ogc_2021">(<a href="#ref-desruisseaux_ogc_2021" role="doc-biblioref">Desruisseaux et al., 2021</a>)</span>. Due to the increasing use of Zarr for geo-spatial purposes, the OGC endorsed Zarr V2 as a community standard. Nevertheless, efforts are still being made to have a geo-spatial Zarr standard adopted by OGC <span class="citation" data-cites="chester_ogc_2024">(<a href="#ref-chester_ogc_2024" role="doc-biblioref">Chester, 2024</a>)</span>.</p>
 </section>
@@ -419,7 +432,7 @@ Table&nbsp;1: STAC components
 </div>
 </figure>
 </div>
-<p>In the specific case of dynamic catalogs, the concept of <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geospatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geospatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a> standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a>, <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> enhances functionality by providing additional features that users needed (e.g.&nbsp;cross-collection search, versioning).</p>
+<p>In the specific case of dynamic catalogs, the concept of <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geo-spatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geo-spatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a> standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to <a href="https://ogcapi.ogc.org/features/">OGC API-Features</a>, <a href="https://github.com/radiantearth/stac-api-spec/">STAC API</a> enhances functionality by providing additional features that users needed (e.g.&nbsp;cross-collection search, versioning) <span class="citation" data-cites="holmes_spatiotemporal_2021">(<a href="#ref-holmes_spatiotemporal_2021" role="doc-biblioref">Holmes, 2021</a>)</span>.</p>
 </section>
 <section id="visualization-interfaces" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="visualization-interfaces">Visualization interfaces</h4>
@@ -429,46 +442,61 @@ Table&nbsp;1: STAC components
 </section>
 <section id="added-value-of-this-research" class="level3">
 <h3 class="anchored" data-anchor-id="added-value-of-this-research">Added value of this research</h3>
-<p>This research aims to identify efficient solutions for the company’s current challenges in discovering and visualizing large geospatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.</p>
+<p>This research aims to identify efficient solutions for the company’s current challenges in discovering and visualizing large geo-spatial datasets by integrating cloud-optimized data formats, cloud services, STAC specifications, and dynamic tiling services. The outcomes of this research will: offer valuable insights into the existing data discovery challenges within the company, propose a methodology for integrating discovery and visualization services, and evaluate the effectiveness of dynamic tiling for various cloud-optimized data formats.</p>
 </section>
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research questions</h2>
 <ul>
 <li>What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?</li>
-<li>How does the integration of cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications influence the process and experiences of discovering big spatial data?</li>
+<li>How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering big spatial data within the company?</li>
 <li>To what extent do dynamic tiling services can perform in visualizing different cloud-optimized data formats?</li>
 </ul>
 </section>
 </section>
 <section id="methodology" class="level1">
 <h1>Methodology</h1>
-<!-- To address the proposed research questions, a series of activities and the deliverables expected from them are presented on @fig-fc. Additionally, a detailed description of each activity is presented in the following subsections.
-
-![Internship flowchart](img/FlowChart_Internship.png){#fig-fc width="60%"}
-
-## Data and processing code familiarization
-
-In this step, I will familiarize myself with the current tools used for the processing of the images and its storage. This step will include the understanding of cloud services and internal image processing tools and the main datasets to be referenced on the catalog (STAC data). Moreover, in this step an initial description of the STAC data metadata will be performed.
-
-### Cloud services familiarization
-
-An overview of the cloud services used by the company will be described. This will be mainly with the objective to understand, but not limited to:
-
--    Who access the data?
-
--   What are the costs of accessing it?
-
--   How often certain data is updated?
-
--   How is the data updated? -->
-<section id="baseline-scenario-definition" class="level2">
-<h2 class="anchored" data-anchor-id="baseline-scenario-definition">Baseline scenario definition</h2>
+<section id="baseline-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
-<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in appendix <strong>###</strong> and were meant to be open questions with multiple possible answers.</p>
+<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <a href="#sec-baseline-q" class="quarto-xref">Section&nbsp;6.1</a> and were meant to be open questions with multiple possible answers that could elucidate qualitatively the current struggles faced by the members of different teams in Satelligence.</p>
 </section>
-<section id="data-integration" class="level2">
-<h2 class="anchored" data-anchor-id="data-integration">Data integration</h2>
+<section id="data-and-service-integration" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
+<p>Briefly describe what will be included in the section: Explanation of the datasets included in the catalog, the building of the catalog (s11-cats)</p>
+<section id="datasets-included" class="level3">
+<h3 class="anchored" data-anchor-id="datasets-included">Datasets included</h3>
+</section>
+<section id="s11-cats-repository" class="level3">
+<h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
+<p>Description of modules</p>
+<section id="proposed-catalog-structure" class="level4">
+<h4 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h4>
+<p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>In it a selection of datasets that will be referenced in the catalog is presented and a hierachical structure composed of thematic collections is suggested. Moreover, the selection of the <a href="https://stac-extensions.github.io/">STAC extensions</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used for each dataset will be defined in this step.</p>
+<div id="fig-stac-str" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/STAC_Satelligence_structure.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Initial proposed STAC structure
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="pgstac" class="level3">
+<h3 class="anchored" data-anchor-id="pgstac">PgSTAC</h3>
+</section>
+<section id="eoapi" class="level3">
+<h3 class="anchored" data-anchor-id="eoapi">eoAPI</h3>
+<ul>
+<li>Use of docker containers to run individual applications that can connect to each other.</li>
+</ul>
+</section>
+<section id="ci-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="ci-pipeline">CI pipeline</h3>
 <!-- ### Local STAC creation and browsing
 
 This step will mainly be focused on the set up of the developing environment to both create a local STAC catalog and browse through it. This will include:
@@ -514,33 +542,36 @@ Required libraries:
 
 **Deliverable:** Containerized application to visualize the data  -->
 </section>
+</section>
 <section id="multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
-<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. A COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This preprocessing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison.</p>
-<p>The <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Dockerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed locally.</p>
-<p>Performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geospatial visualization context.</p>
+<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This preprocessing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed locally. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geospatial data visualization context.</p>
 <section id="speed-up" class="level3">
 <h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
-<p>The assessment of the performance of the new Data Catalog will be measured using the baseline scenario established at the beginning of the internship and the Speed Up metric proposed by <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>:</p>
-<p><span class="math display">\[ SpeedUp = \frac{t_{baseline}}{t_{catalog}} \]</span></p>
-<p>This metric explains how much the process to access data has sped up thanks to the integration of cloud-based storage, the data catalog and the browsing interface.</p>
+<p>The performance of both TiTiler services to dynamically create tiles for the different data formats was evaluated using the Speed Up metric proposed in <span class="citation" data-cites="durbha_advances_2023">Durbha et al. (<a href="#ref-durbha_advances_2023" role="doc-biblioref">2023</a>)</span> (<a href="#eq-speed-up" class="quarto-xref">Equation&nbsp;1</a>). In this case, the Speed Up explains how much did the process of requesting tiles sped up by using a data format A compared to using a data format B.</p>
+<p><span id="eq-speed-up"><span class="math display">\[ SpeedUp = \frac{t_{format A}}{t_{format B}}  \tag{1}\]</span></span></p>
+</section>
+<section id="zoom-level-influence" class="level3">
+<h3 class="anchored" data-anchor-id="zoom-level-influence">Zoom level influence</h3>
+<p>Finally, the effect of the level of zoom in a web map visualization on the response times of requesting tiles from the different tiling services was evaluated by fitting an Ordinary Least Squares (OLS) univariate linear regression that followed <a href="#eq-lin-reg" class="quarto-xref">Equation&nbsp;2</a>.</p>
+<p><span id="eq-lin-reg"><span class="math display">\[ ResponseTime = \beta_1 \cdot ZoomLevel + \beta_0 + \epsilon  \tag{2}\]</span></span></p>
 </section>
 </section>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<section id="baseline-scenario" class="level2">
-<h2 class="anchored" data-anchor-id="baseline-scenario">Baseline scenario</h2>
+<section id="baseline-scenario-1" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-scenario-1">Baseline scenario</h2>
 <section id="main-findings" class="level3">
 <h3 class="anchored" data-anchor-id="main-findings">Main findings</h3>
-<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
+<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;2</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
 <div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Baseline workflow
+Figure&nbsp;2: Baseline workflow
 </figcaption>
 </figure>
 </div>
@@ -551,6 +582,8 @@ Figure&nbsp;1: Baseline workflow
 <li>Experienced study subjects would find the data location faster.</li>
 <li>Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).</li>
 <li>Not intuitive naming of repositories.</li>
+<li>Not one place where all existing data can be found.</li>
+<li>Big need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire</li>
 </ul>
 </section>
 </section>
@@ -569,7 +602,7 @@ Figure&nbsp;1: Baseline workflow
 <p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -578,7 +611,7 @@ Figure&nbsp;1: Baseline workflow
 <img src="FinalReport_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Request times depending on data format and zoom level
+Figure&nbsp;3: Request times depending on data format and zoom level
 </figcaption>
 </figure>
 </div>
@@ -587,7 +620,7 @@ Figure&nbsp;2: Request times depending on data format and zoom level
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -596,7 +629,7 @@ Figure&nbsp;2: Request times depending on data format and zoom level
 <img src="FinalReport_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Request times depending on zoom level
+Figure&nbsp;4: Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
@@ -635,6 +668,9 @@ Durbha, S. S., Sanyal, J., Yang, L., S Chaudhari, S., Bhangale, U., Bharambe, U.
 <div id="ref-giri_big_2014" class="csl-entry" role="listitem">
 Giri, K. and Lone, T. (2014). Big data -overview and challenges. <em>International Journal of Advanced Research in Computer Science and Software Engineering</em>, <em>4</em>.
 </div>
+<div id="ref-holmes_spatiotemporal_2021" class="csl-entry" role="listitem">
+Holmes, C. (2021(e)ko Januaryk 19). <em><span>SpatioTemporal</span> asset catalogs and the open geospatial consortium. Radiant earth insights</em>. <a href="https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7">https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7</a>
+</div>
 <div id="ref-kaufmann_database_2023" class="csl-entry" role="listitem">
 Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann and A. Meier (Eds.), <em><span>SQL</span> and <span>NoSQL</span> databases: Modeling, languages, security and architectures for big data management</em> (1–24. pp.). Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-27908-9_1">https://doi.org/10.1007/978-3-031-27908-9_1</a>
 </div>
@@ -667,11 +703,33 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 </div>
 </div>
 </section>
-<section id="appendix" class="level1 unnumbered">
-<h1 class="unnumbered">Appendix</h1>
-<section id="code-to-evaluate-request-times" class="level2">
-<h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="b4b03068" class="cell" data-execution_count="5">
+
+
+
+<div id="quarto-appendix" class="default"><section id="appendix" class="level1 appendix"><h2 class="anchored quarto-appendix-heading">Appendix</h2><div class="quarto-appendix-contents">
+
+<section id="sec-baseline-q" class="level2">
+<h2 class="anchored" data-anchor-id="sec-baseline-q">Baseline scenario questionnaire</h2>
+<section id="related-to-data-discovery" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="related-to-data-discovery">Related to data discovery</h3>
+<ul>
+<li>I am working for Wilmar in South East Asia. Do you know what is the forest baseline that I should use and where can I find it?</li>
+<li>I have been checking the results of the Soy map we created. Do you know which DEM was used for it? And where can I find it?</li>
+<li>Do you know which DEM is used as the terrain mask when using Sentinel 1 data?</li>
+<li>I need to access the concessions data provided by Grepalma. Where can I find it?</li>
+</ul>
+</section>
+<section id="related-to-data-visualization" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="related-to-data-visualization">Related to data visualization</h3>
+<ul>
+<li>I am interested on getting an overview of where was the primary forest present in Colombia in 2007. Could you visualize a layer with this data for me?</li>
+<li>I need to visualize the concessions provided by fedepalma. Could you do it for me?</li>
+</ul>
+</section>
+</section>
+<section id="sec-request-code" class="level2">
+<h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
+<div id="e2e03e31" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -754,9 +812,12 @@ Zhao, Y., Yang, X. and Vatsavai, R. R. (2021). A scalable system for searching l
 
 
 </section>
-</section>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
-</main> <!-- /main -->
+<ol>
+<li id="fn1"><p>STAC extensions are additional metadata properties that can be added to a dataset. (e.g.&nbsp;Classes, bands, sensor-type, etc.)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

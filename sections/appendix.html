@@ -149,7 +149,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#code-to-evaluate-request-times" id="toc-code-to-evaluate-request-times" class="nav-link active" data-scroll-target="#code-to-evaluate-request-times">Code to evaluate request times</a></li>
+  <li><a href="#sec-baseline-q" id="toc-sec-baseline-q" class="nav-link active" data-scroll-target="#sec-baseline-q">Baseline scenario questionnaire</a>
+  <ul class="collapse">
+  <li><a href="#related-to-data-discovery" id="toc-related-to-data-discovery" class="nav-link" data-scroll-target="#related-to-data-discovery">Related to data discovery</a></li>
+  <li><a href="#related-to-data-visualization" id="toc-related-to-data-visualization" class="nav-link" data-scroll-target="#related-to-data-visualization">Related to data visualization</a></li>
+  </ul></li>
+  <li><a href="#sec-request-code" id="toc-sec-request-code" class="nav-link" data-scroll-target="#sec-request-code">Code to evaluate request times</a></li>
   </ul>
 </nav>
     </div>
@@ -175,9 +180,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="code-to-evaluate-request-times" class="level2">
-<h2 class="anchored" data-anchor-id="code-to-evaluate-request-times">Code to evaluate request times</h2>
-<div id="169e2021" class="cell" data-execution_count="1">
+<section id="sec-baseline-q" class="level2">
+<h2 class="anchored" data-anchor-id="sec-baseline-q">Baseline scenario questionnaire</h2>
+<section id="related-to-data-discovery" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="related-to-data-discovery">Related to data discovery</h3>
+<ul>
+<li>I am working for Wilmar in South East Asia. Do you know what is the forest baseline that I should use and where can I find it?</li>
+<li>I have been checking the results of the Soy map we created. Do you know which DEM was used for it? And where can I find it?</li>
+<li>Do you know which DEM is used as the terrain mask when using Sentinel 1 data?</li>
+<li>I need to access the concessions data provided by Grepalma. Where can I find it?</li>
+</ul>
+</section>
+<section id="related-to-data-visualization" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="related-to-data-visualization">Related to data visualization</h3>
+<ul>
+<li>I am interested on getting an overview of where was the primary forest present in Colombia in 2007. Could you visualize a layer with this data for me?</li>
+<li>I need to visualize the concessions provided by fedepalma. Could you do it for me?</li>
+</ul>
+</section>
+</section>
+<section id="sec-request-code" class="level2">
+<h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
+<div id="390c4716" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
