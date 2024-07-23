@@ -1,10 +1,14 @@
-
+To answer the research questions presented a series of tasks were undertaken. These tasks are presented in the following subsections where they are divided by research question.
 
 ## Baseline scenario
 
 The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e. The data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.
 
-The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in @sec-baseline-q and were meant to be open questions with multiple possible answers that could elucidate qualitatively the current struggles faced by the members of different teams in Satelligence.
+The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in @sec-baseline-q and were meant to be open questions with multiple possible answers.
+
+Furthermore, beased on the answers of the interviewees a workflow was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.
+
+Finally, the answers to the questionnaire were analysed qualitatively following a Thematic Context Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken [@anderson_thematic_2007]. The extraction of common patterns within the interviews was initially done using a large language model (i.e. Chat-GPT 3.5) using the prompt presented on @sec-gpt-prompt. Moreover, the themes identified were further refined based on the interviewer's interpretation.
 
 ## Data and service integration
 
@@ -30,7 +34,8 @@ In it a selection of datasets that will be referenced in the catalog is presente
 
 ### eoAPI 
 
--   Use of docker containers to run individual applications that can connect to each other.
+-  Use of docker containers to run individual applications that can connect to each other.
+- deployment of these containers into the cloud.
 
 ### CI pipeline
 

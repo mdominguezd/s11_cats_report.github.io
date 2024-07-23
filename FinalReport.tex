@@ -470,6 +470,7 @@ HTTP & HyperText Transfer Protocol \\
 SQL & Standard Query Language \\
 FBL & Forest Baseline \\
 DEM & Digital Elevation Map \\
+TCA & Thematic Content analysis \\
 \end{longtable}
 
 \chapter{Introduction}\label{introduction}
@@ -570,6 +571,8 @@ Google Storage Buckets, and they are currently in the process of
 incorporating the conversion to cloud-optimized data formats like Cloud
 Optimized GeoTIFFs (COGs) and Zarrs in their processing framework
 (DPROF) to improve efficiency and accessibility.
+
+\newpage
 
 \textbf{Cloud-optimized data formats}
 
@@ -672,8 +675,8 @@ In the case of the STAC API, it provides endpoints for searching and
 retrieving geo-spatial data based on criteria such as location and time,
 delivering results in a standardized format that ensures compatibility
 with various tools and services in the geo-spatial community. Moreover,
-even though STAC API is not an OGC standard or a OGC community standard,
-the basic requests performed in a STAC API adheres to the
+even though STAC API is not an OGC standard or an OGC community
+standard, the basic requests performed in a STAC API adheres to the
 \href{https://ogcapi.ogc.org/features/}{OGC API-Features} standards for
 querying by bounding box and time range, returning GeoJSON-formatted
 results that conform to both STAC and OGC specifications. Ultimately,
@@ -738,6 +741,10 @@ dynamic tiling for various cloud-optimized data formats.
 
 \chapter{Methodology}\label{methodology}
 
+To answer the research questions presented a series of tasks were
+undertaken. These tasks are presented in the following subsections where
+they are divided by research question.
+
 \section{Baseline scenario}\label{baseline-scenario}
 
 The baseline scenario was defined as the set of methods currently being
@@ -756,6 +763,20 @@ divided into questions related to raster and vector datasets. The
 questions included in the interview can be found in
 Section~\ref{sec-baseline-q} and were meant to be open questions with
 multiple possible answers.
+
+Furthermore, beased on the answers of the interviewees a workflow was
+built to represent visually the traditional steps performed to discover
+and visualize S11 data. This visual representation included estimations
+of the steps where more time was spent on.
+
+Finally, the answers to the questionnaire were analysed qualitatively
+following a Thematic Context Analysis (TCA). This type of qualitative
+analysis focuses on finding common themes in the interviews undertaken
+(\citeproc{ref-anderson_thematic_2007}{Anderson, 2007}). The extraction
+of common patterns within the interviews was initially done using a
+large language model (i.e.~Chat-GPT 3.5) using the prompt presented on
+Section~\ref{sec-gpt-prompt}. Moreover, the themes identified were
+further refined based on the interviewer's interpretation.
 
 \section{Data and service
 integration}\label{data-and-service-integration}
@@ -777,15 +798,12 @@ The structure of the STAC catalog proposed can be seen on
 Figure~\ref{fig-stac-str}.
 
 In it a selection of datasets that will be referenced in the catalog is
-presented and a hierachical structure of
-
-and definition of subcatalogs and/or collections to group items with
-similar metadata. Initially, the creation of two different subcatalogs
-is proposed to keep the static and dynamic dataset separated. Moreover,
-the selection of the \href{https://stac-extensions.github.io/}{STAC
-extensions}\footnote{STAC extensions are additional metadata properties
-  that can be added to a dataset. (e.g.~Classes, bands, sensor-type,
-  etc.)} used for each dataset will be defined in this step.
+presented and a hierachical structure composed of thematic collections
+is suggested. Moreover, the selection of the
+\href{https://stac-extensions.github.io/}{STAC extensions}\footnote{STAC
+  extensions are additional metadata properties that can be added to a
+  dataset. (e.g.~Classes, bands, sensor-type, etc.)} used for each
+dataset will be defined in this step.
 
 \begin{figure}[H]
 
@@ -808,6 +826,8 @@ extensions}\footnote{STAC extensions are additional metadata properties
 \item
   Use of docker containers to run individual applications that can
   connect to each other.
+\item
+  deployment of these containers into the cloud.
 \end{itemize}
 
 \subsection{CI pipeline}\label{ci-pipeline}
@@ -862,7 +882,7 @@ univariate linear regression that followed Equation~\ref{eq-lin-reg}.
 
 \section{Baseline scenario}\label{baseline-scenario-1}
 
-\subsection{Main findings}\label{main-findings}
+\subsection{Current workflow}\label{current-workflow}
 
 The main finding of the interviews were the steps followed currently to
 discover, retrieve and visualize data. These steps are summarized on
@@ -883,6 +903,24 @@ spent carrying out.
 \caption{\label{fig-baseline}Baseline workflow}
 
 \end{figure}%
+
+\subsection{Main themes found}\label{main-themes-found}
+
+\textbf{GPT}
+
+\begin{itemize}
+\tightlist
+\item
+  Uncertainty and Dependency on Colleagues
+\item
+  Sources and Locations of Data
+\item
+  Data Specificity and Familiarity
+\item
+  Use of Specific Tools and Methods
+\end{itemize}
+
+\textbf{Refined themes}
 
 The major pitfalls found on the process of data discovery in the company
 could be summarized in:
@@ -983,11 +1021,17 @@ ZARRs respectively.
   Inclusion of Vector data on STAC
 \end{itemize}
 
+\chapter{Conclusions}\label{conclusions}
+
 \chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-anderson_thematic_2007}
+Anderson, R. (2007). \emph{Thematic content analysis ({TCA})}.
+\url{https://rosemarieanderson.com/wp-content/uploads/2014/08/ThematicContentAnalysis.pdf}
+
 \bibitem[\citeproctext]{ref-brodeur_geographic_2019}
 Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J.
 (2019). Geographic information metadata---an outlook from the
@@ -1114,7 +1158,20 @@ visualization}\label{related-to-data-visualization}
   do it for me?
 \end{itemize}
 
+\section{Thematic Content Analysis prompt}\label{sec-gpt-prompt}
+
+\begin{verbatim}
+I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+
+Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.
+\end{verbatim}
+
 \section{Code to evaluate request times}\label{sec-request-code}
+
+\textbf{Disclaimer:} In order to run the code presented below, the user
+must have authenticated their Google account and have the TiTiler-PgSTAC
+and the TiTiler-Xarray services running on \texttt{localhost:8082} and
+\texttt{localhost:8084} respectively.
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -1,20 +1,31 @@
 ## Baseline scenario
 
-### Main findings
+### Current workflow
 
 The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.
 
 ![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
 
+### Main themes found
+
+**GPT**
+
+- Uncertainty and Dependency on Colleagues
+- Sources and Locations of Data
+- Data Specificity and Familiarity
+- Use of Specific Tools and Methods
+
+**Refined themes**
+
 The major pitfalls found on the process of data discovery in the company could be summarized in:
 
-- High dependency on colleagues.
-- Disorganized structure of Google Storage Buckets.
-- Experienced study subjects would find the data location faster.
-- Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
-- Not intuitive naming of repositories.
-- Not one place where all existing data can be found.
-- Big need on  going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire
+-   High dependency on colleagues.
+-   Disorganized structure of Google Storage Buckets.
+-   Experienced study subjects would find the data location faster.
+-   Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
+-   Not intuitive naming of repositories.
+-   Not one place where all existing data can be found.
+-   Big need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire
 
 ## Service integration
 

@@ -20,6 +20,8 @@ The emergence of cloud-based archives has been one of the main advancements for 
 
 At S11, the storage of large geo-spatial data is already managed using Google Storage Buckets, and they are currently in the process of incorporating the conversion to cloud-optimized data formats like Cloud Optimized GeoTIFFs (COGs) and Zarrs in their processing framework (DPROF) to improve efficiency and accessibility.
 
+\newpage
+
 **Cloud-optimized data formats**
 
 *COG*
@@ -45,7 +47,7 @@ Moreover, there are two types of STAC catalogs: static and dynamic. Static catal
 
 : STAC components {#tbl-stac-comps .striped .hover}
 
-In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geo-spatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geo-spatial community. Moreover, even though STAC API is not an OGC standard or a OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning) [@holmes_spatiotemporal_2021].
+In the specific case of dynamic catalogs, the concept of [STAC API](https://github.com/radiantearth/stac-api-spec/) is widely used. In general, an API is a set of rules and protocols that enables different software applications to communicate with each other. In the case of the STAC API, it provides endpoints for searching and retrieving geo-spatial data based on criteria such as location and time, delivering results in a standardized format that ensures compatibility with various tools and services in the geo-spatial community. Moreover, even though STAC API is not an OGC standard or an OGC community standard, the basic requests performed in a STAC API adheres to the [OGC API-Features](https://ogcapi.ogc.org/features/) standards for querying by bounding box and time range, returning GeoJSON-formatted results that conform to both STAC and OGC specifications. Ultimately, compared to [OGC API-Features](https://ogcapi.ogc.org/features/), [STAC API](https://github.com/radiantearth/stac-api-spec/) enhances functionality by providing additional features that users needed (e.g. cross-collection search, versioning) [@holmes_spatiotemporal_2021].
 
 #### Visualization interfaces {.unnumbered}
 

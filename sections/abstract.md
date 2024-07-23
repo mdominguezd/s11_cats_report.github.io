@@ -22,4 +22,5 @@
  SQL  | Standard Query Language |
  FBL  | Forest Baseline |
  DEM  | Digital Elevation Map |
+ TCA  | Thematic Content analysis |
 : Abbreviation list {.striped .hover}

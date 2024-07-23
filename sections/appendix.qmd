@@ -1,5 +1,5 @@
 
-# Appendix {.appendix}
+# Appendix 
 
 ## Baseline scenario questionnaire {#sec-baseline-q}
 
@@ -15,7 +15,18 @@
 - I am interested on getting an overview of where was the primary forest present in Colombia in 2007. Could you visualize a layer with this data for me?
 - I need to visualize the concessions provided by fedepalma. Could you do it for me?
 
+## Thematic Content Analysis prompt {#sec-gpt-prompt}
+
+```
+I will give you some notes I took from an interview I did to four study subjects: W, X, Y and Z.
+
+Tell me if you identify any themes or topics that are repeated in the notes that I took from the answers of the individuals. In other words, do a simple Thematic Content Analysis of the interviews.
+```
+
 ## Code to evaluate request times {#sec-request-code}
+
+**Disclaimer:** In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on `localhost:8082` and `localhost:8084` respectively.
+
 ```{python}
 #| echo: true
 #| eval: false

@@ -63,6 +63,10 @@ format:
 
 {{< include sections/future_work.md >}}
 
+# Conclusions
+
+{{< include sections/conclusions.md >}}
+
 # References {-}
 
 ::: {#refs}
