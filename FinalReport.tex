@@ -752,7 +752,7 @@ To answer the research questions presented a series of tasks were
 undertaken. These tasks are presented in the following subsections where
 they are divided by research question.
 
-\section{Baseline scenario}\label{baseline-scenario}
+\section{Baseline scenario}\label{sec-baseline}
 
 The baseline scenario was defined as the set of methods currently being
 used by members of different teams at Satelligence to find, retrieve and
@@ -771,7 +771,7 @@ questions included in the interview can be found in
 Section~\ref{sec-baseline-q} and were meant to be open questions with
 multiple possible answers.
 
-Furthermore, based on the answers of the interviewees a workflow was
+Furthermore, based on the answers of the interviewees a flowchart was
 built to represent visually the traditional steps performed to discover
 and visualize S11 data. This visual representation included estimations
 of the steps where more time was spent on.
@@ -790,14 +790,14 @@ interpretation.
 \section{Data and service
 integration}\label{data-and-service-integration}
 
-To efficiently integrate tools for big geospatial data discovery and
+To efficiently integrate tools for big geo-spatial data discovery and
 visualization, a series of steps had to be followed. Initially, the
 datasets were selected. Subsequently, the structure of the catalog was
 defined. Following this, a Git repository containing the code required
 to generate the catalog was created. Static JSON files were then
 utilized to construct a dynamic STAC API. Ultimately, this API was
 deployed alongside other services using a continuous integration (CI)
-and continuaus deployment (CD) pipeline. A further explanation of each
+and continuous deployment (CD) pipeline. A further explanation of each
 step is presented in the following subsections.
 
 \subsection{Dataset selection}\label{dataset-selection}
@@ -873,8 +873,8 @@ final version of the structure will be determined by the company.
 The \href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository}
 created is composed of a module named \texttt{cats} which consists of
 five submodules described in Table~\ref{tbl-cats-modules}. Moreover, an
-overview of the main workflow followed in the main function of cats is
-presented on Figure~\ref{fig-s11-cats}.
+overview of the main workflow followed in the main function of s11-cats
+is presented on Figure~\ref{fig-s11-cats}.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4722}}
@@ -960,19 +960,28 @@ managing the dynamic catalog and the integrated services in a cloud
 environment.
 
 Since the current version of \href{https://eoapi.dev/}{eoAPI} does not
-include some extra services that were necessary to deploy, a seperate
-containerized version of these services was deployed in the same
-kubernetes cluster. Notably, a version of
+include some extra services that were necessary to deploy, a separate
+containerized version of these services was deployed in the same K8
+cluster. Notably, a version of
 \href{https://github.com/radiantearth/stac-browser}{STAC Browser} and
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 to browse the catalog created and visualize Zarr datasets respectively.
 
 \subsection{CI/CD pipeline}\label{cicd-pipeline}
 
-Finally, a gitlab CI/CD pipeline was created auotamte the creation of
+Finally, a gitlab CI/CD pipeline was created automate the creation of
 the catalog using the s11-cats repository, the deployment of the eoAPI
 and extra services and the ingestion of the catalog into the deployed
 version of the catalog.
+
+\subsection{Comparison with baseline
+scenario}\label{comparison-with-baseline-scenario}
+
+Once a version of all of the services integrated was deployed online,
+the ease of discovery and visualization was again qualitatively analyzed
+by evaluating the steps processed for both finding and visualizing S11
+data. These steps were then represented in a flowchart that could be
+compared to the one created on Section~\ref{sec-baseline}.
 
 \section{Multi-format data
 visualization}\label{multi-format-data-visualization}
@@ -982,7 +991,7 @@ Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following
 approach was undertaken. Firstly, a COG containing forest baseline
 information for the Riau region of Indonesia was used to create a series
 of Zarr files, each representing different overviews corresponding to
-various zoom levels. This preprocessing step, completed by the company
+various zoom levels. This pre-processing step, completed by the company
 prior to the study, ensured that the same data was used across both data
 formats, allowing for direct comparison. Then, the
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
@@ -998,7 +1007,7 @@ ranging from 9 to 18. Finally, to mitigate the influence of cached data
 on response times, each iteration used a different colormap, with a
 total of six colormaps employed. This methodology enabled a systematic
 evaluation of the performance differences between the two data formats
-in a geospatial data visualization context.
+in a geo-spatial data visualization context.
 
 \subsection{Speed up}\label{speed-up}
 
@@ -1022,7 +1031,7 @@ univariate linear regression that followed Equation~\ref{eq-lin-reg}.
 
 \chapter{Results}\label{results}
 
-\section{Baseline scenario}\label{baseline-scenario-1}
+\section{Baseline scenario}\label{baseline-scenario}
 
 \subsection{Current workflow}\label{current-workflow}
 
@@ -1046,20 +1055,21 @@ spent carrying out.
 
 \end{figure}%
 
-\subsection{Main themes found}\label{main-themes-found}
+\subsection{Thematic Content Analysis}\label{thematic-content-analysis}
 
-\textbf{GPT}
+When asked about the recurrent patterns on the interviews undertaken to
+define the baseline scenario, ChatGPT found four main topics:
 
 \begin{itemize}
 \tightlist
 \item
   Uncertainty and Dependency on Colleagues
 \item
-  Sources and Locations of Data
+  Multiple sources and locations of Data
 \item
-  Data Specificity and Familiarity
+  Data specificity and familiarity
 \item
-  Use of Specific Tools and Methods
+  Use of specific Tools and methods
 \end{itemize}
 
 \textbf{Refined themes}
@@ -1099,8 +1109,6 @@ Flowchart with STAC
 
 \section{Performance of multi-format data
 visualization}\label{performance-of-multi-format-data-visualization}
-
-TiTiler-PgSTAC \& TiTiler-xarray
 
 \subsection{Raster formats}\label{raster-formats}
 
@@ -1142,9 +1150,20 @@ ZARRs respectively.
 
 \end{figure}%
 
-\hl{Talk about how this figure also might indicate that the way the tiles are being called by titiler xarray is not ideal?}
-
 \chapter{Discussion}\label{discussion}
+
+\section{Baseline scenario}\label{baseline-scenario-1}
+
+\section{Data and service
+integration}\label{data-and-service-integration-1}
+
+Compare with other ways in which this could have been done? Virtual
+Machine (Compute Engine)
+
+\section{Performance of multi-format data
+visualization}\label{performance-of-multi-format-data-visualization-1}
+
+\hl{Talk about how second figure also might indicate that the way the tiles are being called by titiler xarray is not ideal?}
 
 \chapter{Future work}\label{future-work}
 

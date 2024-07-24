@@ -6,14 +6,14 @@ The main finding of the interviews were the steps followed currently to discover
 
 ![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
 
-### Main themes found
+### Thematic Content Analysis
 
-**GPT**
+When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:
 
 - Uncertainty and Dependency on Colleagues
-- Sources and Locations of Data
-- Data Specificity and Familiarity
-- Use of Specific Tools and Methods
+- Multiple sources and locations of Data
+- Data specificity and familiarity
+- Use of specific Tools and methods
 
 **Refined themes**
 
@@ -36,8 +36,6 @@ The web application can be accessed in [eoapi.satelligence.com/browser](https://
 Flowchart with STAC
 
 ## Performance of multi-format data visualization
-
-TiTiler-PgSTAC & TiTiler-xarray
 
 ### Raster formats
 
@@ -115,4 +113,3 @@ a = plt.legend()
 # a= sns.despine(trim = True, offset = -10, ax = ax)
 ```
 
-\hl{Talk about how this figure also might indicate that the way the tiles are being called by titiler xarray is not ideal?}
