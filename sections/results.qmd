@@ -10,30 +10,33 @@ The main finding of the interviews were the steps followed currently to discover
 
 When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:
 
-- Uncertainty and Dependency on Colleagues
-- Multiple sources and locations of Data
-- Data specificity and familiarity
-- Use of specific Tools and methods
+- There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.
+- Multiple sources and locations of data.
+- Data familiarity helps users locate data quicker.
+- Use of specific tools and methods for different datasets.
 
-**Refined themes**
-
-The major pitfalls found on the process of data discovery in the company could be summarized in:
+After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:
 
 -   High dependency on colleagues.
 -   Disorganized structure of Google Storage Buckets.
--   Experienced study subjects would find the data location faster.
--   Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).
--   Not intuitive naming of repositories.
+-   Data familiarity helps users locate data quicker.
+-   Data location is dependent on recurrent work with a specific dataset.
+-   Not intuitive naming of repositories (e.g. Blockchain for supply chain data, internet for compliance data, etc.).
 -   Not one place where all existing data can be found.
--   Big need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire
+
+All of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire. 
 
 ## Service integration
 
+### Data discovery application
+
 The web application can be accessed in [eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser/?.language=en). 
 
-### Data discovery improvement
+#### Data discovery improvement
 
 Flowchart with STAC
+
+### Data visualization
 
 ## Performance of multi-format data visualization
 

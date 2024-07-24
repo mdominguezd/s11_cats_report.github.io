@@ -238,7 +238,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
   <ul class="collapse">
-  <li><a href="#data-discovery-improvement" id="toc-data-discovery-improvement" class="nav-link" data-scroll-target="#data-discovery-improvement">Data discovery improvement</a></li>
+  <li><a href="#data-discovery-application" id="toc-data-discovery-application" class="nav-link" data-scroll-target="#data-discovery-application">Data discovery application</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
   </ul></li>
   <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
   <ul class="collapse">
@@ -637,30 +638,35 @@ Figure&nbsp;3: Baseline workflow
 <h3 class="anchored" data-anchor-id="thematic-content-analysis">Thematic Content Analysis</h3>
 <p>When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:</p>
 <ul>
-<li>Uncertainty and Dependency on Colleagues</li>
-<li>Multiple sources and locations of Data</li>
-<li>Data specificity and familiarity</li>
-<li>Use of specific Tools and methods</li>
+<li>There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.</li>
+<li>Multiple sources and locations of data.</li>
+<li>Data familiarity helps users locate data quicker.</li>
+<li>Use of specific tools and methods for different datasets.</li>
 </ul>
-<p><strong>Refined themes</strong></p>
-<p>The major pitfalls found on the process of data discovery in the company could be summarized in:</p>
+<p>After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:</p>
 <ul>
 <li>High dependency on colleagues.</li>
 <li>Disorganized structure of Google Storage Buckets.</li>
-<li>Experienced study subjects would find the data location faster.</li>
-<li>Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).</li>
-<li>Not intuitive naming of repositories.</li>
+<li>Data familiarity helps users locate data quicker.</li>
+<li>Data location is dependent on recurrent work with a specific dataset.</li>
+<li>Not intuitive naming of repositories (e.g.&nbsp;Blockchain for supply chain data, internet for compliance data, etc.).</li>
 <li>Not one place where all existing data can be found.</li>
-<li>Big need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire</li>
 </ul>
+<p>All of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire.</p>
 </section>
 </section>
 <section id="service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
+<section id="data-discovery-application" class="level3">
+<h3 class="anchored" data-anchor-id="data-discovery-application">Data discovery application</h3>
 <p>The web application can be accessed in <a href="https://eoapi.satelligence.com/browser/?.language=en">eoapi.satelligence.com/browser</a>.</p>
-<section id="data-discovery-improvement" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
+<section id="data-discovery-improvement" class="level4">
+<h4 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h4>
 <p>Flowchart with STAC</p>
+</section>
+</section>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
@@ -823,7 +829,7 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="502c5fd9" class="cell" data-execution_count="5">
+<div id="981fe158" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
