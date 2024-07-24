@@ -25,7 +25,7 @@
     "href": "sections/results.html#service-integration",
     "title": "Baseline scenario",
     "section": "Service integration",
-    "text": "Service integration\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC"
+    "text": "Service integration\n\nData discovery application\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC\n\n\n\nData visualization"
   },
   {
     "objectID": "sections/results.html#performance-of-multi-format-data-visualization",
@@ -137,14 +137,14 @@
     "href": "FinalReport.html#baseline-scenario",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Baseline scenario",
-    "text": "Baseline scenario\n\nCurrent workflow\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\n\n\nThematic Content Analysis\nWhen asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:\n\nUncertainty and Dependency on Colleagues\nMultiple sources and locations of Data\nData specificity and familiarity\nUse of specific Tools and methods\n\nRefined themes\nThe major pitfalls found on the process of data discovery in the company could be summarized in:\n\nHigh dependency on colleagues.\nDisorganized structure of Google Storage Buckets.\nExperienced study subjects would find the data location faster.\nData discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).\nNot intuitive naming of repositories.\nNot one place where all existing data can be found.\nBig need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire"
+    "text": "Baseline scenario\n\nCurrent workflow\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\n\n\nThematic Content Analysis\nWhen asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:\n\nThere is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.\nMultiple sources and locations of data.\nData familiarity helps users locate data quicker.\nUse of specific tools and methods for different datasets.\n\nAfter some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:\n\nHigh dependency on colleagues.\nDisorganized structure of Google Storage Buckets.\nData familiarity helps users locate data quicker.\nData location is dependent on recurrent work with a specific dataset.\nNot intuitive naming of repositories (e.g. Blockchain for supply chain data, internet for compliance data, etc.).\nNot one place where all existing data can be found.\n\nAll of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire."
   },
   {
     "objectID": "FinalReport.html#service-integration",
     "href": "FinalReport.html#service-integration",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Service integration",
-    "text": "Service integration\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC"
+    "text": "Service integration\n\nData discovery application\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC\n\n\n\nData visualization"
   },
   {
     "objectID": "FinalReport.html#performance-of-multi-format-data-visualization",
@@ -242,14 +242,14 @@
     "href": "index.html#baseline-scenario",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Baseline scenario",
-    "text": "Baseline scenario\n\nCurrent workflow\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\n\n\nThematic Content Analysis\nWhen asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:\n\nUncertainty and Dependency on Colleagues\nMultiple sources and locations of Data\nData specificity and familiarity\nUse of specific Tools and methods\n\nRefined themes\nThe major pitfalls found on the process of data discovery in the company could be summarized in:\n\nHigh dependency on colleagues.\nDisorganized structure of Google Storage Buckets.\nExperienced study subjects would find the data location faster.\nData discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).\nNot intuitive naming of repositories.\nNot one place where all existing data can be found.\nBig need on going towards a SKI, that is able to provide datasets based on questions like the ones on the questionnaire"
+    "text": "Baseline scenario\n\nCurrent workflow\nThe main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on Figure 3 and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.\n\n\n\n\n\n\nFigure 3: Baseline workflow\n\n\n\n\n\nThematic Content Analysis\nWhen asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:\n\nThere is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.\nMultiple sources and locations of data.\nData familiarity helps users locate data quicker.\nUse of specific tools and methods for different datasets.\n\nAfter some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:\n\nHigh dependency on colleagues.\nDisorganized structure of Google Storage Buckets.\nData familiarity helps users locate data quicker.\nData location is dependent on recurrent work with a specific dataset.\nNot intuitive naming of repositories (e.g. Blockchain for supply chain data, internet for compliance data, etc.).\nNot one place where all existing data can be found.\n\nAll of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire."
   },
   {
     "objectID": "index.html#service-integration",
     "href": "index.html#service-integration",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Service integration",
-    "text": "Service integration\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC"
+    "text": "Service integration\n\nData discovery application\nThe web application can be accessed in eoapi.satelligence.com/browser.\n\nData discovery improvement\nFlowchart with STAC\n\n\n\nData visualization"
   },
   {
     "objectID": "index.html#performance-of-multi-format-data-visualization",
