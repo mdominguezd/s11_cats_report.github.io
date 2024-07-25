@@ -78,7 +78,10 @@ cmap_picked = []
 # Forest baseline or greens_r
 cmap = ["_name=greens&rescale=0,70","_name=greens_r&rescale=0,70",
         "_name=blues&rescale=0,90", "_name=blues_r&rescale=0,90",
-        "_name=reds&rescale=0,80", "_name=reds_r&rescale=0,80"]
+        "_name=reds&rescale=0,80", "_name=reds_r&rescale=0,80",
+        "_name=gray&rescale=0,70","_name=gray_r&rescale=0,70",
+        "_name=jet&rescale=0,90", "_name=jet_r&rescale=0,90",
+        "_name=hot&rescale=0,80", "_name=hot_r&rescale=0,80"]
 
 for i in range(len(cmap)):
 
@@ -86,17 +89,16 @@ for i in range(len(cmap)):
     k = i
 
     for tile in mod_tiles:
-
-        url_zarr = f"http://localhost:8084/tiles/WebMercatorQuad/"+\
-        "{tile}%401x?url=gs://s11-tiles/zarr/separate&"+\
+        url_zarr = "http://localhost:8080/tiles/WebMercatorQuad/"+\
+        f"{tile}%401x?url=gs://s11-tiles/zarr/separate&"+\
         "variable=band_data&reference=false&decode_times=true&"+\
-        "consolidated=true&colormap{cmap[k]}&return_mask=true"
+        f"consolidated=true&colormap{cmap[k]}&return_mask=true"
 
         url_cog = f"http://localhost:8082/collections/"+\
-        "Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"+\
-        "WebMercatorQuad/{tile}%401x?bidx=1&assets=data&"+\
+        f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"+\
+        f"WebMercatorQuad/{tile}%401x?bidx=1&assets=data&"+\
         "unscale=false&resampling=nearest&reproject=nearest&"+\
-        "colormap{cmap[k]}&return_mask=true"
+        f"colormap{cmap[k]}&return_mask=true"
 
         x = requests.get(url_zarr)
         times_zarr.append(x.elapsed.total_seconds())

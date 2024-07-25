@@ -1100,6 +1100,8 @@ questions like the ones on the questionnaire.
 
 \section{Service integration}\label{service-integration}
 
+esults this is the deployment and it connects with these other services.
+
 \subsection{Data discovery
 application}\label{data-discovery-application}
 
@@ -1121,7 +1123,7 @@ visualization}\label{performance-of-multi-format-data-visualization}
 The comparison of visualization speeds with TiTiler-xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented on
 Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
-tiles are requested 2.38 times faster than the same file in ZARR format.
+tiles are requested 2.53 times faster than the same file in ZARR format.
 
 \begin{figure}[H]
 
@@ -1141,7 +1143,7 @@ and zoom level}
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
 have an effect on the time spent requesting and getting a tile from a
 tile server. In this study, it was found that the request times
-decreased by a factor of -0.013 and -0.005 per zoom level for COGs and
+decreased by a factor of -0.01 and 0.002 per zoom level for COGs and
 ZARRs respectively.
 
 \begin{figure}[H]
@@ -1390,7 +1392,10 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \CommentTok{\# Forest baseline or greens\_r}
 \NormalTok{cmap }\OperatorTok{=}\NormalTok{ [}\StringTok{"\_name=greens\&rescale=0,70"}\NormalTok{,}\StringTok{"\_name=greens\_r\&rescale=0,70"}\NormalTok{,}
         \StringTok{"\_name=blues\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=blues\_r\&rescale=0,90"}\NormalTok{,}
-        \StringTok{"\_name=reds\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=reds\_r\&rescale=0,80"}\NormalTok{]}
+        \StringTok{"\_name=reds\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=reds\_r\&rescale=0,80"}\NormalTok{,}
+        \StringTok{"\_name=gray\&rescale=0,70"}\NormalTok{,}\StringTok{"\_name=gray\_r\&rescale=0,70"}\NormalTok{,}
+        \StringTok{"\_name=jet\&rescale=0,90"}\NormalTok{, }\StringTok{"\_name=jet\_r\&rescale=0,90"}\NormalTok{,}
+        \StringTok{"\_name=hot\&rescale=0,80"}\NormalTok{, }\StringTok{"\_name=hot\_r\&rescale=0,80"}\NormalTok{]}
 
 \ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \BuiltInTok{range}\NormalTok{(}\BuiltInTok{len}\NormalTok{(cmap)):}
 
@@ -1398,17 +1403,16 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \NormalTok{    k }\OperatorTok{=}\NormalTok{ i}
 
     \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
-
-\NormalTok{        url\_zarr }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8084/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
-        \StringTok{"}\SpecialCharTok{\{tile\}\%401x}\StringTok{?url=gs://s11{-}tiles/zarr/separate\&"}\OperatorTok{+\textbackslash{}}
+\NormalTok{        url\_zarr }\OperatorTok{=} \StringTok{"http://localhost:8080/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
+        \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?url=gs://s11{-}tiles/zarr/separate\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"variable=band\_data\&reference=false\&decode\_times=true\&"}\OperatorTok{+\textbackslash{}}
-        \StringTok{"consolidated=true\&colormap}\SpecialCharTok{\{cmap[k]\}}\StringTok{\&return\_mask=true"}
+        \SpecialStringTok{f"consolidated=true\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
 
 \NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8082/collections/"}\OperatorTok{+\textbackslash{}}
-        \StringTok{"Example}\SpecialCharTok{\%20F}\StringTok{BL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/"}\OperatorTok{+\textbackslash{}}
-        \StringTok{"WebMercatorQuad/}\SpecialCharTok{\{tile\}\%401x}\StringTok{?bidx=1\&assets=data\&"}\OperatorTok{+\textbackslash{}}
+        \SpecialStringTok{f"Example\%20FBL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/"}\OperatorTok{+\textbackslash{}}
+        \SpecialStringTok{f"WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?bidx=1\&assets=data\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"unscale=false\&resampling=nearest\&reproject=nearest\&"}\OperatorTok{+\textbackslash{}}
-        \StringTok{"colormap}\SpecialCharTok{\{cmap[k]\}}\StringTok{\&return\_mask=true"}
+        \SpecialStringTok{f"colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
 
 \NormalTok{        x }\OperatorTok{=}\NormalTok{ requests.get(url\_zarr)}
 \NormalTok{        times\_zarr.append(x.elapsed.total\_seconds())}

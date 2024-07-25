@@ -28,6 +28,8 @@ All of these pitfalls underscore the need of going towards a Spatial Knowledge I
 
 ## Service integration
 
+esults this is the deployment and it connects with these other services. 
+
 ### Data discovery application
 
 The web application can be accessed in [eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser/?.language=en). 
