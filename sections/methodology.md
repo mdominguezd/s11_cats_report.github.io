@@ -16,19 +16,18 @@ To efficiently integrate tools for big geo-spatial data discovery and visualizat
 
 ### Dataset selection
 
-Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were also included. Specifically, S11's long term goal is to store in the catalog datasets that can be classified as follows:
+Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were included. Specifically, S11's long term goal is to store in the catalog datasets that can be classified as follows:
 
 -   Static raster data
     -   Forest baselines (Stored as COGs)
-    -   Third-party elevation data (Stored as VRTs)
-    -   Other static data
+    -   Third-party data (Stored as VRTs, Tiffs, or other formats)
 -   DPROF results
     -   Results of continuous deforestation monitoring (Stored as ZARRs)
     -   Other DPROF results
 -   Supply chain data (Vector data)
 -   Complaince data (Vector data)
 
-Nevertheless, the scope of this internship was limited to raster datasets. Therefore, the creation of the catalog was done using a limited a mount of raster layers and they were incorporated as a proof of concept of how the catalog could be created.
+Nevertheless, the scope of this internship was limited to raster datasets. Therefore, the creation of the catalog was done using a limited amount of raster layers and they were incorporated as a proof of concept of how the catalog could be created.
 
 ### Proposed Catalog structure
 
@@ -56,15 +55,15 @@ As observed, the code in the repository requires a dictionary containing collect
 
 ### eoAPI + other services
 
-Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging [eoAPI](https://eoapi.dev/). [eoAPI](https://eoapi.dev/) is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See [PgSTAC](https://github.com/stac-utils/pgstac)), creating a dynamic catalog that can query the Postgres database (See [STAC API](https://github.com/stac-utils/stac-fastapi)) and two additional services for visualizing raster (See [Titiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac)) and vector data (See [TiPg](https://github.com/developmentseed/tipg)).
+Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging [eoAPI](https://eoapi.dev/) [@sarago_developmentseedeoapi_2024]. [eoAPI](https://eoapi.dev/) is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See [PgSTAC](https://github.com/stac-utils/pgstac)), creating a dynamic catalog that can query the Postgres database (See [STAC API](https://github.com/stac-utils/stac-fastapi)) and two additional services for visualizing raster (See [Titiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac)) and vector data (See [TiPg](https://github.com/developmentseed/tipg)).
 
-[eoAPI](https://eoapi.dev/) integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Kubernetes (K8). K8 is an open-source platform designed for automating the deployment, scaling, and management of containerized applications [@poulton_kubernetes_2023]. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.
+[eoAPI](https://eoapi.dev/) integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Google Kubernetes Engine (GKE). Kubernetes is an open-source platform designed for automating the deployment, scaling, and management of containerized applications [@poulton_kubernetes_2023]. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.
 
 Since the current version of [eoAPI](https://eoapi.dev/) does not include some extra services that were necessary to deploy, a separate containerized version of these services was deployed in the same K8 cluster. Notably, a version of [STAC Browser](https://github.com/radiantearth/stac-browser) and [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) to browse the catalog created and visualize Zarr datasets respectively.
 
 ### CI/CD pipeline
 
-Finally, a gitlab CI/CD pipeline was created automate the creation of the catalog using the s11-cats repository, the deployment of the eoAPI and extra services and the ingestion of the catalog into the deployed version of the catalog.
+Finally, a gitlab CI/CD pipeline was created to automate the creation of the catalog using the [s11-cats repository](https://gitlab.com/satelligence/s11-cats), the deployment of eoAPI and extra services and the ingestion of the catalog into the deployed version of the dynamic catalog.
 
 ### Comparison with baseline scenario
 
@@ -72,7 +71,7 @@ Once a version of all of the services integrated was deployed online, the ease o
 
 ## Multi-format data visualization
 
-To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) (for Zarr files) and [TiTiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac) (for COG files) were deployed locally. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.
+To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both [TiTiler-Xarray](https://github.com/developmentseed/titiler-xarray) (for Zarr files) and [TiTiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac) (for COG files) were deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.
 
 ### Speed up
 

@@ -89,12 +89,12 @@ for i in range(len(cmap)):
     k = i
 
     for tile in mod_tiles:
-        url_zarr = "http://localhost:8080/tiles/WebMercatorQuad/"+\
+        url_zarr = "https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/"+\
         f"{tile}%401x?url=gs://s11-tiles/zarr/separate&"+\
         "variable=band_data&reference=false&decode_times=true&"+\
         f"consolidated=true&colormap{cmap[k]}&return_mask=true"
 
-        url_cog = f"http://localhost:8082/collections/"+\
+        url_cog = f"https://eoapi.satelligence.com/raster/collections/"+\
         f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"+\
         f"WebMercatorQuad/{tile}%401x?bidx=1&assets=data&"+\
         "unscale=false&resampling=nearest&reproject=nearest&"+\
@@ -113,5 +113,5 @@ for i in range(len(cmap)):
 data = pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T
 data.columns = ['colormap','zoom level','COG', 'ZARR']
 
-data.to_csv('request_time_results_6iter.csv')
+data.to_csv('request_time_results_6iter_k8.csv')
 ```

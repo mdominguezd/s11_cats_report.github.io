@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -140,27 +111,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#sec-baseline" id="toc-sec-baseline" class="nav-link active" data-scroll-target="#sec-baseline">Baseline scenario</a></li>
-  <li><a href="#data-and-service-integration" id="toc-data-and-service-integration" class="nav-link" data-scroll-target="#data-and-service-integration">Data and service integration</a>
-  <ul class="collapse">
-  <li><a href="#dataset-selection" id="toc-dataset-selection" class="nav-link" data-scroll-target="#dataset-selection">Dataset selection</a></li>
-  <li><a href="#proposed-catalog-structure" id="toc-proposed-catalog-structure" class="nav-link" data-scroll-target="#proposed-catalog-structure">Proposed Catalog structure</a></li>
-  <li><a href="#s11-cats-repository" id="toc-s11-cats-repository" class="nav-link" data-scroll-target="#s11-cats-repository">S11-cats repository</a></li>
-  <li><a href="#eoapi-other-services" id="toc-eoapi-other-services" class="nav-link" data-scroll-target="#eoapi-other-services">eoAPI + other services</a></li>
-  <li><a href="#cicd-pipeline" id="toc-cicd-pipeline" class="nav-link" data-scroll-target="#cicd-pipeline">CI/CD pipeline</a></li>
-  <li><a href="#comparison-with-baseline-scenario" id="toc-comparison-with-baseline-scenario" class="nav-link" data-scroll-target="#comparison-with-baseline-scenario">Comparison with baseline scenario</a></li>
-  </ul></li>
-  <li><a href="#multi-format-data-visualization" id="toc-multi-format-data-visualization" class="nav-link" data-scroll-target="#multi-format-data-visualization">Multi-format data visualization</a>
-  <ul class="collapse">
-  <li><a href="#speed-up" id="toc-speed-up" class="nav-link" data-scroll-target="#speed-up">Speed up</a></li>
-  <li><a href="#zoom-level-influence" id="toc-zoom-level-influence" class="nav-link" data-scroll-target="#zoom-level-influence">Zoom level influence</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -168,140 +119,8 @@ window.Quarto = {
 
 
 
-<p>To answer the research questions presented a series of tasks were undertaken. These tasks are presented in the following subsections where they are divided by research question.</p>
-<section id="sec-baseline" class="level2">
-<h2 class="anchored" data-anchor-id="sec-baseline">Baseline scenario</h2>
-<p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
-<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <strong>?@sec-baseline-q</strong> and were meant to be open questions with multiple possible answers.</p>
-<p>Furthermore, based on the answers of the interviewees a flowchart was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
-<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">[@anderson_thematic_2007]</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 <span class="citation" data-cites="openai_chatgpt_2023">[@openai_chatgpt_2023]</span>) using the prompt presented on <strong>?@sec-gpt-prompt</strong>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
-</section>
-<section id="data-and-service-integration" class="level2">
-<h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
-<p>To efficiently integrate tools for big geo-spatial data discovery and visualization, a series of steps had to be followed. Initially, the datasets were selected. Subsequently, the structure of the catalog was defined. Following this, a Git repository containing the code required to generate the catalog was created. Static JSON files were then utilized to construct a dynamic STAC API. Ultimately, this API was deployed alongside other services using a continuous integration (CI) and continuous deployment (CD) pipeline. A further explanation of each step is presented in the following subsections.</p>
-<section id="dataset-selection" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-selection">Dataset selection</h3>
-<p>Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were also included. Specifically, S11’s long term goal is to store in the catalog datasets that can be classified as follows:</p>
-<ul>
-<li>Static raster data
-<ul>
-<li>Forest baselines (Stored as COGs)</li>
-<li>Third-party elevation data (Stored as VRTs)</li>
-<li>Other static data</li>
-</ul></li>
-<li>DPROF results
-<ul>
-<li>Results of continuous deforestation monitoring (Stored as ZARRs)</li>
-<li>Other DPROF results</li>
-</ul></li>
-<li>Supply chain data (Vector data)</li>
-<li>Complaince data (Vector data)</li>
-</ul>
-<p>Nevertheless, the scope of this internship was limited to raster datasets. Therefore, the creation of the catalog was done using a limited a mount of raster layers and they were incorporated as a proof of concept of how the catalog could be created.</p>
-</section>
-<section id="proposed-catalog-structure" class="level3">
-<h3 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h3>
-<p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>. In it, a selection of datasets that should be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. This structure was not followed in the creation of the proof-of-concept catalog, as the purpose of this catalog was only to demonstrate the process of creating it. The final version of the structure will be determined by the company.</p>
-<div id="fig-stac-str" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/STAC_Satelligence_structure.png" class="img-fluid figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Proposed STAC structure
-</figcaption>
-</figure>
-</div>
-</section>
-<section id="s11-cats-repository" class="level3">
-<h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
-<p>The <a href="https://gitlab.com/satelligence/s11-cats">s11-cats repository</a> created is composed of a module named <code>cats</code> which consists of five submodules described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;1</a>. Moreover, an overview of the main workflow followed in the main function of s11-cats is presented on <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<div id="tbl-cats-modules" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Description of cats submodules
-</figcaption>
-<div aria-describedby="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
-<colgroup>
-<col style="width: 47%">
-<col style="width: 52%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Submodule</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>gcs_tools</em></td>
-<td>Module with functions to interact with data stored at Google Cloud Storage</td>
-</tr>
-<tr class="even">
-<td><em>general_metadata</em></td>
-<td>Module to extract general metadata for a STAC item.</td>
-</tr>
-<tr class="odd">
-<td><em>get_spatial_info</em></td>
-<td>Module to get all spatial information from assets.</td>
-</tr>
-<tr class="even">
-<td><em>get_temporal_info</em></td>
-<td>Module with functions to extract temporal metadata of a dataset.</td>
-</tr>
-<tr class="odd">
-<td><em>stac_tools</em></td>
-<td>Module with the functions to initialize a STAC, add collections, items and assets to it.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<div id="fig-s11-cats" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/s11-cats.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: S11- cats main function
-</figcaption>
-</figure>
-</div>
-<p>As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections’ information and the other storing the items’ information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.</p>
-</section>
-<section id="eoapi-other-services" class="level3">
-<h3 class="anchored" data-anchor-id="eoapi-other-services">eoAPI + other services</h3>
-<p>Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging <a href="https://eoapi.dev/">eoAPI</a>. <a href="https://eoapi.dev/">eoAPI</a> is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See <a href="https://github.com/stac-utils/pgstac">PgSTAC</a>), creating a dynamic catalog that can query the Postgres database (See <a href="https://github.com/stac-utils/stac-fastapi">STAC API</a>) and two additional services for visualizing raster (See <a href="https://github.com/stac-utils/titiler-pgstac">Titiler-PgSTAC</a>) and vector data (See <a href="https://github.com/developmentseed/tipg">TiPg</a>).</p>
-<p><a href="https://eoapi.dev/">eoAPI</a> integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Kubernetes (K8). K8 is an open-source platform designed for automating the deployment, scaling, and management of containerized applications <span class="citation" data-cites="poulton_kubernetes_2023">[@poulton_kubernetes_2023]</span>. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.</p>
-<p>Since the current version of <a href="https://eoapi.dev/">eoAPI</a> does not include some extra services that were necessary to deploy, a separate containerized version of these services was deployed in the same K8 cluster. Notably, a version of <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> and <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> to browse the catalog created and visualize Zarr datasets respectively.</p>
-</section>
-<section id="cicd-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="cicd-pipeline">CI/CD pipeline</h3>
-<p>Finally, a gitlab CI/CD pipeline was created automate the creation of the catalog using the s11-cats repository, the deployment of the eoAPI and extra services and the ingestion of the catalog into the deployed version of the catalog.</p>
-</section>
-<section id="comparison-with-baseline-scenario" class="level3">
-<h3 class="anchored" data-anchor-id="comparison-with-baseline-scenario">Comparison with baseline scenario</h3>
-<p>Once a version of all of the services integrated was deployed online, the ease of discovery and visualization was again qualitatively analyzed by evaluating the steps processed for both finding and visualizing S11 data. These steps were then represented in a flowchart that could be compared to the one created on <a href="#sec-baseline" class="quarto-xref">Section&nbsp;1</a>.</p>
-</section>
-</section>
-<section id="multi-format-data-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
-<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed locally. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of six colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
-<section id="speed-up" class="level3">
-<h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
-<p>The performance of both TiTiler services to dynamically create tiles for the different data formats was evaluated using the Speed Up metric proposed in <span class="citation" data-cites="durbha_advances_2023">@durbha_advances_2023</span> (<a href="#eq-speed-up" class="quarto-xref">Equation&nbsp;1</a>). In this case, the Speed Up explains how much did the process of requesting tiles sped up by using a data format A compared to using a data format B.</p>
-<p><span id="eq-speed-up"><span class="math display">\[ SpeedUp = \frac{t_{format A}}{t_{format B}}  \tag{1}\]</span></span></p>
-</section>
-<section id="zoom-level-influence" class="level3">
-<h3 class="anchored" data-anchor-id="zoom-level-influence">Zoom level influence</h3>
-<p>Finally, the effect of the level of zoom in a web map visualization on the response times of requesting tiles from the different tiling services was evaluated by fitting an Ordinary Least Squares (OLS) univariate linear regression that followed <a href="#eq-lin-reg" class="quarto-xref">Equation&nbsp;2</a>.</p>
-<p><span id="eq-lin-reg"><span class="math display">\[ ResponseTime = \beta_1 \cdot ZoomLevel + \beta_0 + \epsilon  \tag{2}\]</span></span></p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

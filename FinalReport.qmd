@@ -51,13 +51,13 @@ format:
 
 {{< include sections/methodology.md >}}
 
-# Results
+# Results & Discussion
 
 {{< include sections/results.qmd >}}
 
-# Discussion
+<!-- # Discussion
 
-{{< include sections/discussion.md >}}
+{{< include sections/discussion.md >}} -->
 
 # Future work
 

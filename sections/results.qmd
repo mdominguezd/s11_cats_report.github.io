@@ -2,43 +2,71 @@
 
 ### Current workflow
 
-The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.
+One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.
 
 ![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
+
+According to @fig-baseline, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset's location added significant uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.
 
 ### Thematic Content Analysis
 
 When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:
 
-- There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.
-- Multiple sources and locations of data.
-- Data familiarity helps users locate data quicker.
-- Use of specific tools and methods for different datasets.
+-   There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.
+-   Multiple sources and locations of data.
+-   Data familiarity helps users locate data quicker.
+-   Use of specific tools and methods for different datasets.
 
-After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:
+After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery and visualization in the company were summarized as follows:
 
--   High dependency on colleagues.
+-   High dependency on colleagues for dataset location.
 -   Disorganized structure of Google Storage Buckets.
 -   Data familiarity helps users locate data quicker.
 -   Data location is dependent on recurrent work with a specific dataset.
--   Not intuitive naming of repositories (e.g. Blockchain for supply chain data, internet for compliance data, etc.).
+-   Not intuitive naming of repositories with datasets.
+-   Understanding of diverse tools to access different data is currently necessary.
+-   Download of data is required in most cases to visualize it.
 -   Not one place where all existing data can be found.
 
-All of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire. 
+All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.
+
+All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. Addressing these challenges, a streamlined approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
 
 ## Service integration
 
-esults this is the deployment and it connects with these other services. 
+The integration of the services deployed resulted in a version of STAC Browser including three different collections containing datasets related to the forest baseline created by the company, elevation data from third party organizations and a collection for the comparison of COG and Zarr data. The web application can be accessed in [https://eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser/?.language=en).
 
-### Data discovery application
+### Effective integration
 
-The web application can be accessed in [eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser/?.language=en). 
+The effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.
 
-#### Data discovery improvement
+#### Data formats {.unnumbered}
 
-Flowchart with STAC
+An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting Cloud Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs [@lynnes_cloud_2020]. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process [@Barciauskas_NextGen_2024].
 
-### Data visualization
+#### Leverage of APIs {.unnumbered}
+
+To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API possibilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.
+
+For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized. 
+
+#### Deployment {.unnumbered}
+
+Additional to the simplification that eoAPI provided to deploy this using K8s, we also went for that option because it had already been tested by other authors using large datasets and heavy load requests [@munteanu_performance_2024]. @munteanu_performance_2024 perform tests with 2.3 TB of spatial data stored in S3 and a simulated simultaneous load of up to 7k users and their results showed good performance serving the data. (REVIEW)
+
+Also the fact that it integrates other services that we are not using, but would come very handy in the near future for satelligence.
+
+Compare with other ways in which this could have been done? Virtual Machine (Compute Engine)
+
+discussion: - Vector visualization can be done in the future. - Authentication - stac extensions.
+
+### Workflow improvement
+
+Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on @fig-new-workflow. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.
+
+![New data discovery and visualization workflow](img/New_data_discovery_workflow.png){#fig-new-workflow width="100%"}
+
+Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Moreover, the dynamic catalog created can be integrated with other commonly used tools like QGIS via the STAC API plugin. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows.
 
 ## Performance of multi-format data visualization
 
@@ -49,7 +77,7 @@ Flowchart with STAC
 
 import pandas as pd
 
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
+data = pd.read_csv('sections/request_time_results_6iter.csv')
 
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
@@ -65,7 +93,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff0000'])
+s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff4100'])
 background_color = '#180066'
 text_color = 'white'
 
@@ -86,13 +114,19 @@ a = ax.set_xlabel('Data format')
 
 ```
 
+#### Fine tuning of dataset creation
+
+There are some GDAL parameters that can improve the tiling performance of TiTiler (See [performnce_tuning](https://developmentseed.org/titiler/advanced/performance_tuning/)). This should be taken into account in future dataset creation
+
+Also how well
+
 ### Effects of zoom level
 
 ```{python}
 #| echo: false
 
 import statsmodels.api as sm
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
+data = pd.read_csv('sections/request_time_results_6iter.csv')
 
 
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
@@ -102,7 +136,7 @@ fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
 zarr_slope = float(round(fit_results.params['zoom level'], 3))
 ```
 
-As seen on @fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of `{python} cog_slope` and `{python} zarr_slope` per zoom level for COGs and ZARRs respectively.
+As seen on @fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by `{python} cog_slope` and `{python} zarr_slope` seconds per zoom level for COGs and ZARRs respectively.
 
 ```{python}
 #| echo: false
@@ -118,3 +152,8 @@ a = plt.legend()
 # a= sns.despine(trim = True, offset = -10, ax = ax)
 ```
 
+#### Discussion
+
+Range request of tiles in titiler-xarray is customized in a particular way. Nevertheless, other alternatives exist...
+
+Check on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)

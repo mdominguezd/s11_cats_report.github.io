@@ -629,10 +629,10 @@ Static catalogs are pre-generated and stored as static JSON files on a
 cloud storage. Static catalogs follow sensible hierarchical
 relationships between STAC components and this feature makes it easy to
 be browsed and/or crawled by. Nevertheless, these catalogs cannot be
-queried. On the other hand, dynamic catalogs are generated as APIs that
-respond to queries dynamically. Notably, dynamic catalogs will show
-different views of the same catalog depending on queries which usually
-focus on the spatio-temporal aspect of the data
+queried. On the other hand, dynamic catalogs are generated as
+applications that respond to queries dynamically. Notably, dynamic
+catalogs will show different views of the same catalog depending on
+queries which usually focus on the spatio-temporal aspect of the data
 (\citeproc{ref-noauthor_stac-specbest-practicesmd_nodate}{RadiantEarth,
 2024}).
 
@@ -671,13 +671,14 @@ contain child catalogs. \\
 In the specific case of dynamic catalogs, the concept of
 \href{https://github.com/radiantearth/stac-api-spec/}{STAC API} is
 widely used. In general, an API is a set of rules and protocols that
-enables different software applications to communicate with each other.
-In the case of the STAC API, it provides endpoints for searching and
-retrieving geo-spatial data based on criteria such as location and time,
-delivering results in a standardized format that ensures compatibility
-with various tools and services in the geo-spatial community. Moreover,
-even though STAC API is not an OGC standard or an OGC community
-standard, the basic requests performed in a STAC API adheres to the
+enables different software applications to communicate with each other
+(\citeproc{ref-clark_api_2020}{Clark, 2020}). In the case of the STAC
+API, it provides endpoints for searching and retrieving geo-spatial data
+based on criteria such as location and time, delivering results in a
+standardized format that ensures compatibility with various tools and
+services in the geo-spatial community. Moreover, even though STAC API is
+not an OGC standard or an OGC community standard, the basic requests
+performed in a STAC API adheres to the
 \href{https://ogcapi.ogc.org/features/}{OGC API-Features} standards for
 querying by bounding box and time range, returning GeoJSON-formatted
 results that conform to both STAC and OGC specifications. Ultimately,
@@ -709,13 +710,26 @@ formats are more easily transferred through the web.
 
 TiTiler supports various data structures including STAC (SpatioTemporal
 Asset Catalog), Cloud Optimized GeoTIFFs (COGs), and is currently
-working on adding support for Zarrs. For the first two the
+working on adding support for Zarrs. For the first two, the
 \href{https://github.com/stac-utils/titiler-pgstac}{TiTiler PgSTAC}
 specialized extension integrates with PostgreSQL to enhance STAC catalog
 querying capabilities. For the case of Zarrs, the
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
-extension is being developed to facilitate the handling of
+extension is being developed to facilitate the visualization of
 multidimensional data arrays.
+
+\subsubsection*{Cloud services}\label{cloud-services}
+\addcontentsline{toc}{subsubsection}{Cloud services}
+
+Cloud services facilitate the seamless integration of multiple services,
+such as the data visualization interfaces and data discovery services
+described before. Nevertheless, there is not a one fit all cloud
+solution that will always work efficiently. For instance, different
+cloud providers like Amazon Web Services or Google Cloud Platform (GCP)
+offer different tools that may offer different performances based on
+parameters like latency or scalability. Choosing the correct cloud
+service or set of services for the integration of data discovery and
+data visualization tools remains paramount.
 
 \subsection{Added value of this
 research}\label{added-value-of-this-research}
@@ -742,7 +756,7 @@ dynamic tiling for various cloud-optimized data formats.
   enhance the process and experiences of discovering big spatial data
   within the company?
 \item
-  To what extent do dynamic tiling services can perform in visualizing
+  To what extent do dynamic tiling services perform in visualizing
   different cloud-optimized data formats?
 \end{itemize}
 
@@ -806,7 +820,7 @@ Due to the desire of the company to continue moving towards a
 cloud-based workflow. The datasets that were considered for the catalog,
 were composed of either COGs or Zarrs. Nevertheless, since some of the
 data in the company is stored as virtual rasters (VRTs), methods to also
-index this type of data formats in the STAC catalog were also included.
+index this type of data formats in the STAC catalog were included.
 Specifically, S11's long term goal is to store in the catalog datasets
 that can be classified as follows:
 
@@ -820,9 +834,7 @@ that can be classified as follows:
   \item
     Forest baselines (Stored as COGs)
   \item
-    Third-party elevation data (Stored as VRTs)
-  \item
-    Other static data
+    Third-party data (Stored as VRTs, Tiffs, or other formats)
   \end{itemize}
 \item
   DPROF results
@@ -842,8 +854,8 @@ that can be classified as follows:
 
 Nevertheless, the scope of this internship was limited to raster
 datasets. Therefore, the creation of the catalog was done using a
-limited a mount of raster layers and they were incorporated as a proof
-of concept of how the catalog could be created.
+limited amount of raster layers and they were incorporated as a proof of
+concept of how the catalog could be created.
 
 \subsection{Proposed Catalog
 structure}\label{proposed-catalog-structure}
@@ -935,10 +947,12 @@ created to the dynamic catalog that is desired.
 
 Once a static catalog has been created, the next step involves
 developing the dynamic catalog by leveraging
-\href{https://eoapi.dev/}{eoAPI}. \href{https://eoapi.dev/}{eoAPI} is a
-robust tool designed for managing, discovering and visualizing Earth
-observation data. It integrates several services that include indexing
-of large STAC collections and items using a Postgres database (See
+\href{https://eoapi.dev/}{eoAPI}
+(\citeproc{ref-sarago_developmentseedeoapi_2024}{Sarago et al., 2024}).
+\href{https://eoapi.dev/}{eoAPI} is a robust tool designed for managing,
+discovering and visualizing Earth observation data. It integrates
+several services that include indexing of large STAC collections and
+items using a Postgres database (See
 \href{https://github.com/stac-utils/pgstac}{PgSTAC}), creating a dynamic
 catalog that can query the Postgres database (See
 \href{https://github.com/stac-utils/stac-fastapi}{STAC API}) and two
@@ -951,13 +965,13 @@ using containerized versions that are able to communicate seamlessly
 with each other. A container is a lightweight, standalone, and
 executable package of software that includes everything needed to run an
 application. Containerizing the services facilitates deployment to the
-cloud using Kubernetes (K8). K8 is an open-source platform designed for
-automating the deployment, scaling, and management of containerized
-applications (\citeproc{ref-poulton_kubernetes_2023}{Poulton, 2023}). It
-offers various advantages, such as scalability, efficient resource
-utilization, and simplified maintenance, making it an ideal solution for
-managing the dynamic catalog and the integrated services in a cloud
-environment.
+cloud using Google Kubernetes Engine (GKE). Kubernetes is an open-source
+platform designed for automating the deployment, scaling, and management
+of containerized applications
+(\citeproc{ref-poulton_kubernetes_2023}{Poulton, 2023}). It offers
+various advantages, such as scalability, efficient resource utilization,
+and simplified maintenance, making it an ideal solution for managing the
+dynamic catalog and the integrated services in a cloud environment.
 
 Since the current version of \href{https://eoapi.dev/}{eoAPI} does not
 include some extra services that were necessary to deploy, a separate
@@ -969,10 +983,11 @@ to browse the catalog created and visualize Zarr datasets respectively.
 
 \subsection{CI/CD pipeline}\label{cicd-pipeline}
 
-Finally, a gitlab CI/CD pipeline was created automate the creation of
-the catalog using the s11-cats repository, the deployment of the eoAPI
-and extra services and the ingestion of the catalog into the deployed
-version of the catalog.
+Finally, a gitlab CI/CD pipeline was created to automate the creation of
+the catalog using the
+\href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository},
+the deployment of eoAPI and extra services and the ingestion of the
+catalog into the deployed version of the dynamic catalog.
 
 \subsection{Comparison with baseline
 scenario}\label{comparison-with-baseline-scenario}
@@ -1001,13 +1016,13 @@ versions of both
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 (for Zarr files) and
 \href{https://github.com/stac-utils/titiler-pgstac}{TiTiler-PgSTAC} (for
-COG files) were deployed locally. The performance was measured by
-recording the response times for random tile requests at zoom levels
-ranging from 9 to 18. Finally, to mitigate the influence of cached data
-on response times, each iteration used a different colormap, with a
-total of six colormaps employed. This methodology enabled a systematic
-evaluation of the performance differences between the two data formats
-in a geo-spatial data visualization context.
+COG files) were deployed. The performance was measured by recording the
+response times for random tile requests at zoom levels ranging from 9 to
+18. Finally, to mitigate the influence of cached data on response times,
+each iteration used a different colormap, with a total of twelve
+colormaps employed. This methodology enabled a systematic evaluation of
+the performance differences between the two data formats in a
+geo-spatial data visualization context.
 
 \subsection{Speed up}\label{speed-up}
 
@@ -1029,19 +1044,18 @@ univariate linear regression that followed Equation~\ref{eq-lin-reg}.
 
 \begin{equation}\phantomsection\label{eq-lin-reg}{ ResponseTime = \beta_1 \cdot ZoomLevel + \beta_0 + \epsilon }\end{equation}
 
-\chapter{Results}\label{results}
+\chapter{Results \& Discussion}\label{results-discussion}
 
 \section{Baseline scenario}\label{baseline-scenario}
 
 \subsection{Current workflow}\label{current-workflow}
 
-The main finding of the interviews were the steps followed currently to
-discover, retrieve and visualize data. These steps are summarized on
-Figure~\ref{fig-baseline} and show how complex and time consuming the
-process of discovering and visualizing spatial data can be for a
-Satelligence employee nowadays. Moreover, the steps followed were
-categorized in four classes depending on how much time is generally
-spent carrying out.
+One of the main findings of the interviews was the process followed
+currently to discover, retrieve and visualize data. These steps are
+summarized on Figure~\ref{fig-baseline} and show how complex and time
+consuming these tasks can be for a Satelligence employee nowadays.
+Moreover, the steps followed were categorized in four classes depending
+on how much time is generally spent carrying it out.
 
 \begin{figure}[H]
 
@@ -1054,6 +1068,13 @@ spent carrying out.
 \caption{\label{fig-baseline}Baseline workflow}
 
 \end{figure}%
+
+According to Figure~\ref{fig-baseline}, some of the most time-consuming
+tasks were searching for data on Google Cloud Storage and downloading it
+for visualization. Additionally, seeking advice from colleagues about
+the dataset's location added significant uncertainty to the time
+estimates, as responses varied from very quick to considerably delayed
+or non existent.
 
 \subsection{Thematic Content Analysis}\label{thematic-content-analysis}
 
@@ -1074,13 +1095,13 @@ define the baseline scenario, ChatGPT found four main topics:
 \end{itemize}
 
 After some refinement and a deeper analysis of the interviews, the major
-pitfalls found on the process of data discovery in the company were
-summarized as follows:
+pitfalls found on the process of data discovery and visualization in the
+company were summarized as follows:
 
 \begin{itemize}
 \tightlist
 \item
-  High dependency on colleagues.
+  High dependency on colleagues for dataset location.
 \item
   Disorganized structure of Google Storage Buckets.
 \item
@@ -1088,32 +1109,148 @@ summarized as follows:
 \item
   Data location is dependent on recurrent work with a specific dataset.
 \item
-  Not intuitive naming of repositories (e.g.~Blockchain for supply chain
-  data, internet for compliance data, etc.).
+  Not intuitive naming of repositories with datasets.
+\item
+  Understanding of diverse tools to access different data is currently
+  necessary.
+\item
+  Download of data is required in most cases to visualize it.
 \item
   Not one place where all existing data can be found.
 \end{itemize}
 
-All of these pitfalls underscore the need of going towards a Spatial
-Knowledge Infrastructure, that is able to provide datasets based on
-questions like the ones on the questionnaire.
+All of these pitfalls highlight the need for a simpler data discovery
+implementation, where data visualization can also be integrated
+seamlessly. This approach should allow for easy access to datasets based
+on specific queries.
+
+All of these pitfalls highlight the need for a simpler data discovery
+implementation, where data visualization can also be integrated
+seamlessly. Previous studies have found that key difficulties for earth
+observation data discovery include heterogeneous query interfaces, and
+use of diverse metadata models
+(\citeproc{ref-miranda_espinosa_reviewing_2020}{Miranda Espinosa et al.,
+2020}). Addressing these challenges, a streamlined approach should
+enable easy access to datasets based on specific queries, ensuring that
+users can efficiently locate and utilize the data they need. By
+harmonizing metadata standards and query protocols, the process of data
+discovery can be greatly improved, making it more accessible and
+user-friendly.
 
 \section{Service integration}\label{service-integration}
 
-esults this is the deployment and it connects with these other services.
+The integration of the services deployed resulted in a version of STAC
+Browser including three different collections containing datasets
+related to the forest baseline created by the company, elevation data
+from third party organizations and a collection for the comparison of
+COG and Zarr data. The web application can be accessed in
+\href{https://eoapi.satelligence.com/browser/?.language=en}{https://eoapi.satelligence.com/browser}.
 
-\subsection{Data discovery
-application}\label{data-discovery-application}
+\subsection{Effective integration}\label{effective-integration}
 
-The web application can be accessed in
-\href{https://eoapi.satelligence.com/browser/?.language=en}{eoapi.satelligence.com/browser}.
+The effective integration was not an easy task and involved multiple
+aspects, ranging from editing data formats to facilitate their
+visualization, transitioning from a static to a dynamic catalog,
+customizing APIs, and finalizing with the correct deployment of the
+services.
 
-\subsubsection{Data discovery
-improvement}\label{data-discovery-improvement}
+\subsubsection*{Data formats}\label{data-formats}
+\addcontentsline{toc}{subsubsection}{Data formats}
 
-Flowchart with STAC
+An essential step related to data formats was the edition of Zarr
+datasets to achieve their optimal visualization. This edition involved
+creating a series of overviews of the same dataset at different
+resolutions. Specifically, this was accomplished by converting Cloud
+Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various
+spatial resolutions. These resampled Zarr files, acting as overviews
+enhance visualization by allowing the appropriate resolution to be
+accessed based on the map scale, similar to the approach used when
+visualizing COGs (\citeproc{ref-lynnes_cloud_2020}{Lynnes et al.,
+2020}). Even though the approach followed in this study allowed for
+improved visualization of Zarr files, the creation of Zarr pyramids in a
+more optimized way is still necessary. Other researchers have been
+focusing their efforts on this task to enhance the efficiency and
+effectiveness of the process
+(\citeproc{ref-Barciauskas_NextGen_2024}{Barciauskas et al., 2024}).
 
-\subsection{Data visualization}\label{data-visualization}
+\subsubsection*{Leverage of APIs}\label{leverage-of-apis}
+\addcontentsline{toc}{subsubsection}{Leverage of APIs}
+
+To effectively query the datasets stored in the catalog, a transition
+from a static to a dynamic catalog (i.e.~a STAC API) was needed. This
+shift was facilitated by the deployment of a STAC API within the eoAPI
+framework. The STAC API possibilitated the querying capabilities of the
+datasets stored in the catalog by dynamically requesting datasets based
+on their metadata. This dynamic setup not only facilitated data
+discovery but also enabled the use of additional tools such as the STAC
+API QGIS plugin. The plugin could simplify the process of data discovery
+and its direct manipulation.
+
+For the visualization of Zarr datasets, it was necessary to customize
+the TiTiler-Xarray API to accommodate the new Zarr pyramid structure.
+This customization involved overwriting a series of functions in the
+main code of the application to align with the newly created Zarr
+pyramids. By adapting the API to handle the specific requirements of the
+Zarr format and its multi-resolution overviews, the visualization
+process was optimized.
+
+\subsubsection*{Deployment}\label{deployment}
+\addcontentsline{toc}{subsubsection}{Deployment}
+
+Additional to the simplification that eoAPI provided to deploy this
+using K8s, we also went for that option because it had already been
+tested by other authors using large datasets and heavy load requests
+(\citeproc{ref-munteanu_performance_2024}{Munteanu et al., 2024}).
+Munteanu et al. (\citeproc{ref-munteanu_performance_2024}{2024}) perform
+tests with 2.3 TB of spatial data stored in S3 and a simulated
+simultaneous load of up to 7k users and their results showed good
+performance serving the data. (REVIEW)
+
+Also the fact that it integrates other services that we are not using,
+but would come very handy in the near future for satelligence.
+
+Compare with other ways in which this could have been done? Virtual
+Machine (Compute Engine)
+
+discussion: - Vector visualization can be done in the future. -
+Authentication - stac extensions.
+
+\subsection{Workflow improvement}\label{workflow-improvement}
+
+Once the deployment of eoAPI and the extra services was done, a new
+workflow for both the new data discovery and visualization tasks was
+designed and is presented on Figure~\ref{fig-new-workflow}. This new
+workflow shows a clear improvement on the speed and the ease of use of
+the new methods employed.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\textwidth,height=\textheight]{img/New_data_discovery_workflow.png}
+
+}
+
+\caption{\label{fig-new-workflow}New data discovery and visualization
+workflow}
+
+\end{figure}%
+
+Moreover, it can be seen that with the new implementation most of the
+issues identified on the TCA were addressed. There is no longer a
+dependency on colleagues for locating datasets, as all data is now
+consolidated in one place. The disorganized structure of Google Storage
+Buckets is no longer a concern since the catalog can integrate data
+stored in multiple buckets into a single, cohesive STAC collection. The
+previous issue of non-intuitive naming conventions for data
+repositories, is resolved because it is unnecessary to know the data
+source once it is included in the STAC catalog. Furthermore, there is no
+longer a need to understand diverse tools for accessing different data;
+the STAC Browser facilitates querying collections and visualizing items.
+Moreover, the dynamic catalog created can be integrated with other
+commonly used tools like QGIS via the STAC API plugin. Finally, the STAC
+catalog serves as the centralized location for all data used in S11
+workflows.
 
 \section{Performance of multi-format data
 visualization}\label{performance-of-multi-format-data-visualization}
@@ -1138,13 +1275,23 @@ and zoom level}
 
 \end{figure}%
 
+\subsubsection{Fine tuning of dataset
+creation}\label{fine-tuning-of-dataset-creation}
+
+There are some GDAL parameters that can improve the tiling performance
+of TiTiler (See
+\href{https://developmentseed.org/titiler/advanced/performance_tuning/}{performnce\_tuning}).
+This should be taken into account in future dataset creation
+
+Also how well
+
 \subsection{Effects of zoom level}\label{effects-of-zoom-level}
 
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
 have an effect on the time spent requesting and getting a tile from a
 tile server. In this study, it was found that the request times
-decreased by a factor of -0.01 and 0.002 per zoom level for COGs and
-ZARRs respectively.
+decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs
+respectively.
 
 \begin{figure}[H]
 
@@ -1158,20 +1305,14 @@ ZARRs respectively.
 
 \end{figure}%
 
-\chapter{Discussion}\label{discussion}
+\subsubsection{Discussion}\label{discussion}
 
-\section{Baseline scenario}\label{baseline-scenario-1}
+Range request of tiles in titiler-xarray is customized in a particular
+way. Nevertheless, other alternatives exist\ldots{}
 
-\section{Data and service
-integration}\label{data-and-service-integration-1}
-
-Compare with other ways in which this could have been done? Virtual
-Machine (Compute Engine)
-
-\section{Performance of multi-format data
-visualization}\label{performance-of-multi-format-data-visualization-1}
-
-\hl{Talk about how second figure also might indicate that the way the tiles are being called by titiler xarray is not ideal?}
+Check on how different cloud services providers might give different
+latencies when opening several files instead of only one. (Niklas
+mentioned)
 
 \chapter{Future work}\label{future-work}
 
@@ -1196,6 +1337,12 @@ visualization}\label{performance-of-multi-format-data-visualization-1}
 Anderson, R. (2007). \emph{Thematic content analysis ({TCA})}.
 \url{https://rosemarieanderson.com/wp-content/uploads/2014/08/ThematicContentAnalysis.pdf}
 
+\bibitem[\citeproctext]{ref-Barciauskas_NextGen_2024}
+Barciauskas, A., Jones, M., Martin, K., Harkins, S. and Sarago, V.
+(2024). {Next-Gen Zarr Web Map Visualization}. \emph{EGU General
+Assembly Conference Abstracts}, 11805. p.
+\url{https://doi.org/10.5194/egusphere-egu24-11805}
+
 \bibitem[\citeproctext]{ref-brodeur_geographic_2019}
 Brodeur, J., Coetzee, S., Danko, D., Garcia, S. and Hjelmager, J.
 (2019). Geographic information metadata---an outlook from the
@@ -1208,6 +1355,10 @@ Chester, S. (2024(e)ko Januaryk 18). \emph{{OGC} forms new {GeoZarr}
 standards working group to establish a zarr encoding for geospatial
 data. Open geospatial consortium}.
 \url{https://www.ogc.org/press-release/ogc-forms-new-geozarr-standards-working-group-to-establish-a-zarr-encoding-for-geospatial-data/}
+
+\bibitem[\citeproctext]{ref-clark_api_2020}
+Clark, J. (2020). \emph{Application programming interface}.
+\url{https://www.semanticscholar.org/paper/Application-Programming-Interface-Clark/84f0b513a62a4f2bb09a899a128a231eccace22c}
 
 \bibitem[\citeproctext]{ref-desruisseaux_ogc_2021}
 Desruisseaux, M., Giacco, G., Goncalves, P., Manente, M. and Rouault, E.
@@ -1237,11 +1388,29 @@ languages, security and architectures for big data management} (1--24.
 pp.). Springer Nature Switzerland.
 \url{https://doi.org/10.1007/978-3-031-27908-9_1}
 
+\bibitem[\citeproctext]{ref-lynnes_cloud_2020}
+Lynnes, C., Quinn, P., Durbin, C. and Shum, D. (2020). \emph{Cloud
+optimized data formats}.
+
+\bibitem[\citeproctext]{ref-miranda_espinosa_reviewing_2020}
+Miranda Espinosa, M. T., Giuliani, G. and Ray, N. (2020). Reviewing the
+discoverability and accessibility to data and information products
+linked to essential climate variables. \emph{International Journal of
+Digital Earth}, \emph{13}(2), 236--252. pp.
+\url{https://doi.org/10.1080/17538947.2019.1620882}
+
 \bibitem[\citeproctext]{ref-mishra_structured_2017}
 Mishra, S. and Misra, A. (2017). Structured and unstructured big data
 analytics. \emph{2017 International Conference on Current Trends in
 Computer, Electrical, Electronics and Communication ({CTCEEC})},
 740--746. pp. \url{https://doi.org/10.1109/CTCEEC.2017.8454999}
+
+\bibitem[\citeproctext]{ref-munteanu_performance_2024}
+Munteanu, A., Panica, S. and Iuhasz, G. (2024). On the performance of
+{STAC}-{FastAPI} and {PgSTAC} using a cloud-native deployment. In L.
+Barolli (Ed.), \emph{Advanced information networking and applications}
+(191--200. pp.). Springer Nature Switzerland.
+\url{https://doi.org/10.1007/978-3-031-57931-8_19}
 
 \bibitem[\citeproctext]{ref-ogc_ogc_2023}
 OGC. (2023). \emph{{OGC} cloud optimized {GeoTIFF} standard}.
@@ -1262,6 +1431,11 @@ radiantearth/stac-spec. {GitHub}}.
 Rajabifard, A. and Williamson, I. P. (2001). \emph{Spatial data
 infrastructures: Concept, {SDI} hierarchy and future directions}.
 \url{http://hdl.handle.net/11343/33897}
+
+\bibitem[\citeproctext]{ref-sarago_developmentseedeoapi_2024}
+Sarago, V., Deziel, Z., Tenezakis, E. and Goodman, L. (2024).
+\emph{Developmentseed/{eoAPI}} {[}Software{]}. Development Seed.
+\url{https://github.com/developmentseed/eoAPI}
 
 \bibitem[\citeproctext]{ref-satelligence_home_nodate}
 Satelligence. (n.d.). \emph{Home - satelligence - sustainability
@@ -1403,12 +1577,12 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \NormalTok{    k }\OperatorTok{=}\NormalTok{ i}
 
     \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
-\NormalTok{        url\_zarr }\OperatorTok{=} \StringTok{"http://localhost:8080/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
+\NormalTok{        url\_zarr }\OperatorTok{=} \StringTok{"https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?url=gs://s11{-}tiles/zarr/separate\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"variable=band\_data\&reference=false\&decode\_times=true\&"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"consolidated=true\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
 
-\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"http://localhost:8082/collections/"}\OperatorTok{+\textbackslash{}}
+\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"https://eoapi.satelligence.com/raster/collections/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"Example\%20FBL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?bidx=1\&assets=data\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"unscale=false\&resampling=nearest\&reproject=nearest\&"}\OperatorTok{+\textbackslash{}}
@@ -1427,7 +1601,7 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \NormalTok{data }\OperatorTok{=}\NormalTok{ pd.DataFrame([cmap\_picked, z\_level, times\_cog, times\_zarr]).T}
 \NormalTok{data.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}colormap\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}zoom level\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}COG\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}ZARR\textquotesingle{}}\NormalTok{]}
 
-\NormalTok{data.to\_csv(}\StringTok{\textquotesingle{}request\_time\_results\_6iter.csv\textquotesingle{}}\NormalTok{)}
+\NormalTok{data.to\_csv(}\StringTok{\textquotesingle{}request\_time\_results\_6iter\_k8.csv\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
