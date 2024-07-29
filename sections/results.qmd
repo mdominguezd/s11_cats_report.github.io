@@ -68,7 +68,7 @@ Moreover, it can be seen that with the new implementation most of the issues ide
 
 ## Performance of multi-format data visualization
 
-The results of the experiments made with different cloud-optimized data formats are presented in two distinc subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.
+The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.
 
 ### Raster formats
 
@@ -92,6 +92,7 @@ The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and
 import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+import xarray as xr
 
 s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff4100'])
 background_color = '#180066'
@@ -114,7 +115,45 @@ a = ax.set_xlabel('Data format')
 
 ```
 
-The results obtained are coherent to the ones previously shown by @nasa_impact_zarr_2023, where COGs' rendering time was found to be significantly lower than the one for Zarr files at the six first zoom levels (i.e. the lowest resolutions). 
+The results obtained are coherent to the ones previously shown by @nasa_impact_zarr_2023, where COGs' rendering time was found to be significantly lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like [ndpyramid](https://github.com/carbonplan/ndpyramid) could bring significant improvements to this data format [@pagan_current_2023, @Barciauskas_NextGen_2024].
+
+#### Fine tuning of dataset {.unnumbered}
+
+Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments can significantly improve the speed of tiling services using these data formats [@nasa_impact_zarr_2023]. Future considerations should include optimizing these parameters to maximize efficiency (See [performance tuning section](https://developmentseed.org/titiler/advanced/performance_tuning/)).
+
+### Effects of zoom level
+
+```{python}
+#| echo: false
+
+import statsmodels.api as sm
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
+
+
+fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
+cog_slope = float(round(fit_results.params['zoom level'], 3))
+
+fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
+zarr_slope = float(round(fit_results.params['zoom level'], 3))
+```
+
+As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by `{python} cog_slope` seconds per zoom level for COGs, and didn't show a significant change for Zarrs (`{python} zarr_slope` seconds per zoom level). The behaviour presented here differs from the one observed by @nasa_impact_zarr_2023, where no significant difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in that study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, in order to verify this hypothesis a broader study of the response times at more zoom levels should be performed.
+
+```{python}
+#| echo: false
+#| fig-cap: "Request times depending on zoom level and their respective trends for COG and Zarr data formats."
+#| label: fig-comp-zoom
+fig, ax = plt.subplots(1,1,figsize= (7.5,5))
+
+sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95, label='COG')
+sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
+ax.set_ylabel('Response time [s]')
+
+a = plt.legend()
+# a= sns.despine(trim = True, offset = -10, ax = ax)
+```
+
+Moreover, as seen on @fig-chunksize-zarr, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in @fig-comp-zoom for the two data formats.
 
 ```{python}
 #| echo: false
@@ -137,6 +176,7 @@ for i in pyramids:
 
     with xr.open_zarr(zarr_link, chunks = 'auto', consolidated = True, decode_coords='all') as src:
         
+        # print(len(src['band_data'].chunksizes['y']), len(src['band_data'].chunksizes['x']))
         chunksize_y = src['band_data'].chunksizes['y'][0]
         chunksize_x = src['band_data'].chunksizes['x'][0]
         
@@ -151,61 +191,20 @@ df.to_csv('chunksize_zarr.csv')
 
 ```{python}
 #| echo: false 
-#| fig-cap: "Variation of chunk sizes in Zarr file depending on zoom level."
+#| fig-cap: "Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format."
 #| label: fig-chunksize-zarr
 
-df = pd.read_csv('sections/chunksize_zarr.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/chunksize_zarr.csv')
 
-ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_x', color=s11_cmap(255), label = 'Horizontal chunks (x)')
-ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_y', color=s11_cmap(0),ax = ax, label = 'Vertical chunks (y)')
-
-ax.set_ylabel('Chunk size [pixels]')
-ax.set_xlabel('Pyramid\n' + r'$\rightarrow{}$zoom increase$\rightarrow{}$')
-
-```
-
-Different chunk sizes on Zarrs at level 0 (244x119), at level 5 (489x476), and at level 8 (978x952). The data
-
-While chunks for COGs where constantly (512x512)
-
-#### Fine tuning of dataset creation {.unnumbered}
-
-There are some GDAL parameters that can improve the tiling performance of TiTiler (See [performnce_tuning](https://developmentseed.org/titiler/advanced/performance_tuning/)). This should be taken into account in future dataset creation
-
-### Effects of zoom level
-
-```{python}
-#| echo: false
-
-import statsmodels.api as sm
-data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
-
-
-fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
-cog_slope = float(round(fit_results.params['zoom level'], 3))
-
-fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
-zarr_slope = float(round(fit_results.params['zoom level'], 3))
-```
-
-As seen on @fig-comp-zoom, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by `{python} cog_slope` and `{python} zarr_slope` seconds per zoom level for COGs and ZARRs respectively.
-
-```{python}
-#| echo: false
-#| fig-cap: "Request times depending on zoom level"
-#| label: fig-comp-zoom
 fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
-sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95, label='COG')
-sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
-ax.set_ylabel('Response time [s]')
+ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_x', color=s11_cmap(255), ax = ax, label = 'Horizontal chunks (x)')
+ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_y', color=s11_cmap(0), ax = ax, label = 'Vertical chunks (y)')
 
-a = plt.legend()
-# a= sns.despine(trim = True, offset = -10, ax = ax)
+ax.axhline(y = 512)
+ax.text(s = 'COG blocksize', x = 0, y = 512)
+
+ax.set_ylabel('Chunk size [pixels]')
+a = ax.set_xlabel('Pyramid\n' + r'$\rightarrow{}$zoom increase$\rightarrow{}$')
+
 ```
-
-#### Discussion
-
-Range request of tiles in titiler-xarray is customized in a particular way. Nevertheless, other alternatives exist...
-
-Check on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)

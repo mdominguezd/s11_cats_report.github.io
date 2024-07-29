@@ -38,7 +38,7 @@ import pandas as pd
 import requests
 import random
 
-tiles = ["9/399/254", "10/800/505", "11/1603/1012",  "12/3209/2042", 
+tiles = ["6/50/32", "7/99/63", "8/199/126", "9/399/254", "10/800/505", "11/1603/1012",  "12/3209/2042", 
 "13/6407/4075", "14/12817/8159", "15/25678/16271", "16/51268/32552", 
 "17/102503/65134", "18/205062/130211"]
 
@@ -50,8 +50,10 @@ def modify_tile(tile):
     y = int(parts[2])
 
     # Determine the range of change based on the value of z
-    if z <= 9:
-        change_range = 3
+    if z <= 7:
+        change_range = 1
+    elif z <= 9:
+        change_range = 5
     elif z <= 12:
         change_range = 5
     elif z <= 15:
@@ -89,12 +91,12 @@ for i in range(len(cmap)):
     k = i
 
     for tile in mod_tiles:
-        url_zarr = "https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/"+\
+        url_zarr = "https://localhost:8084/tiles/WebMercatorQuad/"+\
         f"{tile}%401x?url=gs://s11-tiles/zarr/separate&"+\
         "variable=band_data&reference=false&decode_times=true&"+\
         f"consolidated=true&colormap{cmap[k]}&return_mask=true"
 
-        url_cog = f"https://eoapi.satelligence.com/raster/collections/"+\
+        url_cog = f"https://localhost:8082/collections/"+\
         f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"+\
         f"WebMercatorQuad/{tile}%401x?bidx=1&assets=data&"+\
         "unscale=false&resampling=nearest&reproject=nearest&"+\

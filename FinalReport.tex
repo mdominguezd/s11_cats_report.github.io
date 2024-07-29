@@ -1281,8 +1281,8 @@ that relies on this data.
 visualization}\label{performance-of-multi-format-data-visualization}
 
 The results of the experiments made with different cloud-optimized data
-formats are presented in two distinc subsections. The first subsection
-evaluates the overall performance of the two data formats and the second
+formats are presented in two subsections. The first subsection evaluates
+the overall performance of the two data formats and the second
 subsection assess the performance of these data formats based on
 different zoom levels.
 
@@ -1313,61 +1313,43 @@ depending on data format and zoom level}
 
 The results obtained are coherent to the ones previously shown by IMPACT
 (\citeproc{ref-nasa_impact_zarr_2023}{2023}), where COGs' rendering time
-was found to be significantly lower than the one for Zarr files at the
-six first zoom levels (i.e.~the lowest resolutions).
+was found to be significantly lower than the one for Zarr files at
+different zoom levels. These results show that COGs, being specifically
+optimized for spatial data visualization, offer faster visualization
+compared to Zarr files. However, this does not take away from the fact
+that Zarr provides additional benefits, such as the ability to store
+n-dimensional arrays. Furthermore, recent advancements like GeoZarr and
+the creation of Zarr pyramids with new packages like ndpyramids could
+bring significant improvements to this data format Barciauskas et al.
+(\citeproc{ref-Barciauskas_NextGen_2024}{2024}).
 
-\begin{figure}[H]
+\subsubsection*{Fine tuning of dataset}\label{fine-tuning-of-dataset}
+\addcontentsline{toc}{subsubsection}{Fine tuning of dataset}
 
-\centering{
-
-\captionsetup{labelsep=none}
-
-\centering{
-
-\begin{verbatim}
-Text(0.5, 0, 'Pyramid\n$\\rightarrow{}$zoom increase$\\rightarrow{}$')
-\end{verbatim}
-
-}
-
-\subcaption{\label{fig-chunksize-zarr-1}Variation of chunk sizes in Zarr
-file depending on zoom level.}
-
-\centering{
-
-\captionsetup{labelsep=none}\includegraphics{FinalReport_files/figure-pdf/fig-chunksize-zarr-output-2.pdf}
-
-}
-
-\subcaption{\label{fig-chunksize-zarr-2}}
-
-}
-
-\caption{\label{fig-chunksize-zarr}}
-
-\end{figure}%
-
-Different chunk sizes on Zarrs at level 0 (244x119), at level 5
-(489x476), and at level 8 (978x952). The data
-
-While chunks for COGs where constantly (512x512)
-
-\subsubsection*{Fine tuning of dataset
-creation}\label{fine-tuning-of-dataset-creation}
-\addcontentsline{toc}{subsubsection}{Fine tuning of dataset creation}
-
-There are some GDAL parameters that can improve the tiling performance
-of TiTiler (See
-\href{https://developmentseed.org/titiler/advanced/performance_tuning/}{performnce\_tuning}).
-This should be taken into account in future dataset creation
+Even though COGs showed to be very performant, their performance could
+be further enhanced by tuning specific GDAL parameters. These
+adjustments can significantly improve the speed of tiling services using
+these data formats (\citeproc{ref-nasa_impact_zarr_2023}{IMPACT, 2023}).
+Future considerations should include optimizing these parameters to
+maximize efficiency (See
+\href{https://developmentseed.org/titiler/advanced/performance_tuning/}{performance
+tuning section}).
 
 \subsection{Effects of zoom level}\label{effects-of-zoom-level}
 
-As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map will
-have an effect on the time spent requesting and getting a tile from a
-tile server. In this study, it was found that the request times
-decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs
-respectively.
+As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map showed
+an effect on the time spent requesting and getting a tile from a tiling
+service for the COG format. In this study, it was found that the request
+times decreased by -0.01 seconds per zoom level for COGs, and didn't
+show a significant change for Zarrs (0.002 seconds per zoom level). The
+behaviour presented here differs from the one observed by IMPACT
+(\citeproc{ref-nasa_impact_zarr_2023}{2023}), where no significant
+difference in rendering time was observed as a function of the zoom
+level. This difference could be explained by the fact that in that
+study, only the lowest zoom levels were considered, while in this study
+only the highest zoom levels were taken into account, however, in order
+to verify this hypothesis a broader study of the response times at more
+zoom levels should be performed.
 
 \begin{figure}[H]
 
@@ -1377,18 +1359,32 @@ respectively.
 
 }
 
-\caption{\label{fig-comp-zoom}Request times depending on zoom level}
+\caption{\label{fig-comp-zoom}Request times depending on zoom level and
+their respective trends for COG and Zarr data formats.}
 
 \end{figure}%
 
-\subsubsection{Discussion}\label{discussion}
+Moreover, as seen on Figure~\ref{fig-chunksize-zarr}, while the size of
+blocks remain constant throughout all of the overviews in the COG file,
+the sizes of the Zarr chunks varied in the pyramids created. Due to
+this, the tiles requested at higher zoom levels were larger than the
+ones requested at lower zoom levels which could explain the difference
+between the trends observed in Figure~\ref{fig-comp-zoom} for the two
+data formats.
 
-Range request of tiles in titiler-xarray is customized in a particular
-way. Nevertheless, other alternatives exist\ldots{}
+\begin{figure}[H]
 
-Check on how different cloud services providers might give different
-latencies when opening several files instead of only one. (Niklas
-mentioned)
+\centering{
+
+\includegraphics{FinalReport_files/figure-pdf/fig-chunksize-zarr-output-1.pdf}
+
+}
+
+\caption{\label{fig-chunksize-zarr}Variation of chunk sizes in Zarr file
+depending on zoom level compared to a constant block size for COG data
+format.}
+
+\end{figure}%
 
 \chapter{Conclusions}\label{conclusions}
 
@@ -1505,6 +1501,13 @@ OGC. (2023). \emph{{OGC} cloud optimized {GeoTIFF} standard}.
 \bibitem[\citeproctext]{ref-openai_chatgpt_2023}
 OpenAI. (2023). \emph{{ChatGPT}}. \url{https://chatgpt.com/}
 
+\bibitem[\citeproctext]{ref-pagan_current_2023}
+Pagán, B. R., Abernathey, R., Blodgett, D. L., Davis, E., Erickson, T.,
+Hanson, M., Harkins, S., Noel, C., Kapadia, A. and Shiklomanov, A. N.
+(2023). \emph{Current status of the {GeoZarr} steering working group}.
+\emph{2023}, IN34A--04. pp.
+\url{https://ui.adsabs.harvard.edu/abs/2023AGUFMIN34A..04P}
+
 \bibitem[\citeproctext]{ref-poulton_kubernetes_2023}
 Poulton, N. (2023). \emph{The kubernetes book}. Nigel Poulton Ltd.
 
@@ -1612,7 +1615,7 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \ImportTok{import}\NormalTok{ requests}
 \ImportTok{import}\NormalTok{ random}
 
-\NormalTok{tiles }\OperatorTok{=}\NormalTok{ [}\StringTok{"9/399/254"}\NormalTok{, }\StringTok{"10/800/505"}\NormalTok{, }\StringTok{"11/1603/1012"}\NormalTok{,  }\StringTok{"12/3209/2042"}\NormalTok{, }
+\NormalTok{tiles }\OperatorTok{=}\NormalTok{ [}\StringTok{"6/50/32"}\NormalTok{, }\StringTok{"7/99/63"}\NormalTok{, }\StringTok{"8/199/126"}\NormalTok{, }\StringTok{"9/399/254"}\NormalTok{, }\StringTok{"10/800/505"}\NormalTok{, }\StringTok{"11/1603/1012"}\NormalTok{,  }\StringTok{"12/3209/2042"}\NormalTok{, }
 \StringTok{"13/6407/4075"}\NormalTok{, }\StringTok{"14/12817/8159"}\NormalTok{, }\StringTok{"15/25678/16271"}\NormalTok{, }\StringTok{"16/51268/32552"}\NormalTok{, }
 \StringTok{"17/102503/65134"}\NormalTok{, }\StringTok{"18/205062/130211"}\NormalTok{]}
 
@@ -1624,8 +1627,10 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \NormalTok{    y }\OperatorTok{=} \BuiltInTok{int}\NormalTok{(parts[}\DecValTok{2}\NormalTok{])}
 
     \CommentTok{\# Determine the range of change based on the value of z}
-    \ControlFlowTok{if}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{9}\NormalTok{:}
-\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{3}
+    \ControlFlowTok{if}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{7}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{1}
+    \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{9}\NormalTok{:}
+\NormalTok{        change\_range }\OperatorTok{=} \DecValTok{5}
     \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{12}\NormalTok{:}
 \NormalTok{        change\_range }\OperatorTok{=} \DecValTok{5}
     \ControlFlowTok{elif}\NormalTok{ z }\OperatorTok{\textless{}=} \DecValTok{15}\NormalTok{:}
@@ -1663,12 +1668,12 @@ and the TiTiler-Xarray services running on \texttt{localhost:8082} and
 \NormalTok{    k }\OperatorTok{=}\NormalTok{ i}
 
     \ControlFlowTok{for}\NormalTok{ tile }\KeywordTok{in}\NormalTok{ mod\_tiles:}
-\NormalTok{        url\_zarr }\OperatorTok{=} \StringTok{"https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
+\NormalTok{        url\_zarr }\OperatorTok{=} \StringTok{"https://localhost:8084/tiles/WebMercatorQuad/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?url=gs://s11{-}tiles/zarr/separate\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"variable=band\_data\&reference=false\&decode\_times=true\&"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"consolidated=true\&colormap}\SpecialCharTok{\{}\NormalTok{cmap[k]}\SpecialCharTok{\}}\SpecialStringTok{\&return\_mask=true"}
 
-\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"https://eoapi.satelligence.com/raster/collections/"}\OperatorTok{+\textbackslash{}}
+\NormalTok{        url\_cog }\OperatorTok{=} \SpecialStringTok{f"https://localhost:8082/collections/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"Example\%20FBL\%20Riau/items/FBL\_V5\_2021\_Riau\_cog/tiles/"}\OperatorTok{+\textbackslash{}}
         \SpecialStringTok{f"WebMercatorQuad/}\SpecialCharTok{\{}\NormalTok{tile}\SpecialCharTok{\}}\SpecialStringTok{\%401x?bidx=1\&assets=data\&"}\OperatorTok{+\textbackslash{}}
         \StringTok{"unscale=false\&resampling=nearest\&reproject=nearest\&"}\OperatorTok{+\textbackslash{}}
