@@ -77,7 +77,7 @@ Moreover, it can be seen that with the new implementation most of the issues ide
 
 import pandas as pd
 
-data = pd.read_csv('https://github.com/mdominguezd/s11_cats_report.github.io/blob/main/sections/request_time_results_6iter.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
 
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
@@ -126,7 +126,7 @@ Also how well
 #| echo: false
 
 import statsmodels.api as sm
-data = pd.read_csv('https://github.com/mdominguezd/s11_cats_report.github.io/blob/main/sections/request_time_results_6iter.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/request_time_results_6iter.csv')
 
 
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
