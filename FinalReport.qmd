@@ -55,14 +55,6 @@ format:
 
 {{< include sections/results.qmd >}}
 
-<!-- # Discussion
-
-{{< include sections/discussion.md >}} -->
-
-# Future work
-
-{{< include sections/future_work.md >}}
-
 # Conclusions
 
 {{< include sections/conclusions.md >}}

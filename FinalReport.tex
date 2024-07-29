@@ -943,7 +943,7 @@ the items' information. This decision to produce two JSON files was made
 to facilitate the transition from the static catalog that has been
 created to the dynamic catalog that is desired.
 
-\subsection{eoAPI + other services}\label{eoapi-other-services}
+\subsection{eoAPI + other services}\label{sec-eoapi}
 
 Once a static catalog has been created, the next step involves
 developing the dynamic catalog by leveraging
@@ -1197,12 +1197,30 @@ process was optimized.
 \subsubsection*{Deployment}\label{deployment}
 \addcontentsline{toc}{subsubsection}{Deployment}
 
+As described on Section~\ref{sec-eoapi}, the deployment of both eoAPI
+and the additional services utilized was perform using Google Kubernetes
+Engine (GKE), which is K8s' GCP service. In a GKE cluster, the setup of
+complex multi-service applications that connect to each other with an
+internal network is simplified
+(\citeproc{ref-gupta_deployment_2021}{Gupta et al., 2021}). Moreover,
+\href{www.eoapi.dev}{eoAPI} simplified the deployment by providing a
+guide for deployment that used a Helm chart. A Helm chart is a
+collection of files that describe the K8s related resources needed to
+run a multi-service application and it can improve the speed of
+deployment by a factor of up to 6 times
+(\citeproc{ref-gokhale_creating_2021}{Gokhale et al., 2021}). These
+factors greatly influenced the decision of deploying the whole suite of
+services in eoAPI.
+
+Moreover, the performance of some of the eoAPI services deployed using
+K8s had been already assessed by previous studies. \ldots{}
+
 Additional to the simplification that eoAPI provided to deploy this
-using K8s, we also went for that option because it had already been
-tested by other authors using large datasets and heavy load requests
-(\citeproc{ref-munteanu_performance_2024}{Munteanu et al., 2024}).
-Munteanu et al. (\citeproc{ref-munteanu_performance_2024}{2024}) perform
-tests with 2.3 TB of spatial data stored in S3 and a simulated
+using GKE and the Helm chart, we also went for that option because it
+had already been tested by other authors using large datasets and heavy
+load requests (\citeproc{ref-munteanu_performance_2024}{Munteanu et al.,
+2024}). Munteanu et al. (\citeproc{ref-munteanu_performance_2024}{2024})
+perform tests with 2.3 TB of spatial data stored in S3 and a simulated
 simultaneous load of up to 7k users and their results showed good
 performance serving the data. (REVIEW)
 
@@ -1247,10 +1265,9 @@ repositories, is resolved because it is unnecessary to know the data
 source once it is included in the STAC catalog. Furthermore, there is no
 longer a need to understand diverse tools for accessing different data;
 the STAC Browser facilitates querying collections and visualizing items.
-Moreover, the dynamic catalog created can be integrated with other
-commonly used tools like QGIS via the STAC API plugin. Finally, the STAC
-catalog serves as the centralized location for all data used in S11
-workflows.
+Finally, the STAC catalog serves as the centralized location for all
+data used in S11 workflows, which favours long term usability of code
+that relies on this data.
 
 \section{Performance of multi-format data
 visualization}\label{performance-of-multi-format-data-visualization}
@@ -1314,18 +1331,6 @@ Check on how different cloud services providers might give different
 latencies when opening several files instead of only one. (Niklas
 mentioned)
 
-\chapter{Future work}\label{future-work}
-
-\begin{itemize}
-\tightlist
-\item
-  ndpyramids
-\item
-  STAC API authentication
-\item
-  Inclusion of Vector data on STAC
-\end{itemize}
-
 \chapter{Conclusions}\label{conclusions}
 
 \chapter*{References}\label{references}
@@ -1375,6 +1380,22 @@ ed.). {CRC} Press. \url{https://doi.org/10.1201/9781003270928}
 Giri, K. and Lone, T. (2014). Big data -overview and challenges.
 \emph{International Journal of Advanced Research in Computer Science and
 Software Engineering}, \emph{4}.
+
+\bibitem[\citeproctext]{ref-gokhale_creating_2021}
+Gokhale, S., Poosarla, R., Tikar, S., Gunjawate, S., Hajare, A.,
+Deshpande, S., Gupta, S. and Karve, K. (2021). Creating helm charts to
+ease deployment of enterprise application and its related services in
+kubernetes. \emph{2021 International Conference on Computing,
+Communication and Green Engineering ({CCGE})}, 1--5. pp.
+\url{https://doi.org/10.1109/CCGE50943.2021.9776450}
+
+\bibitem[\citeproctext]{ref-gupta_deployment_2021}
+Gupta, M., Sanjana, K., Akhilesh, K. and Chowdary, M. N. (2021).
+Deployment of multi-tier application on cloud and continuous monitoring
+using kubernetes. \emph{2021 5th International Conference on Electrical,
+Electronics, Communication, Computer Technologies and Optimization
+Techniques ({ICEECCOT})}, 602--607. pp.
+\url{https://doi.org/10.1109/ICEECCOT52851.2021.9707957}
 
 \bibitem[\citeproctext]{ref-holmes_spatiotemporal_2021}
 Holmes, C. (2021(e)ko Januaryk 19). \emph{{SpatioTemporal} asset

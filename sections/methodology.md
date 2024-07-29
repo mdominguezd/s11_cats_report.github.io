@@ -53,7 +53,7 @@ The [s11-cats repository](https://gitlab.com/satelligence/s11-cats) created is c
 
 As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections' information and the other storing the items' information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.
 
-### eoAPI + other services
+### eoAPI + other services {#sec-eoapi}
 
 Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging [eoAPI](https://eoapi.dev/) [@sarago_developmentseedeoapi_2024]. [eoAPI](https://eoapi.dev/) is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See [PgSTAC](https://github.com/stac-utils/pgstac)), creating a dynamic catalog that can query the Postgres database (See [STAC API](https://github.com/stac-utils/stac-fastapi)) and two additional services for visualizing raster (See [Titiler-PgSTAC](https://github.com/stac-utils/titiler-pgstac)) and vector data (See [TiPg](https://github.com/developmentseed/tipg)).
 
