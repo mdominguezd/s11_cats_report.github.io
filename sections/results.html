@@ -119,8 +119,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#thematic-content-analysis" id="toc-thematic-content-analysis" class="nav-link" data-scroll-target="#thematic-content-analysis">Thematic Content Analysis</a></li>
   <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
   <ul class="collapse">
-  <li><a href="#data-discovery-application" id="toc-data-discovery-application" class="nav-link" data-scroll-target="#data-discovery-application">Data discovery application</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  <li><a href="#effective-integration" id="toc-effective-integration" class="nav-link" data-scroll-target="#effective-integration">Effective integration</a></li>
+  <li><a href="#workflow-improvement" id="toc-workflow-improvement" class="nav-link" data-scroll-target="#workflow-improvement">Workflow improvement</a></li>
   </ul></li>
   <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
   <ul class="collapse">
@@ -154,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="current-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="current-workflow">Current workflow</h3>
-<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
+<p>One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.</p>
 <div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -165,6 +165,7 @@ Figure&nbsp;1: Baseline workflow
 </figcaption>
 </figure>
 </div>
+<p>According to <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a>, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset’s location added significant uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.</p>
 </section>
 <section id="thematic-content-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="thematic-content-analysis">Thematic Content Analysis</h3>
@@ -175,37 +176,64 @@ Figure&nbsp;1: Baseline workflow
 <li>Data familiarity helps users locate data quicker.</li>
 <li>Use of specific tools and methods for different datasets.</li>
 </ul>
-<p>After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery in the company were summarized as follows:</p>
+<p>After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery and visualization in the company were summarized as follows:</p>
 <ul>
-<li>High dependency on colleagues.</li>
+<li>High dependency on colleagues for dataset location.</li>
 <li>Disorganized structure of Google Storage Buckets.</li>
 <li>Data familiarity helps users locate data quicker.</li>
 <li>Data location is dependent on recurrent work with a specific dataset.</li>
-<li>Not intuitive naming of repositories (e.g.&nbsp;Blockchain for supply chain data, internet for compliance data, etc.).</li>
+<li>Not intuitive naming of repositories with datasets.</li>
+<li>Understanding of diverse tools to access different data is currently necessary.</li>
+<li>Download of data is required in most cases to visualize it.</li>
 <li>Not one place where all existing data can be found.</li>
 </ul>
-<p>All of these pitfalls underscore the need of going towards a Spatial Knowledge Infrastructure, that is able to provide datasets based on questions like the ones on the questionnaire.</p>
+<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.</p>
+<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">[@miranda_espinosa_reviewing_2020]</span>. Addressing these challenges, a streamlined approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
 </section>
 <section id="service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
-<p>esults this is the deployment and it connects with these other services.</p>
-<section id="data-discovery-application" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery-application">Data discovery application</h3>
-<p>The web application can be accessed in <a href="https://eoapi.satelligence.com/browser/?.language=en">eoapi.satelligence.com/browser</a>.</p>
-<section id="data-discovery-improvement" class="level4">
-<h4 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h4>
-<p>Flowchart with STAC</p>
+<p>The integration of the services deployed resulted in a version of STAC Browser including three different collections containing datasets related to the forest baseline created by the company, elevation data from third party organizations and a collection for the comparison of COG and Zarr data. The web application can be accessed in <a href="https://eoapi.satelligence.com/browser/?.language=en">https://eoapi.satelligence.com/browser</a>.</p>
+<section id="effective-integration" class="level3">
+<h3 class="anchored" data-anchor-id="effective-integration">Effective integration</h3>
+<p>The effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.</p>
+<section id="data-formats" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="data-formats">Data formats</h4>
+<p>An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting Cloud Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs <span class="citation" data-cites="lynnes_cloud_2020">[@lynnes_cloud_2020]</span>. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process <span class="citation" data-cites="Barciauskas_NextGen_2024">[@Barciauskas_NextGen_2024]</span>.</p>
+</section>
+<section id="leverage-of-apis" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="leverage-of-apis">Leverage of APIs</h4>
+<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API possibilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.</p>
+<p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
+</section>
+<section id="deployment" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
+<p>Additional to the simplification that eoAPI provided to deploy this using K8s, we also went for that option because it had already been tested by other authors using large datasets and heavy load requests <span class="citation" data-cites="munteanu_performance_2024">[@munteanu_performance_2024]</span>. <span class="citation" data-cites="munteanu_performance_2024">@munteanu_performance_2024</span> perform tests with 2.3 TB of spatial data stored in S3 and a simulated simultaneous load of up to 7k users and their results showed good performance serving the data. (REVIEW)</p>
+<p>Also the fact that it integrates other services that we are not using, but would come very handy in the near future for satelligence.</p>
+<p>Compare with other ways in which this could have been done? Virtual Machine (Compute Engine)</p>
+<p>discussion: - Vector visualization can be done in the future. - Authentication - stac extensions.</p>
 </section>
 </section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
+<section id="workflow-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-improvement">Workflow improvement</h3>
+<p>Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on <a href="#fig-new-workflow" class="quarto-xref">Figure&nbsp;2</a>. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.</p>
+<div id="fig-new-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/New_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: New data discovery and visualization workflow
+</figcaption>
+</figure>
+</div>
+<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Moreover, the dynamic catalog created can be integrated with other commonly used tools like QGIS via the STAC API plugin. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows.</p>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested 2.53 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a>. In the figure it can be obesrved that COG tiles are requested 2.53 times faster than the same file in ZARR format.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -214,16 +242,21 @@ Figure&nbsp;1: Baseline workflow
 <img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Request times depending on data format and zoom level
+Figure&nbsp;3: Request times depending on data format and zoom level
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<section id="fine-tuning-of-dataset-creation" class="level4">
+<h4 class="anchored" data-anchor-id="fine-tuning-of-dataset-creation">Fine tuning of dataset creation</h4>
+<p>There are some GDAL parameters that can improve the tiling performance of TiTiler (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performnce_tuning</a>). This should be taken into account in future dataset creation</p>
+<p>Also how well</p>
+</section>
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.01 and 0.002 per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs respectively.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -232,14 +265,19 @@ Figure&nbsp;2: Request times depending on data format and zoom level
 <img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Request times depending on zoom level
+Figure&nbsp;4: Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<section id="discussion" class="level4">
+<h4 class="anchored" data-anchor-id="discussion">Discussion</h4>
+<p>Range request of tiles in titiler-xarray is customized in a particular way. Nevertheless, other alternatives exist…</p>
+<p>Check on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)</p>
 
 
+</section>
 </section>
 </section>
 
