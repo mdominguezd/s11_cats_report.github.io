@@ -54,15 +54,9 @@ For the visualization of Zarr datasets, it was necessary to customize the TiTile
 
 As described on @sec-eoapi, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s' GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified [@gupta_deployment_2021]. Moreover,  [eoAPI](www.eoapi.dev) simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times [@gokhale_creating_2021]. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.
 
-Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. ...
+Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, @munteanu_performance_2024 performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.
 
-Additional to the simplification that eoAPI provided to deploy this using GKE and the Helm chart, we also went for that option because it had already been tested by other authors using large datasets and heavy load requests [@munteanu_performance_2024]. @munteanu_performance_2024 perform tests with 2.3 TB of spatial data stored in S3 and a simulated simultaneous load of up to 7k users and their results showed good performance serving the data. (REVIEW)
-
-Also the fact that it integrates other services that we are not using, but would come very handy in the near future for satelligence.
-
-Compare with other ways in which this could have been done? Virtual Machine (Compute Engine)
-
-discussion: - Vector visualization can be done in the future. - Authentication - stac extensions.
+Finally, additional to the already covered advantages, the deployment of [eoAPI](www.eoapi.dev) and the fast community driven development of new tools brings with it benefits that could become very important for S11's workflow. For instance, the visualization of vector data using [TiPg](https://github.com/developmentseed/tipg) is a service included in the eoAPI deployment that wasn't used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fastly. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
 
 ### Workflow improvement
 
@@ -113,7 +107,7 @@ fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax, linecolor=background_color)
 # sns.despine(trim = True, offset = -10, ax = ax)
 
-ax.set_ylabel('Request time [s]')
+ax.set_ylabel('Response time [s]')
 a = ax.set_xlabel('Data format')
 
 ```
@@ -150,7 +144,7 @@ fig, ax = plt.subplots(1,1,figsize= (7.5,5))
 
 sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95, label='COG')
 sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
-ax.set_ylabel('Request time [s]')
+ax.set_ylabel('Response time [s]')
 
 a = plt.legend()
 # a= sns.despine(trim = True, offset = -10, ax = ax)

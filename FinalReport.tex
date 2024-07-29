@@ -1213,25 +1213,34 @@ factors greatly influenced the decision of deploying the whole suite of
 services in eoAPI.
 
 Moreover, the performance of some of the eoAPI services deployed using
-K8s had been already assessed by previous studies. \ldots{}
+K8s had been already assessed by previous studies. For instance,
+Munteanu et al. (\citeproc{ref-munteanu_performance_2024}{2024})
+performed tests on a deployed version of STAC API that, like the
+deployment performed in this study, used PgSTAC as the backend. These
+authors deployed a dynamic STAC API loaded with the metadata of
+approximately 2.3 TB of spatial data on a K8s cluster and evaluated the
+performance by assessing both the response times and resources used in a
+hypothetical scenario where 7,000 users would perform requests
+simultaneously. Their results showed that these services are capable of
+supporting effectively a much larger amount of users than the estimated
+by Satelligence.
 
-Additional to the simplification that eoAPI provided to deploy this
-using GKE and the Helm chart, we also went for that option because it
-had already been tested by other authors using large datasets and heavy
-load requests (\citeproc{ref-munteanu_performance_2024}{Munteanu et al.,
-2024}). Munteanu et al. (\citeproc{ref-munteanu_performance_2024}{2024})
-perform tests with 2.3 TB of spatial data stored in S3 and a simulated
-simultaneous load of up to 7k users and their results showed good
-performance serving the data. (REVIEW)
-
-Also the fact that it integrates other services that we are not using,
-but would come very handy in the near future for satelligence.
-
-Compare with other ways in which this could have been done? Virtual
-Machine (Compute Engine)
-
-discussion: - Vector visualization can be done in the future. -
-Authentication - stac extensions.
+Finally, additional to the already covered advantages, the deployment of
+\href{www.eoapi.dev}{eoAPI} and the fast community driven development of
+new tools brings with it benefits that could become very important for
+S11's workflow. For instance, the visualization of vector data using
+\href{https://github.com/developmentseed/tipg}{TiPg} is a service
+included in the eoAPI deployment that wasn't used during this
+internship, but should certainly be integrated in the near future by the
+company to visualize their supply chain datasets. Moroever, the
+community adopting STAC specifications has been growing fastly. Due to
+this, a big series of STAC-extensions have been developed to fulfill the
+requirements of the users. During this internship, extensions to add
+additional metadata were included, however, due to time constraints
+other extensions that could prove beneficial for the company were not
+integrated. Specifically, the possibility of adding an authentication
+layer to the catalog still needs to be done and should be the next step
+to ensure the privacy of the data.
 
 \subsection{Workflow improvement}\label{workflow-improvement}
 
@@ -1363,7 +1372,9 @@ data. Open geospatial consortium}.
 
 \bibitem[\citeproctext]{ref-clark_api_2020}
 Clark, J. (2020). \emph{Application programming interface}.
-\url{https://www.semanticscholar.org/paper/Application-Programming-Interface-Clark/84f0b513a62a4f2bb09a899a128a231eccace22c}
+\href{https://www.semanticscholar.org/\%20paper/Application-Programming-Interface-Clark/84f0b513a62a4f2bb09a899a128a231\%20eccace22c}{https://www.semanticscholar.org/
+paper/Application-Programming-Interface-Clark/84f0b513a62a4f2bb09a899a128a231
+eccace22c}
 
 \bibitem[\citeproctext]{ref-desruisseaux_ogc_2021}
 Desruisseaux, M., Giacco, G., Goncalves, P., Manente, M. and Rouault, E.
