@@ -219,7 +219,7 @@ window.Quarto = {
   <li><a href="#dataset-selection" id="toc-dataset-selection" class="nav-link" data-scroll-target="#dataset-selection">Dataset selection</a></li>
   <li><a href="#proposed-catalog-structure" id="toc-proposed-catalog-structure" class="nav-link" data-scroll-target="#proposed-catalog-structure">Proposed Catalog structure</a></li>
   <li><a href="#s11-cats-repository" id="toc-s11-cats-repository" class="nav-link" data-scroll-target="#s11-cats-repository">S11-cats repository</a></li>
-  <li><a href="#eoapi-other-services" id="toc-eoapi-other-services" class="nav-link" data-scroll-target="#eoapi-other-services">eoAPI + other services</a></li>
+  <li><a href="#sec-eoapi" id="toc-sec-eoapi" class="nav-link" data-scroll-target="#sec-eoapi">eoAPI + other services</a></li>
   <li><a href="#cicd-pipeline" id="toc-cicd-pipeline" class="nav-link" data-scroll-target="#cicd-pipeline">CI/CD pipeline</a></li>
   <li><a href="#comparison-with-baseline-scenario" id="toc-comparison-with-baseline-scenario" class="nav-link" data-scroll-target="#comparison-with-baseline-scenario">Comparison with baseline scenario</a></li>
   </ul></li>
@@ -247,7 +247,6 @@ window.Quarto = {
   <li><a href="#effects-of-zoom-level" id="toc-effects-of-zoom-level" class="nav-link" data-scroll-target="#effects-of-zoom-level">Effects of zoom level</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#future-work" id="toc-future-work" class="nav-link" data-scroll-target="#future-work">Future work</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
@@ -485,9 +484,9 @@ Table&nbsp;1: STAC components
 <section id="sec-baseline" class="level2">
 <h2 class="anchored" data-anchor-id="sec-baseline">Baseline scenario</h2>
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
-<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <a href="#sec-baseline-q" class="quarto-xref">Section&nbsp;6.1</a> and were meant to be open questions with multiple possible answers.</p>
+<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <a href="#sec-baseline-q" class="quarto-xref">Section&nbsp;5.1</a> and were meant to be open questions with multiple possible answers.</p>
 <p>Furthermore, based on the answers of the interviewees a flowchart was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
-<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 <span class="citation" data-cites="openai_chatgpt_2023">(<a href="#ref-openai_chatgpt_2023" role="doc-biblioref">OpenAI, 2023</a>)</span>) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;6.2</a>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
+<p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">(<a href="#ref-anderson_thematic_2007" role="doc-biblioref">Anderson, 2007</a>)</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 <span class="citation" data-cites="openai_chatgpt_2023">(<a href="#ref-openai_chatgpt_2023" role="doc-biblioref">OpenAI, 2023</a>)</span>) using the prompt presented on <a href="#sec-gpt-prompt" class="quarto-xref">Section&nbsp;5.2</a>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
 </section>
 <section id="data-and-service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-service-integration">Data and service integration</h2>
@@ -583,8 +582,8 @@ Figure&nbsp;2: S11- cats main function
 </div>
 <p>As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections’ information and the other storing the items’ information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.</p>
 </section>
-<section id="eoapi-other-services" class="level3">
-<h3 class="anchored" data-anchor-id="eoapi-other-services">eoAPI + other services</h3>
+<section id="sec-eoapi" class="level3">
+<h3 class="anchored" data-anchor-id="sec-eoapi">eoAPI + other services</h3>
 <p>Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging <a href="https://eoapi.dev/">eoAPI</a> <span class="citation" data-cites="sarago_developmentseedeoapi_2024">(<a href="#ref-sarago_developmentseedeoapi_2024" role="doc-biblioref">Sarago et al., 2024</a>)</span>. <a href="https://eoapi.dev/">eoAPI</a> is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See <a href="https://github.com/stac-utils/pgstac">PgSTAC</a>), creating a dynamic catalog that can query the Postgres database (See <a href="https://github.com/stac-utils/stac-fastapi">STAC API</a>) and two additional services for visualizing raster (See <a href="https://github.com/stac-utils/titiler-pgstac">Titiler-PgSTAC</a>) and vector data (See <a href="https://github.com/developmentseed/tipg">TiPg</a>).</p>
 <p><a href="https://eoapi.dev/">eoAPI</a> integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Google Kubernetes Engine (GKE). Kubernetes is an open-source platform designed for automating the deployment, scaling, and management of containerized applications <span class="citation" data-cites="poulton_kubernetes_2023">(<a href="#ref-poulton_kubernetes_2023" role="doc-biblioref">Poulton, 2023</a>)</span>. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.</p>
 <p>Since the current version of <a href="https://eoapi.dev/">eoAPI</a> does not include some extra services that were necessary to deploy, a separate containerized version of these services was deployed in the same K8 cluster. Notably, a version of <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> and <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> to browse the catalog created and visualize Zarr datasets respectively.</p>
@@ -673,7 +672,9 @@ Figure&nbsp;3: Baseline workflow
 </section>
 <section id="deployment" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
-<p>Additional to the simplification that eoAPI provided to deploy this using K8s, we also went for that option because it had already been tested by other authors using large datasets and heavy load requests <span class="citation" data-cites="munteanu_performance_2024">(<a href="#ref-munteanu_performance_2024" role="doc-biblioref">Munteanu et al., 2024</a>)</span>. <span class="citation" data-cites="munteanu_performance_2024">Munteanu et al. (<a href="#ref-munteanu_performance_2024" role="doc-biblioref">2024</a>)</span> perform tests with 2.3 TB of spatial data stored in S3 and a simulated simultaneous load of up to 7k users and their results showed good performance serving the data. (REVIEW)</p>
+<p>As described on <a href="#sec-eoapi" class="quarto-xref">Section&nbsp;2.2.4</a>, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified <span class="citation" data-cites="gupta_deployment_2021">(<a href="#ref-gupta_deployment_2021" role="doc-biblioref">Gupta et al., 2021</a>)</span>. Moreover, <a href="www.eoapi.dev">eoAPI</a> simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times <span class="citation" data-cites="gokhale_creating_2021">(<a href="#ref-gokhale_creating_2021" role="doc-biblioref">Gokhale et al., 2021</a>)</span>. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.</p>
+<p>Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. …</p>
+<p>Additional to the simplification that eoAPI provided to deploy this using GKE and the Helm chart, we also went for that option because it had already been tested by other authors using large datasets and heavy load requests <span class="citation" data-cites="munteanu_performance_2024">(<a href="#ref-munteanu_performance_2024" role="doc-biblioref">Munteanu et al., 2024</a>)</span>. <span class="citation" data-cites="munteanu_performance_2024">Munteanu et al. (<a href="#ref-munteanu_performance_2024" role="doc-biblioref">2024</a>)</span> perform tests with 2.3 TB of spatial data stored in S3 and a simulated simultaneous load of up to 7k users and their results showed good performance serving the data. (REVIEW)</p>
 <p>Also the fact that it integrates other services that we are not using, but would come very handy in the near future for satelligence.</p>
 <p>Compare with other ways in which this could have been done? Virtual Machine (Compute Engine)</p>
 <p>discussion: - Vector visualization can be done in the future. - Authentication - stac extensions.</p>
@@ -692,7 +693,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
 </figcaption>
 </figure>
 </div>
-<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Moreover, the dynamic catalog created can be integrated with other commonly used tools like QGIS via the STAC API plugin. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows.</p>
+<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favours long term usability of code that relies on this data.</p>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
@@ -741,20 +742,9 @@ Figure&nbsp;6: Request times depending on zoom level
 <h4 class="anchored" data-anchor-id="discussion">Discussion</h4>
 <p>Range request of tiles in titiler-xarray is customized in a particular way. Nevertheless, other alternatives exist…</p>
 <p>Check on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)</p>
-<!-- # Discussion
-
-{{< include sections/discussion.md >}} -->
 </section>
 </section>
 </section>
-</section>
-<section id="future-work" class="level1">
-<h1>Future work</h1>
-<ul>
-<li>ndpyramids</li>
-<li>STAC API authentication</li>
-<li>Inclusion of Vector data on STAC</li>
-</ul>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
@@ -785,6 +775,12 @@ Durbha, S. S., Sanyal, J., Yang, L., S Chaudhari, S., Bhangale, U., Bharambe, U.
 </div>
 <div id="ref-giri_big_2014" class="csl-entry" role="listitem">
 Giri, K. and Lone, T. (2014). Big data -overview and challenges. <em>International Journal of Advanced Research in Computer Science and Software Engineering</em>, <em>4</em>.
+</div>
+<div id="ref-gokhale_creating_2021" class="csl-entry" role="listitem">
+Gokhale, S., Poosarla, R., Tikar, S., Gunjawate, S., Hajare, A., Deshpande, S., Gupta, S. and Karve, K. (2021). Creating helm charts to ease deployment of enterprise application and its related services in kubernetes. <em>2021 International Conference on Computing, Communication and Green Engineering (<span>CCGE</span>)</em>, 1–5. pp. <a href="https://doi.org/10.1109/CCGE50943.2021.9776450">https://doi.org/10.1109/CCGE50943.2021.9776450</a>
+</div>
+<div id="ref-gupta_deployment_2021" class="csl-entry" role="listitem">
+Gupta, M., Sanjana, K., Akhilesh, K. and Chowdary, M. N. (2021). Deployment of multi-tier application on cloud and continuous monitoring using kubernetes. <em>2021 5th International Conference on Electrical, Electronics, Communication, Computer Technologies and Optimization Techniques (<span>ICEECCOT</span>)</em>, 602–607. pp. <a href="https://doi.org/10.1109/ICEECCOT52851.2021.9707957">https://doi.org/10.1109/ICEECCOT52851.2021.9707957</a>
 </div>
 <div id="ref-holmes_spatiotemporal_2021" class="csl-entry" role="listitem">
 Holmes, C. (2021(e)ko Januaryk 19). <em><span>SpatioTemporal</span> asset catalogs and the open geospatial consortium. Radiant earth insights</em>. <a href="https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7">https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7</a>
@@ -872,7 +868,7 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="1a18b82b" class="cell" data-execution_count="5">
+<div id="1a7d9a2a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
