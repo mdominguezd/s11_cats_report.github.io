@@ -599,7 +599,7 @@ Figure&nbsp;2: S11- cats main function
 </section>
 <section id="multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
-<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
+<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were locally deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
 <section id="speed-up" class="level3">
 <h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
 <p>The performance of both TiTiler services to dynamically create tiles for the different data formats was evaluated using the Speed Up metric proposed in <span class="citation" data-cites="durbha_advances_2023">Durbha et al. (<a href="#ref-durbha_advances_2023" role="doc-biblioref">2023</a>)</span> (<a href="#eq-speed-up" class="quarto-xref">Equation&nbsp;1</a>). In this case, the Speed Up explains how much did the process of requesting tiles sped up by using a data format A compared to using a data format B.</p>
@@ -652,7 +652,7 @@ Figure&nbsp;3: Baseline workflow
 <li>Not one place where all existing data can be found.</li>
 </ul>
 <p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.</p>
-<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">(<a href="#ref-miranda_espinosa_reviewing_2020" role="doc-biblioref">Miranda Espinosa et al., 2020</a>)</span>. Addressing these challenges, a streamlined approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
+<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">(<a href="#ref-miranda_espinosa_reviewing_2020" role="doc-biblioref">Miranda Espinosa et al., 2020</a>)</span>. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
 </section>
 </section>
 <section id="service-integration" class="level2">
@@ -695,9 +695,10 @@ Figure&nbsp;4: New data discovery and visualization workflow
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
+<p>The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be obesrved that COG tiles are requested 2.53 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be obeserved that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a> shows that the response times for tiles created from data stored as Zarr showed a significantly wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -706,21 +707,21 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <img src="index_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Request times depending on data format and zoom level
+Figure&nbsp;5: Response times for tile requests depending on data format and zoom level
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="fine-tuning-of-dataset-creation" class="level4">
-<h4 class="anchored" data-anchor-id="fine-tuning-of-dataset-creation">Fine tuning of dataset creation</h4>
-<p>There are some GDAL parameters that can improve the tiling performance of TiTiler (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performnce_tuning</a>). This should be taken into account in future dataset creation</p>
-<p>Also how well</p>
+<p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where COGs’ rendering time was found to be significantly lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like <a href="https://github.com/carbonplan/ndpyramid">ndpyramid</a> could bring significant improvements to this data format <span class="citation" data-cites="pagan_current_2023">Barciauskas et al. (<a href="#ref-Barciauskas_NextGen_2024" role="doc-biblioref">2024</a>)</span>.</p>
+<section id="fine-tuning-of-dataset" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="fine-tuning-of-dataset">Fine tuning of dataset</h4>
+<p>Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments can significantly improve the speed of tiling services using these data formats <span class="citation" data-cites="nasa_impact_zarr_2023">(<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">IMPACT, 2023</a>)</span>. Future considerations should include optimizing these parameters to maximize efficiency (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performance tuning section</a>).</p>
 </section>
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs respectively.</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a significant change for Zarrs (0.002 seconds per zoom level). The behaviour presented here differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where no significant difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in that study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, in order to verify this hypothesis a broader study of the response times at more zoom levels should be performed.</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -729,17 +730,27 @@ Figure&nbsp;5: Request times depending on data format and zoom level
 <img src="index_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Request times depending on zoom level
+Figure&nbsp;6: Request times depending on zoom level and their respective trends for COG and Zarr data formats.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="discussion" class="level4">
-<h4 class="anchored" data-anchor-id="discussion">Discussion</h4>
-<p>Range request of tiles in titiler-xarray is customized in a particular way. Nevertheless, other alternatives exist…</p>
-<p>Check on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)</p>
-</section>
+<p>Moreover, as seen on <a href="#fig-chunksize-zarr" class="quarto-xref">Figure&nbsp;7</a>, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a> for the two data formats.</p>
+<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-chunksize-zarr-output-1.png" width="648" height="454" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -782,6 +793,9 @@ Gupta, M., Sanjana, K., Akhilesh, K. and Chowdary, M. N. (2021). Deployment of m
 <div id="ref-holmes_spatiotemporal_2021" class="csl-entry" role="listitem">
 Holmes, C. (2021(e)ko Januaryk 19). <em><span>SpatioTemporal</span> asset catalogs and the open geospatial consortium. Radiant earth insights</em>. <a href="https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7">https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7</a>
 </div>
+<div id="ref-nasa_impact_zarr_2023" class="csl-entry" role="listitem">
+IMPACT, N. (2023). <em>Zarr visualization report</em>. Nasa. <a href="https://nasa-impact.github.io/zarr-visualization-report/">https://nasa-impact.github.io/zarr-visualization-report/</a>
+</div>
 <div id="ref-kaufmann_database_2023" class="csl-entry" role="listitem">
 Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann and A. Meier (Eds.), <em><span>SQL</span> and <span>NoSQL</span> databases: Modeling, languages, security and architectures for big data management</em> (1–24. pp.). Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-27908-9_1">https://doi.org/10.1007/978-3-031-27908-9_1</a>
 </div>
@@ -802,6 +816,9 @@ OGC. (2023). <em><span>OGC</span> cloud optimized <span>GeoTIFF</span> standard<
 </div>
 <div id="ref-openai_chatgpt_2023" class="csl-entry" role="listitem">
 OpenAI. (2023). <em><span>ChatGPT</span></em>. <a href="https://chatgpt.com/">https://chatgpt.com/</a>
+</div>
+<div id="ref-pagan_current_2023" class="csl-entry" role="listitem">
+Pagán, B. R., Abernathey, R., Blodgett, D. L., Davis, E., Erickson, T., Hanson, M., Harkins, S., Noel, C., Kapadia, A. and Shiklomanov, A. N. (2023). <em>Current status of the <span>GeoZarr</span> steering working group</em>. <em>2023</em>, IN34A–04. pp. <a href="https://ui.adsabs.harvard.edu/abs/2023AGUFMIN34A..04P">https://ui.adsabs.harvard.edu/abs/2023AGUFMIN34A..04P</a>
 </div>
 <div id="ref-poulton_kubernetes_2023" class="csl-entry" role="listitem">
 Poulton, N. (2023). <em>The kubernetes book</em>. Nigel Poulton Ltd.
@@ -865,12 +882,12 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="ae951e64" class="cell" data-execution_count="5">
+<div id="dcb9d7c1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"6/50/32"</span>, <span class="st">"7/99/63"</span>, <span class="st">"8/199/126"</span>, <span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">"13/6407/4075"</span>, <span class="st">"14/12817/8159"</span>, <span class="st">"15/25678/16271"</span>, <span class="st">"16/51268/32552"</span>, </span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">"17/102503/65134"</span>, <span class="st">"18/205062/130211"</span>]</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -882,70 +899,72 @@ Content Analysis of the interviews.</code></pre>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">2</span>])</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the range of change based on the value of z</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">7</span>:</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://eoapi.satelligence.com/raster/collections/"</span><span class="op">+\</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://localhost:8082/collections/"</span><span class="op">+\</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
