@@ -1016,13 +1016,13 @@ versions of both
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 (for Zarr files) and
 \href{https://github.com/stac-utils/titiler-pgstac}{TiTiler-PgSTAC} (for
-COG files) were deployed. The performance was measured by recording the
-response times for random tile requests at zoom levels ranging from 9 to
-18. Finally, to mitigate the influence of cached data on response times,
-each iteration used a different colormap, with a total of twelve
-colormaps employed. This methodology enabled a systematic evaluation of
-the performance differences between the two data formats in a
-geo-spatial data visualization context.
+COG files) were locally deployed. The performance was measured by
+recording the response times for random tile requests at zoom levels
+ranging from 9 to 18. Finally, to mitigate the influence of cached data
+on response times, each iteration used a different colormap, with a
+total of twelve colormaps employed. This methodology enabled a
+systematic evaluation of the performance differences between the two
+data formats in a geo-spatial data visualization context.
 
 \subsection{Speed up}\label{speed-up}
 
@@ -1130,12 +1130,11 @@ seamlessly. Previous studies have found that key difficulties for earth
 observation data discovery include heterogeneous query interfaces, and
 use of diverse metadata models
 (\citeproc{ref-miranda_espinosa_reviewing_2020}{Miranda Espinosa et al.,
-2020}). Addressing these challenges, a streamlined approach should
-enable easy access to datasets based on specific queries, ensuring that
-users can efficiently locate and utilize the data they need. By
-harmonizing metadata standards and query protocols, the process of data
-discovery can be greatly improved, making it more accessible and
-user-friendly.
+2020}). To address these challenges, the approach should enable easy
+access to datasets based on specific queries, ensuring that users can
+efficiently locate and utilize the data they need. By harmonizing
+metadata standards and query protocols, the process of data discovery
+can be greatly improved, making it more accessible and user-friendly.
 
 \section{Service integration}\label{service-integration}
 
@@ -1281,12 +1280,23 @@ that relies on this data.
 \section{Performance of multi-format data
 visualization}\label{performance-of-multi-format-data-visualization}
 
+The results of the experiments made with different cloud-optimized data
+formats are presented in two distinc subsections. The first subsection
+evaluates the overall performance of the two data formats and the second
+subsection assess the performance of these data formats based on
+different zoom levels.
+
 \subsection{Raster formats}\label{raster-formats}
 
-The comparison of visualization speeds with TiTiler-xarray for Zarr
+The comparison of visualization speeds with TiTiler-Xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented on
-Figure~\ref{fig-format-comp}. In the figure it can be obesrved that COG
-tiles are requested 2.53 times faster than the same file in ZARR format.
+Figure~\ref{fig-format-comp}. In the figure it can be obeserved that on
+average the response for requests of COG tiles was 2.53 times faster
+than the one for the same file in ZARR format. Moreover,
+Figure~\ref{fig-format-comp} shows that the response times for tiles
+created from data stored as Zarr showed a significantly wider range than
+the ones generated from data in the COG format, which indicates more
+variability in the performance for Zarr.
 
 \begin{figure}[H]
 
@@ -1296,20 +1306,60 @@ tiles are requested 2.53 times faster than the same file in ZARR format.
 
 }
 
-\caption{\label{fig-format-comp}Request times depending on data format
-and zoom level}
+\caption{\label{fig-format-comp}Response times for tile requests
+depending on data format and zoom level}
 
 \end{figure}%
 
-\subsubsection{Fine tuning of dataset
+The results obtained are coherent to the ones previously shown by IMPACT
+(\citeproc{ref-nasa_impact_zarr_2023}{2023}), where COGs' rendering time
+was found to be significantly lower than the one for Zarr files at the
+six first zoom levels (i.e.~the lowest resolutions).
+
+\begin{figure}[H]
+
+\centering{
+
+\captionsetup{labelsep=none}
+
+\centering{
+
+\begin{verbatim}
+Text(0.5, 0, 'Pyramid\n$\\rightarrow{}$zoom increase$\\rightarrow{}$')
+\end{verbatim}
+
+}
+
+\subcaption{\label{fig-chunksize-zarr-1}Variation of chunk sizes in Zarr
+file depending on zoom level.}
+
+\centering{
+
+\captionsetup{labelsep=none}\includegraphics{FinalReport_files/figure-pdf/fig-chunksize-zarr-output-2.pdf}
+
+}
+
+\subcaption{\label{fig-chunksize-zarr-2}}
+
+}
+
+\caption{\label{fig-chunksize-zarr}}
+
+\end{figure}%
+
+Different chunk sizes on Zarrs at level 0 (244x119), at level 5
+(489x476), and at level 8 (978x952). The data
+
+While chunks for COGs where constantly (512x512)
+
+\subsubsection*{Fine tuning of dataset
 creation}\label{fine-tuning-of-dataset-creation}
+\addcontentsline{toc}{subsubsection}{Fine tuning of dataset creation}
 
 There are some GDAL parameters that can improve the tiling performance
 of TiTiler (See
 \href{https://developmentseed.org/titiler/advanced/performance_tuning/}{performnce\_tuning}).
 This should be taken into account in future dataset creation
-
-Also how well
 
 \subsection{Effects of zoom level}\label{effects-of-zoom-level}
 
@@ -1412,6 +1462,10 @@ Techniques ({ICEECCOT})}, 602--607. pp.
 Holmes, C. (2021(e)ko Januaryk 19). \emph{{SpatioTemporal} asset
 catalogs and the open geospatial consortium. Radiant earth insights}.
 \url{https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7}
+
+\bibitem[\citeproctext]{ref-nasa_impact_zarr_2023}
+IMPACT, N. (2023). \emph{Zarr visualization report}. Nasa.
+\url{https://nasa-impact.github.io/zarr-visualization-report/}
 
 \bibitem[\citeproctext]{ref-kaufmann_database_2023}
 Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann

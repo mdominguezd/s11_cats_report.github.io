@@ -30,7 +30,7 @@ After some refinement and a deeper analysis of the interviews, the major pitfall
 
 All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.
 
-All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. Addressing these challenges, a streamlined approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
+All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
 
 ## Service integration
 
@@ -68,6 +68,8 @@ Moreover, it can be seen that with the new implementation most of the issues ide
 
 ## Performance of multi-format data visualization
 
+The results of the experiments made with different cloud-optimized data formats are presented in two distinc subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.
+
 ### Raster formats
 
 ```{python}
@@ -80,11 +82,11 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
 
-The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be obesrved that COG tiles are requested `{python} speed_up` times faster than the same file in ZARR format.
+The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be obeserved that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a significantly wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
 ```{python}
 #| echo: false
-#| fig-cap: "Request times depending on data format and zoom level"
+#| fig-cap: "Response times for tile requests depending on data format and zoom level"
 #| label: fig-format-comp
 
 import seaborn as sns
@@ -112,11 +114,63 @@ a = ax.set_xlabel('Data format')
 
 ```
 
-#### Fine tuning of dataset creation
+The results obtained are coherent to the ones previously shown by @nasa_impact_zarr_2023, where COGs' rendering time was found to be significantly lower than the one for Zarr files at the six first zoom levels (i.e. the lowest resolutions). 
+
+```{python}
+#| echo: false
+#| eval: false
+
+import xarray as xr
+import google.auth
+
+google.auth.default()
+
+chunk_x = []
+chunk_y = []
+pyramids = range(9)
+
+for i in pyramids:
+
+    zarr_link = 'gs://s11-tiles/zarr/separate'
+
+    zarr_link = f"{zarr_link}/" + str(int(i))
+
+    with xr.open_zarr(zarr_link, chunks = 'auto', consolidated = True, decode_coords='all') as src:
+        
+        chunksize_y = src['band_data'].chunksizes['y'][0]
+        chunksize_x = src['band_data'].chunksizes['x'][0]
+        
+        chunk_x.append(chunksize_x)
+        chunk_y.append(chunksize_y)
+
+df = pd.DataFrame([pyramids, chunk_x, chunk_y]).T
+df.columns = ['pyramids', 'chunksize_x', 'chunksize_y']
+
+df.to_csv('chunksize_zarr.csv')
+```
+
+```{python}
+#| echo: false 
+#| fig-cap: "Variation of chunk sizes in Zarr file depending on zoom level."
+#| label: fig-chunksize-zarr
+
+df = pd.read_csv('sections/chunksize_zarr.csv')
+
+ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_x', color=s11_cmap(255), label = 'Horizontal chunks (x)')
+ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_y', color=s11_cmap(0),ax = ax, label = 'Vertical chunks (y)')
+
+ax.set_ylabel('Chunk size [pixels]')
+ax.set_xlabel('Pyramid\n' + r'$\rightarrow{}$zoom increase$\rightarrow{}$')
+
+```
+
+Different chunk sizes on Zarrs at level 0 (244x119), at level 5 (489x476), and at level 8 (978x952). The data
+
+While chunks for COGs where constantly (512x512)
+
+#### Fine tuning of dataset creation {.unnumbered}
 
 There are some GDAL parameters that can improve the tiling performance of TiTiler (See [performnce_tuning](https://developmentseed.org/titiler/advanced/performance_tuning/)). This should be taken into account in future dataset creation
-
-Also how well
 
 ### Effects of zoom level
 

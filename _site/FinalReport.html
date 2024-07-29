@@ -599,7 +599,7 @@ Figure&nbsp;2: S11- cats main function
 </section>
 <section id="multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
-<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
+<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were locally deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
 <section id="speed-up" class="level3">
 <h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
 <p>The performance of both TiTiler services to dynamically create tiles for the different data formats was evaluated using the Speed Up metric proposed in <span class="citation" data-cites="durbha_advances_2023">Durbha et al. (<a href="#ref-durbha_advances_2023" role="doc-biblioref">2023</a>)</span> (<a href="#eq-speed-up" class="quarto-xref">Equation&nbsp;1</a>). In this case, the Speed Up explains how much did the process of requesting tiles sped up by using a data format A compared to using a data format B.</p>
@@ -652,7 +652,7 @@ Figure&nbsp;3: Baseline workflow
 <li>Not one place where all existing data can be found.</li>
 </ul>
 <p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.</p>
-<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">(<a href="#ref-miranda_espinosa_reviewing_2020" role="doc-biblioref">Miranda Espinosa et al., 2020</a>)</span>. Addressing these challenges, a streamlined approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
+<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">(<a href="#ref-miranda_espinosa_reviewing_2020" role="doc-biblioref">Miranda Espinosa et al., 2020</a>)</span>. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
 </section>
 </section>
 <section id="service-integration" class="level2">
@@ -695,9 +695,10 @@ Figure&nbsp;4: New data discovery and visualization workflow
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
+<p>The results of the experiments made with different cloud-optimized data formats are presented in two distinc subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be obesrved that COG tiles are requested 2.53 times faster than the same file in ZARR format.</p>
+<p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be obeserved that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a> shows that the response times for tiles created from data stored as Zarr showed a significantly wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -706,22 +707,57 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <img src="FinalReport_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Request times depending on data format and zoom level
+Figure&nbsp;5: Response times for tile requests depending on data format and zoom level
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="fine-tuning-of-dataset-creation" class="level4">
-<h4 class="anchored" data-anchor-id="fine-tuning-of-dataset-creation">Fine tuning of dataset creation</h4>
+<p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where COGs’ rendering time was found to be significantly lower than the one for Zarr files at the six first zoom levels (i.e.&nbsp;the lowest resolutions).</p>
+<div class="cell" data-execution_count="4">
+<div id="fig-chunksize-zarr" class="cell quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-chunksize-zarr-1" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="9">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-chunksize-zarr-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-chunksize-zarr-1" class="cell-output cell-output-display" data-execution_count="9"><code>Text(0.5, 0, 'Pyramid\n$\\rightarrow{}$zoom increase$\\rightarrow{}$')</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chunksize-zarr-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Variation of chunk sizes in Zarr file depending on zoom level.
+</figcaption>
+</figure>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-chunksize-zarr-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="685" height="528">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-chunksize-zarr-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="FinalReport_files/figure-html/fig-chunksize-zarr-output-2.png" id="fig-chunksize-zarr-2" data-ref-parent="fig-chunksize-zarr" width="685" height="528" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-chunksize-zarr-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6
+</figcaption>
+</figure>
+</div>
+</div>
+<p>Different chunk sizes on Zarrs at level 0 (244x119), at level 5 (489x476), and at level 8 (978x952). The data</p>
+<p>While chunks for COGs where constantly (512x512)</p>
+<section id="fine-tuning-of-dataset-creation" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="fine-tuning-of-dataset-creation">Fine tuning of dataset creation</h4>
 <p>There are some GDAL parameters that can improve the tiling performance of TiTiler (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performnce_tuning</a>). This should be taken into account in future dataset creation</p>
-<p>Also how well</p>
 </section>
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs respectively.</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;7</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by -0.01 and 0.002 seconds per zoom level for COGs and ZARRs respectively.</p>
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -729,7 +765,7 @@ Figure&nbsp;5: Request times depending on data format and zoom level
 <img src="FinalReport_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Request times depending on zoom level
+Figure&nbsp;7: Request times depending on zoom level
 </figcaption>
 </figure>
 </div>
@@ -781,6 +817,9 @@ Gupta, M., Sanjana, K., Akhilesh, K. and Chowdary, M. N. (2021). Deployment of m
 </div>
 <div id="ref-holmes_spatiotemporal_2021" class="csl-entry" role="listitem">
 Holmes, C. (2021(e)ko Januaryk 19). <em><span>SpatioTemporal</span> asset catalogs and the open geospatial consortium. Radiant earth insights</em>. <a href="https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7">https://medium.com/radiant-earth-insights/spatiotemporal-asset-catalogs-and-the-open-geospatial-consortium-659538dce5c7</a>
+</div>
+<div id="ref-nasa_impact_zarr_2023" class="csl-entry" role="listitem">
+IMPACT, N. (2023). <em>Zarr visualization report</em>. Nasa. <a href="https://nasa-impact.github.io/zarr-visualization-report/">https://nasa-impact.github.io/zarr-visualization-report/</a>
 </div>
 <div id="ref-kaufmann_database_2023" class="csl-entry" role="listitem">
 Kaufmann, M. and Meier, A. (2023). Database management. In M. Kaufmann and A. Meier (Eds.), <em><span>SQL</span> and <span>NoSQL</span> databases: Modeling, languages, security and architectures for big data management</em> (1–24. pp.). Springer Nature Switzerland. <a href="https://doi.org/10.1007/978-3-031-27908-9_1">https://doi.org/10.1007/978-3-031-27908-9_1</a>
@@ -865,7 +904,7 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="499f8be9" class="cell" data-execution_count="5">
+<div id="c28f2805" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>

@@ -4,3 +4,5 @@ numpy
 matplotlib
 seaborn
 statsmodels
+xarray
+dask
