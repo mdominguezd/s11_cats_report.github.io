@@ -133,12 +133,8 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
 cog_slope = float(round(fit_results.params['zoom level'], 3))
 
-print(fit_results.summary())
-
 fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
 zarr_slope = float(round(fit_results.params['zoom level'], 3))
-
-print(fit_results.summary())
 
 ```
 
