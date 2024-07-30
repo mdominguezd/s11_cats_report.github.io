@@ -256,60 +256,6 @@ Figure&nbsp;3: Response times for tile requests depending on data format and zoo
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<div id="a322b395" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-stdout">
-<pre><code>                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                    COG   R-squared:                       0.068
-Model:                            OLS   Adj. R-squared:                  0.060
-Method:                 Least Squares   F-statistic:                     8.594
-Date:                Tue, 30 Jul 2024   Prob (F-statistic):            0.00405
-Time:                        05:26:20   Log-Likelihood:                 97.528
-No. Observations:                 120   AIC:                            -191.1
-Df Residuals:                     118   BIC:                            -185.5
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const          0.3098      0.047      6.524      0.000       0.216       0.404
-zoom level    -0.0101      0.003     -2.932      0.004      -0.017      -0.003
-==============================================================================
-Omnibus:                       15.431   Durbin-Watson:                   1.240
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               25.004
-Skew:                           0.596   Prob(JB):                     3.72e-06
-Kurtosis:                       4.892   Cond. No.                         66.7
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:                   ZARR   R-squared:                       0.001
-Model:                            OLS   Adj. R-squared:                 -0.008
-Method:                 Least Squares   F-statistic:                    0.1041
-Date:                Tue, 30 Jul 2024   Prob (F-statistic):              0.748
-Time:                        05:26:20   Log-Likelihood:                 37.243
-No. Observations:                 120   AIC:                            -70.49
-Df Residuals:                     118   BIC:                            -64.91
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const          0.4153      0.078      5.292      0.000       0.260       0.571
-zoom level     0.0018      0.006      0.323      0.748      -0.009       0.013
-==============================================================================
-Omnibus:                      126.673   Durbin-Watson:                   1.460
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1844.290
-Skew:                           3.780   Prob(JB):                         0.00
-Kurtosis:                      20.655   Cond. No.                         66.7
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
-</div>
-</div>
 <p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
