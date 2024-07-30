@@ -473,7 +473,7 @@ Table&nbsp;1: STAC components
 <h2 class="anchored" data-anchor-id="research-questions">Research questions</h2>
 <ul>
 <li>What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?</li>
-<li>How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering big spatial data within the company?</li>
+<li>How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?</li>
 <li>To what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?</li>
 </ul>
 </section>
@@ -629,7 +629,7 @@ Figure&nbsp;3: Baseline workflow
 </figcaption>
 </figure>
 </div>
-<p>According to <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;3</a>, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset’s location added significant uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.</p>
+<p>According to <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;3</a>, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset’s location added a major uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.</p>
 </section>
 <section id="thematic-content-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="thematic-content-analysis">Thematic Content Analysis</h3>
@@ -667,14 +667,14 @@ Figure&nbsp;3: Baseline workflow
 </section>
 <section id="leverage-of-apis" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="leverage-of-apis">Leverage of APIs</h4>
-<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API possibilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.</p>
+<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.</p>
 <p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
 </section>
 <section id="deployment" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
 <p>As described on <a href="#sec-eoapi" class="quarto-xref">Section&nbsp;2.2.4</a>, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified <span class="citation" data-cites="gupta_deployment_2021">(<a href="#ref-gupta_deployment_2021" role="doc-biblioref">Gupta et al., 2021</a>)</span>. Moreover, <a href="www.eoapi.dev">eoAPI</a> simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times <span class="citation" data-cites="gokhale_creating_2021">(<a href="#ref-gokhale_creating_2021" role="doc-biblioref">Gokhale et al., 2021</a>)</span>. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.</p>
 <p>Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, <span class="citation" data-cites="munteanu_performance_2024">Munteanu et al. (<a href="#ref-munteanu_performance_2024" role="doc-biblioref">2024</a>)</span> performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.</p>
-<p>Finally, additional to the already covered advantages, the deployment of <a href="www.eoapi.dev">eoAPI</a> and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using <a href="https://github.com/developmentseed/tipg">TiPg</a> is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fastly. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.</p>
+<p>Finally, additional to the already covered advantages, the deployment of <a href="www.eoapi.dev">eoAPI</a> and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using <a href="https://github.com/developmentseed/tipg">TiPg</a> is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.</p>
 </section>
 </section>
 <section id="workflow-improvement" class="level3">
@@ -690,7 +690,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
 </figcaption>
 </figure>
 </div>
-<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favours long term usability of code that relies on this data.</p>
+<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data.</p>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
@@ -698,7 +698,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <p>The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be obeserved that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a> shows that the response times for tiles created from data stored as Zarr showed a significantly wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
+<p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a>. In the figure it can be observed that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;5</a> shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -713,15 +713,69 @@ Figure&nbsp;5: Response times for tile requests depending on data format and zoo
 </div>
 </div>
 </div>
-<p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where COGs’ rendering time was found to be significantly lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like <a href="https://github.com/carbonplan/ndpyramid">ndpyramid</a> could bring significant improvements to this data format <span class="citation" data-cites="pagan_current_2023">Barciauskas et al. (<a href="#ref-Barciauskas_NextGen_2024" role="doc-biblioref">2024</a>)</span>.</p>
+<p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where COGs’ rendering time was found to be lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like <a href="https://github.com/carbonplan/ndpyramid">ndpyramid</a> could bring significant improvements to this data format <span class="citation" data-cites="pagan_current_2023">Barciauskas et al. (<a href="#ref-Barciauskas_NextGen_2024" role="doc-biblioref">2024</a>)</span>.</p>
 <section id="fine-tuning-of-dataset" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="fine-tuning-of-dataset">Fine tuning of dataset</h4>
-<p>Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments can significantly improve the speed of tiling services using these data formats <span class="citation" data-cites="nasa_impact_zarr_2023">(<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">IMPACT, 2023</a>)</span>. Future considerations should include optimizing these parameters to maximize efficiency (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performance tuning section</a>).</p>
+<p>Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments could improve the speed of tiling services using COG <span class="citation" data-cites="nasa_impact_zarr_2023">(<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">IMPACT, 2023</a>)</span>. Future considerations should include optimizing these parameters to maximize efficiency (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performance tuning section</a>).</p>
 </section>
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a significant change for Zarrs (0.002 seconds per zoom level). The behaviour presented here differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where no significant difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in that study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, in order to verify this hypothesis a broader study of the response times at more zoom levels should be performed.</p>
+<div id="67e43f86" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    COG   R-squared:                       0.068
+Model:                            OLS   Adj. R-squared:                  0.060
+Method:                 Least Squares   F-statistic:                     8.594
+Date:                Tue, 30 Jul 2024   Prob (F-statistic):            0.00405
+Time:                        05:24:43   Log-Likelihood:                 97.528
+No. Observations:                 120   AIC:                            -191.1
+Df Residuals:                     118   BIC:                            -185.5
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.3098      0.047      6.524      0.000       0.216       0.404
+zoom level    -0.0101      0.003     -2.932      0.004      -0.017      -0.003
+==============================================================================
+Omnibus:                       15.431   Durbin-Watson:                   1.240
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               25.004
+Skew:                           0.596   Prob(JB):                     3.72e-06
+Kurtosis:                       4.892   Cond. No.                         66.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   ZARR   R-squared:                       0.001
+Model:                            OLS   Adj. R-squared:                 -0.008
+Method:                 Least Squares   F-statistic:                    0.1041
+Date:                Tue, 30 Jul 2024   Prob (F-statistic):              0.748
+Time:                        05:24:43   Log-Likelihood:                 37.243
+No. Observations:                 120   AIC:                            -70.49
+Df Residuals:                     118   BIC:                            -64.91
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.4153      0.078      5.292      0.000       0.260       0.571
+zoom level     0.0018      0.006      0.323      0.748      -0.009       0.013
+==============================================================================
+Omnibus:                      126.673   Durbin-Watson:                   1.460
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1844.290
+Skew:                           3.780   Prob(JB):                         0.00
+Kurtosis:                      20.655   Cond. No.                         66.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;6</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -756,6 +810,19 @@ Figure&nbsp;7: Variation of chunk sizes in Zarr file depending on zoom level com
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
+<p>The conclusions of the work performed during this internship are presented below in relationship to each research question:</p>
+<ul>
+<li><strong><em>What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?</em></strong></li>
+</ul>
+<p>The qualitative analysis of the current workflow at Satelligence revealed a complex and time-consuming process for data discovery, retrieval, and visualization. Major inefficiencies identified by the TCA included high dependency on colleagues for locating datasets, a disorganized structure of Google Storage Buckets and the need to download full datasets for visualization. The challenges found underscore the necessity for a user-friendly data discovery implementation where data visualization can also be integrated.</p>
+<ul>
+<li><strong><em>How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?</em></strong></li>
+</ul>
+<p>The integration of cloud-optimized data formats, cloud services, and SpatioTemporal Asset Catalog (STAC) specifications has greatly enhanced data discovery and visualization for Satelligence. Despite the challenges that could be involved in integrating these aspects, this study presents a methodology that leverages customized cloud optimized data formats, the integration of several services (i.e.&nbsp;eoAPI, STAC Browser and TiTiler-Xarray), and the deployment on GKE to achieve effective integration. The solution proposed her addresses challenges found previously. Finally, the consolidation of all data in one place ensures long-term usability and an easier management of big spatial data.</p>
+<ul>
+<li><strong><em>To what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?</em></strong></li>
+</ul>
+<p>Dynamic tiling services vary in performance when visualizing different cloud-optimized data-formats. In this study, the performance evaluation showed that COG tiles were, on average, 2.53 times faster to be requested than Zarr tiles, with less variability in response times. These results align with the understanding that COGs are specifically optimized for spatial data visualization, whereas Zarrs are not. Although this study made efforts to improve Zarr visualization using customized pyramids, recent advancements such as GeoZarr and more efficient Zarr pyramids generation could further enhance Zarr visualization performance.</p>
 </section>
 <section id="references" class="level1 unnumbered">
 <h1 class="unnumbered">References</h1>
@@ -882,89 +949,89 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="dcb9d7c1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"6/50/32"</span>, <span class="st">"7/99/63"</span>, <span class="st">"8/199/126"</span>, <span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">"13/6407/4075"</span>, <span class="st">"14/12817/8159"</span>, <span class="st">"15/25678/16271"</span>, <span class="st">"16/51268/32552"</span>, </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">"17/102503/65134"</span>, <span class="st">"18/205062/130211"</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiles are slightly modified to try to avoid getting cached tiles</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modify_tile(tile):</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> tile.split(<span class="st">'/'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">0</span>])</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">1</span>])</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">2</span>])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the range of change based on the value of z</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">7</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://localhost:8082/collections/"</span><span class="op">+\</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="38b44b00" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"6/50/32"</span>, <span class="st">"7/99/63"</span>, <span class="st">"8/199/126"</span>, <span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">"13/6407/4075"</span>, <span class="st">"14/12817/8159"</span>, <span class="st">"15/25678/16271"</span>, <span class="st">"16/51268/32552"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"17/102503/65134"</span>, <span class="st">"18/205062/130211"</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiles are slightly modified to try to avoid getting cached tiles</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modify_tile(tile):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> tile.split(<span class="st">'/'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">0</span>])</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">1</span>])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">2</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the range of change based on the value of z</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">7</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://localhost:8082/collections/"</span><span class="op">+\</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
