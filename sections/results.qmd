@@ -144,7 +144,7 @@ As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the tim
 #| echo: false
 #| fig-cap: "Request times depending on zoom level and their respective trends for COG and Zarr data formats."
 #| label: fig-comp-zoom
-fig, ax = plt.subplots(1,1,figsize= (7.5,5))
+fig, ax = plt.subplots(1,1,figsize= (7.5,3.5))
 
 sns.regplot(data, x = 'zoom level', y = 'COG', ax = ax, color=s11_cmap(0), ci = 95, label='COG')
 sns.regplot(data, x = 'zoom level', y = 'ZARR', ax = ax, color=s11_cmap(255), ci = 95, label= 'ZARR')
@@ -197,7 +197,7 @@ df.to_csv('chunksize_zarr.csv')
 
 df = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/chunksize_zarr.csv')
 
-fig, ax = plt.subplots(1,1,figsize= (7.5,5))
+fig, ax = plt.subplots(1,1,figsize= (7.5,3.5))
 
 ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_x', color=s11_cmap(255), ax = ax, label = 'Horizontal chunks (x)')
 ax = sns.scatterplot(df, x = 'pyramids', y = 'chunksize_y', color=s11_cmap(0), ax = ax, label = 'Vertical chunks (y)')
