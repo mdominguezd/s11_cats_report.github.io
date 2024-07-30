@@ -6,7 +6,7 @@ One of the main findings of the interviews was the process followed currently to
 
 ![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
 
-According to @fig-baseline, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset's location added significant uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.
+According to @fig-baseline, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset's location added a major uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.
 
 ### Thematic Content Analysis
 
@@ -46,17 +46,17 @@ An essential step related to data formats was the edition of Zarr datasets to ac
 
 #### Leverage of APIs {.unnumbered}
 
-To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API possibilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.
+To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.
 
-For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized. 
+For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.
 
 #### Deployment {.unnumbered}
 
-As described on @sec-eoapi, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s' GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified [@gupta_deployment_2021]. Moreover,  [eoAPI](www.eoapi.dev) simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times [@gokhale_creating_2021]. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.
+As described on @sec-eoapi, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s' GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified [@gupta_deployment_2021]. Moreover, [eoAPI](www.eoapi.dev) simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times [@gokhale_creating_2021]. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.
 
 Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, @munteanu_performance_2024 performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.
 
-Finally, additional to the already covered advantages, the deployment of [eoAPI](www.eoapi.dev) and the fast community driven development of new tools brings with it benefits that could become very important for S11's workflow. For instance, the visualization of vector data using [TiPg](https://github.com/developmentseed/tipg) is a service included in the eoAPI deployment that wasn't used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fastly. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
+Finally, additional to the already covered advantages, the deployment of [eoAPI](www.eoapi.dev) and the fast community driven development of new tools brings with it benefits that could become very important for S11's workflow. For instance, the visualization of vector data using [TiPg](https://github.com/developmentseed/tipg) is a service included in the eoAPI deployment that wasn't used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
 
 ### Workflow improvement
 
@@ -64,7 +64,7 @@ Once the deployment of eoAPI and the extra services was done, a new workflow for
 
 ![New data discovery and visualization workflow](img/New_data_discovery_workflow.png){#fig-new-workflow width="100%"}
 
-Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favours long term usability of code that relies on this data.
+Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data.
 
 ## Performance of multi-format data visualization
 
@@ -82,7 +82,7 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
 
-The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be obeserved that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a significantly wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
+The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
 ```{python}
 #| echo: false
@@ -115,11 +115,11 @@ a = ax.set_xlabel('Data format')
 
 ```
 
-The results obtained are coherent to the ones previously shown by @nasa_impact_zarr_2023, where COGs' rendering time was found to be significantly lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like [ndpyramid](https://github.com/carbonplan/ndpyramid) could bring significant improvements to this data format [@pagan_current_2023, @Barciauskas_NextGen_2024].
+The results obtained are coherent to the ones previously shown by @nasa_impact_zarr_2023, where COGs' rendering time was found to be lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like [ndpyramid](https://github.com/carbonplan/ndpyramid) could bring significant improvements to this data format [@pagan_current_2023, @Barciauskas_NextGen_2024].
 
 #### Fine tuning of dataset {.unnumbered}
 
-Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments can significantly improve the speed of tiling services using these data formats [@nasa_impact_zarr_2023]. Future considerations should include optimizing these parameters to maximize efficiency (See [performance tuning section](https://developmentseed.org/titiler/advanced/performance_tuning/)).
+Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments could improve the speed of tiling services using COG [@nasa_impact_zarr_2023]. Future considerations should include optimizing these parameters to maximize efficiency (See [performance tuning section](https://developmentseed.org/titiler/advanced/performance_tuning/)).
 
 ### Effects of zoom level
 
@@ -133,11 +133,16 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 fit_results = sm.OLS(data['COG'], sm.add_constant(data['zoom level'])).fit()
 cog_slope = float(round(fit_results.params['zoom level'], 3))
 
+print(fit_results.summary())
+
 fit_results = sm.OLS(data['ZARR'], sm.add_constant(data['zoom level'])).fit()
 zarr_slope = float(round(fit_results.params['zoom level'], 3))
+
+print(fit_results.summary())
+
 ```
 
-As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by `{python} cog_slope` seconds per zoom level for COGs, and didn't show a significant change for Zarrs (`{python} zarr_slope` seconds per zoom level). The behaviour presented here differs from the one observed by @nasa_impact_zarr_2023, where no significant difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in that study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, in order to verify this hypothesis a broader study of the response times at more zoom levels should be performed.
+As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by `{python} cog_slope` seconds per zoom level for COGs, and didn't show a notable change for Zarrs (`{python} zarr_slope` seconds per zoom level). The behavior presented here for COGs differs from the one observed by @nasa_impact_zarr_2023, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).
 
 ```{python}
 #| echo: false

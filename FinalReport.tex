@@ -753,8 +753,8 @@ dynamic tiling for various cloud-optimized data formats.
 \item
   How can cloud-optimized data formats, cloud services and
   SpatioTemporal Asset Catalog (STAC) specifications be integrated to
-  enhance the process and experiences of discovering big spatial data
-  within the company?
+  enhance the process and experiences of discovering and visualizing big
+  spatial data within the company?
 \item
   To what extent do dynamic tiling services perform in visualizing
   different cloud-optimized data formats?
@@ -1072,9 +1072,9 @@ on how much time is generally spent carrying it out.
 According to Figure~\ref{fig-baseline}, some of the most time-consuming
 tasks were searching for data on Google Cloud Storage and downloading it
 for visualization. Additionally, seeking advice from colleagues about
-the dataset's location added significant uncertainty to the time
-estimates, as responses varied from very quick to considerably delayed
-or non existent.
+the dataset's location added a major uncertainty to the time estimates,
+as responses varied from very quick to considerably delayed or non
+existent.
 
 \subsection{Thematic Content Analysis}\label{thematic-content-analysis}
 
@@ -1294,7 +1294,7 @@ Figure~\ref{fig-format-comp}. In the figure it can be obeserved that on
 average the response for requests of COG tiles was 2.53 times faster
 than the one for the same file in ZARR format. Moreover,
 Figure~\ref{fig-format-comp} shows that the response times for tiles
-created from data stored as Zarr showed a significantly wider range than
+created from data stored as Zarr showed a considerable wider range than
 the ones generated from data in the COG format, which indicates more
 variability in the performance for Zarr.
 
@@ -1313,14 +1313,15 @@ depending on data format and zoom level}
 
 The results obtained are coherent to the ones previously shown by IMPACT
 (\citeproc{ref-nasa_impact_zarr_2023}{2023}), where COGs' rendering time
-was found to be significantly lower than the one for Zarr files at
-different zoom levels. These results show that COGs, being specifically
-optimized for spatial data visualization, offer faster visualization
-compared to Zarr files. However, this does not take away from the fact
-that Zarr provides additional benefits, such as the ability to store
-n-dimensional arrays. Furthermore, recent advancements like GeoZarr and
-the creation of Zarr pyramids with new packages like ndpyramids could
-bring significant improvements to this data format Barciauskas et al.
+was found to be lower than the one for Zarr files at different zoom
+levels. These results show that COGs, being specifically optimized for
+spatial data visualization, offer faster visualization compared to Zarr
+files. However, this does not take away from the fact that Zarr provides
+additional benefits, such as the ability to store n-dimensional arrays.
+Furthermore, recent advancements like GeoZarr and the creation of Zarr
+pyramids with new packages like
+\href{https://github.com/carbonplan/ndpyramid}{ndpyramid} could bring
+significant improvements to this data format Barciauskas et al.
 (\citeproc{ref-Barciauskas_NextGen_2024}{2024}).
 
 \subsubsection*{Fine tuning of dataset}\label{fine-tuning-of-dataset}
@@ -1328,28 +1329,83 @@ bring significant improvements to this data format Barciauskas et al.
 
 Even though COGs showed to be very performant, their performance could
 be further enhanced by tuning specific GDAL parameters. These
-adjustments can significantly improve the speed of tiling services using
-these data formats (\citeproc{ref-nasa_impact_zarr_2023}{IMPACT, 2023}).
-Future considerations should include optimizing these parameters to
-maximize efficiency (See
+adjustments could improve the speed of tiling services using COG
+(\citeproc{ref-nasa_impact_zarr_2023}{IMPACT, 2023}). Future
+considerations should include optimizing these parameters to maximize
+efficiency (See
 \href{https://developmentseed.org/titiler/advanced/performance_tuning/}{performance
 tuning section}).
 
 \subsection{Effects of zoom level}\label{effects-of-zoom-level}
 
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    COG   R-squared:                       0.068
+Model:                            OLS   Adj. R-squared:                  0.060
+Method:                 Least Squares   F-statistic:                     8.594
+Date:                Tue, 30 Jul 2024   Prob (F-statistic):            0.00405
+Time:                        07:20:27   Log-Likelihood:                 97.528
+No. Observations:                 120   AIC:                            -191.1
+Df Residuals:                     118   BIC:                            -185.5
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.3098      0.047      6.524      0.000       0.216       0.404
+zoom level    -0.0101      0.003     -2.932      0.004      -0.017      -0.003
+==============================================================================
+Omnibus:                       15.431   Durbin-Watson:                   1.240
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               25.004
+Skew:                           0.596   Prob(JB):                     3.72e-06
+Kurtosis:                       4.892   Cond. No.                         66.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   ZARR   R-squared:                       0.001
+Model:                            OLS   Adj. R-squared:                 -0.008
+Method:                 Least Squares   F-statistic:                    0.1041
+Date:                Tue, 30 Jul 2024   Prob (F-statistic):              0.748
+Time:                        07:20:27   Log-Likelihood:                 37.243
+No. Observations:                 120   AIC:                            -70.49
+Df Residuals:                     118   BIC:                            -64.91
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.4153      0.078      5.292      0.000       0.260       0.571
+zoom level     0.0018      0.006      0.323      0.748      -0.009       0.013
+==============================================================================
+Omnibus:                      126.673   Durbin-Watson:                   1.460
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1844.290
+Skew:                           3.780   Prob(JB):                         0.00
+Kurtosis:                      20.655   Cond. No.                         66.7
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+\end{verbatim}
+
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map showed
 an effect on the time spent requesting and getting a tile from a tiling
 service for the COG format. In this study, it was found that the request
 times decreased by -0.01 seconds per zoom level for COGs, and didn't
-show a significant change for Zarrs (0.002 seconds per zoom level). The
-behaviour presented here differs from the one observed by IMPACT
-(\citeproc{ref-nasa_impact_zarr_2023}{2023}), where no significant
-difference in rendering time was observed as a function of the zoom
-level. This difference could be explained by the fact that in that
-study, only the lowest zoom levels were considered, while in this study
-only the highest zoom levels were taken into account, however, in order
-to verify this hypothesis a broader study of the response times at more
-zoom levels should be performed.
+show a notable change for Zarrs (0.002 seconds per zoom level). The
+behaviour presented here for COGs differs from the one observed by
+IMPACT (\citeproc{ref-nasa_impact_zarr_2023}{2023}), where no difference
+in rendering time was observed as a function of the zoom level. This
+difference could be explained by the fact that in their study, only the
+lowest zoom levels were considered, while in this study only the highest
+zoom levels were taken into account, however, to verify this hypothesis
+a broader study of the response times at more zoom levels should be
+performed. This was not done in this study because the limited size of
+the study area that the raster images covered only allowed visualization
+of the data at high zoom levels (i.e., above 8).
 
 \begin{figure}[H]
 
@@ -1387,6 +1443,65 @@ format.}
 \end{figure}%
 
 \chapter{Conclusions}\label{conclusions}
+
+The conclusions of the work performed during this internship are
+presented below in relationship to each research question:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{What are the current challenges, practices, and user
+  experiences related to data discovery and data visualization in the
+  company?}}
+\end{itemize}
+
+The qualitative analysis of the current workflow at Satelligence
+revealed a complex and time-consuming process for data discovery,
+retrieval, and visualization. Major inefficiencies identified by the TCA
+included high dependency on colleagues for locating datasets, a
+disorganized structure of Google Storage Buckets and the need to
+download full datasets for visualization. The challenges found
+underscore the necessity for a user-friendly data discovery
+implementation where data visualization can also be integrated.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{How can cloud-optimized data formats, cloud services and
+  SpatioTemporal Asset Catalog (STAC) specifications be integrated to
+  enhance the process and experiences of discovering and visualizing big
+  spatial data within the company?}}
+\end{itemize}
+
+The integration of cloud-optimized data formats, cloud services, and
+SpatioTemporal Asset Catalog (STAC) specifications has greatly enhanced
+data discovery and visualization for Satelligence. Despite the
+challenges that could be involved in integrating these aspects, this
+study presents a methodology that leverages customized cloud optimized
+data formats, the integration of several services (i.e.~eoAPI, STAC
+Browser and TiTiler-Xarray), and the deployment on GKE to achieve
+effective integration. The solution proposed her addresses challenges
+found previously. Finally, the consolidation of all data in one place
+ensures long-term usability and an easier management of big spatial
+data.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\emph{To what extent do dynamic tiling services perform in
+  visualizing different cloud-optimized data formats?}}
+\end{itemize}
+
+Dynamic tiling services vary in performance when visualizing different
+cloud-optimized data-formats. In this study, the performance evaluation
+showed that COG tiles were, on average, 2.53 times faster to be
+requested than Zarr tiles, with less variability in response times.
+These results align with the understanding that COGs are specifically
+optimized for spatial data visualization, whereas Zarrs are not.
+Although this study made efforts to improve Zarr visualization using
+customized pyramids, recent advancements such as GeoZarr and more
+efficient Zarr pyramids generation could further enhance Zarr
+visualization performance.
 
 \chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}

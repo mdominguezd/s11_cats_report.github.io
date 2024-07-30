@@ -68,5 +68,5 @@ This research aims to identify efficient solutions for the company's current cha
 ## Research questions
 
 -   What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?
--   How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering big spatial data within the company?
+-   How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?
 -   To what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?

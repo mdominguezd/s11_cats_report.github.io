@@ -1,0 +1,13 @@
+The conclusions of the work performed during this internship are presented below in relationship to each research question:
+
+-   ***What are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?***
+
+The qualitative analysis of the current workflow at Satelligence revealed a complex and time-consuming process for data discovery, retrieval, and visualization. Major inefficiencies identified by the TCA included high dependency on colleagues for locating datasets, a disorganized structure of Google Storage Buckets and the need to download full datasets for visualization. The challenges found underscore the necessity for a user-friendly data discovery implementation where data visualization can also be integrated.
+
+-   ***How can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?***
+
+The integration of cloud-optimized data formats, cloud services, and SpatioTemporal Asset Catalog (STAC) specifications has greatly enhanced data discovery and visualization for Satelligence. Despite the challenges that could be involved in integrating these aspects, this study presents a methodology that leverages customized cloud optimized data formats, the integration of several services (i.e. eoAPI, STAC Browser and TiTiler-Xarray), and the deployment on GKE to achieve effective integration. The solution proposed her addresses challenges found previously. Finally, the consolidation of all data in one place ensures long-term usability and an easier management of big spatial data.
+
+-   ***To what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?***
+
+Dynamic tiling services vary in performance when visualizing different cloud-optimized data-formats. In this study, the performance evaluation showed that COG tiles were, on average, 2.53 times faster to be requested than Zarr tiles, with less variability in response times. These results align with the understanding that COGs are specifically optimized for spatial data visualization, whereas Zarrs are not. Although this study made efforts to improve Zarr visualization using customized pyramids, recent advancements such as GeoZarr and more efficient Zarr pyramids generation could further enhance Zarr visualization performance.
