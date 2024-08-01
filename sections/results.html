@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -173,21 +173,20 @@ Figure&nbsp;1: Baseline workflow
 <ul>
 <li>There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.</li>
 <li>Multiple sources and locations of data.</li>
-<li>Data familiarity helps users locate data quicker.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
 <li>Use of specific tools and methods for different datasets.</li>
 </ul>
 <p>After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery and visualization in the company were summarized as follows:</p>
 <ul>
 <li>High dependency on colleagues for dataset location.</li>
 <li>Disorganized structure of Google Storage Buckets.</li>
-<li>Data familiarity helps users locate data quicker.</li>
-<li>Data location is dependent on recurrent work with a specific dataset.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
+<li>Locating data is dependent on recurrent work with a specific dataset.</li>
 <li>Not intuitive naming of repositories with datasets.</li>
 <li>Understanding of diverse tools to access different data is currently necessary.</li>
 <li>Download of data is required in most cases to visualize it.</li>
 <li>Not one place where all existing data can be found.</li>
 </ul>
-<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.</p>
 <p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">[@miranda_espinosa_reviewing_2020]</span>. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
 </section>
 <section id="service-integration" class="level2">
@@ -198,7 +197,7 @@ Figure&nbsp;1: Baseline workflow
 <p>The effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.</p>
 <section id="data-formats" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="data-formats">Data formats</h4>
-<p>An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting Cloud Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs <span class="citation" data-cites="lynnes_cloud_2020">[@lynnes_cloud_2020]</span>. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process <span class="citation" data-cites="Barciauskas_NextGen_2024">[@Barciauskas_NextGen_2024]</span>.</p>
+<p>An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting COGs into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs <span class="citation" data-cites="lynnes_cloud_2020">[@lynnes_cloud_2020]</span>. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process <span class="citation" data-cites="Barciauskas_NextGen_2024">[@Barciauskas_NextGen_2024]</span>.</p>
 </section>
 <section id="leverage-of-apis" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="leverage-of-apis">Leverage of APIs</h4>
@@ -234,7 +233,9 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
 <p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a>. In the figure it can be observed that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a> shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
-<div id="cell-fig-format-comp" class="cell" data-execution_count="2">
+<iframe src="https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/format_comp.html" style="height:100%;width:100%;" title="martindominguezduran">
+</iframe>
+<div id="cell-fig-format-comp" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -257,7 +258,7 @@ Figure&nbsp;3: Response times for tile requests depending on data format and zoo
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
 <p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -272,7 +273,7 @@ Figure&nbsp;4: Request times depending on zoom level and their respective trends
 </div>
 </div>
 <p>Moreover, as seen on <a href="#fig-chunksize-zarr" class="quarto-xref">Figure&nbsp;5</a>, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a> for the two data formats.</p>
-<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="6">
+<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

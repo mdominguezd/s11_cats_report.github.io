@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -168,11 +168,11 @@ window.Quarto = {
 
 
 
-<p>To answer the research questions presented a series of tasks were undertaken. These tasks are presented in the following subsections where they are divided by research question.</p>
+<p>To answer the research questions presented, a series of tasks were undertaken. These tasks are presented in the following subsections where they are divided by research question.</p>
 <section id="sec-baseline" class="level2">
 <h2 class="anchored" data-anchor-id="sec-baseline">Baseline scenario</h2>
 <p>The baseline scenario was defined as the set of methods currently being used by members of different teams at Satelligence to find, retrieve and visualize spatial data. This baseline scenario was evaluated qualitatively by interviewing four members of two different teams in the company (i.e.&nbsp;the data and the operations team). To keep a balance regarding experience of the study subjects, both the newest member of each team and a member with at least three years in the company were interviewed.</p>
-<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: Spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <strong>?@sec-baseline-q</strong> and were meant to be open questions with multiple possible answers.</p>
+<p>The questions asked during the interviews were oriented towards two main topics that were covered during this internship: spatial data discovery and spatial data visualization. For both topics, the questions were divided into questions related to raster and vector datasets. The questions included in the interview can be found in <strong>?@sec-baseline-q</strong> and were meant to be open questions with multiple possible answers.</p>
 <p>Furthermore, based on the answers of the interviewees a flowchart was built to represent visually the traditional steps performed to discover and visualize S11 data. This visual representation included estimations of the steps where more time was spent on.</p>
 <p>Finally, the answers to the questionnaire were analyzed qualitatively following a Thematic Content Analysis (TCA). This type of qualitative analysis focuses on finding common themes in the interviews undertaken <span class="citation" data-cites="anderson_thematic_2007">[@anderson_thematic_2007]</span>. The extraction of common patterns within the interviews was initially done using a large language model (i.e.&nbsp;Chat-GPT 3.5 <span class="citation" data-cites="openai_chatgpt_2023">[@openai_chatgpt_2023]</span>) using the prompt presented on <strong>?@sec-gpt-prompt</strong>. Moreover, the themes identified were further refined based on the interviewer’s interpretation.</p>
 </section>
@@ -181,16 +181,16 @@ window.Quarto = {
 <p>To efficiently integrate tools for big geo-spatial data discovery and visualization, a series of steps had to be followed. Initially, the datasets were selected. Subsequently, the structure of the catalog was defined. Following this, a Git repository containing the code required to generate the catalog was created. Static JSON files were then utilized to construct a dynamic STAC API. Ultimately, this API was deployed alongside other services using a continuous integration (CI) and continuous deployment (CD) pipeline. A further explanation of each step is presented in the following subsections.</p>
 <section id="dataset-selection" class="level3">
 <h3 class="anchored" data-anchor-id="dataset-selection">Dataset selection</h3>
-<p>Due to the desire of the company to continue moving towards a cloud-based workflow. The datasets that were considered for the catalog, were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were included. Specifically, S11’s long term goal is to store in the catalog datasets that can be classified as follows:</p>
+<p>Due to the desire of the company to continue moving towards a cloud-based workflow, the datasets that were considered for the catalog were composed of either COGs or Zarrs. Nevertheless, since some of the data in the company is stored as virtual rasters (VRTs), methods to also index this type of data formats in the STAC catalog were included. Specifically, S11’s long term goal is to store in the catalog datasets that can be classified as follows:</p>
 <ul>
 <li>Static raster data
 <ul>
-<li>Forest baselines (Stored as COGs)</li>
+<li>Forest baselines (Stored as COGs or Zarrs)</li>
 <li>Third-party data (Stored as VRTs, Tiffs, or other formats)</li>
 </ul></li>
 <li>DPROF results
 <ul>
-<li>Results of continuous deforestation monitoring (Stored as ZARRs)</li>
+<li>Results of continuous deforestation monitoring (Stored as Zarrs)</li>
 <li>Other DPROF results</li>
 </ul></li>
 <li>Supply chain data (Vector data)</li>
@@ -214,7 +214,7 @@ Figure&nbsp;1: Proposed STAC structure
 </section>
 <section id="s11-cats-repository" class="level3">
 <h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
-<p>The <a href="https://gitlab.com/satelligence/s11-cats">s11-cats repository</a> created is composed of a module named <code>cats</code> which consists of five submodules described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;1</a>. Moreover, an overview of the main workflow followed in the main function of s11-cats is presented on <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>The s11-cats repository includes a module named <code>cats</code>, which consists of five sub-modules as described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;1</a>. Additionally, an overview of the main workflow, which includes the creation of a new catalog each time the <code>main</code> function is run, is presented in <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <div id="tbl-cats-modules" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -264,7 +264,7 @@ Table&nbsp;1: Description of cats submodules
 <img src="img/s11-cats.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: S11- cats main function
+Figure&nbsp;2: S11-cats main function
 </figcaption>
 </figure>
 </div>
@@ -274,20 +274,20 @@ Figure&nbsp;2: S11- cats main function
 <h3 class="anchored" data-anchor-id="sec-eoapi">eoAPI + other services</h3>
 <p>Once a static catalog has been created, the next step involves developing the dynamic catalog by leveraging <a href="https://eoapi.dev/">eoAPI</a> <span class="citation" data-cites="sarago_developmentseedeoapi_2024">[@sarago_developmentseedeoapi_2024]</span>. <a href="https://eoapi.dev/">eoAPI</a> is a robust tool designed for managing, discovering and visualizing Earth observation data. It integrates several services that include indexing of large STAC collections and items using a Postgres database (See <a href="https://github.com/stac-utils/pgstac">PgSTAC</a>), creating a dynamic catalog that can query the Postgres database (See <a href="https://github.com/stac-utils/stac-fastapi">STAC API</a>) and two additional services for visualizing raster (See <a href="https://github.com/stac-utils/titiler-pgstac">Titiler-PgSTAC</a>) and vector data (See <a href="https://github.com/developmentseed/tipg">TiPg</a>).</p>
 <p><a href="https://eoapi.dev/">eoAPI</a> integrates all of these services by using containerized versions that are able to communicate seamlessly with each other. A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application. Containerizing the services facilitates deployment to the cloud using Google Kubernetes Engine (GKE). Kubernetes is an open-source platform designed for automating the deployment, scaling, and management of containerized applications <span class="citation" data-cites="poulton_kubernetes_2023">[@poulton_kubernetes_2023]</span>. It offers various advantages, such as scalability, efficient resource utilization, and simplified maintenance, making it an ideal solution for managing the dynamic catalog and the integrated services in a cloud environment.</p>
-<p>Since the current version of <a href="https://eoapi.dev/">eoAPI</a> does not include some extra services that were necessary to deploy, a separate containerized version of these services was deployed in the same K8 cluster. Notably, a version of <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> and <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> to browse the catalog created and visualize Zarr datasets respectively.</p>
+<p>Since the current version of <a href="https://eoapi.dev/">eoAPI</a> does not include some extra services that were necessary to deploy, a separate containerized version of these services was deployed in the same K8s cluster. Notably, a version of <a href="https://github.com/radiantearth/stac-browser">STAC Browser</a> and <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> to browse the catalog created and visualize Zarr datasets respectively.</p>
 </section>
 <section id="cicd-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="cicd-pipeline">CI/CD pipeline</h3>
-<p>Finally, a gitlab CI/CD pipeline was created to automate the creation of the catalog using the <a href="https://gitlab.com/satelligence/s11-cats">s11-cats repository</a>, the deployment of eoAPI and extra services and the ingestion of the catalog into the deployed version of the dynamic catalog.</p>
+<p>Finally, a Gitlab CI/CD pipeline was created to automate the creation of the catalog using the <a href="https://gitlab.com/satelligence/s11-cats">s11-cats repository</a>, the deployment of eoAPI and extra services and the ingestion of the catalog into the deployed version of the dynamic catalog.</p>
 </section>
 <section id="comparison-with-baseline-scenario" class="level3">
 <h3 class="anchored" data-anchor-id="comparison-with-baseline-scenario">Comparison with baseline scenario</h3>
-<p>Once a version of all of the services integrated was deployed online, the ease of discovery and visualization was again qualitatively analyzed by evaluating the steps processed for both finding and visualizing S11 data. These steps were then represented in a flowchart that could be compared to the one created on <a href="#sec-baseline" class="quarto-xref">Section&nbsp;1</a>.</p>
+<p>Once a version of all of the services integrated was deployed online, the ease of discovery and visualization was again qualitatively analyzed by evaluating the steps processed for both finding and visualizing S11 data. These steps were then represented in a flowchart that could be compared to the one created in <a href="#sec-baseline" class="quarto-xref">Section&nbsp;1</a>.</p>
 </section>
 </section>
 <section id="multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="multi-format-data-visualization">Multi-format data visualization</h2>
-<p>To assess the performance of dynamic tiling services for visualizing Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, ensured that the same data was used across both data formats, allowing for direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the ZARR overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were locally deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
+<p>To assess the performance of dynamic tiling services for visualizing COG and Zarr data formats, the following approach was undertaken. Firstly, a COG containing forest baseline information for the Riau region of Indonesia was used to create a series of Zarr files, each representing different overviews corresponding to various zoom levels. This pre-processing step, completed by the company prior to the study, was crucial for mimicking the COG structure, as it allowed the Zarr files to have overviews. Without these overviews, visualizing the Zarr data would require reading the data at the highest spatial resolution, significantly impacting performance. Moreover, ensuring the same data was used across both data formats enabled a direct comparison. Then, the <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> service was then customized to work with the specific folder structure of the Zarr overviews previously created. Moreover, containerized versions of both <a href="https://github.com/developmentseed/titiler-xarray">TiTiler-Xarray</a> (for Zarr files) and <a href="https://github.com/stac-utils/titiler-pgstac">TiTiler-PgSTAC</a> (for COG files) were locally deployed. The performance was measured by recording the response times for random tile requests at zoom levels ranging from 9 to 18. Finally, to mitigate the influence of cached data on response times, each iteration used a different colormap, with a total of twelve colormaps employed. This methodology enabled a systematic evaluation of the performance differences between the two data formats in a geo-spatial data visualization context.</p>
 <section id="speed-up" class="level3">
 <h3 class="anchored" data-anchor-id="speed-up">Speed up</h3>
 <p>The performance of both TiTiler services to dynamically create tiles for the different data formats was evaluated using the Speed Up metric proposed in <span class="citation" data-cites="durbha_advances_2023">@durbha_advances_2023</span> (<a href="#eq-speed-up" class="quarto-xref">Equation&nbsp;1</a>). In this case, the Speed Up explains how much did the process of requesting tiles sped up by using a data format A compared to using a data format B.</p>
