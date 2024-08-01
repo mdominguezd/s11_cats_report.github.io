@@ -14,21 +14,19 @@ When asked about the recurrent patterns on the interviews undertaken to define t
 
 -   There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.
 -   Multiple sources and locations of data.
--   Data familiarity helps users locate data quicker.
+-   Data familiarity helps users locate data more quickly.
 -   Use of specific tools and methods for different datasets.
 
 After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery and visualization in the company were summarized as follows:
 
 -   High dependency on colleagues for dataset location.
 -   Disorganized structure of Google Storage Buckets.
--   Data familiarity helps users locate data quicker.
--   Data location is dependent on recurrent work with a specific dataset.
+-   Data familiarity helps users locate data more quickly.
+-   Locating data is dependent on recurrent work with a specific dataset.
 -   Not intuitive naming of repositories with datasets.
 -   Understanding of diverse tools to access different data is currently necessary.
 -   Download of data is required in most cases to visualize it.
 -   Not one place where all existing data can be found.
-
-All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. This approach should allow for easy access to datasets based on specific queries.
 
 All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
 
@@ -42,7 +40,7 @@ The effective integration was not an easy task and involved multiple aspects, ra
 
 #### Data formats {.unnumbered}
 
-An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting Cloud Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs [@lynnes_cloud_2020]. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process [@Barciauskas_NextGen_2024].
+An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting COGs into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs [@lynnes_cloud_2020]. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process [@Barciauskas_NextGen_2024].
 
 #### Leverage of APIs {.unnumbered}
 
@@ -86,6 +84,47 @@ The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and
 
 ```{python}
 #| echo: false
+#| eval: false
+import folium
+from folium.plugins import DualMap
+
+# Example URL template for the tiles
+tiles_url_cog = "https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1&assets=data&unscale=false&resampling=nearest&reproject=nearest&colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]&return_mask=true"
+
+tiles_url_zarr = "https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate&variable=band_data&reference=false&decode_times=true&consolidated=true&colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]&return_mask=true"
+
+# Create a folium map centered at a specific latitude and longitude
+m = DualMap(location=[0.596093307985066, 101.79719686886921], zoom_start=8)
+
+# Add the tile layer to the map
+folium.TileLayer(
+    tiles=tiles_url_cog,
+    attr='Example Tile Server',
+    name='COG tiles',
+    overlay=True,
+    control=True
+).add_to(m.m1)
+
+folium.TileLayer(
+    tiles=tiles_url_zarr,
+    attr='Example Tile Server',
+    name='Zarr tiles',
+    overlay=True,
+    control=True
+).add_to(m.m2)
+
+
+# Add layer control to toggle the tile layer
+folium.LayerControl().add_to(m.m1)
+folium.LayerControl().add_to(m.m2)
+
+m.save('format_comp.html')
+```
+
+<iframe src="https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/format_comp.html" style="height:100%;width:100%;"  title="martindominguezduran"></iframe>
+
+```{python}
+#| echo: false
 #| fig-cap: "Response times for tile requests depending on data format and zoom level"
 #| label: fig-format-comp
 
@@ -93,6 +132,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import xarray as xr
+
 
 s11_cmap = LinearSegmentedColormap.from_list('s11', ['#96d7fa', '#ff4100'])
 background_color = '#180066'

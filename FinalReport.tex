@@ -432,7 +432,7 @@ discovery and visualization for Satelligence, a company specializing in
 the use of earth observation data for detecting environmental risks and
 facilitate the migration towards sustainable supply chains. With the
 rapid growth of geospatial data, efficient access and visualization
-tools are crucial. In this report the current methods employed by the
+tools are crucial. In this report, the current methods employed by the
 company for data discovery and visualization were analysed
 qualitatively, the integration of cloud-optimized data formats, cloud
 services, and STAC specifications to improve these processes were
@@ -442,16 +442,16 @@ qualitative analysis showed that Satelligence's current methods are
 inefficient, limit accessibility and underscore the need of a
 user-friendly data discovery and visualization service. Moreover, the
 report shows tha the integration of technologies like: transitioning to
-cloud-optimized data formats like COGs and Zarrs, using a dynamic STAC
-API standard for data organization, employing dynamic tiling libraries
-for optimized web visualization and deploying services using Google
-Kubernetes Engine was able to enhance the process of discovering and
-visualizing data within the company. Finally, the report suggests that
-dynamic tiling services perform better with COG tiles, which are 2.53
-times faster to request than Zarr tiles, which aligns with COGs'
-optimization for spatial data visualization. Nevertheless, new
-improvements and developments in the community could enhance Zarr
-performance in the future.
+cloud-optimized data formats like Cloud-Optimized Geotiffs (COGs) and
+Zarrs, using a dynamic STAC API standard for data organization,
+employing dynamic tiling libraries for optimized web visualization and
+deploying services using Google Kubernetes Engine was able to enhance
+the process of discovering and visualizing data within the company.
+Finally, the report suggests that dynamic tiling services perform better
+with COG tiles, which are 2.53 times faster to request than Zarr tiles,
+which aligns with COGs' optimization for spatial data visualization.
+Nevertheless, new improvements and developments in the community could
+enhance Zarr performance in the future.
 
 \newpage
 
@@ -486,7 +486,7 @@ COG & Cloud-Optimized GeoTiff \\
 OGC & Open Geospatial Consortium \\
 SDI & Spatial Data Infrastructure \\
 S11 & Satelligence \\
-K8 & Kubernetes \\
+K8s & Kubernetes \\
 DPROF & Distributed Processing Framework \\
 JSON & JavaScript Object Notation \\
 API & Application Programming Interfaces \\
@@ -575,7 +575,7 @@ data does not have a predefined structure (e.g.~Satellite imagery and
 Time series data) (\citeproc{ref-mishra_structured_2017}{Mishra and
 Misra, 2017}). The management of structured data has witnessed
 substantial advancements, making it straightforward to handle it
-systematically using, for instance, relational databases (i.e.~With the
+systematically using, for instance, relational databases (i.e.~with the
 help of Structured Query Language (SQL))
 (\citeproc{ref-kaufmann_database_2023}{Kaufmann and Meier, 2023}). In
 contrast, due to the additional challenges associated with the handling
@@ -603,19 +603,19 @@ Optimized GeoTIFFs (COGs) and Zarrs in their processing framework
 
 \emph{COG}
 
-Cloud-Optimized GeoTIFFs (\href{https://www.cogeo.org/}{COGs}) are an
-example of data formats that have been created to ease the access of
-data stored in the cloud. They improve the readability by including the
-metadata in the initial bytes of the file stored, storing different
-image overviews for different scales and tiling the images in smaller
-blocks. These characteristics make COG files heavier than traditional
-image formats. However, they also greatly enhance accessibility by
-enabling the selective transfer of only the necessary tiles using HTTP
-GET requests (\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al.,
-2021}). Additionally, this data format has been adopted as an Open
-Geospatial Consortium (OGC) standard. These standards are a set of
-guidelines and specifications created to facilitate data
-interoperability (\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
+\href{https://www.cogeo.org/}{COGs} are an example of data formats that
+have been created to ease the access of data stored in the cloud. They
+improve the readability by including the metadata in the initial bytes
+of the file stored, storing different image overviews for different
+scales and tiling the images in smaller blocks. These characteristics
+make COG files heavier than traditional image formats. However, they
+also greatly enhance accessibility by enabling the selective transfer of
+only the necessary tiles using HTTP GET requests
+(\citeproc{ref-desruisseaux_ogc_2021}{Desruisseaux et al., 2021}).
+Additionally, this data format has been adopted as an Open Geospatial
+Consortium (OGC) standard. These standards are a set of guidelines and
+specifications created to facilitate data interoperability in the
+geospatial domain (\citeproc{ref-ogc_ogc_2023}{OGC, 2023}).
 
 \emph{Zarr}
 
@@ -723,7 +723,8 @@ interfaces}\label{visualization-interfaces}
 \addcontentsline{toc}{subsubsection}{Visualization interfaces}
 
 The visualization of spatial data brings with it a series of challenges
-due to its big nature. Dynamic tiling libraries such as
+due to its big nature (i.e.~global extent and high spatial resolution).
+Dynamic tiling libraries such as
 \href{https://developmentseed.org/titiler/}{TiTiler} have tackled
 multiple of these challenges by creating APIs that dynamically generate
 PNG/JPEG image tiles when requested without reading the entire source
@@ -733,8 +734,8 @@ feature optimizes rendering of images since PNG and JPEG image file
 formats are more easily transferred through the web.
 
 TiTiler supports various data structures including STAC (SpatioTemporal
-Asset Catalog), Cloud Optimized GeoTIFFs (COGs), and is currently
-working on adding support for Zarrs. For the first two, the
+Asset Catalog), COGs, and is currently working on adding support for
+Zarrs. For the first two, the
 \href{https://github.com/stac-utils/titiler-pgstac}{TiTiler PgSTAC}
 specialized extension integrates with PostgreSQL to enhance STAC catalog
 querying capabilities. For the case of Zarrs, the
@@ -786,7 +787,7 @@ dynamic tiling for various cloud-optimized data formats.
 
 \chapter{Methodology}\label{methodology}
 
-To answer the research questions presented a series of tasks were
+To answer the research questions presented, a series of tasks were
 undertaken. These tasks are presented in the following subsections where
 they are divided by research question.
 
@@ -802,7 +803,7 @@ each team and a member with at least three years in the company were
 interviewed.
 
 The questions asked during the interviews were oriented towards two main
-topics that were covered during this internship: Spatial data discovery
+topics that were covered during this internship: spatial data discovery
 and spatial data visualization. For both topics, the questions were
 divided into questions related to raster and vector datasets. The
 questions included in the interview can be found in
@@ -841,7 +842,7 @@ step is presented in the following subsections.
 \subsection{Dataset selection}\label{dataset-selection}
 
 Due to the desire of the company to continue moving towards a
-cloud-based workflow. The datasets that were considered for the catalog,
+cloud-based workflow, the datasets that were considered for the catalog
 were composed of either COGs or Zarrs. Nevertheless, since some of the
 data in the company is stored as virtual rasters (VRTs), methods to also
 index this type of data formats in the STAC catalog were included.
@@ -856,7 +857,7 @@ that can be classified as follows:
   \begin{itemize}
   \tightlist
   \item
-    Forest baselines (Stored as COGs)
+    Forest baselines (Stored as COGs or Zarrs)
   \item
     Third-party data (Stored as VRTs, Tiffs, or other formats)
   \end{itemize}
@@ -866,7 +867,7 @@ that can be classified as follows:
   \begin{itemize}
   \tightlist
   \item
-    Results of continuous deforestation monitoring (Stored as ZARRs)
+    Results of continuous deforestation monitoring (Stored as Zarrs)
   \item
     Other DPROF results
   \end{itemize}
@@ -906,11 +907,12 @@ final version of the structure will be determined by the company.
 
 \subsection{S11-cats repository}\label{s11-cats-repository}
 
-The \href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository}
-created is composed of a module named \texttt{cats} which consists of
-five submodules described in Table~\ref{tbl-cats-modules}. Moreover, an
-overview of the main workflow followed in the main function of s11-cats
-is presented on Figure~\ref{fig-s11-cats}.
+The s11-cats repository includes a module named \texttt{cats}, which
+consists of five sub-modules as described in
+Table~\ref{tbl-cats-modules}. Additionally, an overview of the main
+workflow, which includes the creation of a new catalog each time the
+\texttt{main} function is run, is presented in
+Figure~\ref{fig-s11-cats}.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4722}}
@@ -955,7 +957,7 @@ collections, items and assets to it. \\
 
 }
 
-\caption{\label{fig-s11-cats}S11- cats main function}
+\caption{\label{fig-s11-cats}S11-cats main function}
 
 \end{figure}%
 
@@ -999,7 +1001,7 @@ dynamic catalog and the integrated services in a cloud environment.
 
 Since the current version of \href{https://eoapi.dev/}{eoAPI} does not
 include some extra services that were necessary to deploy, a separate
-containerized version of these services was deployed in the same K8
+containerized version of these services was deployed in the same K8s
 cluster. Notably, a version of
 \href{https://github.com/radiantearth/stac-browser}{STAC Browser} and
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
@@ -1007,7 +1009,7 @@ to browse the catalog created and visualize Zarr datasets respectively.
 
 \subsection{CI/CD pipeline}\label{cicd-pipeline}
 
-Finally, a gitlab CI/CD pipeline was created to automate the creation of
+Finally, a Gitlab CI/CD pipeline was created to automate the creation of
 the catalog using the
 \href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository},
 the deployment of eoAPI and extra services and the ingestion of the
@@ -1020,22 +1022,25 @@ Once a version of all of the services integrated was deployed online,
 the ease of discovery and visualization was again qualitatively analyzed
 by evaluating the steps processed for both finding and visualizing S11
 data. These steps were then represented in a flowchart that could be
-compared to the one created on Section~\ref{sec-baseline}.
+compared to the one created in Section~\ref{sec-baseline}.
 
 \section{Multi-format data
 visualization}\label{multi-format-data-visualization}
 
-To assess the performance of dynamic tiling services for visualizing
-Cloud Optimized GeoTIFFs (COGs) and Zarr data formats, the following
-approach was undertaken. Firstly, a COG containing forest baseline
-information for the Riau region of Indonesia was used to create a series
-of Zarr files, each representing different overviews corresponding to
-various zoom levels. This pre-processing step, completed by the company
-prior to the study, ensured that the same data was used across both data
-formats, allowing for direct comparison. Then, the
+To assess the performance of dynamic tiling services for visualizing COG
+and Zarr data formats, the following approach was undertaken. Firstly, a
+COG containing forest baseline information for the Riau region of
+Indonesia was used to create a series of Zarr files, each representing
+different overviews corresponding to various zoom levels. This
+pre-processing step, completed by the company prior to the study, was
+crucial for mimicking the COG structure, as it allowed the Zarr files to
+have overviews. Without these overviews, visualizing the Zarr data would
+require reading the data at the highest spatial resolution,
+significantly impacting performance. Moreover, ensuring the same data
+was used across both data formats enabled a direct comparison. Then, the
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 service was then customized to work with the specific folder structure
-of the ZARR overviews previously created. Moreover, containerized
+of the Zarr overviews previously created. Moreover, containerized
 versions of both
 \href{https://github.com/developmentseed/titiler-xarray}{TiTiler-Xarray}
 (for Zarr files) and
@@ -1113,7 +1118,7 @@ define the baseline scenario, ChatGPT found four main topics:
 \item
   Multiple sources and locations of data.
 \item
-  Data familiarity helps users locate data quicker.
+  Data familiarity helps users locate data more quickly.
 \item
   Use of specific tools and methods for different datasets.
 \end{itemize}
@@ -1129,9 +1134,9 @@ company were summarized as follows:
 \item
   Disorganized structure of Google Storage Buckets.
 \item
-  Data familiarity helps users locate data quicker.
+  Data familiarity helps users locate data more quickly.
 \item
-  Data location is dependent on recurrent work with a specific dataset.
+  Locating data is dependent on recurrent work with a specific dataset.
 \item
   Not intuitive naming of repositories with datasets.
 \item
@@ -1142,11 +1147,6 @@ company were summarized as follows:
 \item
   Not one place where all existing data can be found.
 \end{itemize}
-
-All of these pitfalls highlight the need for a simpler data discovery
-implementation, where data visualization can also be integrated
-seamlessly. This approach should allow for easy access to datasets based
-on specific queries.
 
 All of these pitfalls highlight the need for a simpler data discovery
 implementation, where data visualization can also be integrated
@@ -1183,17 +1183,16 @@ services.
 An essential step related to data formats was the edition of Zarr
 datasets to achieve their optimal visualization. This edition involved
 creating a series of overviews of the same dataset at different
-resolutions. Specifically, this was accomplished by converting Cloud
-Optimized GeoTIFFs (COGs) into multiple Zarr files resampled at various
-spatial resolutions. These resampled Zarr files, acting as overviews
-enhance visualization by allowing the appropriate resolution to be
-accessed based on the map scale, similar to the approach used when
-visualizing COGs (\citeproc{ref-lynnes_cloud_2020}{Lynnes et al.,
-2020}). Even though the approach followed in this study allowed for
-improved visualization of Zarr files, the creation of Zarr pyramids in a
-more optimized way is still necessary. Other researchers have been
-focusing their efforts on this task to enhance the efficiency and
-effectiveness of the process
+resolutions. Specifically, this was accomplished by converting COGs into
+multiple Zarr files resampled at various spatial resolutions. These
+resampled Zarr files, acting as overviews enhance visualization by
+allowing the appropriate resolution to be accessed based on the map
+scale, similar to the approach used when visualizing COGs
+(\citeproc{ref-lynnes_cloud_2020}{Lynnes et al., 2020}). Even though the
+approach followed in this study allowed for improved visualization of
+Zarr files, the creation of Zarr pyramids in a more optimized way is
+still necessary. Other researchers have been focusing their efforts on
+this task to enhance the efficiency and effectiveness of the process
 (\citeproc{ref-Barciauskas_NextGen_2024}{Barciauskas et al., 2024}).
 
 \subsubsection*{Leverage of APIs}\label{leverage-of-apis}
