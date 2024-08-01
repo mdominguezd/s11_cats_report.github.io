@@ -80,11 +80,10 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
 
-The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
+The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on  and @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
 ```{python}
 #| echo: false
-#| eval: false
 import folium
 from folium.plugins import DualMap
 
@@ -119,6 +118,8 @@ folium.LayerControl().add_to(m.m1)
 folium.LayerControl().add_to(m.m2)
 
 m.save('format_comp.html')
+
+m
 ```
 
 <iframe src="https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/format_comp.html" style="height:100%;width:100%;"  title="martindominguezduran"></iframe>
