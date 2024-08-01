@@ -80,12 +80,14 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
 
-The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on  and @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
+The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on [https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats](https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats) and summarized in @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
 ```{python}
 #| echo: false
 import folium
 from folium.plugins import DualMap
+from folium.features import DivIcon
+
 
 # Example URL template for the tiles
 tiles_url_cog = "https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1&assets=data&unscale=false&resampling=nearest&reproject=nearest&colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]&return_mask=true"
@@ -93,7 +95,7 @@ tiles_url_cog = "https://eoapi.satelligence.com/raster/collections/Example ZARR 
 tiles_url_zarr = "https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate&variable=band_data&reference=false&decode_times=true&consolidated=true&colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]&return_mask=true"
 
 # Create a folium map centered at a specific latitude and longitude
-m = DualMap(location=[0.596093307985066, 101.79719686886921], zoom_start=8)
+m = DualMap(location=[0.596093307985066, 101.79719686886921], zoom_start=6)
 
 # Add the tile layer to the map
 folium.TileLayer(
@@ -114,15 +116,13 @@ folium.TileLayer(
 
 
 # Add layer control to toggle the tile layer
-folium.LayerControl().add_to(m.m1)
-folium.LayerControl().add_to(m.m2)
+folium.LayerControl(collapsed=False).add_to(m.m1)
+folium.LayerControl(collapsed=False).add_to(m.m2)
 
 m.save('format_comp.html')
 
 m
 ```
-
-<iframe src="https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/sections/format_comp.html" style="height:100%;width:100%;"  title="martindominguezduran"></iframe>
 
 ```{python}
 #| echo: false

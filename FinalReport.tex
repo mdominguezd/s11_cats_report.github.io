@@ -1312,14 +1312,19 @@ different zoom levels.
 \subsection{Raster formats}\label{raster-formats}
 
 The comparison of visualization speeds with TiTiler-Xarray for Zarr
-datasets and TiTiler-PgSTAC for COGs are presented on
-Figure~\ref{fig-format-comp}. In the figure it can be observed that on
-average the response for requests of COG tiles was 2.53 times faster
-than the one for the same file in ZARR format. Moreover,
+datasets and TiTiler-PgSTAC for COGs are presented interactively on
+\url{https://mdominguezd.github.io/s11_cats_report.github.io/\#raster-formats}
+and in Figure~\ref{fig-format-comp}. In the figure it can be observed
+that on average the response for requests of COG tiles was 2.53 times
+faster than the one for the same file in ZARR format. Moreover,
 Figure~\ref{fig-format-comp} shows that the response times for tiles
 created from data stored as Zarr showed a considerable wider range than
 the ones generated from data in the COG format, which indicates more
 variability in the performance for Zarr.
+
+\begin{verbatim}
+<folium.plugins.dual_map.DualMap at 0x763af53e38f0>
+\end{verbatim}
 
 \begin{figure}[H]
 
