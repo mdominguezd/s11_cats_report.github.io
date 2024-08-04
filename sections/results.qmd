@@ -82,12 +82,13 @@ speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 
 The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on [https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats](https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats) and summarized in @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
+:::{.content-visible when-format="html"}
+#### Interactive comparison 
 ```{python}
 #| echo: false
+
 import folium
 from folium.plugins import DualMap
-from folium.features import DivIcon
-
 
 # Example URL template for the tiles
 tiles_url_cog = "https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1&assets=data&unscale=false&resampling=nearest&reproject=nearest&colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]&return_mask=true"
@@ -114,19 +115,17 @@ folium.TileLayer(
     control=True
 ).add_to(m.m2)
 
-
 # Add layer control to toggle the tile layer
 folium.LayerControl(collapsed=False).add_to(m.m1)
 folium.LayerControl(collapsed=False).add_to(m.m2)
 
-m.save('format_comp.html')
-
 m
 ```
+:::
 
 ```{python}
 #| echo: false
-#| fig-cap: "Response times for tile requests depending on data format and zoom level"
+#| fig-cap: "Response times for tile requests depending on data format"
 #| label: fig-format-comp
 
 import seaborn as sns
@@ -179,7 +178,7 @@ zarr_slope = float(round(fit_results.params['zoom level'], 3))
 
 ```
 
-As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by `{python} cog_slope` seconds per zoom level for COGs, and didn't show a notable change for Zarrs (`{python} zarr_slope` seconds per zoom level). The behavior presented here for COGs differs from the one observed by @nasa_impact_zarr_2023, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).
+As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by `{python} abs(cog_slope)` seconds per zoom level for COGs, and didn't show a notable change for Zarrs (+ `{python} zarr_slope` seconds per zoom level). The behavior presented here for COGs differs from the one observed by @nasa_impact_zarr_2023, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8). 
 
 ```{python}
 #| echo: false
@@ -196,6 +195,8 @@ a = plt.legend()
 ```
 
 Moreover, as seen on @fig-chunksize-zarr, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in @fig-comp-zoom for the two data formats.
+
+Finally, despite the efforts to mitigate the effects of caching, it’s possible that tiles from the same overview might have been reused across different zoom levels, which could contribute to the reduced times observed for COGs at higher zoom levels. Specifically, it was found that the COG used in this study had maximum zoom level of 14. This means that after that level the tiles generated use the same overview (i.e. the one with the highes resolution) and therefore caching of tiles might be present.
 
 ```{python}
 #| echo: false
@@ -250,3 +251,4 @@ ax.set_ylabel('Chunk size [pixels]')
 a = ax.set_xlabel('Pyramid\n' + r'$\rightarrow{}$zoom increase$\rightarrow{}$')
 
 ```
+

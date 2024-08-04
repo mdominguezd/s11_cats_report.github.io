@@ -20,6 +20,8 @@ format:
     fig-pos: 'H'
     fig-width: 200
     link-citations: true
+    linkcolor: blue
+    urlcolor: blue
     documentclass: scrbook
     classoption: ["oneside", "open=any"]
     number-sections: true

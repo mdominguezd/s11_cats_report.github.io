@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
   oneside,
@@ -231,7 +232,11 @@
 \hypersetup{
   pdftitle={Cataloguing and visualizing big Geodata},
   pdfauthor={Martín Domínguez Durán},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 
 \title{Cataloguing and visualizing big Geodata}
@@ -419,6 +424,7 @@ Geodata}}}}\par
 
 \renewcommand*\contentsname{Table of contents}
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
@@ -452,6 +458,9 @@ with COG tiles, which are 2.53 times faster to request than Zarr tiles,
 which aligns with COGs' optimization for spatial data visualization.
 Nevertheless, new improvements and developments in the community could
 enhance Zarr performance in the future.
+
+Put disclaimer of how all of this report with code associated can bo
+found on s11-cats-report.github.io
 
 \newpage
 
@@ -1314,17 +1323,13 @@ different zoom levels.
 The comparison of visualization speeds with TiTiler-Xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented interactively on
 \url{https://mdominguezd.github.io/s11_cats_report.github.io/\#raster-formats}
-and in Figure~\ref{fig-format-comp}. In the figure it can be observed
-that on average the response for requests of COG tiles was 2.53 times
-faster than the one for the same file in ZARR format. Moreover,
+and summarized in Figure~\ref{fig-format-comp}. In the figure it can be
+observed that on average the response for requests of COG tiles was 2.53
+times faster than the one for the same file in ZARR format. Moreover,
 Figure~\ref{fig-format-comp} shows that the response times for tiles
 created from data stored as Zarr showed a considerable wider range than
 the ones generated from data in the COG format, which indicates more
 variability in the performance for Zarr.
-
-\begin{verbatim}
-<folium.plugins.dual_map.DualMap at 0x763af53e38f0>
-\end{verbatim}
 
 \begin{figure}[H]
 
@@ -1335,7 +1340,7 @@ variability in the performance for Zarr.
 }
 
 \caption{\label{fig-format-comp}Response times for tile requests
-depending on data format and zoom level}
+depending on data format}
 
 \end{figure}%
 
@@ -1369,8 +1374,8 @@ tuning section}).
 As seen on Figure~\ref{fig-comp-zoom}, the zoom level of the map showed
 an effect on the time spent requesting and getting a tile from a tiling
 service for the COG format. In this study, it was found that the request
-times decreased by -0.01 seconds per zoom level for COGs, and didn't
-show a notable change for Zarrs (0.002 seconds per zoom level). The
+times decreased by 0.01 seconds per zoom level for COGs, and didn't show
+a notable change for Zarrs (+ 0.002 seconds per zoom level). The
 behavior presented here for COGs differs from the one observed by IMPACT
 (\citeproc{ref-nasa_impact_zarr_2023}{2023}), where no difference in
 rendering time was observed as a function of the zoom level. This
@@ -1402,6 +1407,15 @@ this, the tiles requested at higher zoom levels were larger than the
 ones requested at lower zoom levels which could explain the difference
 between the trends observed in Figure~\ref{fig-comp-zoom} for the two
 data formats.
+
+Finally, despite the efforts to mitigate the effects of caching, it's
+possible that tiles from the same overview might have been reused across
+different zoom levels, which could contribute to the reduced times
+observed for COGs at higher zoom levels. Specifically, it was found that
+the COG used in this study had maximum zoom level of 14. This means that
+after that level the tiles generated use the same overview (i.e.~the one
+with the highes resolution) and therefore caching of tiles might be
+present.
 
 \begin{figure}[H]
 
