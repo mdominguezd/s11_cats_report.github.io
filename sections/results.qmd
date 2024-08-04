@@ -10,7 +10,7 @@ According to @fig-baseline, some of the most time-consuming tasks were searching
 
 ### Thematic Content Analysis
 
-When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, ChatGPT found four main topics:
+When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, the large language model used in this research found four main topics:
 
 -   There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.
 -   Multiple sources and locations of data.
@@ -66,7 +66,7 @@ Moreover, it can be seen that with the new implementation most of the issues ide
 
 ## Performance of multi-format data visualization
 
-The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assess the performance of these data formats based on different zoom levels.
+The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assesses the performance of these data formats based on different zoom levels.
 
 ### Raster formats
 
@@ -80,12 +80,14 @@ data = pd.read_csv('https://raw.githubusercontent.com/mdominguezd/s11_cats_repor
 speed_up = float(round(data['ZARR'].mean()/data['COG'].mean(), 2))
 ```
 
-The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on [https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats](https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats) and summarized in @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
+The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on [[https://mdominguezd.github.io/s11_cats_report.github.io/#interactive-comparison](https://mdominguezd.github.io/s11_cats_report.github.io/#interactive-comparison)]{.content-visible when-format="pdf"} [@fig-int-comp]{.content-visible when-format="html"} and summarized in @fig-format-comp. In the figure it can be observed that on average the response for requests of COG tiles was `{python} speed_up` times faster than the one for the same file in ZARR format. Moreover, @fig-format-comp shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.
 
 :::{.content-visible when-format="html"}
 #### Interactive comparison 
 ```{python}
 #| echo: false
+#| fig-cap: "Interactive comparison of rendering speed for COG and Zarr data formats"
+#| label: fig-int-comp
 
 import folium
 from folium.plugins import DualMap
@@ -196,7 +198,7 @@ a = plt.legend()
 
 Moreover, as seen on @fig-chunksize-zarr, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in @fig-comp-zoom for the two data formats.
 
-Finally, despite the efforts to mitigate the effects of caching, it’s possible that tiles from the same overview might have been reused across different zoom levels, which could contribute to the reduced times observed for COGs at higher zoom levels. Specifically, it was found that the COG used in this study had maximum zoom level of 14. This means that after that level the tiles generated use the same overview (i.e. the one with the highes resolution) and therefore caching of tiles might be present.
+Finally, despite efforts to mitigate caching effects, tiles generated from the same overview might have been reused across different zoom levels, potentially contributing to the reduced times observed for COGs at higher zoom levels. The COG used in this study had a maximum zoom level of 14. Beyond this level, tiles are generated using the same overview (i.e. the one with the highest resolution), which could indicate caching. Although both tiling services used in the study implement caching, a more in-depth investigation is needed to fully understand its impact on performance for both data formats.
 
 ```{python}
 #| echo: false

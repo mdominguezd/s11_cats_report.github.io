@@ -459,8 +459,10 @@ which aligns with COGs' optimization for spatial data visualization.
 Nevertheless, new improvements and developments in the community could
 enhance Zarr performance in the future.
 
-Put disclaimer of how all of this report with code associated can bo
-found on s11-cats-report.github.io
+\vspace*{\fill}
+
+An interactive version of this report can be found in
+\url{https://mdominguezd.github.io/s11_cats_report.github.io/}.
 
 \newpage
 
@@ -1117,7 +1119,8 @@ existent.
 \subsection{Thematic Content Analysis}\label{thematic-content-analysis}
 
 When asked about the recurrent patterns on the interviews undertaken to
-define the baseline scenario, ChatGPT found four main topics:
+define the baseline scenario, the large language model used in this
+research found four main topics:
 
 \begin{itemize}
 \tightlist
@@ -1315,14 +1318,14 @@ visualization}\label{performance-of-multi-format-data-visualization}
 The results of the experiments made with different cloud-optimized data
 formats are presented in two subsections. The first subsection evaluates
 the overall performance of the two data formats and the second
-subsection assess the performance of these data formats based on
+subsection assesses the performance of these data formats based on
 different zoom levels.
 
 \subsection{Raster formats}\label{raster-formats}
 
 The comparison of visualization speeds with TiTiler-Xarray for Zarr
 datasets and TiTiler-PgSTAC for COGs are presented interactively on
-\url{https://mdominguezd.github.io/s11_cats_report.github.io/\#raster-formats}
+{\url{https://mdominguezd.github.io/s11_cats_report.github.io/\#interactive-comparison}}
 and summarized in Figure~\ref{fig-format-comp}. In the figure it can be
 observed that on average the response for requests of COG tiles was 2.53
 times faster than the one for the same file in ZARR format. Moreover,
@@ -1408,14 +1411,15 @@ ones requested at lower zoom levels which could explain the difference
 between the trends observed in Figure~\ref{fig-comp-zoom} for the two
 data formats.
 
-Finally, despite the efforts to mitigate the effects of caching, it's
-possible that tiles from the same overview might have been reused across
-different zoom levels, which could contribute to the reduced times
-observed for COGs at higher zoom levels. Specifically, it was found that
-the COG used in this study had maximum zoom level of 14. This means that
-after that level the tiles generated use the same overview (i.e.~the one
-with the highes resolution) and therefore caching of tiles might be
-present.
+Finally, despite efforts to mitigate caching effects, tiles generated
+from the same overview might have been reused across different zoom
+levels, potentially contributing to the reduced times observed for COGs
+at higher zoom levels. The COG used in this study had a maximum zoom
+level of 14. Beyond this level, tiles are generated using the same
+overview (i.e.~the one with the highest resolution), which could
+indicate caching. Although both tiling services used in the study
+implement caching, a more in-depth investigation is needed to fully
+understand its impact on performance for both data formats.
 
 \begin{figure}[H]
 
@@ -1450,8 +1454,8 @@ retrieval, and visualization. Major inefficiencies identified by the TCA
 included high dependency on colleagues for locating datasets, a
 disorganized structure of Google Storage Buckets and the need to
 download full datasets for visualization. The challenges found
-underscore the necessity for a user-friendly data discovery
-implementation where data visualization can also be integrated.
+underscored the necessity for a user-friendly data discovery
+implementation where data visualization could also be integrated.
 
 \begin{itemize}
 \tightlist
@@ -1468,11 +1472,13 @@ data discovery and visualization for Satelligence. Despite the
 challenges that could be involved in integrating these aspects, this
 study presents a methodology that leverages customized cloud optimized
 data formats, the integration of several services (i.e.~eoAPI, STAC
-Browser and TiTiler-Xarray), and the deployment on GKE to achieve
-effective integration. The solution proposed her addresses challenges
-found previously. Finally, the consolidation of all data in one place
-ensures long-term usability and an easier management of big spatial
-data.
+Browser and TiTiler-Xarray), and the deployment using GKE to achieve
+effective integration. The solution proposed here addresses challenges
+found previously. Finally, even though the consolidation of all data in
+one place ensures long-term usability and an easier management of big
+spatial data, future steps should prioritize the createion of a more
+optimized set of Zarr pyramids and the addition of an authentication
+layer to ensure the data privacy.
 
 \begin{itemize}
 \tightlist
@@ -1490,7 +1496,10 @@ optimized for spatial data visualization, whereas Zarrs are not.
 Although this study made efforts to improve Zarr visualization using
 customized pyramids, recent advancements such as GeoZarr and more
 efficient Zarr pyramids generation could further enhance Zarr
-visualization performance.
+visualization performance. Finally, while the effect of caching in
+tiling services was not studied in this internship, it can have a
+considerable impact on response times and should be considered in future
+research.
 
 \chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
