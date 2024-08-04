@@ -236,7 +236,9 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
 <p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on <a href="https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats">https://mdominguezd.github.io/s11_cats_report.github.io/#raster-formats</a> and summarized in <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a>. In the figure it can be observed that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;3</a> shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
-<div id="89841a94" class="cell" data-execution_count="2">
+<section id="interactive-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="interactive-comparison">Interactive comparison</h4>
+<div id="a66f8bb1" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
@@ -265,7 +267,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_12ad10c5d6919231034df7216b4b18e2 {
+                #map_4a6087c0a44594ebdeff1700912d9128 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -279,7 +281,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_9b4c0730cb118cb74a1b333ae7ba7a0d {
+                #map_9fdf2804c3d997c268e0d0034dab9b96 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -294,17 +296,17 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_12ad10c5d6919231034df7216b4b18e2&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_4a6087c0a44594ebdeff1700912d9128&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_9b4c0730cb118cb74a1b333ae7ba7a0d&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_9fdf2804c3d997c268e0d0034dab9b96&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_12ad10c5d6919231034df7216b4b18e2 = L.map(
-                &quot;map_12ad10c5d6919231034df7216b4b18e2&quot;,
+            var map_4a6087c0a44594ebdeff1700912d9128 = L.map(
+                &quot;map_4a6087c0a44594ebdeff1700912d9128&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -318,42 +320,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_cfee2bf2830c5e1664b1bd1f8ede4330 = L.tileLayer(
+            var tile_layer_29bba22b67b22ac474919830eb889edc = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_cfee2bf2830c5e1664b1bd1f8ede4330.addTo(map_12ad10c5d6919231034df7216b4b18e2);
+            tile_layer_29bba22b67b22ac474919830eb889edc.addTo(map_4a6087c0a44594ebdeff1700912d9128);
         
     
-            var tile_layer_59bac99cdb862647650562a4a16988d3 = L.tileLayer(
+            var tile_layer_991ea389bd5322a37347eac5ae7ce0c3 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_59bac99cdb862647650562a4a16988d3.addTo(map_12ad10c5d6919231034df7216b4b18e2);
+            tile_layer_991ea389bd5322a37347eac5ae7ce0c3.addTo(map_4a6087c0a44594ebdeff1700912d9128);
         
     
-            var layer_control_f0e893d3defcfca8a8aca6b0985f2959_layers = {
+            var layer_control_51ce6bf78d5eb3045cd3f124d0945793_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_cfee2bf2830c5e1664b1bd1f8ede4330,
+                    &quot;openstreetmap&quot; : tile_layer_29bba22b67b22ac474919830eb889edc,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_59bac99cdb862647650562a4a16988d3,
+                    &quot;COG tiles&quot; : tile_layer_991ea389bd5322a37347eac5ae7ce0c3,
                 },
             };
-            let layer_control_f0e893d3defcfca8a8aca6b0985f2959 = L.control.layers(
-                layer_control_f0e893d3defcfca8a8aca6b0985f2959_layers.base_layers,
-                layer_control_f0e893d3defcfca8a8aca6b0985f2959_layers.overlays,
+            let layer_control_51ce6bf78d5eb3045cd3f124d0945793 = L.control.layers(
+                layer_control_51ce6bf78d5eb3045cd3f124d0945793_layers.base_layers,
+                layer_control_51ce6bf78d5eb3045cd3f124d0945793_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_12ad10c5d6919231034df7216b4b18e2);
+            ).addTo(map_4a6087c0a44594ebdeff1700912d9128);
 
         
     
-            var map_9b4c0730cb118cb74a1b333ae7ba7a0d = L.map(
-                &quot;map_9b4c0730cb118cb74a1b333ae7ba7a0d&quot;,
+            var map_9fdf2804c3d997c268e0d0034dab9b96 = L.map(
+                &quot;map_9fdf2804c3d997c268e0d0034dab9b96&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -367,54 +369,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_5c09fb2cd6f5095f749c863850abbbf9 = L.tileLayer(
+            var tile_layer_09259600aed2e86e37015de0115fa643 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_5c09fb2cd6f5095f749c863850abbbf9.addTo(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
+            tile_layer_09259600aed2e86e37015de0115fa643.addTo(map_9fdf2804c3d997c268e0d0034dab9b96);
         
     
-            var tile_layer_a907f817157d376872403b7cb79322f2 = L.tileLayer(
+            var tile_layer_e67bb645f19a65db701a7c37e204fe08 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_a907f817157d376872403b7cb79322f2.addTo(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
+            tile_layer_e67bb645f19a65db701a7c37e204fe08.addTo(map_9fdf2804c3d997c268e0d0034dab9b96);
         
     
-            var layer_control_79a57bbd2140ef3c287966b3b7d6d7d7_layers = {
+            var layer_control_1d605cd291d336d1974aa4c43326d085_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_5c09fb2cd6f5095f749c863850abbbf9,
+                    &quot;openstreetmap&quot; : tile_layer_09259600aed2e86e37015de0115fa643,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_a907f817157d376872403b7cb79322f2,
+                    &quot;Zarr tiles&quot; : tile_layer_e67bb645f19a65db701a7c37e204fe08,
                 },
             };
-            let layer_control_79a57bbd2140ef3c287966b3b7d6d7d7 = L.control.layers(
-                layer_control_79a57bbd2140ef3c287966b3b7d6d7d7_layers.base_layers,
-                layer_control_79a57bbd2140ef3c287966b3b7d6d7d7_layers.overlays,
+            let layer_control_1d605cd291d336d1974aa4c43326d085 = L.control.layers(
+                layer_control_1d605cd291d336d1974aa4c43326d085_layers.base_layers,
+                layer_control_1d605cd291d336d1974aa4c43326d085_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
+            ).addTo(map_9fdf2804c3d997c268e0d0034dab9b96);
 
         
     
-            map_12ad10c5d6919231034df7216b4b18e2.sync(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
-            map_9b4c0730cb118cb74a1b333ae7ba7a0d.sync(map_12ad10c5d6919231034df7216b4b18e2);
-        
-    
-            tile_layer_cfee2bf2830c5e1664b1bd1f8ede4330.addTo(map_12ad10c5d6919231034df7216b4b18e2);
-        
-    
-            tile_layer_59bac99cdb862647650562a4a16988d3.addTo(map_12ad10c5d6919231034df7216b4b18e2);
-        
-    
-            tile_layer_5c09fb2cd6f5095f749c863850abbbf9.addTo(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
-        
-    
-            tile_layer_a907f817157d376872403b7cb79322f2.addTo(map_9b4c0730cb118cb74a1b333ae7ba7a0d);
+            map_4a6087c0a44594ebdeff1700912d9128.sync(map_9fdf2804c3d997c268e0d0034dab9b96);
+            map_9fdf2804c3d997c268e0d0034dab9b96.sync(map_4a6087c0a44594ebdeff1700912d9128);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -428,13 +418,14 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Response times for tile requests depending on data format and zoom level
+Figure&nbsp;3: Response times for tile requests depending on data format
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where COGs’ rendering time was found to be lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like <a href="https://github.com/carbonplan/ndpyramid">ndpyramid</a> could bring significant improvements to this data format <span class="citation" data-cites="pagan_current_2023">[@pagan_current_2023, @Barciauskas_NextGen_2024]</span>.</p>
+</section>
 <section id="fine-tuning-of-dataset" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="fine-tuning-of-dataset">Fine tuning of dataset</h4>
 <p>Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments could improve the speed of tiling services using COG <span class="citation" data-cites="nasa_impact_zarr_2023">[@nasa_impact_zarr_2023]</span>. Future considerations should include optimizing these parameters to maximize efficiency (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performance tuning section</a>).</p>
@@ -442,7 +433,7 @@ Figure&nbsp;3: Response times for tile requests depending on data format and zoo
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by -0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by 0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (+ 0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -458,6 +449,7 @@ Figure&nbsp;4: Request times depending on zoom level and their respective trends
 </div>
 </div>
 <p>Moreover, as seen on <a href="#fig-chunksize-zarr" class="quarto-xref">Figure&nbsp;5</a>, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;4</a> for the two data formats.</p>
+<p>Finally, despite the efforts to mitigate the effects of caching, it’s possible that tiles from the same overview might have been reused across different zoom levels, which could contribute to the reduced times observed for COGs at higher zoom levels. Specifically, it was found that the COG used in this study had maximum zoom level of 14. This means that after that level the tiles generated use the same overview (i.e.&nbsp;the one with the highes resolution) and therefore caching of tiles might be present.</p>
 <div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center anchored">
