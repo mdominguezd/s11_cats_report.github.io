@@ -1,5 +1,9 @@
+.reveal .slide-logo section:first-child  {
+    display: none;
+}
+
 .reveal .slide-logo {
-    height: 100px !important;
+    height: 90px !important;
     width: 300px !important;
     max-width: unset !important;
     max-height: unset !important;

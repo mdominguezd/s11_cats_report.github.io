@@ -1,13 +1,21 @@
 ---
 title: "Cataloguing and Visualizing <Br> Big Geodata"
+subtitle-image: slides/images/Satelligence_Logo_RGB_White_Negative.png
 author: "Martín Domínguez Durán"
 institute: "Wageningen University & Research"
+date: today
+title-slide-attributes:
+  data-background-color: "#002966"
+  data-background-size: 300px
 format: 
   revealjs:
     #incremental: true
+    template-partials:
+      - slides/css/title-slide.html
+    toc: true
     logo: slides/images/Satelligence_Logo_RGB_FC.png
     slide-number: true
-    css: slides/css/logo.css
+    css: [slides/css/custom.css, slides/css/logo.css]
     multiplex: true
     theme: [simple, slides/css/satelligence.scss]
     show-slide-number: all
@@ -21,16 +29,23 @@ execute:
 
 ---
 
+## [1]{.circle}  What is the problem?
 
-## Take-away message [1]{.circle} 
-
-* `edibble` is an [hola](google.com) <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" style="color:black">experimental</a> R-package I have been developing to *plan*, **_design_**, and *simuate* **experiments**
-
-
----
-
----
-
+* `edibble` is an [hola](google.com) <a href="https//lieccle.r-lib.org/articles/stages.html#experimental" style="color:black">experimetal</a> R-   ackage I hav bdgjeen devepi ng o *plan*, **_design_**, and *siuate* **experiments**
 
 
 ---
+
+## [2]{.circle} Why do we care?
+
+---
+
+## [3]{.circle} How can we fix it?
+
+---
+
+## [4]{.circle} What did I found?
+
+---
+
+## [5]{.circle} What is next?
