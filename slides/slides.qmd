@@ -5,19 +5,16 @@ institute: "Wageningen University & Research"
 format: 
   revealjs:
     #incremental: true
-    logo: slides/images/Satelligence_Logo_RGB_FC.png
-    #footer: "`emitanaka.org/slides/toronto2022`"
+    logo: images/Satelligence_Logo_RGB_FC.png
     slide-number: true
+    css: css/logo.css
     multiplex: true
-    theme: [simple, slides/assets/monash.scss]
+    theme: [simple, css/satelligence.scss]
     show-slide-number: all
     controls: true
     width: 1280
     height: 720
-    css: [slides/assets/syntax-highlight.css, slides/assets/custom.css, slides/assets/pacman.css]
-    header-includes: |
-      <link rel="stylesheet" href="slides/assets/fontawesome/css/font-awesome.min.css">
-      <script defer src="slides/assets/fontawesome/js/all.min.js"></script>
+
 execute:
   echo: true
 ---
@@ -25,26 +22,14 @@ execute:
 ---
 
 
+## Take-away message [1]{.circle} 
 
-## Take-away message [1]{.circle} <i class="fa-brands fa-r-project" style="height:120px;vertical-align:middle;"></i> <img src="images/edibble.png" height="120px" style="vertical-align:middle;"> 
-
-
-
-* `edibble` is an <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" style="color:black">experimental</a> R-package I have been developing to *plan*, **_design_**, and *simulate* **experiments**
-
-::: info-box
-
-`edibble` stands for **e**xperimental **d**esign table (or `t`**`ibble`**)  
-
- <ul >
-    <li><i class="fa-solid fa-bullseye"></i>aims to provide the experimental design in table format</li>
-    <li><i class="fa-brands fa-github"></i>[github.com/emitanaka/edibble](https://github.com/emitanaka/edibble)  </li>
-    <li><i class="fa-solid fa-bowl-food"></i>commonly misspelled as edible (perhaps because of autocorrect)</li>
-</ul>
+* `edibble` is an [hola](google.com) <a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" style="color:black">experimental</a> R-package I have been developing to *plan*, **_design_**, and *simuate* **experiments**
 
 
-:::
+---
 
+---
 
 
 

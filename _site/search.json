@@ -369,5 +369,19 @@
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Performance of multi-format data visualization",
     "text": "Performance of multi-format data visualization\n\nCheck on how different cloud services providers might give different latencies when opening several files instead of only one. (Niklas mentioned)\n\nFine tuning of dataset creation\nThere are some GDAL parameters that can improve the tiling performance of TiTiler (See performnce_tuning). This should be taken into account in future dataset creation\nAlso how well"
+  },
+  {
+    "objectID": "slides.html#take-away-message-1",
+    "href": "slides.html#take-away-message-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Take-away message 1  ",
+    "text": "Take-away message 1  \n\nedibble is an experimental R-package I have been developing to plan, design, and simulate experiments\n\n\nedibble stands for experimental design table (or tibble)\n\n\naims to provide the experimental design in table format\n\n\ngithub.com/emitanaka/edibble\n\n\ncommonly misspelled as edible (perhaps because of autocorrect)"
+  },
+  {
+    "objectID": "slides/slides.html#take-away-message-1",
+    "href": "slides/slides.html#take-away-message-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Take-away message 1",
+    "text": "Take-away message 1\n\nedibble is an hola experimental R-package I have been developing to plan, design, and simuate experiments"
   }
 ]
