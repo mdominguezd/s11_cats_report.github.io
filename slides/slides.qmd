@@ -7,9 +7,9 @@ format:
     #incremental: true
     logo: images/Satelligence_Logo_RGB_FC.png
     slide-number: true
-    css: css/logo.css
+    css: https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/slides/css/logo.css
     multiplex: true
-    theme: [simple, css/satelligence.scss]
+    theme: [simple, https://raw.githubusercontent.com/mdominguezd/s11_cats_report.github.io/main/slides/css/satelligence.scss]
     show-slide-number: all
     controls: true
     width: 1280
