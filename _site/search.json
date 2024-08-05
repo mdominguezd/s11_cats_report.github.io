@@ -374,8 +374,8 @@
     "objectID": "slides.html#take-away-message-1",
     "href": "slides.html#take-away-message-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "Take-away message 1  ",
-    "text": "Take-away message 1  \n\nedibble is an experimental R-package I have been developing to plan, design, and simulate experiments\n\n\nedibble stands for experimental design table (or tibble)\n\n\naims to provide the experimental design in table format\n\n\ngithub.com/emitanaka/edibble\n\n\ncommonly misspelled as edible (perhaps because of autocorrect)"
+    "section": "Take-away message 1",
+    "text": "Take-away message 1\n\nedibble is an hola experimental R-package I have been developing to plan, design, and simuate experiments"
   },
   {
     "objectID": "slides/slides.html#take-away-message-1",
