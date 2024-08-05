@@ -63,7 +63,7 @@ Since the current version of [eoAPI](https://eoapi.dev/) does not include some e
 
 ### CI/CD pipeline
 
-Finally, a Gitlab CI/CD pipeline was created to automate the creation of the catalog using the [s11-cats repository](https://gitlab.com/satelligence/s11-cats), the deployment of eoAPI and extra services and the ingestion of the catalog into the deployed version of the dynamic catalog.
+Finally, a Gitlab CI/CD pipeline was created to automate the creation of the catalog using the [s11-cats repository](https://gitlab.com/satelligence/s11-cats), the deployment of eoAPI and extra services and the ingestion of the catalog into the deployed version of the dynamic catalog. This step was done with the assistance of the host supervisor and consisted of the creation of automated jobs that would run every time the [s11-cats repository](https://gitlab.com/satelligence/s11-cats) would be updated.
 
 ### Comparison with baseline scenario
 

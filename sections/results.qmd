@@ -28,7 +28,7 @@ After some refinement and a deeper analysis of the interviews, the major pitfall
 -   Download of data is required in most cases to visualize it.
 -   Not one place where all existing data can be found.
 
-All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
+All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models [@miranda_espinosa_reviewing_2020]. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols through the use of STAC specifications, the process of data discovery can be greatly improved, making it more accessible and user-friendly.
 
 ## Service integration
 

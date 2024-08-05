@@ -439,25 +439,25 @@ the use of earth observation data for detecting environmental risks and
 facilitate the migration towards sustainable supply chains. With the
 rapid growth of geospatial data, efficient access and visualization
 tools are crucial. In this report, the current methods employed by the
-company for data discovery and visualization were analysed
+company for data discovery and visualization were analyzed
 qualitatively, the integration of cloud-optimized data formats, cloud
-services, and STAC specifications to improve these processes were
-explored and the performance of dynamic tiling services in visualizing
-various cloud-optimized data formats was assessed. The results of the
-qualitative analysis showed that Satelligence's current methods are
-inefficient, limit accessibility and underscore the need of a
-user-friendly data discovery and visualization service. Moreover, the
-report shows tha the integration of technologies like: transitioning to
-cloud-optimized data formats like Cloud-Optimized Geotiffs (COGs) and
-Zarrs, using a dynamic STAC API standard for data organization,
-employing dynamic tiling libraries for optimized web visualization and
-deploying services using Google Kubernetes Engine was able to enhance
-the process of discovering and visualizing data within the company.
-Finally, the report suggests that dynamic tiling services perform better
-with COG tiles, which are 2.53 times faster to request than Zarr tiles,
-which aligns with COGs' optimization for spatial data visualization.
-Nevertheless, new improvements and developments in the community could
-enhance Zarr performance in the future.
+services, and Spatio-Temporal Asset Catalog (STAC) specifications to
+improve these processes were explored and the performance of dynamic
+tiling services in visualizing various cloud-optimized data formats was
+assessed. The results of the qualitative analysis showed that
+Satelligence's current methods are inefficient, limit accessibility and
+underscore the need of a user-friendly data discovery and visualization
+service. Moreover, the report shows that the integration of technologies
+like: transitioning to cloud-optimized data formats like Cloud-Optimized
+Geotiffs (COGs) and Zarrs, using a dynamic STAC API standard for data
+organization, employing dynamic tiling libraries for optimized web
+visualization and deploying services using Google Kubernetes Engine was
+able to enhance the process of discovering and visualizing data within
+the company. Finally, the report suggests that dynamic tiling services
+perform better with COG tiles, which are 2.53 times faster to request
+than Zarr tiles, which aligns with COGs' optimization for spatial data
+visualization. Nevertheless, new improvements and developments in the
+community could enhance Zarr performance in the future.
 
 \vspace*{\fill}
 
@@ -466,27 +466,17 @@ An interactive version of this report can be found in
 
 \newpage
 
-\chapter*{List of abreviations}\label{list-of-abreviations}
-\addcontentsline{toc}{chapter}{List of abreviations}
+\chapter*{List of abbreviations}\label{list-of-abbreviations}
+\addcontentsline{toc}{chapter}{List of abbreviations}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5556}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4444}}@{}}
+\begin{longtable}[]{@{}ll@{}}
 \caption{Abbreviation list}\tabularnewline
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Abreviations}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Description}
-\end{minipage} \\
+\textbf{Abreviations} & \textbf{Description} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Abreviations}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Description}
-\end{minipage} \\
+\textbf{Abreviations} & \textbf{Description} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -496,6 +486,7 @@ STAC & Spatio-Temporal Asset Catalog \\
 COG & Cloud-Optimized GeoTiff \\
 OGC & Open Geospatial Consortium \\
 SDI & Spatial Data Infrastructure \\
+GCP & Google Cloud Platform \\
 S11 & Satelligence \\
 K8s & Kubernetes \\
 DPROF & Distributed Processing Framework \\
@@ -1024,7 +1015,11 @@ Finally, a Gitlab CI/CD pipeline was created to automate the creation of
 the catalog using the
 \href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository},
 the deployment of eoAPI and extra services and the ingestion of the
-catalog into the deployed version of the dynamic catalog.
+catalog into the deployed version of the dynamic catalog. This step was
+done with the assistance of the host supervisor and consisted of the
+creation of automated jobs that would run every time the
+\href{https://gitlab.com/satelligence/s11-cats}{s11-cats repository}
+would be updated.
 
 \subsection{Comparison with baseline
 scenario}\label{comparison-with-baseline-scenario}
@@ -1169,8 +1164,9 @@ use of diverse metadata models
 2020}). To address these challenges, the approach should enable easy
 access to datasets based on specific queries, ensuring that users can
 efficiently locate and utilize the data they need. By harmonizing
-metadata standards and query protocols, the process of data discovery
-can be greatly improved, making it more accessible and user-friendly.
+metadata standards and query protocols through the use of STAC
+specifications, the process of data discovery can be greatly improved,
+making it more accessible and user-friendly.
 
 \section{Service integration}\label{service-integration}
 
