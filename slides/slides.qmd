@@ -9,7 +9,7 @@ format:
     #footer: "`emitanaka.org/slides/toronto2022`"
     slide-number: true
     multiplex: true
-    theme: [simple, assets/monash.scss]
+    theme: [simple, slides/assets/monash.scss]
     show-slide-number: all
     controls: true
     width: 1280
