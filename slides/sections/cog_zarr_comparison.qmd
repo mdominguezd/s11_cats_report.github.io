@@ -36,8 +36,6 @@ folium.TileLayer(
 folium.LayerControl(collapsed=False).add_to(m.m1)
 folium.LayerControl(collapsed=False).add_to(m.m2)
 
-m.m1.height = (100,'%')
-m.m2.height = (100,'%')
 m
 ```
 
@@ -45,6 +43,7 @@ m
 #| echo: false
 #| fig-cap: "Response times for tile requests depending on data format"
 #| label: fig-format-comp
+#| width: 50%
 
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -65,7 +64,7 @@ sns.set(rc={'axes.facecolor' : 'white',
     'xtick.color': background_color,
     'ytick.color': background_color,})
 
-fig, ax = plt.subplots(1,1,figsize= (7.5,5))
+fig, ax = plt.subplots(1,1,figsize= (7.5,4))
 
 sns.boxplot(data[['COG', 'ZARR']], palette = {'COG':s11_cmap(0), 'ZARR':s11_cmap(255)}, ax = ax, linecolor=background_color)
 # sns.despine(trim = True, offset = -10, ax = ax)

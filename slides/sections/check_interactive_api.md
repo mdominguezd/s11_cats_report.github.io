@@ -13,7 +13,7 @@
     <option value="">Any</option>
     <option value="&bbox=0,0,20,20">Africa</option>
     <option value="&bbox=100,-1,103,2.5">SEA</option>
-    <option value="&bbox=--110,-50,34,25">LAC</option>
+    <option value="&bbox=-110,-50,34,25">LAC</option>
   </select>
 </div>
 

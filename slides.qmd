@@ -44,6 +44,7 @@ format:
               }
             });
           </script>
+from: markdown+emoji
 execute:
   echo: true
   enabled: true
@@ -54,41 +55,196 @@ execute:
 
 ---
 
-## Spatial data = Big data
+## Spatial data is big data {auto-animate="true"}
 
 ::: {layout-ncol=2}
 
-[More data $\rightarrow$ more problems (?)]{.box}
+- Hundreds of satellites gather information on a weekly to daily basis
+- High Velocity/Variety/Volume
 
-![](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){fig-scap="Taken from ESA" fig-align='center' width="70%"}
+![Satellites obiting the earth.<Br>Taken from: miro.medium.com](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){#fig-sats fig-scap="Taken from medium" fig-align='center' width="70%"}
 :::
 
 ---
 
-## fmkfgjd
+## Spatial data challenges {auto-animate="true"}
 
-::: {layout-ncol=2}
+- How to process it?
+- How to store it?
+- How to easily acces it?
+- How to interact with it?
 
-[More data $\rightarrow$ more problems (?)]{.box}
+---
 
-![](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){fig-scap="Taken from ESA" fig-align='center' width="70%"}
+## Spatial data challenges {auto-animate="true"}
+
+- This makes [Spatial Data Infrastructures (SDIs)]{.box}  a necessity.
+- Traditional SDI focus: [preservation > accesibility]{.box}
+- New developments can help change this.
+
+::: {layout-ncol=3}
+
+[Cloud storage + formats]{.big-circle}
+
+[Data discovery services (e.g. STAC)]{.big-circle}
+
+[Visualization interfaces (e.g. TiTiler)]{.big-circle}
+
 :::
 
 ---
+
+## Spatial data challenges {auto-animate="true"}
+
+- This makes [Spatial Data Infrastructures (SDIs)]{.box}  a necessity.
+- Traditional SDI focus: [preservation > accesibility]{.box}
+- New developments can help change this.
+
+::: {layout-ncol=3}
+
+[Cloud storage + formats]{.big-circle}
+
+[Data discovery services (e.g. STAC)]{.big-circle-blue}
+
+[Visualization interfaces (e.g. TiTiler)]{.big-circle-blue}
+
+:::
 
 # [2]{.circle} Why do we care?
 
 ---
 
-## In S11 
+## S11 works with big data
+
+### Processing of the data :white_check_mark:
+
+::: {layout-ncol=2}
+
+- DPROF 
+- Processs terabytes of spatial data
+- Efficient and scalable
+
+![Estimate of area monitored by S11](slides/images/area_monitored_s11.png){#fig-s11-area fig-scap="Taken from ESA" fig-align='center' width="100%"}
+
+:::
 
 ---
+## S11 works with big data
+
+
+### When it comes to finding the data :x:
+
+::: {layout-ncol=2}
+
+- Google Storage buckets
+- Gitlab repositories
+- ClickUp tasks
+- The almighty
+
+::: {.r-stack}
+
+![](slides/images/GS_buckets.png){.fragment fig-align='center' width="90%"}
+
+![](slides/images/blockchain.png){.fragment fig-align='center' width="100%"}
+
+![](slides/images/almighty.jpg){.fragment fig-align='center' width="50%"}
+
+:::
+
+:::
 
 # [3]{.circle} How did I plan to help fix it?
 
 ---
 
+## Research questions:
+
+1. What are the **current challenges, practices, and user experiences** related to data discovery and data visualization in the company?
+2. How can **cloud-optimized data formats**, **cloud services** and SpatioTemporal Asset Catalog (**STAC**) specifications be **integrated** to enhance the process and experiences of discovering and visualizing big spatial data within the company?
+3. To what extent do dynamic tiling services perform in **visualizing different cloud-optimized data formats**?
+
+---
+
+### [1]{.circle} Current state of data discovery and visualziation
+
+- Carried out interviews to define the baseline scenario
+- Created a flowchart representing current workflow
+- Thematic Content Analysis
+
+---
+
+### [2]{.circle} Effective integration
+
+- Worked with a limited dataset for developing a POC
+- Developed [[s11-cats](https://gitlab.com/satelligence/s11-cats)]{.box} for creating the STAC
+- Made the catalog queryable
+- Customized applications that wanted to be deployed
+- Deployed the services provided by [[eoAPI](https://eoapi.dev)]{.box}
+
+---
+
+### [2]{.circle} Effective integration
+
+#### (What is STAC?)
+
+Common structure for describing and cataloging spatiotemporal assets.
+
+---
+
+### [2]{.circle} Effective integration
+
+#### (What do you mean queryable? Aren't all catalogs queryable?)
+
+:::{layout-ncol=2}
+
+##### Static catalog
+
+- Series of json files with hierarchical structure.
+
+##### Dynamic catalog
+
+- Queryed through HTTP requests.
+
+:::
+
+---
+
+### [3]{.circle} Comparison of visualization different cloud-optimized formats 
+
+- Used two dynamic tiling services for COGs and Zarrs
+- Assessed the performance by measuring the response times of requesting tiles on both services
+
+---
+
+### [3]{.circle} Comparison of visualization of different cloud-optimized formats 
+
+#### (What are these weird "cloud-optimized" data formats?)
+
+:::{layout-ncol=2}
+
+##### COGs
+
+- Geotiffs
+- Contain overviews
+- Have internal tiling
+
+##### Zarrs
+
+- Divided in chunks
+- No overviews or pyramids
+- Work for storing multidimensional arrays
+
+:::
+
+---
+
 # [4]{.circle} What did I found?
+
+---
+
+## The current state
+
+![Workflow of current steps followed for data discovery and data visualization at S11.](img/Baseline_data_discovery_workflow.png){#fig-baseline}
 
 ---
 
@@ -104,13 +260,14 @@ execute:
 
 ## Data visualization
 
-Here I present some cool figures:
+djksgnlkasdjnglkjas
 
+sgjklsdnlkasdng
+
+dsg
 
 {{< include slides/sections/cog_zarr_comparison.qmd >}}
 
-
----
 
 # [5]{.circle} What is next?
 

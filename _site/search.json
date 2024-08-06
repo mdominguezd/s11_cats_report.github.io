@@ -494,7 +494,7 @@
     "href": "slides.html#in-s11",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "In S11",
-    "text": "In S11"
+    "text": "In S11\n\n\nFigure 2: Area monitored by S11"
   },
   {
     "objectID": "slides.html#the-dynamic-catalog",
@@ -522,6 +522,97 @@
     "href": "slides.html#data-visualization",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Data visualization",
-    "text": "Data visualization\nHere I present some cool figures:\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 1: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Response times for tile requests depending on data format"
+    "text": "Data visualization\ndjksgnlkasdjnglkjas\nsgjklsdnlkasdng\ndsg\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 4: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: Response times for tile requests depending on data format"
+  },
+  {
+    "objectID": "slides.html#big-data",
+    "href": "slides.html#big-data",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Big data",
+    "text": "Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)\n\n\nBla bla bla"
+  },
+  {
+    "objectID": "slides.html#spatial-data-is-big-data",
+    "href": "slides.html#spatial-data-is-big-data",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data is big data",
+    "text": "Spatial data is big data\n\n\n\n\nHundreds of satellites gather information on a weekly to daily basis\nHigh Velocity/Variety/Volume\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites obiting the earth.Taken from: miro.medium.com"
+  },
+  {
+    "objectID": "slides.html#spatial-data-is-big-data-1",
+    "href": "slides.html#spatial-data-is-big-data-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data is big data",
+    "text": "Spatial data is big data\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditionally SDIs focus on preserving data, not on accessing it.\n\nMore data \\(\\rightarrow\\) more problems (?)"
+  },
+  {
+    "objectID": "slides.html#spatial-data-is-big-data-auto-animatetrue-.incrementaltrue",
+    "href": "slides.html#spatial-data-is-big-data-auto-animatetrue-.incrementaltrue",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data is big data {auto-animate=“true” .incremental=true}",
+    "text": "Spatial data is big data {auto-animate=“true” .incremental=true}\n\n\n\n\nHundreds of satellites gather information on a daily basis.\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditioanlly SDIs focus on preserving data, not on accessing it.\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites obiting the earth.Taken from: miro.medium.com"
+  },
+  {
+    "objectID": "slides.html#spatial-data-is-big-data-.incrementaltrue",
+    "href": "slides.html#spatial-data-is-big-data-.incrementaltrue",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data is big data {.incremental=true}",
+    "text": "Spatial data is big data {.incremental=true}\n\n\n\n\nHundreds of satellites gather information on a daily basis.\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditioanlly SDIs focus on preserving data, not on accessing it.\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites obiting the earth.Taken from: miro.medium.com"
+  },
+  {
+    "objectID": "slides.html#spatial-data-challenges",
+    "href": "slides.html#spatial-data-challenges",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nHow to process it?\nHow to store it?\nHow to easily acces it?\nHow to interact with it?"
+  },
+  {
+    "objectID": "slides.html#spatial-data-challenges-1",
+    "href": "slides.html#spatial-data-challenges-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+  },
+  {
+    "objectID": "slides.html#spatial-data-challenges-2",
+    "href": "slides.html#spatial-data-challenges-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+  },
+  {
+    "objectID": "slides.html#s11-already-figure-out-how-to-process",
+    "href": "slides.html#s11-already-figure-out-how-to-process",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "S11 already figure out how to process",
+    "text": "S11 already figure out how to process\n\n\n\n\nDPROF\n\n\n\n\n\n\n\n\n\nFigure 2: Area monitored by S11"
+  },
+  {
+    "objectID": "slides.html#s11-works-with-big-data",
+    "href": "slides.html#s11-works-with-big-data",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "S11 works with big data",
+    "text": "S11 works with big data\nProcessing of the data ✅\n\n\n\n\nDPROF\nProcesss terabytes of spatial data\nEfficient and scalable\n\n\n\n\n\n\n\n\n\nFigure 2: Estimate of area monitored by S11"
+  },
+  {
+    "objectID": "slides.html#s11-works-with-big-data-1",
+    "href": "slides.html#s11-works-with-big-data-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "S11 works with big data",
+    "text": "S11 works with big data\nWhen it comes to finding the data ❌\n\n\n\n\nGoogle Storage buckets\nGitlab repositories\nClickUp tasks\nThe almighty"
+  },
+  {
+    "objectID": "slides.html#research-questions",
+    "href": "slides.html#research-questions",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Research questions:",
+    "text": "Research questions:\n\nWhat are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?\nHow can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?\nTo what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?"
+  },
+  {
+    "objectID": "slides.html#the-current-state",
+    "href": "slides.html#the-current-state",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "The current state",
+    "text": "The current state\n\n\nFigure 3: Workflow of current steps followed for data discovery and data visualization at S11."
   }
 ]
