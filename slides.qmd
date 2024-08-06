@@ -207,6 +207,8 @@ Common structure for describing and cataloging spatiotemporal assets.
 
 :::
 
+How to go from one to the other? [eoAPI]{.box}
+
 ---
 
 ### [3]{.circle} Comparison of visualization different cloud-optimized formats 
