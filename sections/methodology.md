@@ -33,7 +33,7 @@ Nevertheless, the scope of this internship was limited to raster datasets. There
 
 The structure of the STAC catalog proposed can be seen on @fig-stac-str. In it, a selection of datasets that should be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. This structure was not followed in the creation of the proof-of-concept catalog, as the purpose of this catalog was only to demonstrate the process of creating it. The final version of the structure will be determined by the company.
 
-![Proposed STAC structure](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
+![Proposed STAC structure for S11 data](img/STAC_Satelligence_structure.png){#fig-stac-str width="90%"}
 
 ### S11-cats repository
 
@@ -49,7 +49,7 @@ The s11-cats repository includes a module named `cats`, which consists of five s
 
 : Description of cats submodules {#tbl-cats-modules}
 
-![S11-cats main function](img/s11-cats.png){#fig-s11-cats}
+![S11-cats main function overview](img/s11-cats.png){#fig-s11-cats}
 
 As observed, the code in the repository requires a dictionary containing collection titles, descriptions, and tags, along with a list of links for each item to be added to each collection. It then generates two JSON files: one storing the collections' information and the other storing the items' information. This decision to produce two JSON files was made to facilitate the transition from the static catalog that has been created to the dynamic catalog that is desired.
 

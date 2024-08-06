@@ -4,7 +4,7 @@
 
 One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on @fig-baseline and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.
 
-![Baseline workflow](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
+![Baseline workflow for data discovery and data visualization in Satelligence.](img/Baseline_data_discovery_workflow.png){#fig-baseline width="100%"}
 
 According to @fig-baseline, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset's location added a major uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.
 
@@ -184,7 +184,7 @@ As seen on @fig-comp-zoom, the zoom level of the map showed an effect on the tim
 
 ```{python}
 #| echo: false
-#| fig-cap: "Request times depending on zoom level and their respective trends for COG and Zarr data formats."
+#| fig-cap: "Response times depending on zoom level and their respective trends for COG and Zarr data formats."
 #| label: fig-comp-zoom
 fig, ax = plt.subplots(1,1,figsize= (7.5,3.5))
 
