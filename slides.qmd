@@ -1,6 +1,7 @@
 ---
 title: "Cataloguing and Visualizing <Br> Big Geodata"
 subtitle-image: slides/images/Satelligence_Logo_RGB_White_Negative.png
+institute-image: https://pbs.twimg.com/profile_images/1640350393/wur_400x400.png
 author: "Martín Domínguez Durán"
 institute: "Wageningen University & Research"
 date: today
@@ -10,10 +11,12 @@ title-slide-attributes:
 format: 
   revealjs:
     #incremental: true
+    fig-width: 500
+    fig-height: 500
     template-partials:
       - slides/css/title-slide.html
     toc: true
-    toc-depth: 2
+    toc-depth: 1
     logo: slides/images/Satelligence_Logo_RGB_FC.png
     slide-number: true
     css: [slides/css/custom.css, slides/css/logo.css]
@@ -23,16 +26,37 @@ format:
     controls: true
     width: 1280
     height: 720
-
+    include-after: |
+          <script type="text/javascript">
+            Reveal.on('ready', event => {
+              if (event.indexh === 0) {
+                document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+              }
+            });
+            Reveal.addEventListener('slidechanged', (event) => {
+              if (event.indexh === 0) {
+                Reveal.configure({ slideNumber: null });
+                document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+              }
+              if (event.indexh === 1) { 
+                Reveal.configure({ slideNumber: 'c' });
+                document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+              }
+            });
+          </script>
 execute:
   echo: true
+  enabled: true
 ---
 
-## [1]{.circle}  What is the problem?
+
+# [1]{.circle}  What is the problem?
+
+---
+
+## Spatial data = Big data
 
 ::: {layout-ncol=2}
-
-### Spatial data = Big data
 
 [More data $\rightarrow$ more problems (?)]{.box}
 
@@ -41,18 +65,52 @@ execute:
 
 ---
 
-## [2]{.circle} Why do we care?
+## fmkfgjd
 
-### In S11 
+::: {layout-ncol=2}
 
----
+[More data $\rightarrow$ more problems (?)]{.box}
 
-## [3]{.circle} How could I help fix it?
-
----
-
-## [4]{.circle} What did I found?
+![](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){fig-scap="Taken from ESA" fig-align='center' width="70%"}
+:::
 
 ---
 
-## [5]{.circle} What is next?
+# [2]{.circle} Why do we care?
+
+---
+
+## In S11 
+
+---
+
+# [3]{.circle} How did I plan to help fix it?
+
+---
+
+# [4]{.circle} What did I found?
+
+---
+
+## The dynamic catalog
+
+{{< include slides/sections/check_interactive_api.md >}}
+
+---
+
+## The deployed version of STAC Browser
+
+<iframe src="https://eoapi.satelligence.com/browser" style="height:75%;width:100%;"  title="eoAPI deployment for Satelligence data"></iframe>
+
+## Data visualization
+
+Here I present some cool figures:
+
+
+{{< include slides/sections/cog_zarr_comparison.qmd >}}
+
+
+---
+
+# [5]{.circle} What is next?
+

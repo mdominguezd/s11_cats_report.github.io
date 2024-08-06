@@ -417,7 +417,7 @@
     "href": "slides.html#what-is-the-problem",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "1 What is the problem?",
-    "text": "1 What is the problem?\n\n\n\nSpatial data = Big data\nMore data \\(\\rightarrow\\) more problems"
+    "text": "1 What is the problem?\nSpatial data = Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
   },
   {
     "objectID": "slides.html#why-do-we-care",
@@ -437,15 +437,15 @@
     "objectID": "slides.html#section",
     "href": "slides.html#section",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "4",
-    "text": "4"
+    "section": "",
+    "text": "1 What is the problem?\nSpatial data = Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
   },
   {
     "objectID": "slides.html#what-did-i-found",
     "href": "slides.html#what-did-i-found",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "4 What did I found?",
-    "text": "4 What did I found?"
+    "text": "4 What did I found?\ndslg\nThe deployment"
   },
   {
     "objectID": "slides.html#what-is-next",
@@ -467,5 +467,61 @@
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "3 How could I help fix it?",
     "text": "3 How could I help fix it?"
+  },
+  {
+    "objectID": "slides.html#what-is-the-problem-1",
+    "href": "slides.html#what-is-the-problem-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "1 What is the problem?",
+    "text": "1 What is the problem?\nSpatial data = Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+  },
+  {
+    "objectID": "slides.html#spatial-data-big-data",
+    "href": "slides.html#spatial-data-big-data",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data = Big data",
+    "text": "Spatial data = Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+  },
+  {
+    "objectID": "slides.html#fmkfgjd",
+    "href": "slides.html#fmkfgjd",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "fmkfgjd",
+    "text": "fmkfgjd\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+  },
+  {
+    "objectID": "slides.html#in-s11",
+    "href": "slides.html#in-s11",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "In S11",
+    "text": "In S11"
+  },
+  {
+    "objectID": "slides.html#the-dynamic-catalog",
+    "href": "slides.html#the-dynamic-catalog",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "The dynamic catalog",
+    "text": "The dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
+  },
+  {
+    "objectID": "slides.html#the-deployed-version-of-stac-browser",
+    "href": "slides.html#the-deployed-version-of-stac-browser",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "The deployed version of STAC Browser",
+    "text": "The deployed version of STAC Browser"
+  },
+  {
+    "objectID": "slides.html#data-vizz",
+    "href": "slides.html#data-vizz",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Data vizz",
+    "text": "Data vizz"
+  },
+  {
+    "objectID": "slides.html#data-visualization",
+    "href": "slides.html#data-visualization",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Data visualization",
+    "text": "Data visualization\nHere I present some cool figures:\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 1: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Response times for tile requests depending on data format"
   }
 ]
