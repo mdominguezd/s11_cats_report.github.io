@@ -13,6 +13,7 @@ format:
     template-partials:
       - slides/css/title-slide.html
     toc: true
+    toc-depth: 2
     logo: slides/images/Satelligence_Logo_RGB_FC.png
     slide-number: true
     css: [slides/css/custom.css, slides/css/logo.css]
@@ -29,9 +30,14 @@ execute:
 
 ## [1]{.circle}  What is the problem?
 
+::: {layout-ncol=2}
+
 ### Spatial data = Big data
 
-![Satellites orbiting the earth](https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2019/10/distribution_of_space_debris_around_earth/20823922-1-eng-GB/Distribution_of_space_debris_around_Earth_pillars.gif)
+[More data $\rightarrow$ more problems (?)]{.box}
+
+![](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){fig-scap="Taken from ESA" fig-align='center' width="70%"}
+:::
 
 ---
 
@@ -41,7 +47,7 @@ execute:
 
 ---
 
-## [3]{.circle} How can we fix it?
+## [3]{.circle} How could I help fix it?
 
 ---
 

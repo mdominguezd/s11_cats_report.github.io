@@ -417,14 +417,14 @@
     "href": "slides.html#what-is-the-problem",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "1 What is the problem?",
-    "text": "1 What is the problem?\n\nedibble is an hola experimetal R- ackage I hav bdgjeen devepi ng o plan, design, and siuate experiments"
+    "text": "1 What is the problem?\n\n\n\nSpatial data = Big data\nMore data \\(\\rightarrow\\) more problems"
   },
   {
     "objectID": "slides.html#why-do-we-care",
     "href": "slides.html#why-do-we-care",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 Why do we care?",
-    "text": "2 Why do we care?"
+    "text": "2 Why do we care?\nIn S11"
   },
   {
     "objectID": "slides.html#how-can-we-fix-it",
@@ -453,5 +453,19 @@
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "5 What is next?",
     "text": "5 What is next?"
+  },
+  {
+    "objectID": "slides.html#how-could-we-fix-it",
+    "href": "slides.html#how-could-we-fix-it",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 How could we fix it?",
+    "text": "3 How could we fix it?"
+  },
+  {
+    "objectID": "slides.html#how-could-i-help-fix-it",
+    "href": "slides.html#how-could-i-help-fix-it",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 How could I help fix it?",
+    "text": "3 How could I help fix it?"
   }
 ]
