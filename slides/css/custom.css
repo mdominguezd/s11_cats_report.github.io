@@ -14,13 +14,30 @@
   
       ***/
   }
+
+  .reveal .slides figure figcaption {
+    font-size: 0.5em; /* Change this value to your desired font size */
+    color: #000000; /* Optional: Change the color of the caption text */
+    text-align: center; /* Optional: Center align the caption text */
+    margin-top: 0px; /* Optional: Add space above the caption */
+  }
+
+  /* Targeting unordered list items within the Quarto reveal.js presentation */
+.reveal .slides ul li::marker {
+  color: #ff4100; /* Change this value to your desired color */
+}
+
+.reveal .slides ol li::marker {
+  color: #ff4100; /* Change this value to your desired color */
+}
   
   .box {
     margin-top: 10px;
     margin-right: 10px;
+    align-items: center;
     border: 5px solid #96d7fa;
     padding: 10px;
-    font-size: 26px;
+    font-size: 34px;
     background-color: #fff;
   }
   
@@ -57,7 +74,37 @@
       font-weight: bold;
       font-family: 'Roboto Condensed', sans-serif;
   }
-  
+
+  .big-circle {
+    border-radius: 50%;
+    width: 5.95em;
+    height: 5.95em;
+    line-height: 1em;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff4100;
+    color: white;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.big-circle-blue {
+  border-radius: 50%;
+  width: 5.95em;
+  height: 5.95em;
+  line-height: 1em;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #002966;
+  color: #96d7fa;
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
   .story {
     background-color: black;
     color: white;

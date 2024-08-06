@@ -91,25 +91,60 @@
     "text": "Code to evaluate request times\nDisclaimer: In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on localhost:8082 and localhost:8084 respectively.\n\nimport pandas as pd\nimport requests\nimport random\n\ntiles = [\"9/399/254\", \"10/800/505\", \"11/1603/1012\",  \"12/3209/2042\", \n\"13/6407/4075\", \"14/12817/8159\", \"15/25678/16271\", \"16/51268/32552\", \n\"17/102503/65134\", \"18/205062/130211\"]\n\n# Tiles are slightly modified to try to avoid getting cached tiles\ndef modify_tile(tile):\n    parts = tile.split('/')\n    z = int(parts[0])\n    x = int(parts[1])\n    y = int(parts[2])\n\n    # Determine the range of change based on the value of z\n    if z &lt;= 7:\n        change_range = 1\n    elif z &lt;= 9:\n        change_range = 5\n    elif z &lt;= 12:\n        change_range = 5\n    elif z &lt;= 15:\n        change_range = 10\n    elif z &lt;= 18:\n        change_range = 50\n\n    # Apply the change to x and y\n    x_change = random.randint(-change_range, change_range)\n    y_change = random.randint(-change_range, change_range)\n\n    new_x = x + x_change\n    new_y = y + y_change\n\n    # Return the modified tile as a string\n    return f\"{z}/{new_x}/{new_y}\"\n\ntimes_zarr = []\ntimes_cog = []\nz_level = []\ncmap_picked = []\n\n# The colormaps picked can be either a customized one for S11\n# Forest baseline or greens_r\ncmap = [\"_name=greens&rescale=0,70\",\"_name=greens_r&rescale=0,70\",\n        \"_name=blues&rescale=0,90\", \"_name=blues_r&rescale=0,90\",\n        \"_name=reds&rescale=0,80\", \"_name=reds_r&rescale=0,80\",\n        \"_name=gray&rescale=0,70\",\"_name=gray_r&rescale=0,70\",\n        \"_name=jet&rescale=0,90\", \"_name=jet_r&rescale=0,90\",\n        \"_name=hot&rescale=0,80\", \"_name=hot_r&rescale=0,80\"]\n\nfor i in range(len(cmap)):\n\n    mod_tiles = [modify_tile(tile) for tile in tiles]\n    k = i\n\n    for tile in mod_tiles:\n        url_zarr = \"https://localhost:8084/tiles/WebMercatorQuad/\"+\\\n        f\"{tile}%401x?url=gs://s11-tiles/zarr/separate&\"+\\\n        \"variable=band_data&reference=false&decode_times=true&\"+\\\n        f\"consolidated=true&colormap{cmap[k]}&return_mask=true\"\n\n        url_cog = f\"https://localhost:8082/collections/\"+\\\n        f\"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/\"+\\\n        f\"WebMercatorQuad/{tile}%401x?bidx=1&assets=data&\"+\\\n        \"unscale=false&resampling=nearest&reproject=nearest&\"+\\\n        f\"colormap{cmap[k]}&return_mask=true\"\n\n        x = requests.get(url_zarr)\n        times_zarr.append(x.elapsed.total_seconds())\n\n        x = requests.get(url_cog)\n        times_cog.append(x.elapsed.total_seconds())\n\n        z_level.append(int(tile.split('/')[0]))\n\n        cmap_picked.append(k)\n\ndata = pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T\ndata.columns = ['colormap','zoom level','COG', 'ZARR']\n\ndata.to_csv('request_time_results_6iter_k8.csv')"
   },
   {
-    "objectID": "slides.html#spatial-data-big-data",
-    "href": "slides.html#spatial-data-big-data",
+    "objectID": "slides.html#spatial-data-is-big-data",
+    "href": "slides.html#spatial-data-is-big-data",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "Spatial data = Big data",
-    "text": "Spatial data = Big data\n\n\n\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+    "section": "Spatial data is big data",
+    "text": "Spatial data is big data\n\n\n\n\n\n\n\nHundreds of satellites gather information on a weekly to daily basis\nHigh Velocity/Variety/Volume\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites obiting the earth.Taken from: miro.medium.com"
   },
   {
-    "objectID": "slides.html#fmkfgjd",
-    "href": "slides.html#fmkfgjd",
+    "objectID": "slides.html#spatial-data-challenges",
+    "href": "slides.html#spatial-data-challenges",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "fmkfgjd",
-    "text": "fmkfgjd\n\n\n\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nHow to process it?\nHow to store it?\nHow to easily acces it?\nHow to interact with it?"
   },
   {
-    "objectID": "slides.html#in-s11",
-    "href": "slides.html#in-s11",
+    "objectID": "slides.html#spatial-data-challenges-1",
+    "href": "slides.html#spatial-data-challenges-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "In S11",
-    "text": "In S11"
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+  },
+  {
+    "objectID": "slides.html#spatial-data-challenges-2",
+    "href": "slides.html#spatial-data-challenges-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+  },
+  {
+    "objectID": "slides.html#s11-works-with-big-data",
+    "href": "slides.html#s11-works-with-big-data",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "S11 works with big data",
+    "text": "S11 works with big data\nProcessing of the data ✅\n\n\n\n\n\n\n\nDPROF\nProcesss terabytes of spatial data\nEfficient and scalable\n\n\n\n\n\n\n\n\n\nFigure 2: Estimate of area monitored by S11"
+  },
+  {
+    "objectID": "slides.html#s11-works-with-big-data-1",
+    "href": "slides.html#s11-works-with-big-data-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "S11 works with big data",
+    "text": "S11 works with big data\nWhen it comes to finding the data ❌\n\n\n\n\n\n\n\nGoogle Storage buckets\nGitlab repositories\nClickUp tasks\nThe almighty"
+  },
+  {
+    "objectID": "slides.html#research-questions",
+    "href": "slides.html#research-questions",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Research questions:",
+    "text": "Research questions:\n\nWhat are the current challenges, practices, and user experiences related to data discovery and data visualization in the company?\nHow can cloud-optimized data formats, cloud services and SpatioTemporal Asset Catalog (STAC) specifications be integrated to enhance the process and experiences of discovering and visualizing big spatial data within the company?\nTo what extent do dynamic tiling services perform in visualizing different cloud-optimized data formats?"
+  },
+  {
+    "objectID": "slides.html#the-current-state",
+    "href": "slides.html#the-current-state",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "The current state",
+    "text": "The current state\n\n\nFigure 3: Workflow of current steps followed for data discovery and data visualization at S11."
   },
   {
     "objectID": "slides.html#the-dynamic-catalog",
@@ -130,7 +165,7 @@
     "href": "slides.html#data-visualization",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Data visualization",
-    "text": "Data visualization\nHere I present some cool figures:\n\n\n\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 1: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Response times for tile requests depending on data format"
+    "text": "Data visualization\ndjksgnlkasdjnglkjas\nsgjklsdnlkasdng\ndsg\n\n\n\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 4: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: Response times for tile requests depending on data format"
   },
   {
     "objectID": "slides/sections/check_interactive_api.html",
