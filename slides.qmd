@@ -27,16 +27,17 @@ execute:
   echo: true
 ---
 
----
-
 ## [1]{.circle}  What is the problem?
 
-* `edibble` is an [hola](google.com) <a href="https//lieccle.r-lib.org/articles/stages.html#experimental" style="color:black">experimetal</a> R-   ackage I hav bdgjeen devepi ng o *plan*, **_design_**, and *siuate* **experiments**
+### Spatial data = Big data
 
+![Satellites orbiting the earth](https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2019/10/distribution_of_space_debris_around_earth/20823922-1-eng-GB/Distribution_of_space_debris_around_Earth_pillars.gif)
 
 ---
 
 ## [2]{.circle} Why do we care?
+
+### In S11 
 
 ---
 

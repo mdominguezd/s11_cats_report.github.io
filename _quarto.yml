@@ -7,9 +7,9 @@ website:
     left:
       - href: index.qmd
         text: Report
-      - about.qmd
       - href: slides.qmd
         text: Slides
+      - about.qmd
 
 format:
   html:
