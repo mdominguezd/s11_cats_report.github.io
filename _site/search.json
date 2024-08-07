@@ -67,7 +67,7 @@
     "href": "FinalReport.html#service-integration",
     "title": "Cataloguing and visualizing big Geodata",
     "section": "Service integration",
-    "text": "Service integration\nThe integration of the services deployed resulted in a version of STAC Browser including three different collections containing datasets related to the forest baseline created by the company, elevation data from third party organizations and a collection for the comparison of COG and Zarr data. The web application can be accessed in https://eoapi.satelligence.com/browser.\n\nEffective integration\nThe effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.\n\nData formats\nAn essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting COGs into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs (Lynnes et al., 2020). Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process (Barciauskas et al., 2024).\n\n\nLeverage of APIs\nTo effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.\nFor the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.\n\n\nDeployment\nAs described on Section 2.2.4, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified (Gupta et al., 2021). Moreover, eoAPI simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times (Gokhale et al., 2021). These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.\nMoreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, Munteanu et al. (2024) performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.\nFinally, additional to the already covered advantages, the deployment of eoAPI and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using TiPg is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.\n\n\n\nWorkflow improvement\nOnce the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on Figure 4. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.\n\n\n\n\n\n\nFigure 4: New data discovery and visualization workflow\n\n\n\nMoreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data."
+    "text": "Service integration\nThe integration of the services deployed resulted in a version of STAC Browser including three different collections containing datasets related to the forest baseline created by the company, elevation data from third party organizations and a collection for the comparison of COG and Zarr data. The web application can be accessed in https://eoapi.satelligence.com/browser.\n\nEffective integration\nThe effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.\n\nData formats\nAn essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting COGs into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs (Lynnes et al., 2020). Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process (Barciauskas et al., 2024).\n\n\nLeverage of APIs\nTo effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.\nFor the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.\n\n\nDeployment\nAs described on Section 2.2.4, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified (Gupta et al., 2021). Moreover, eoAPI simplified the deployment by providing a guide for deployment that used a Helm chart (See (Developmentseed, 2024)). A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times (Gokhale et al., 2021). These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.\nMoreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, Munteanu et al. (2024) performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.\nFinally, additional to the already covered advantages, the deployment of eoAPI and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using TiPg is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.\n\n\n\nWorkflow improvement\nOnce the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on Figure 4. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.\n\n\n\n\n\n\nFigure 4: New data discovery and visualization workflow\n\n\n\nMoreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data."
   },
   {
     "objectID": "FinalReport.html#multi-format-data-visualization",
@@ -437,8 +437,8 @@
     "objectID": "slides.html#section",
     "href": "slides.html#section",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "",
-    "text": "1 What is the problem?\nSpatial data = Big data\n\n\n\nMore data \\(\\rightarrow\\) more problems (?)"
+    "section": "2",
+    "text": "2"
   },
   {
     "objectID": "slides.html#what-did-i-found",
@@ -500,15 +500,15 @@
     "objectID": "slides.html#the-dynamic-catalog",
     "href": "slides.html#the-dynamic-catalog",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "The dynamic catalog",
-    "text": "The dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
+    "section": "2 The dynamic catalog",
+    "text": "2 The dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
   },
   {
     "objectID": "slides.html#the-deployed-version-of-stac-browser",
     "href": "slides.html#the-deployed-version-of-stac-browser",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "The deployed version of STAC Browser",
-    "text": "The deployed version of STAC Browser"
+    "section": "2 The deployed version of STAC Browser",
+    "text": "2 The deployed version of STAC Browser"
   },
   {
     "objectID": "slides.html#data-vizz",
@@ -521,8 +521,8 @@
     "objectID": "slides.html#data-visualization",
     "href": "slides.html#data-visualization",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "Data visualization",
-    "text": "Data visualization\ndjksgnlkasdjnglkjas\nsgjklsdnlkasdng\ndsg\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 4: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: Response times for tile requests depending on data format"
+    "section": "3 Data visualization",
+    "text": "3 Data visualization\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 6: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 7: Response times for tile requests depending on data format\n\n\n\n\n\n\n\nAlignment with Barciauskas et al. (2024)."
   },
   {
     "objectID": "slides.html#big-data",
@@ -536,7 +536,7 @@
     "href": "slides.html#spatial-data-is-big-data",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data is big data",
-    "text": "Spatial data is big data\n\n\n\n\nHundreds of satellites gather information on a weekly to daily basis\nHigh Velocity/Variety/Volume\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites obiting the earth.Taken from: miro.medium.com"
+    "text": "Spatial data is big data\n\n\n\n\nHundreds of satellites gather information on a weekly to daily basis\nHigh Velocity/Variety/Volume\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites orbiting the earth.Taken from: miro.medium.com"
   },
   {
     "objectID": "slides.html#spatial-data-is-big-data-1",
@@ -571,14 +571,14 @@
     "href": "slides.html#spatial-data-challenges-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data challenges",
-    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
   },
   {
     "objectID": "slides.html#spatial-data-challenges-2",
     "href": "slides.html#spatial-data-challenges-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data challenges",
-    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility\nNew developments can help change this.\n\n\n\n\nCloud storage + formats\n\n\nData discovery services (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
   },
   {
     "objectID": "slides.html#s11-already-figure-out-how-to-process",
@@ -612,7 +612,210 @@
     "objectID": "slides.html#the-current-state",
     "href": "slides.html#the-current-state",
     "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "The current state",
-    "text": "The current state\n\n\nFigure 3: Workflow of current steps followed for data discovery and data visualization at S11."
+    "section": "1 The current state",
+    "text": "1 The current state\n\n\n\n\n\n\n\n\n\nFigure 3: Workflow of current steps followed for data discovery and data visualization at S11."
+  },
+  {
+    "objectID": "slides.html#spatial-data-challenges-3",
+    "href": "slides.html#spatial-data-challenges-3",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Spatial data challenges",
+    "text": "Spatial data challenges\nData discovery (e.g. STAC)\ndfhaf"
+  },
+  {
+    "objectID": "slides.html#new-developments",
+    "href": "slides.html#new-developments",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nData discovery (e.g. STAC)"
+  },
+  {
+    "objectID": "slides.html#new-developments-1",
+    "href": "slides.html#new-developments-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets."
+  },
+  {
+    "objectID": "slides.html#new-developments-2",
+    "href": "slides.html#new-developments-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets"
+  },
+  {
+    "objectID": "slides.html#new-developments-3",
+    "href": "slides.html#new-developments-3",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\nTypes\n\nStatic\nDynamic"
+  },
+  {
+    "objectID": "slides.html#new-developments-4",
+    "href": "slides.html#new-developments-4",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nVisualization interfaces (e.g. TiTiler)"
+  },
+  {
+    "objectID": "slides.html#new-developments-5",
+    "href": "slides.html#new-developments-5",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nVisualization interfaces (e.g. TiTiler)\n\nDefiniton\nA dynamic tiling service for raster data. It is design to generate tiles on the fly by reading only parts of cloud-optimized data formats."
+  },
+  {
+    "objectID": "slides.html#new-developments-6",
+    "href": "slides.html#new-developments-6",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "New developments",
+    "text": "New developments\n\n\nVisualization interfaces (e.g. TiTiler)\n\nDefiniton\nA dynamic tiling service for raster data. It is design to generate tiles on the fly by reading only parts of cloud-optimized data formats.\n\nCloud optimized data formats\n\nCOGs\nZarrs"
+  },
+  {
+    "objectID": "slides.html#references",
+    "href": "slides.html#references",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "References",
+    "text": "References\n\n\nBarciauskas, Aimee, Max Jones, Kata Martin, Sean Harkins, and Vincent Sarago. 2024. “Next-Gen Zarr Web Map Visualization.” In EGU General Assembly Conference Abstracts, 11805. EGU General Assembly Conference Abstracts. https://doi.org/10.5194/egusphere-egu24-11805.\n\n\nDurbha, Surya S, Jibonananda Sanyal, Lexie Yang, Sangita S Chaudhari, Ujwala Bhangale, Ujwala Bharambe, and Kuldeep Kurte. 2023. Advances in Scalable and Intelligent Geospatial Analytics: Challenges and Applications. 1st ed. Boca Raton: CRC Press. https://doi.org/10.1201/9781003270928.\n\n\nMiranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. “Reviewing the Discoverability and Accessibility to Data and Information Products Linked to Essential Climate Variables.” International Journal of Digital Earth 13 (2): 236–52. https://doi.org/10.1080/17538947.2019.1620882."
+  },
+  {
+    "objectID": "slides.html#authentication",
+    "href": "slides.html#authentication",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Authentication",
+    "text": "Authentication\n\nAdd an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data."
+  },
+  {
+    "objectID": "slides.html#vector-data-visualization",
+    "href": "slides.html#vector-data-visualization",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Vector data visualization",
+    "text": "Vector data visualization\n\nTiPg is a service included in the eoAPI deployment that wasn’t used, but should be integrated to visualize, for instance, supply chain datasets."
+  },
+  {
+    "objectID": "slides.html#the-current-state-1",
+    "href": "slides.html#the-current-state-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "1 The current state",
+    "text": "1 The current state\nTCA:\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming of repositories with datasets.\nUnderstanding of diverse tools to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place where all existing data can be found."
+  },
+  {
+    "objectID": "slides.html#effective-integration-1",
+    "href": "slides.html#effective-integration-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 Effective integration",
+    "text": "2 Effective integration\n\n\n\n\n\n\n\n\n\nFigure 5: New data discovery and visualization workflow"
+  },
+  {
+    "objectID": "slides.html#the-importance-of-a-dynamic-catalog",
+    "href": "slides.html#the-importance-of-a-dynamic-catalog",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 The importance of a dynamic catalog",
+    "text": "2 The importance of a dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
+  },
+  {
+    "objectID": "slides.html#tools-to-create-an-s11-catalog",
+    "href": "slides.html#tools-to-create-an-s11-catalog",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 Tools to create an S11 catalog",
+    "text": "2 Tools to create an S11 catalog\n\nDatasets selected \\(\\rightarrow\\) S11-cats \\(\\rightarrow\\) Static catalog\n\n\n\n\n\n\n\n\n\n\nFigure 4: s11-cats repository"
+  },
+  {
+    "objectID": "slides.html#the-current-state-2",
+    "href": "slides.html#the-current-state-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "1 The current state",
+    "text": "1 The current state\nTCA:\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure1 of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming\\(^1\\) of repositories with datasets.\nUnderstanding of diverse tools\\(^1\\) to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place where all existing data can be found.\n\n\n\n\nSimilarly Miranda Espinosa, Giuliani, and Ray (2020) proposed that the main challenges are: “Different query interfaces and diverse metadata models makes it difficult to acces the data”."
+  },
+  {
+    "objectID": "slides.html#tools-to-create-an-s11-catalog-1",
+    "href": "slides.html#tools-to-create-an-s11-catalog-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 Tools to create an S11 catalog",
+    "text": "2 Tools to create an S11 catalog\n\nDatasets selected \\(\\rightarrow\\) S11-cats \\(\\rightarrow\\) Static catalog\n\n\n\n\n\n\n\n\n\n\nFigure 5: s11-cats repository"
+  },
+  {
+    "objectID": "slides.html#the-importance-of-a-dynamic-catalog-1",
+    "href": "slides.html#the-importance-of-a-dynamic-catalog-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 The importance of a dynamic catalog",
+    "text": "2 The importance of a dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
+  },
+  {
+    "objectID": "slides.html#the-step-towards-a-dynamic-catalog",
+    "href": "slides.html#the-step-towards-a-dynamic-catalog",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 The step towards a dynamic catalog",
+    "text": "2 The step towards a dynamic catalog"
+  },
+  {
+    "objectID": "slides.html#the-step-towards-a-dynamic-catalog-1",
+    "href": "slides.html#the-step-towards-a-dynamic-catalog-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 The step towards a dynamic catalog",
+    "text": "2 The step towards a dynamic catalog\nMultiple services\n\n\n\nPgSTAC\n\n\nSTAC-fastAPI\n\n\nTiTiler-PgSTAC\n\n\nTiPg"
+  },
+  {
+    "objectID": "slides.html#the-step-towards-a-dynamic-catalog-2",
+    "href": "slides.html#the-step-towards-a-dynamic-catalog-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 The step towards a dynamic catalog",
+    "text": "2 The step towards a dynamic catalog\nMultiple services\n\n\n\nPgSTAC\n\n\nSTAC-fastAPI\n\n\nTiTiler-PgSTAC\n\n\nTiTiler-xarray\n\n\n\n\n\n🛞 Kubernetes 🛞"
+  },
+  {
+    "objectID": "slides.html#data-visualization-1",
+    "href": "slides.html#data-visualization-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 Data visualization",
+    "text": "3 Data visualization\n\n\n\n\n\n\n\n\n\n\nFigure 8: Response times depending on zoom level and their respective trends for COG and Zarr data formats.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 9: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.\n\n\n\n\n\n\n\nDifferences with Barciauskas et al. (2024)."
+  },
+  {
+    "objectID": "slides.html#appendix",
+    "href": "slides.html#appendix",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Appendix",
+    "text": "Appendix\n2 Effective integration\n(What do you mean queryable? Aren’t all catalogs queryable?)\n\n\n\nStatic catalog\n\nSeries of json files with hierarchical structure.\nCan be browse easily (Like a website)\n\n\n\nDynamic catalog\n\nQueryed through HTTP requests.\n\n\n\n\nHow to go from one to the other? eoAPI"
+  },
+  {
+    "objectID": "slides.html#rq1",
+    "href": "slides.html#rq1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "RQ1",
+    "text": "RQ1"
+  },
+  {
+    "objectID": "slides.html#current-state",
+    "href": "slides.html#current-state",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "1 Current state",
+    "text": "1 Current state\n\nWorkflow at S11 is complex and time-consuming\nMajor inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.\nA user-friendly data discovery service with integrated data visualization is needed"
+  },
+  {
+    "objectID": "slides.html#current-state-1",
+    "href": "slides.html#current-state-1",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 Current state",
+    "text": "3 Current state"
+  },
+  {
+    "objectID": "slides.html#current-state-2",
+    "href": "slides.html#current-state-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 Current state",
+    "text": "3 Current state"
+  },
+  {
+    "objectID": "slides.html#effective-integration-2",
+    "href": "slides.html#effective-integration-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "2 Effective integration",
+    "text": "2 Effective integration\n\nIntegration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.\nWe developed a methodology to effectively do the integration."
+  },
+  {
+    "objectID": "slides.html#data-visualization-2",
+    "href": "slides.html#data-visualization-2",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "3 Data visualization",
+    "text": "3 Data visualization\n\nCOG tiles are, on average, 2.53 times faster to request than Zarr tiles.\nFuture developments in Zarr could make it more even."
   }
 ]
