@@ -427,12 +427,12 @@ Differences with @Barciauskas_NextGen_2024.
 ## [2]{.circle} Effective integration
 
 - Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.
-- We developed a methodology to effectively do the integration.
+- We developed a methodology to effectively do the integration of multiple data formats and services. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)
 
 ## [3]{.circle} Data visualization
 
 - COG tiles are, on average, 2.53 times faster to request than Zarr tiles.
-- Future developments in Zarr could make it more even.
+- Future developments in Zarr could improve their performance (i.e. Improved pyramid generation).
 
 ---
 
