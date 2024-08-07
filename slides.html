@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Martín Domínguez Durán">
-  <meta name="dcterms.date" content="2024-08-06">
+  <meta name="dcterms.date" content="2024-08-07">
   <title>S11-CATS Report – Cataloguing and Visualizing  Big Geodata</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -30,7 +30,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="slides/css/custom.css">
   <link rel="stylesheet" href="slides/css/logo.css">
@@ -336,7 +356,7 @@
       <p class="author">Martín Domínguez Durán</p>
         <p class="date">Wageningen University &amp; Research</p>
         <p class="date"><img src="https://pbs.twimg.com/profile_images/1640350393/wur_400x400.png" alt="Institute Image" width="75px"><img src="slides/images/Satelligence_Logo_RGB_White_Negative.png" alt="Subtitle Image" width="300px"></p>
-        <p class="date">2024-08-06</p>
+        <p class="date">2024-08-07</p>
     </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
@@ -344,8 +364,9 @@
 <li><a href="#/what-is-the-problem" id="/toc-what-is-the-problem"><span class="circle">1</span> What is the problem?</a></li>
 <li><a href="#/why-do-we-care" id="/toc-why-do-we-care"><span class="circle">2</span> Why do we care?</a></li>
 <li><a href="#/how-did-i-plan-to-help-fix-it" id="/toc-how-did-i-plan-to-help-fix-it"><span class="circle">3</span> How did I plan to help fix it?</a></li>
-<li><a href="#/what-did-i-found" id="/toc-what-did-i-found"><span class="circle">4</span> What did I found?</a></li>
+<li><a href="#/what-did-i-find" id="/toc-what-did-i-find"><span class="circle">4</span> What did I find?</a></li>
 <li><a href="#/what-is-next" id="/toc-what-is-next"><span class="circle">5</span> What is next?</a></li>
+<li><a href="#/conclusions" id="/toc-conclusions"><span class="circle">6</span> Conclusions</a></li>
 </ul>
 </nav>
 </section>
@@ -354,8 +375,8 @@
 <h1><span class="circle">1</span> What is the problem?</h1>
 
 </section>
-<section id="spatial-data-is-big-data" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Spatial data is big data</h2>
+<section id="spatial-data-is-big-data" class="slide level2">
+<h2>Spatial data is big data</h2>
 <div>
 
 </div>
@@ -374,7 +395,7 @@
 <img data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-scap="Taken from medium">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
+Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 </figcaption>
 </figure>
 </div>
@@ -382,8 +403,8 @@ Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
 </div>
 </div>
 </section>
-<section id="spatial-data-challenges" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Spatial data challenges</h2>
+<section id="spatial-data-challenges" class="slide level2">
+<h2>Spatial data challenges</h2>
 <ul>
 <li>How to process it?</li>
 <li>How to store it?</li>
@@ -391,12 +412,12 @@ Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
 <li>How to interact with it?</li>
 </ul>
 </section>
-<section id="spatial-data-challenges-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Spatial data challenges</h2>
+<section id="spatial-data-challenges-1" class="slide level2">
+<h2>Spatial data challenges</h2>
 <ul>
 <li>This makes <span class="box">Spatial Data Infrastructures (SDIs)</span> a necessity.</li>
-<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span></li>
-<li>New developments can help change this.</li>
+<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
+<li><strong>New developments</strong> can help change this.</li>
 </ul>
 <div>
 
@@ -404,10 +425,10 @@ Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><span class="big-circle">Cloud storage + formats</span></p>
+<p><span class="big-circle">Cloud storage</span></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><span class="big-circle">Data discovery services (e.g.&nbsp;STAC)</span></p>
+<p><span class="big-circle">Data discovery (e.g.&nbsp;STAC)</span></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <p><span class="big-circle">Visualization interfaces (e.g.&nbsp;TiTiler)</span></p>
@@ -415,12 +436,12 @@ Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
 </div>
 </div>
 </section>
-<section id="spatial-data-challenges-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Spatial data challenges</h2>
+<section id="spatial-data-challenges-2" class="slide level2">
+<h2>Spatial data challenges</h2>
 <ul>
 <li>This makes <span class="box">Spatial Data Infrastructures (SDIs)</span> a necessity.</li>
-<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span></li>
-<li>New developments can help change this.</li>
+<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
+<li><strong>New developments</strong> can help change this.</li>
 </ul>
 <div>
 
@@ -428,16 +449,132 @@ Figure&nbsp;1: Satellites obiting the earth.<br>Taken from: miro.medium.com
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><span class="big-circle">Cloud storage + formats</span></p>
+<p><span class="big-circle">Cloud storage</span></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><span class="big-circle-blue">Data discovery services (e.g.&nbsp;STAC)</span></p>
+<p><span class="big-circle-blue">Data discovery (e.g.&nbsp;STAC)</span></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <p><span class="big-circle-blue">Visualization interfaces (e.g.&nbsp;TiTiler)</span></p>
 </div>
 </div>
 </div>
+</section>
+<section id="new-developments" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Data discovery (e.g.&nbsp;STAC)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+
+</div><div class="column" data-incremental="true" style="width:21%;">
+
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
+</section>
+<section id="new-developments-1" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Data discovery (e.g.&nbsp;STAC)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+<h4 id="definiton">Definiton</h4>
+<p>Common structure for describing and cataloging spatiotemporal assets.</p>
+</div><div class="column" data-incremental="true" style="width:21%;">
+
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
+</section>
+<section id="new-developments-2" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Data discovery (e.g.&nbsp;STAC)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+<h4 id="definiton-1">Definiton</h4>
+<p>Common structure for describing and cataloging spatiotemporal assets.</p>
+</div><div class="column" data-incremental="true" style="width:21%;">
+<h4 id="components">Components</h4>
+<ul>
+<li>Catalogs</li>
+<li>Collections</li>
+<li>Items</li>
+<li>Assets</li>
+</ul>
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
+</section>
+<section id="new-developments-3" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Data discovery (e.g.&nbsp;STAC)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+<h4 id="definiton-2">Definiton</h4>
+<p>Common structure for describing and cataloging spatiotemporal assets.</p>
+</div><div class="column" data-incremental="true" style="width:21%;">
+<h4 id="components-1">Components</h4>
+<ul>
+<li>Catalogs</li>
+<li>Collections</li>
+<li>Items</li>
+<li>Assets</li>
+</ul>
+</div><div class="column" data-incremental="true" style="width:19%;">
+<h4 id="types">Types</h4>
+<ul>
+<li>Static</li>
+<li>Dynamic</li>
+</ul>
+</div></div>
+</section>
+<section id="new-developments-4" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Visualization interfaces (e.g.&nbsp;TiTiler)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+
+</div><div class="column" data-incremental="true" style="width:21%;">
+
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
+</section>
+<section id="new-developments-5" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Visualization interfaces (e.g.&nbsp;TiTiler)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+<h4 id="definiton-3">Definiton</h4>
+<p>A dynamic tiling service for raster data. It is design to generate tiles on the fly by reading only parts of <strong>cloud-optimized data formats</strong>.</p>
+</div><div class="column" data-incremental="true" style="width:21%;">
+
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
+</section>
+<section id="new-developments-6" class="slide level2">
+<h2>New developments</h2>
+<div class="columns">
+<div class="column" style="width:22%;">
+<p><span class="big-circle-blue">Visualization interfaces (e.g.&nbsp;TiTiler)</span></p>
+</div><div class="column" data-incremental="true" style="width:37.5%;">
+<h4 id="definiton-4">Definiton</h4>
+<p>A dynamic tiling service for raster data. It is design to generate tiles on the fly by reading only parts of <strong>cloud-optimized data formats</strong>.</p>
+</div><div class="column" data-incremental="true" style="width:21%;">
+<h4 id="cloud-optimized-data-formats">Cloud optimized data formats</h4>
+<ul>
+<li>COGs</li>
+<li>Zarrs</li>
+</ul>
+</div><div class="column" data-incremental="true" style="width:19%;">
+
+</div></div>
 </section></section>
 <section>
 <section id="why-do-we-care" class="title-slide slide level1 center">
@@ -538,94 +675,187 @@ Figure&nbsp;2: Estimate of area monitored by S11
 <ul>
 <li>Worked with a limited dataset for developing a POC</li>
 <li>Developed <span class="box"><a href="https://gitlab.com/satelligence/s11-cats">s11-cats</a></span> for creating the STAC</li>
-<li>Made the catalog queryable</li>
-<li>Customized applications that wanted to be deployed</li>
-<li>Deployed the services provided by <span class="box"><a href="https://eoapi.dev">eoAPI</a></span></li>
+<li>Made the catalog queryable (Dynamic).</li>
+<li>Customized applications when needed.</li>
+<li>Deployed the services provided by <span class="box"><a href="https://eoapi.dev">eoAPI</a></span> (Using GKE)</li>
 </ul>
-</section>
-<section class="slide level2">
-
-<h3 id="effective-integration-1"><span class="circle">2</span> Effective integration</h3>
-<h4 id="what-is-stac">(What is STAC?)</h4>
-<p>Common structure for describing and cataloging spatiotemporal assets.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="effective-integration-2"><span class="circle">2</span> Effective integration</h3>
-<h4 id="what-do-you-mean-queryable-arent-all-catalogs-queryable">(What do you mean queryable? Aren’t all catalogs queryable?)</h4>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Static catalog</strong></p>
-<ul>
-<li>Series of json files with hierarchical structure.</li>
-</ul>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Dynamic catalog</strong></p>
-<ul>
-<li>Queryed through HTTP requests.</li>
-</ul>
-</div>
-</div>
-</div>
-<p>How to go from one to the other? <span class="box">eoAPI</span></p>
 </section>
 <section class="slide level2">
 
 <h3 id="comparison-of-visualization-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization different cloud-optimized formats</h3>
 <ul>
-<li>Used two dynamic tiling services for COGs and Zarrs</li>
+<li>Used two dynamic tiling services for COGs and Zarrs <sup>1</sup></li>
 <li>Assessed the performance by measuring the response times of requesting tiles on both services</li>
+<li>Different colormaps and zoom levels</li>
 </ul>
-</section>
-<section class="slide level2">
+<aside><ol class="aside-footnotes"><li id="fn1"><p>More info: <a href="#/sec-cog-zarr" class="quarto-xref">Section&nbsp;6.5.2</a></p></li></ol></aside></section></section>
+<section>
+<section id="what-did-i-find" class="title-slide slide level1 center">
+<h1><span class="circle">4</span> What did I find?</h1>
 
-<h3 id="comparison-of-visualization-of-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization of different cloud-optimized formats</h3>
-<h4 id="what-are-these-weird-cloud-optimized-data-formats">(What are these weird “cloud-optimized” data formats?)</h4>
+</section>
+<section id="the-current-state" class="slide level2">
+<h2><span class="circle">1</span> The current state</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="img/Baseline_data_discovery_workflow.png" class="quarto-figure quarto-figure-center" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Workflow of current steps followed for data discovery and data visualization at S11.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-current-state-1" class="slide level2">
+<h2><span class="circle">1</span> The current state</h2>
+<p><strong>TCA:</strong></p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" style="font-size: 75%;" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<ul>
+<li>High dependency on colleagues for dataset location.</li>
+<li>Disorganized structure of Google Storage Buckets.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
+<li>Locating data is dependent on recurrent work with a specific dataset.</li>
+<li>Not intuitive naming of repositories with datasets.</li>
+<li>Understanding of diverse tools to access different data is currently necessary.</li>
+<li>Download of data is required in most cases to visualize it.</li>
+<li>Not one place where all existing data can be found.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="the-current-state-2" class="slide level2">
+<h2><span class="circle">1</span> The current state</h2>
+<p><strong>TCA:</strong></p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" style="font-size: 75%;" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<ul>
+<li>High dependency on colleagues for dataset location.</li>
+<li><strong>Disorganized structure</strong><sup>1</sup> of Google Storage Buckets.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
+<li>Locating data is dependent on recurrent work with a specific dataset.</li>
+<li><strong>Not intuitive naming</strong><span class="math inline">\(^1\)</span> of repositories with datasets.</li>
+<li><strong>Understanding of diverse tools</strong><span class="math inline">\(^1\)</span> to access different data is currently necessary.</li>
+<li>Download of data is required in most cases to visualize it.</li>
+<li>Not one place where all existing data can be found.</li>
+</ul>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Similarly <span class="citation" data-cites="miranda_espinosa_reviewing_2020">Miranda Espinosa, Giuliani, and Ray (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> proposed that the main challenges are: “Different query interfaces and diverse metadata models makes it difficult to acces the data”.</p></li></ol></aside></section>
+<section id="tools-to-create-an-s11-catalog" class="slide level2">
+<h2><span class="circle">2</span> Tools to create an S11 catalog</h2>
+<div style="text-align: center;">
+<p>Datasets selected <span class="math inline">\(\rightarrow\)</span> <span class="box">S11-cats</span> <span class="math inline">\(\rightarrow\)</span> Static catalog</p>
+</div>
 <div>
 
 </div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>COGs</strong></p>
-<ul>
-<li>Geotiffs</li>
-<li>Contain overviews</li>
-<li>Have internal tiling</li>
-</ul>
+<div id="fig-s11-cats" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="slides/images/CATS_repo.png" style="width:100.0%">
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Zarrs</strong></p>
-<ul>
-<li>Divided in chunks</li>
-<li>No overviews or pyramids</li>
-<li>Work for storing multidimensional arrays</li>
-</ul>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: s11-cats repository
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp" class="fragment quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://i.pinimg.com/originals/11/ef/fa/11effa6bcf3fe387b110510e4baafe28.gif" class="fragment quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="what-did-i-found" class="title-slide slide level1 center">
-<h1><span class="circle">4</span> What did I found?</h1>
-
+<section id="the-step-towards-a-dynamic-catalog" class="slide level2">
+<h2><span class="circle">2</span> The step towards a dynamic catalog</h2>
+<iframe src="https://eoapi.dev" style="height:75%;width:100%;" title="eoAPI">
+</iframe>
 </section>
-<section id="the-current-state" class="slide level2">
-<h2>The current state</h2>
+<section id="the-step-towards-a-dynamic-catalog-1" class="slide level2">
+<h2><span class="circle">2</span> The step towards a dynamic catalog</h2>
+<h3 id="multiple-services">Multiple services</h3>
+<div>
 
-<img data-src="img/Baseline_data_discovery_workflow.png" class="r-stretch quarto-figure-center"><p class="caption">
-Figure&nbsp;3: Workflow of current steps followed for data discovery and data visualization at S11.
-</p></section>
-<section id="the-dynamic-catalog" class="slide level2">
-<h2>The dynamic catalog</h2>
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">PgSTAC</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">STAC-fastAPI</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle">TiTiler-PgSTAC</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle">TiPg</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-step-towards-a-dynamic-catalog-2" class="slide level2">
+<h2><span class="circle">2</span> The step towards a dynamic catalog</h2>
+<h3 id="multiple-services-1">Multiple services</h3>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">PgSTAC</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">STAC-fastAPI</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">TiTiler-PgSTAC</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<p><span class="big-circle-blue">TiTiler-xarray</span></p>
+</div>
+</div>
+</div>
+<hr>
+<div style="text-align: center;">
+<p><span class="emoji" data-emoji="wheel">🛞</span> Kubernetes <span class="emoji" data-emoji="wheel">🛞</span></p>
+</div>
+</section>
+<section id="the-importance-of-a-dynamic-catalog" class="slide level2">
+<h2><span class="circle">2</span> The importance of a dynamic catalog</h2>
 <div>
 <p><label for="website-select">Get items from this collection:</label> <select id="website-select" onchange="updateIframe()"> <option value="">All collections</option> <option value="collections=FBLs">FBLs</option> <option value="collections=Elevation data">Elevation data</option> </select></p>
 </div>
@@ -644,22 +874,38 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 </script>
 </section>
 <section id="the-deployed-version-of-stac-browser" class="slide level2">
-<h2>The deployed version of STAC Browser</h2>
+<h2><span class="circle">2</span> The deployed version of STAC Browser</h2>
 <iframe src="https://eoapi.satelligence.com/browser" style="height:75%;width:100%;" title="eoAPI deployment for Satelligence data">
 </iframe>
 </section>
-<section id="data-visualization" class="slide level2">
-<h2>Data visualization</h2>
-<p>djksgnlkasdjnglkjas</p>
-<p>sgjklsdnlkasdng</p>
-<p>dsg</p>
+<section id="effective-integration-1" class="slide level2">
+<h2><span class="circle">2</span> Effective integration</h2>
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-panel" data-layout-ncol="1">
 <div class="quarto-layout-row">
-<div id="cell-fig-int-comp" class="cell quarto-layout-cell" data-execution_count="1" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-int-comp" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center" data-execution_count="1">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-new-workflow" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="img/New_data_discovery_workflow.png" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: New data discovery and visualization workflow
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-visualization" class="slide level2">
+<h2><span class="circle">3</span> Data visualization</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div id="cell-fig-int-comp" class="cell" data-fig-width="150%" data-execution_count="1">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -689,7 +935,7 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_ce4dd330cbc4835f27443e189ca02dbf {
+                #map_0330af8882908a5e3ec39fe4d2725faa {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -703,7 +949,7 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_b5ca16e0cbfc2f518a4e06bdef800f20 {
+                #map_50d9ff8aa9651e2e10009bec358ee9c3 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -718,17 +964,17 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_ce4dd330cbc4835f27443e189ca02dbf&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_0330af8882908a5e3ec39fe4d2725faa&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_b5ca16e0cbfc2f518a4e06bdef800f20&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_50d9ff8aa9651e2e10009bec358ee9c3&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_ce4dd330cbc4835f27443e189ca02dbf = L.map(
-                &quot;map_ce4dd330cbc4835f27443e189ca02dbf&quot;,
+            var map_0330af8882908a5e3ec39fe4d2725faa = L.map(
+                &quot;map_0330af8882908a5e3ec39fe4d2725faa&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -742,42 +988,42 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 
         
     
-            var tile_layer_93c7aaed5840be6ee5b103b479ac42c0 = L.tileLayer(
+            var tile_layer_4da31bc6c6f6859a62af42d7365e0fb4 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_93c7aaed5840be6ee5b103b479ac42c0.addTo(map_ce4dd330cbc4835f27443e189ca02dbf);
+            tile_layer_4da31bc6c6f6859a62af42d7365e0fb4.addTo(map_0330af8882908a5e3ec39fe4d2725faa);
         
     
-            var tile_layer_acd5bc550dde515ee1d8f0e794529414 = L.tileLayer(
+            var tile_layer_4bd366c39b711dc1fa33c01ee6eacd4f = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
-                {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+                {&quot;attribution&quot;: &quot;eoapi.satelligence.com/raster&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_acd5bc550dde515ee1d8f0e794529414.addTo(map_ce4dd330cbc4835f27443e189ca02dbf);
+            tile_layer_4bd366c39b711dc1fa33c01ee6eacd4f.addTo(map_0330af8882908a5e3ec39fe4d2725faa);
         
     
-            var layer_control_a39c6e99256acb5a2712dbc4bcefd418_layers = {
+            var layer_control_e5644901966b9714b0f7769d09059d20_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_93c7aaed5840be6ee5b103b479ac42c0,
+                    &quot;openstreetmap&quot; : tile_layer_4da31bc6c6f6859a62af42d7365e0fb4,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_acd5bc550dde515ee1d8f0e794529414,
+                    &quot;COG tiles&quot; : tile_layer_4bd366c39b711dc1fa33c01ee6eacd4f,
                 },
             };
-            let layer_control_a39c6e99256acb5a2712dbc4bcefd418 = L.control.layers(
-                layer_control_a39c6e99256acb5a2712dbc4bcefd418_layers.base_layers,
-                layer_control_a39c6e99256acb5a2712dbc4bcefd418_layers.overlays,
+            let layer_control_e5644901966b9714b0f7769d09059d20 = L.control.layers(
+                layer_control_e5644901966b9714b0f7769d09059d20_layers.base_layers,
+                layer_control_e5644901966b9714b0f7769d09059d20_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_ce4dd330cbc4835f27443e189ca02dbf);
+            ).addTo(map_0330af8882908a5e3ec39fe4d2725faa);
 
         
     
-            var map_b5ca16e0cbfc2f518a4e06bdef800f20 = L.map(
-                &quot;map_b5ca16e0cbfc2f518a4e06bdef800f20&quot;,
+            var map_50d9ff8aa9651e2e10009bec358ee9c3 = L.map(
+                &quot;map_50d9ff8aa9651e2e10009bec358ee9c3&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -791,53 +1037,54 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 
         
     
-            var tile_layer_e870b03da52ef4e00257159afb6c30f0 = L.tileLayer(
+            var tile_layer_b9d9e17ea121f7f76bce0fe383a40daa = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_e870b03da52ef4e00257159afb6c30f0.addTo(map_b5ca16e0cbfc2f518a4e06bdef800f20);
+            tile_layer_b9d9e17ea121f7f76bce0fe383a40daa.addTo(map_50d9ff8aa9651e2e10009bec358ee9c3);
         
     
-            var tile_layer_c185a887322b537d7d37d50a892a4d71 = L.tileLayer(
+            var tile_layer_9e6cf3e038786cc7726e16d1cf3503fe = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
-                {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+                {&quot;attribution&quot;: &quot;eoapi.satelligence.com/zarr&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_c185a887322b537d7d37d50a892a4d71.addTo(map_b5ca16e0cbfc2f518a4e06bdef800f20);
+            tile_layer_9e6cf3e038786cc7726e16d1cf3503fe.addTo(map_50d9ff8aa9651e2e10009bec358ee9c3);
         
     
-            var layer_control_c8153f5e8a9ddd01b7d08a8fb61da9ed_layers = {
+            var layer_control_d30973d255a058b56b3d788642cd10e3_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_e870b03da52ef4e00257159afb6c30f0,
+                    &quot;openstreetmap&quot; : tile_layer_b9d9e17ea121f7f76bce0fe383a40daa,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_c185a887322b537d7d37d50a892a4d71,
+                    &quot;Zarr tiles&quot; : tile_layer_9e6cf3e038786cc7726e16d1cf3503fe,
                 },
             };
-            let layer_control_c8153f5e8a9ddd01b7d08a8fb61da9ed = L.control.layers(
-                layer_control_c8153f5e8a9ddd01b7d08a8fb61da9ed_layers.base_layers,
-                layer_control_c8153f5e8a9ddd01b7d08a8fb61da9ed_layers.overlays,
+            let layer_control_d30973d255a058b56b3d788642cd10e3 = L.control.layers(
+                layer_control_d30973d255a058b56b3d788642cd10e3_layers.base_layers,
+                layer_control_d30973d255a058b56b3d788642cd10e3_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_b5ca16e0cbfc2f518a4e06bdef800f20);
+            ).addTo(map_50d9ff8aa9651e2e10009bec358ee9c3);
 
         
     
-            map_ce4dd330cbc4835f27443e189ca02dbf.sync(map_b5ca16e0cbfc2f518a4e06bdef800f20);
-            map_b5ca16e0cbfc2f518a4e06bdef800f20.sync(map_ce4dd330cbc4835f27443e189ca02dbf);
+            map_0330af8882908a5e3ec39fe4d2725faa.sync(map_50d9ff8aa9651e2e10009bec358ee9c3);
+            map_50d9ff8aa9651e2e10009bec358ee9c3.sync(map_0330af8882908a5e3ec39fe4d2725faa);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Interactive comparison of rendering speed for COG and Zarr data formats
+Figure&nbsp;6: Interactive comparison of rendering speed for COG and Zarr data formats
 </figcaption>
 </figure>
 </div>
 </div>
-<div id="cell-fig-format-comp" class="cell quarto-layout-cell" data-execution_count="2" style="flex-basis: 50.0%;justify-content: flex-start;">
+</div><div class="column" style="width:45%;">
+<div id="cell-fig-format-comp" class="cell" width="50%" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
@@ -845,7 +1092,45 @@ Figure&nbsp;4: Interactive comparison of rendering speed for COG and Zarr data f
 <img data-src="slides_files/figure-revealjs/fig-format-comp-output-1.png" width="634" height="362">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Response times for tile requests depending on data format
+Figure&nbsp;7: Response times for tile requests depending on data format
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<p>Alignment with <span class="citation" data-cites="Barciauskas_NextGen_2024">Barciauskas et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span>.</p>
+</section>
+<section id="data-visualization-1" class="slide level2">
+<h2><span class="circle">3</span> Data visualization</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div id="cell-fig-comp-zoom" class="cell quarto-layout-cell" data-execution_count="3" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output cell-output-display">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="slides_files/figure-revealjs/fig-comp-zoom-output-1.png" width="643" height="325">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Response times depending on zoom level and their respective trends for COG and Zarr data formats.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-fig-chunksize-zarr" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output cell-output-display">
+<div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="slides_files/figure-revealjs/fig-chunksize-zarr-output-1.png" width="648" height="343">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.
 </figcaption>
 </figure>
 </div>
@@ -853,9 +1138,119 @@ Figure&nbsp;5: Response times for tile requests depending on data format
 </div>
 </div>
 </div>
+<p>Differences with <span class="citation" data-cites="Barciauskas_NextGen_2024">Barciauskas et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span>.</p>
 </section></section>
+<section>
 <section id="what-is-next" class="title-slide slide level1 center">
 <h1><span class="circle">5</span> What is next?</h1>
+
+</section>
+<section id="authentication" class="slide level2">
+<h2>Authentication</h2>
+<ul>
+<li>Add an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.</li>
+</ul>
+</section>
+<section id="vector-data-visualization" class="slide level2">
+<h2>Vector data visualization</h2>
+<ul>
+<li><a href="https://github.com/developmentseed/tipg">TiPg</a> is a service included in the eoAPI deployment that wasn’t used, but should be integrated to visualize, for instance, supply chain datasets.</li>
+</ul>
+</section></section>
+<section>
+<section id="conclusions" class="title-slide slide level1 center">
+<h1><span class="circle">6</span> Conclusions</h1>
+
+</section>
+<section id="current-state" class="slide level2">
+<h2><span class="circle">1</span> Current state</h2>
+<ul>
+<li>Workflow at S11 is complex and time-consuming</li>
+<li>Major inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.</li>
+<li>A user-friendly data discovery service with integrated data visualization is needed</li>
+</ul>
+</section>
+<section id="effective-integration-2" class="slide level2">
+<h2><span class="circle">2</span> Effective integration</h2>
+<ul>
+<li>Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.</li>
+<li>We developed a methodology to effectively do the integration.</li>
+</ul>
+</section>
+<section id="data-visualization-2" class="slide level2">
+<h2><span class="circle">3</span> Data visualization</h2>
+<ul>
+<li>COG tiles are, on average, 2.53 times faster to request than Zarr tiles.</li>
+<li>Future developments in Zarr could make it more even.</li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Barciauskas_NextGen_2024" class="csl-entry" role="listitem">
+Barciauskas, Aimee, Max Jones, Kata Martin, Sean Harkins, and Vincent Sarago. 2024. <span>“<span>Next-Gen Zarr Web Map Visualization</span>.”</span> In <em>EGU General Assembly Conference Abstracts</em>, 11805. EGU General Assembly Conference Abstracts. <a href="https://doi.org/10.5194/egusphere-egu24-11805">https://doi.org/10.5194/egusphere-egu24-11805</a>.
+</div>
+<div id="ref-durbha_advances_2023" class="csl-entry" role="listitem">
+Durbha, Surya S, Jibonananda Sanyal, Lexie Yang, Sangita S Chaudhari, Ujwala Bhangale, Ujwala Bharambe, and Kuldeep Kurte. 2023. <em>Advances in Scalable and Intelligent Geospatial Analytics: Challenges and Applications</em>. 1st ed. Boca Raton: <span>CRC</span> Press. <a href="https://doi.org/10.1201/9781003270928">https://doi.org/10.1201/9781003270928</a>.
+</div>
+<div id="ref-miranda_espinosa_reviewing_2020" class="csl-entry" role="listitem">
+Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>“Reviewing the Discoverability and Accessibility to Data and Information Products Linked to Essential Climate Variables.”</span> <em>International Journal of Digital Earth</em> 13 (2): 236–52. <a href="https://doi.org/10.1080/17538947.2019.1620882">https://doi.org/10.1080/17538947.2019.1620882</a>.
+</div>
+</div>
+</section>
+<section id="appendix" class="slide level2">
+<h2>Appendix</h2>
+<h3 id="effective-integration-3"><span class="circle">2</span> Effective integration</h3>
+<h4 id="what-do-you-mean-queryable-arent-all-catalogs-queryable">(What do you mean queryable? Aren’t all catalogs queryable?)</h4>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Static catalog</strong></p>
+<ul>
+<li>Series of json files with hierarchical structure.</li>
+<li>Can be browse easily (Like a website)</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Dynamic catalog</strong></p>
+<ul>
+<li>Queryed through HTTP requests.</li>
+</ul>
+</div>
+</div>
+</div>
+<p>How to go from one to the other? <span class="box">eoAPI</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="sec-cog-zarr"><span class="circle">3</span> Comparison of visualization of different cloud-optimized formats</h3>
+<h4 id="what-are-these-weird-cloud-optimized-data-formats">(What are these weird “cloud-optimized” data formats?)</h4>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>COGs</strong></p>
+<ul>
+<li>Geotiffs</li>
+<li>Contain overviews</li>
+<li>Have internal tiling</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><strong>Zarrs</strong></p>
+<ul>
+<li>Divided in chunks</li>
+<li>No overviews or pyramids</li>
+<li>Work for storing multidimensional arrays</li>
+</ul>
+</div>
+</div>
+</div>
 
 <div class="quarto-auto-generated-content">
 <p><img src="slides/images/Satelligence_Logo_RGB_FC.png" class="slide-logo"></p>
@@ -863,7 +1258,8 @@ Figure&nbsp;5: Response times for tile requests depending on data format
 
 </div>
 </div>
-</section>
+</section></section>
+
     </div>
   </div>
 

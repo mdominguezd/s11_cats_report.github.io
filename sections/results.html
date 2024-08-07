@@ -213,7 +213,7 @@ Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Sa
 </section>
 <section id="deployment" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
-<p>As described on <strong>?@sec-eoapi</strong>, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified <span class="citation" data-cites="gupta_deployment_2021">[@gupta_deployment_2021]</span>. Moreover, <a href="www.eoapi.dev">eoAPI</a> simplified the deployment by providing a guide for deployment that used a Helm chart. A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times <span class="citation" data-cites="gokhale_creating_2021">[@gokhale_creating_2021]</span>. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.</p>
+<p>As described on <strong>?@sec-eoapi</strong>, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified <span class="citation" data-cites="gupta_deployment_2021">[@gupta_deployment_2021]</span>. Moreover, <a href="www.eoapi.dev">eoAPI</a> simplified the deployment by providing a guide for deployment that used a Helm chart (See <span class="citation" data-cites="noauthor_developmentseedeoapi-k8s_2024">[@noauthor_developmentseedeoapi-k8s_2024]</span>). A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times <span class="citation" data-cites="gokhale_creating_2021">[@gokhale_creating_2021]</span>. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.</p>
 <p>Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, <span class="citation" data-cites="munteanu_performance_2024">@munteanu_performance_2024</span> performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.</p>
 <p>Finally, additional to the already covered advantages, the deployment of <a href="www.eoapi.dev">eoAPI</a> and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using <a href="https://github.com/developmentseed/tipg">TiPg</a> is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.</p>
 </section>
@@ -273,7 +273,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_bf03c555ccebcc46b9cb4b973ac5ae58 {
+                #map_91dc6c7577a240abc0658aa2f098b993 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -287,7 +287,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_d0b1accdb6a1bd983171fe8f41390800 {
+                #map_1d4ccd058f07fe934207622ee8199d8b {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -302,17 +302,17 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_bf03c555ccebcc46b9cb4b973ac5ae58&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_91dc6c7577a240abc0658aa2f098b993&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_d0b1accdb6a1bd983171fe8f41390800&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_1d4ccd058f07fe934207622ee8199d8b&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_bf03c555ccebcc46b9cb4b973ac5ae58 = L.map(
-                &quot;map_bf03c555ccebcc46b9cb4b973ac5ae58&quot;,
+            var map_91dc6c7577a240abc0658aa2f098b993 = L.map(
+                &quot;map_91dc6c7577a240abc0658aa2f098b993&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -326,42 +326,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_0a09d4cbf3d666aa7fa91b58c1ed4e78 = L.tileLayer(
+            var tile_layer_f861a0d55b3768c383872d4a2a11567e = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_0a09d4cbf3d666aa7fa91b58c1ed4e78.addTo(map_bf03c555ccebcc46b9cb4b973ac5ae58);
+            tile_layer_f861a0d55b3768c383872d4a2a11567e.addTo(map_91dc6c7577a240abc0658aa2f098b993);
         
     
-            var tile_layer_ea782ffe5934cd5f6bfd714127cf05bc = L.tileLayer(
+            var tile_layer_f855543fea7567e3ab29a190aeda4a01 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_ea782ffe5934cd5f6bfd714127cf05bc.addTo(map_bf03c555ccebcc46b9cb4b973ac5ae58);
+            tile_layer_f855543fea7567e3ab29a190aeda4a01.addTo(map_91dc6c7577a240abc0658aa2f098b993);
         
     
-            var layer_control_d81227b33ef2889d5e66f1732c3269f9_layers = {
+            var layer_control_8fe9793c0f5554148fb2acf9382d00c8_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_0a09d4cbf3d666aa7fa91b58c1ed4e78,
+                    &quot;openstreetmap&quot; : tile_layer_f861a0d55b3768c383872d4a2a11567e,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_ea782ffe5934cd5f6bfd714127cf05bc,
+                    &quot;COG tiles&quot; : tile_layer_f855543fea7567e3ab29a190aeda4a01,
                 },
             };
-            let layer_control_d81227b33ef2889d5e66f1732c3269f9 = L.control.layers(
-                layer_control_d81227b33ef2889d5e66f1732c3269f9_layers.base_layers,
-                layer_control_d81227b33ef2889d5e66f1732c3269f9_layers.overlays,
+            let layer_control_8fe9793c0f5554148fb2acf9382d00c8 = L.control.layers(
+                layer_control_8fe9793c0f5554148fb2acf9382d00c8_layers.base_layers,
+                layer_control_8fe9793c0f5554148fb2acf9382d00c8_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_bf03c555ccebcc46b9cb4b973ac5ae58);
+            ).addTo(map_91dc6c7577a240abc0658aa2f098b993);
 
         
     
-            var map_d0b1accdb6a1bd983171fe8f41390800 = L.map(
-                &quot;map_d0b1accdb6a1bd983171fe8f41390800&quot;,
+            var map_1d4ccd058f07fe934207622ee8199d8b = L.map(
+                &quot;map_1d4ccd058f07fe934207622ee8199d8b&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -375,42 +375,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_4d7dc650ddd6b28d0e4df30f8d458609 = L.tileLayer(
+            var tile_layer_b38abab3ac6891cfde12242491d7006f = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_4d7dc650ddd6b28d0e4df30f8d458609.addTo(map_d0b1accdb6a1bd983171fe8f41390800);
+            tile_layer_b38abab3ac6891cfde12242491d7006f.addTo(map_1d4ccd058f07fe934207622ee8199d8b);
         
     
-            var tile_layer_9dca38323519732ffdd659b4b5df992f = L.tileLayer(
+            var tile_layer_24c1cf7c4cecc44f445f6f290da6859b = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_9dca38323519732ffdd659b4b5df992f.addTo(map_d0b1accdb6a1bd983171fe8f41390800);
+            tile_layer_24c1cf7c4cecc44f445f6f290da6859b.addTo(map_1d4ccd058f07fe934207622ee8199d8b);
         
     
-            var layer_control_fcf0540d8902b31fc62a7581f1ce26e4_layers = {
+            var layer_control_be7670f86e2cd638a36a8f72871bb7d2_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_4d7dc650ddd6b28d0e4df30f8d458609,
+                    &quot;openstreetmap&quot; : tile_layer_b38abab3ac6891cfde12242491d7006f,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_9dca38323519732ffdd659b4b5df992f,
+                    &quot;Zarr tiles&quot; : tile_layer_24c1cf7c4cecc44f445f6f290da6859b,
                 },
             };
-            let layer_control_fcf0540d8902b31fc62a7581f1ce26e4 = L.control.layers(
-                layer_control_fcf0540d8902b31fc62a7581f1ce26e4_layers.base_layers,
-                layer_control_fcf0540d8902b31fc62a7581f1ce26e4_layers.overlays,
+            let layer_control_be7670f86e2cd638a36a8f72871bb7d2 = L.control.layers(
+                layer_control_be7670f86e2cd638a36a8f72871bb7d2_layers.base_layers,
+                layer_control_be7670f86e2cd638a36a8f72871bb7d2_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_d0b1accdb6a1bd983171fe8f41390800);
+            ).addTo(map_1d4ccd058f07fe934207622ee8199d8b);
 
         
     
-            map_bf03c555ccebcc46b9cb4b973ac5ae58.sync(map_d0b1accdb6a1bd983171fe8f41390800);
-            map_d0b1accdb6a1bd983171fe8f41390800.sync(map_bf03c555ccebcc46b9cb4b973ac5ae58);
+            map_91dc6c7577a240abc0658aa2f098b993.sync(map_1d4ccd058f07fe934207622ee8199d8b);
+            map_1d4ccd058f07fe934207622ee8199d8b.sync(map_91dc6c7577a240abc0658aa2f098b993);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
