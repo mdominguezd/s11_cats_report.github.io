@@ -298,14 +298,14 @@
     "href": "slides.html#effective-integration-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 Effective integration",
-    "text": "2 Effective integration\n\nIntegration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.\nWe developed a methodology to effectively do the integration."
+    "text": "2 Effective integration\n\nIntegration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.\nWe developed a methodology to effectively do the integration of multiple data formats and services. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)"
   },
   {
     "objectID": "slides.html#data-visualization-2",
     "href": "slides.html#data-visualization-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "3 Data visualization",
-    "text": "3 Data visualization\n\nCOG tiles are, on average, 2.53 times faster to request than Zarr tiles.\nFuture developments in Zarr could make it more even."
+    "text": "3 Data visualization\n\nCOG tiles are, on average, 2.53 times faster to request than Zarr tiles.\nFuture developments in Zarr could improve their performance (i.e. Improved pyramid generation)."
   },
   {
     "objectID": "slides.html#references",
