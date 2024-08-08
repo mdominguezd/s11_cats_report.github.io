@@ -207,7 +207,7 @@
     "href": "slides.html#the-current-state-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "1 The current state",
-    "text": "1 The current state\nTCA:\n\n\n\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure1 of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming\\(^1\\) of repositories with datasets.\nUnderstanding of diverse tools\\(^1\\) to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place where all existing data can be found.\n\n\n\n\nSimilarly Miranda Espinosa, Giuliani, and Ray (2020) proposed that the main challenges are: “Different query interfaces and diverse metadata models makes it difficult to acces the data”."
+    "text": "1 The current state\nTCA:\n\n\n\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure1 of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming\\(^1\\) of repositories with datasets.\nUnderstanding of diverse tools\\(^1\\) to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place where all existing data can be found.\n\n\n\n\nSimilarly Miranda Espinosa, Giuliani, and Ray (2020) proposed that the main challenges are: “Different query interfaces and diverse metadata models”."
   },
   {
     "objectID": "slides.html#tools-to-create-an-s11-catalog",
@@ -319,7 +319,21 @@
     "href": "slides.html#appendix",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Appendix",
-    "text": "Appendix\n2 Effective integration\n(What do you mean queryable? Aren’t all catalogs queryable?)\n\n\n\n\n\n\nStatic catalog\n\nSeries of json files with hierarchical structure.\nCan be browse easily (Like a website)\n\n\n\nDynamic catalog\n\nQueryed through HTTP requests.\n\n\n\n\nHow to go from one to the other? eoAPI"
+    "text": "Appendix"
+  },
+  {
+    "objectID": "slides.html#sec-stac",
+    "href": "slides.html#sec-stac",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Appendix",
+    "text": "Appendix\n(What do you mean queryable? Aren’t all catalogs queryable?)\n\n\n\n\n\n\nStatic catalog\n\nSeries of json files with hierarchical structure.\nCan be browse easily (Like a website)\n\n\n\nDynamic catalog\n\nQueryed through HTTP requests.\n\n\n\n\nHow to go from one to the other? eoAPI"
+  },
+  {
+    "objectID": "slides.html#sec-cog-zarr",
+    "href": "slides.html#sec-cog-zarr",
+    "title": "Cataloguing and Visualizing  Big Geodata",
+    "section": "Appendix",
+    "text": "Appendix\n3 Comparison of visualization of different cloud-optimized formats\n(What are these weird “cloud-optimized” data formats?)\n\n\n\n\n\n\nCOGs\n\nGeotiffs\nContain overviews\nHave internal tiling\n\n\n\nZarrs\n\nDivided in chunks\nNo overviews or pyramids\nWork for storing multidimensional arrays"
   },
   {
     "objectID": "slides/sections/STAC_definition.html",
