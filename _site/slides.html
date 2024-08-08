@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Martín Domínguez Durán">
-  <meta name="dcterms.date" content="2024-08-07">
+  <meta name="dcterms.date" content="2024-08-08">
   <title>S11-CATS Report - Cataloguing and Visualizing  Big Geodata</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -356,7 +356,7 @@
       <p class="author">Martín Domínguez Durán</p>
         <p class="date">Wageningen University &amp; Research</p>
         <p class="date"><img src="https://pbs.twimg.com/profile_images/1640350393/wur_400x400.png" alt="Institute Image" width="75px"><img src="slides/images/Satelligence_Logo_RGB_White_Negative.png" alt="Subtitle Image" width="300px"></p>
-        <p class="date">2024-08-07</p>
+        <p class="date">2024-08-08</p>
     </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
@@ -654,7 +654,7 @@ Figure&nbsp;2: Estimate of area monitored by S11
 </section>
 <section class="slide level2">
 
-<h3 id="current-state-of-data-discovery-and-visualziation"><span class="circle">1</span> Current state of data discovery and visualziation</h3>
+<h3 id="current-state-of-data-discovery-and-visualization"><span class="circle">1</span> Current state of data discovery and visualization</h3>
 <ul>
 <li>Carried out interviews to define the baseline scenario</li>
 <li>Created a flowchart representing current workflow</li>
@@ -667,11 +667,11 @@ Figure&nbsp;2: Estimate of area monitored by S11
 <ul>
 <li>Worked with a limited dataset for developing a POC</li>
 <li>Developed <span class="box"><a href="https://gitlab.com/satelligence/s11-cats">s11-cats</a></span> for creating the STAC</li>
-<li>Made the catalog queryable (Dynamic).</li>
+<li>Made the catalog queryable (Dynamic) <sup>1</sup></li>
 <li>Customized applications when needed.</li>
 <li>Deployed the services provided by <span class="box"><a href="https://eoapi.dev">eoAPI</a></span> (Using GKE)</li>
 </ul>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>More info: <a href="#/sec-stac" class="quarto-xref">Section&nbsp;6.6</a></p></li></ol></aside></section>
 <section class="slide level2">
 
 <h3 id="comparison-of-visualization-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization different cloud-optimized formats</h3>
@@ -680,7 +680,7 @@ Figure&nbsp;2: Estimate of area monitored by S11
 <li>Assessed the performance by measuring the response times of requesting tiles on both services</li>
 <li>Different colormaps and zoom levels</li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>More info: <a href="#/sec-cog-zarr" class="quarto-xref">Section&nbsp;6.5.2</a></p></li></ol></aside></section></section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>More info: <a href="#/sec-cog-zarr" class="quarto-xref">Section&nbsp;6.7</a></p></li></ol></aside></section></section>
 <section>
 <section id="what-did-i-find" class="title-slide slide level1 center">
 <h1><span class="circle">4</span> What did I find?</h1>
@@ -744,7 +744,7 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 </div>
 </div>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>Similarly <span class="citation" data-cites="miranda_espinosa_reviewing_2020">Miranda Espinosa, Giuliani, and Ray (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> proposed that the main challenges are: “Different query interfaces and diverse metadata models makes it difficult to acces the data”.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>Similarly <span class="citation" data-cites="miranda_espinosa_reviewing_2020">Miranda Espinosa, Giuliani, and Ray (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> proposed that the main challenges are: “Different query interfaces and diverse metadata models”.</p></li></ol></aside></section>
 <section id="tools-to-create-an-s11-catalog" class="slide level2">
 <h2><span class="circle">2</span> Tools to create an S11 catalog</h2>
 <div style="text-align: center;">
@@ -767,7 +767,7 @@ Figure&nbsp;4: s11-cats repository
 <div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp" class="fragment quarto-figure quarto-figure-center" style="width:60.0%"></p>
+<p><img data-src="https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp" class="fragment quarto-figure quarto-figure-center" style="width:50.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -906,7 +906,7 @@ Figure&nbsp;5: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_1292bdc0ced20f68a025ceb404eed206 {
+                #map_3e28e8271a1ec335351ad51a2dd36b9e {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -920,7 +920,7 @@ Figure&nbsp;5: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_1716f350ff60bf2907a8996f1eb955ee {
+                #map_a5cc8316acb50e843fd6e0c7d25f9ebe {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -935,17 +935,17 @@ Figure&nbsp;5: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_1292bdc0ced20f68a025ceb404eed206&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_3e28e8271a1ec335351ad51a2dd36b9e&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_1716f350ff60bf2907a8996f1eb955ee&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_a5cc8316acb50e843fd6e0c7d25f9ebe&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_1292bdc0ced20f68a025ceb404eed206 = L.map(
-                &quot;map_1292bdc0ced20f68a025ceb404eed206&quot;,
+            var map_3e28e8271a1ec335351ad51a2dd36b9e = L.map(
+                &quot;map_3e28e8271a1ec335351ad51a2dd36b9e&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -959,42 +959,42 @@ Figure&nbsp;5: New data discovery and visualization workflow
 
         
     
-            var tile_layer_06cd6471bad7d4e265eeea24e9c7182a = L.tileLayer(
+            var tile_layer_8f9729763edc8a57d3ff25f73ffca5c4 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_06cd6471bad7d4e265eeea24e9c7182a.addTo(map_1292bdc0ced20f68a025ceb404eed206);
+            tile_layer_8f9729763edc8a57d3ff25f73ffca5c4.addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
         
     
-            var tile_layer_6933fc78aaa666a53948453b3d3076a0 = L.tileLayer(
+            var tile_layer_359bfbc4122eff01e895920ba2f0ef51 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;eoapi.satelligence.com/raster&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_6933fc78aaa666a53948453b3d3076a0.addTo(map_1292bdc0ced20f68a025ceb404eed206);
+            tile_layer_359bfbc4122eff01e895920ba2f0ef51.addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
         
     
-            var layer_control_e8464a79fdd2f44250066d6efb1d34fa_layers = {
+            var layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_06cd6471bad7d4e265eeea24e9c7182a,
+                    &quot;openstreetmap&quot; : tile_layer_8f9729763edc8a57d3ff25f73ffca5c4,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_6933fc78aaa666a53948453b3d3076a0,
+                    &quot;COG tiles&quot; : tile_layer_359bfbc4122eff01e895920ba2f0ef51,
                 },
             };
-            let layer_control_e8464a79fdd2f44250066d6efb1d34fa = L.control.layers(
-                layer_control_e8464a79fdd2f44250066d6efb1d34fa_layers.base_layers,
-                layer_control_e8464a79fdd2f44250066d6efb1d34fa_layers.overlays,
+            let layer_control_2a18a1a20fc5b36f609dacb481f1ca52 = L.control.layers(
+                layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers.base_layers,
+                layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_1292bdc0ced20f68a025ceb404eed206);
+            ).addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
 
         
     
-            var map_1716f350ff60bf2907a8996f1eb955ee = L.map(
-                &quot;map_1716f350ff60bf2907a8996f1eb955ee&quot;,
+            var map_a5cc8316acb50e843fd6e0c7d25f9ebe = L.map(
+                &quot;map_a5cc8316acb50e843fd6e0c7d25f9ebe&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -1008,42 +1008,42 @@ Figure&nbsp;5: New data discovery and visualization workflow
 
         
     
-            var tile_layer_b57a709e2fa84c53932b2c5b94225707 = L.tileLayer(
+            var tile_layer_0dab8c5724a7d91f57233c525ced0890 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_b57a709e2fa84c53932b2c5b94225707.addTo(map_1716f350ff60bf2907a8996f1eb955ee);
+            tile_layer_0dab8c5724a7d91f57233c525ced0890.addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
         
     
-            var tile_layer_a3b942b60f91f23b9f088918456c7857 = L.tileLayer(
+            var tile_layer_531baff0993ce3369197cbed7d35e48c = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;eoapi.satelligence.com/zarr&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_a3b942b60f91f23b9f088918456c7857.addTo(map_1716f350ff60bf2907a8996f1eb955ee);
+            tile_layer_531baff0993ce3369197cbed7d35e48c.addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
         
     
-            var layer_control_1d1c552a46bdae4168c1aac86dea9f37_layers = {
+            var layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_b57a709e2fa84c53932b2c5b94225707,
+                    &quot;openstreetmap&quot; : tile_layer_0dab8c5724a7d91f57233c525ced0890,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_a3b942b60f91f23b9f088918456c7857,
+                    &quot;Zarr tiles&quot; : tile_layer_531baff0993ce3369197cbed7d35e48c,
                 },
             };
-            let layer_control_1d1c552a46bdae4168c1aac86dea9f37 = L.control.layers(
-                layer_control_1d1c552a46bdae4168c1aac86dea9f37_layers.base_layers,
-                layer_control_1d1c552a46bdae4168c1aac86dea9f37_layers.overlays,
+            let layer_control_518fa2fa31db00d1aa74c98179ac34ed = L.control.layers(
+                layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers.base_layers,
+                layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_1716f350ff60bf2907a8996f1eb955ee);
+            ).addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
 
         
     
-            map_1292bdc0ced20f68a025ceb404eed206.sync(map_1716f350ff60bf2907a8996f1eb955ee);
-            map_1716f350ff60bf2907a8996f1eb955ee.sync(map_1292bdc0ced20f68a025ceb404eed206);
+            map_3e28e8271a1ec335351ad51a2dd36b9e.sync(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
+            map_a5cc8316acb50e843fd6e0c7d25f9ebe.sync(map_3e28e8271a1ec335351ad51a2dd36b9e);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -1143,14 +1143,14 @@ Figure&nbsp;9: Variation of chunk sizes in Zarr file depending on zoom level com
 <h2><span class="circle">2</span> Effective integration</h2>
 <ul>
 <li>Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.</li>
-<li>We developed a methodology to effectively do the integration.</li>
+<li>We developed a methodology to effectively do the integration of multiple data formats and services. (i.e.&nbsp;COGs, Zarrs, eoAPI, TiTilers, etc.)</li>
 </ul>
 </section>
 <section id="data-visualization-2" class="slide level2">
 <h2><span class="circle">3</span> Data visualization</h2>
 <ul>
 <li>COG tiles are, on average, 2.53 times faster to request than Zarr tiles.</li>
-<li>Future developments in Zarr could make it more even.</li>
+<li>Future developments in Zarr could improve their performance (i.e.&nbsp;Improved pyramid generation).</li>
 </ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
@@ -1169,8 +1169,10 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
 </section>
 <section id="appendix" class="slide level2">
 <h2>Appendix</h2>
-<h3 id="effective-integration-3"><span class="circle">2</span> Effective integration</h3>
-<h4 id="what-do-you-mean-queryable-arent-all-catalogs-queryable">(What do you mean queryable? Aren’t all catalogs queryable?)</h4>
+</section>
+<section id="sec-stac" class="slide level2">
+<h2>Appendix</h2>
+<h3 id="what-do-you-mean-queryable-arent-all-catalogs-queryable">(What do you mean queryable? Aren’t all catalogs queryable?)</h3>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1190,9 +1192,9 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
 </div>
 <p>How to go from one to the other? <span class="box">eoAPI</span></p>
 </section>
-<section class="slide level2">
-
-<h3 id="sec-cog-zarr"><span class="circle">3</span> Comparison of visualization of different cloud-optimized formats</h3>
+<section id="sec-cog-zarr" class="slide level2">
+<h2>Appendix</h2>
+<h3 id="comparison-of-visualization-of-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization of different cloud-optimized formats</h3>
 <h4 id="what-are-these-weird-cloud-optimized-data-formats">(What are these weird “cloud-optimized” data formats?)</h4>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">

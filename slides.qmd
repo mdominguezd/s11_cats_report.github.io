@@ -51,176 +51,162 @@ execute:
   enabled: true
 ---
 
-# [1]{.circle}  What is the problem?
+# [1]{.circle} What is the problem?
 
----
+------------------------------------------------------------------------
 
-## Spatial data is big data 
+## Spatial data is big data
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
+-   Hundreds of satellites gather information on a weekly to daily basis
+-   High Velocity/Variety/Volume
 
-- Hundreds of satellites gather information on a weekly to daily basis
-- High Velocity/Variety/Volume
-
-![Satellites orbiting the earth.<Br>Taken from: miro.medium.com](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){#fig-sats fig-scap="Taken from medium" fig-align='center' width="70%"}
+![Satellites orbiting the earth.<Br>Taken from: miro.medium.com](https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif){#fig-sats fig-scap="Taken from medium" fig-align="center" width="70%"}
 :::
 
----
+------------------------------------------------------------------------
 
 ## Spatial data challenges
 
-- How to process it?
-- How to store it?
-- How to easily acces it?
-- How to interact with it?
+-   How to process it?
+-   How to store it?
+-   How to easily acces it?
+-   How to interact with it?
 
----
+------------------------------------------------------------------------
 
 ## Spatial data challenges
 
-- This makes [Spatial Data Infrastructures (SDIs)]{.box}  a necessity.
-- Traditional SDI focus: [preservation > accesibility]{.box}. [@durbha_advances_2023]
-- **New developments** can help change this.
+-   This makes [Spatial Data Infrastructures (SDIs)]{.box} a necessity.
+-   Traditional SDI focus: [preservation \> accesibility]{.box}. [@durbha_advances_2023]
+-   **New developments** can help change this.
 
-::: {layout-ncol=3}
-
+::: {layout-ncol="3"}
 [Cloud storage]{.big-circle}
 
 [Data discovery (e.g. STAC)]{.big-circle}
 
 [Visualization interfaces (e.g. TiTiler)]{.big-circle}
-
 :::
 
----
+------------------------------------------------------------------------
 
 ## Spatial data challenges
 
-- This makes [Spatial Data Infrastructures (SDIs)]{.box}  a necessity.
-- Traditional SDI focus: [preservation > accesibility]{.box}. [@durbha_advances_2023]
-- **New developments** can help change this.
+-   This makes [Spatial Data Infrastructures (SDIs)]{.box} a necessity.
+-   Traditional SDI focus: [preservation \> accesibility]{.box}. [@durbha_advances_2023]
+-   **New developments** can help change this.
 
-::: {layout-ncol=3}
-
+::: {layout-ncol="3"}
 [Cloud storage]{.big-circle}
 
 [Data discovery (e.g. STAC)]{.big-circle-blue}
 
 [Visualization interfaces (e.g. TiTiler)]{.big-circle-blue}
-
 :::
 
----
+------------------------------------------------------------------------
 
-{{< include slides/sections/STAC_definition.md >}} 
+{{< include slides/sections/STAC_definition.md >}}
 
----
+------------------------------------------------------------------------
 
-{{< include slides/sections/TiTiler.md >}} 
+{{< include slides/sections/TiTiler.md >}}
 
 # [2]{.circle} Why do we care?
 
----
+------------------------------------------------------------------------
 
 ## S11 works with big data
 
 ### Processing of the data :white_check_mark:
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
+-   DPROF
+-   Processs terabytes of spatial data
+-   Efficient and scalable
 
-- DPROF 
-- Processs terabytes of spatial data
-- Efficient and scalable
-
-![Estimate of area monitored by S11](slides/images/area_monitored_s11.png){#fig-s11-area fig-scap="Taken from ESA" fig-align='center' width="100%"}
-
+![Estimate of area monitored by S11](slides/images/area_monitored_s11.png){#fig-s11-area fig-scap="Taken from ESA" fig-align="center" width="100%"}
 :::
 
----
+------------------------------------------------------------------------
 
 ## S11 works with big data
 
 ### When it comes to finding the data :x:
 
-::: {layout-ncol=2}
+::: {layout-ncol="2"}
+-   Google Storage buckets
+-   Gitlab repositories
+-   ClickUp tasks
+-   The almighty
 
-- Google Storage buckets
-- Gitlab repositories
-- ClickUp tasks
-- The almighty
+::: r-stack
+![](slides/images/GS_buckets.png){.fragment fig-align="center" width="90%"}
 
-::: {.r-stack}
+![](slides/images/blockchain.png){.fragment fig-align="center" width="100%"}
 
-![](slides/images/GS_buckets.png){.fragment fig-align='center' width="90%"}
-
-![](slides/images/blockchain.png){.fragment fig-align='center' width="100%"}
-
-![](slides/images/almighty.jpg){.fragment fig-align='center' width="50%"}
-
+![](slides/images/almighty.jpg){.fragment fig-align="center" width="50%"}
 :::
-
 :::
 
 # [3]{.circle} How did I plan to help fix it?
 
----
+------------------------------------------------------------------------
 
 ## Research questions:
 
-1. What are the **current challenges, practices, and user experiences** related to data discovery and data visualization in the company?
-2. How can **cloud-optimized data formats**, **cloud services** and SpatioTemporal Asset Catalog (**STAC**) specifications be **integrated** to enhance the process and experiences of discovering and visualizing big spatial data within the company?
-3. To what extent do dynamic tiling services perform in **visualizing different cloud-optimized data formats**?
+1.  What are the **current challenges, practices, and user experiences** related to data discovery and data visualization in the company?
+2.  How can **cloud-optimized data formats**, **cloud services** and SpatioTemporal Asset Catalog (**STAC**) specifications be **integrated** to enhance the process and experiences of discovering and visualizing big spatial data within the company?
+3.  To what extent do dynamic tiling services perform in **visualizing different cloud-optimized data formats**?
 
----
+------------------------------------------------------------------------
 
-### [1]{.circle} Current state of data discovery and visualziation
+### [1]{.circle} Current state of data discovery and visualization
 
-- Carried out interviews to define the baseline scenario
-- Created a flowchart representing current workflow
-- Thematic Content Analysis
+-   Carried out interviews to define the baseline scenario
+-   Created a flowchart representing current workflow
+-   Thematic Content Analysis
 
----
+------------------------------------------------------------------------
 
 ### [2]{.circle} Effective integration
 
-- Worked with a limited dataset for developing a POC
-- Developed [[s11-cats](https://gitlab.com/satelligence/s11-cats)]{.box} for creating the STAC
-- Made the catalog queryable (Dynamic).
-- Customized applications when needed.
-- Deployed the services provided by [[eoAPI](https://eoapi.dev)]{.box} (Using GKE)
+-   Worked with a limited dataset for developing a POC
+-   Developed [[s11-cats](https://gitlab.com/satelligence/s11-cats)]{.box} for creating the STAC
+-   Made the catalog queryable (Dynamic) [^*]
+-   Customized applications when needed.
+-   Deployed the services provided by [[eoAPI](https://eoapi.dev)]{.box} (Using GKE)
 
+[^*]: More info: @sec-stac
 
----
+------------------------------------------------------------------------
 
-### [3]{.circle} Comparison of visualization different cloud-optimized formats 
+### [3]{.circle} Comparison of visualization different cloud-optimized formats
 
-- Used two dynamic tiling services for COGs and Zarrs [^2]
-- Assessed the performance by measuring the response times of requesting tiles on both services
-- Different colormaps and zoom levels
+-   Used two dynamic tiling services for COGs and Zarrs [^1]
+-   Assessed the performance by measuring the response times of requesting tiles on both services
+-   Different colormaps and zoom levels
 
-[^2]: More info: @sec-cog-zarr
-
+[^1]: More info: @sec-cog-zarr 
 
 # [4]{.circle} What did I find?
 
----
+------------------------------------------------------------------------
 
 ## [1]{.circle} The current state
 
 ::: {layout-ncol="1"}
-
-![Workflow of current steps followed for data discovery and data visualization at S11.](img/Baseline_data_discovery_workflow.png){#fig-baseline fig-align='center' width="80%"}
-
+![Workflow of current steps followed for data discovery and data visualization at S11.](img/Baseline_data_discovery_workflow.png){#fig-baseline fig-align="center" width="80%"}
 :::
 
----
+------------------------------------------------------------------------
 
 ## [1]{.circle} The current state
 
 **TCA:**
 
-:::{layout-ncol="1" style="font-size: 75%;"}
-
+::: {layout-ncol="1" style="font-size: 75%;"}
 -   High dependency on colleagues for dataset location.
 -   Disorganized structure of Google Storage Buckets.
 -   Data familiarity helps users locate data more quickly.
@@ -229,67 +215,62 @@ execute:
 -   Understanding of diverse tools to access different data is currently necessary.
 -   Download of data is required in most cases to visualize it.
 -   Not one place where all existing data can be found.
-
 :::
 
----
+------------------------------------------------------------------------
 
 ## [1]{.circle} The current state
 
 **TCA:**
 
-:::{layout-ncol="1" style="font-size: 75%;"}
-
+::: {layout-ncol="1" style="font-size: 75%;"}
 -   High dependency on colleagues for dataset location.
--   **Disorganized structure**[^1] of Google Storage Buckets.
+-   **Disorganized structure**[^2] of Google Storage Buckets.
 -   Data familiarity helps users locate data more quickly.
 -   Locating data is dependent on recurrent work with a specific dataset.
 -   **Not intuitive naming**$^1$ of repositories with datasets.
 -   **Understanding of diverse tools**$^1$ to access different data is currently necessary.
 -   Download of data is required in most cases to visualize it.
 -   Not one place where all existing data can be found.
-
-[^1]: Similarly @miranda_espinosa_reviewing_2020 proposed that the main challenges are: "Different query interfaces and diverse metadata models makes it difficult to acces the data".
-
 :::
 
----
+[^2]: Similarly @miranda_espinosa_reviewing_2020 proposed that the main challenges are: "Different query interfaces and diverse metadata models".
+
+------------------------------------------------------------------------
 
 ## [2]{.circle} Tools to create an S11 catalog
 
-:::{style="text-align: center;"}
+::: {style="text-align: center;"}
 Datasets selected $\rightarrow$ [S11-cats]{.box} $\rightarrow$ Static catalog
 :::
 
-:::{layout-ncol="2"}
+::: {layout-ncol="2"}
+![s11-cats repository](slides/images/CATS_repo.png){#fig-s11-cats width="100%"}
 
-![s11-cats repository](slides/images/CATS_repo.png){#fig-s11-cats width=100%}
+::: r-stack
 
-::: {.r-stack}
+![](https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp){.fragment fig-align="center" width="50%"}
 
-![](https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp){.fragment fig-align='center' width="60%"}
-
-![](https://i.pinimg.com/originals/11/ef/fa/11effa6bcf3fe387b110510e4baafe28.gif){.fragment fig-align="center" width=60%}
-
-:::
-
+![](https://i.pinimg.com/originals/11/ef/fa/11effa6bcf3fe387b110510e4baafe28.gif){.fragment fig-align="center" width="60%"}
 
 :::
+:::
 
----
+------------------------------------------------------------------------
 
 ## [2]{.circle} The step towards a dynamic catalog
 
-<iframe src="https://eoapi.dev" style="height:75%;width:100%;"  title="eoAPI"></iframe>
+<iframe src="https://eoapi.dev" style="height:75%;width:100%;" title="eoAPI">
 
----
+</iframe>
+
+------------------------------------------------------------------------
 
 ## [2]{.circle} The step towards a dynamic catalog
 
 ### Multiple services
 
-:::{layout-ncol="4"}
-
+::: {layout-ncol="4"}
 [PgSTAC]{.big-circle-blue}
 
 [STAC-fastAPI]{.big-circle-blue}
@@ -297,17 +278,15 @@ Datasets selected $\rightarrow$ [S11-cats]{.box} $\rightarrow$ Static catalog
 [TiTiler-PgSTAC]{.big-circle}
 
 [TiPg]{.big-circle}
-
 :::
 
----
+------------------------------------------------------------------------
 
 ## [2]{.circle} The step towards a dynamic catalog
 
 ### Multiple services
 
-:::{layout-ncol="4"}
-
+::: {layout-ncol="4"}
 [PgSTAC]{.big-circle-blue}
 
 [STAC-fastAPI]{.big-circle-blue}
@@ -315,49 +294,45 @@ Datasets selected $\rightarrow$ [S11-cats]{.box} $\rightarrow$ Static catalog
 [TiTiler-PgSTAC]{.big-circle-blue}
 
 [TiTiler-xarray]{.big-circle-blue}
-
 :::
 
 <hr>
 
-:::{style="text-align: center;"}
-
+::: {style="text-align: center;"}
 :wheel: Kubernetes :wheel:
-
 :::
 
----
+------------------------------------------------------------------------
 
 ## [2]{.circle} The importance of a dynamic catalog
 
 {{< include slides/sections/check_interactive_api.md >}}
 
----
+------------------------------------------------------------------------
 
 ## [2]{.circle} The deployed version of STAC Browser
 
-<iframe src="https://eoapi.satelligence.com/browser" style="height:75%;width:100%;"  title="eoAPI deployment for Satelligence data"></iframe>
+<iframe src="https://eoapi.satelligence.com/browser" style="height:75%;width:100%;" title="eoAPI deployment for Satelligence data">
 
----
+</iframe>
+
+------------------------------------------------------------------------
 
 ## [2]{.circle} Effective integration
 
-:::{layout-ncol="1"}
-
+::: {layout-ncol="1"}
 ![New data discovery and visualization workflow](img/New_data_discovery_workflow.png){#fig-new-workflow width="100%"}
-
 :::
 
 ## [3]{.circle} Data visualization
 
 {{< include slides/sections/cog_zarr_comparison.qmd >}}
 
----
+------------------------------------------------------------------------
 
 ## [3]{.circle} Data visualization
 
-:::{layout-ncol="2"}
-
+::: {layout-ncol="2"}
 ```{python}
 #| echo: false
 #| fig-cap: "Response times depending on zoom level and their respective trends for COG and Zarr data formats."
@@ -398,7 +373,6 @@ ax.set_ylabel('Chunk size [pixels]')
 a = ax.set_xlabel('Pyramid\n' + r'$\rightarrow{}$zoom increase$\rightarrow{}$')
 
 ```
-
 :::
 
 Differences with @Barciauskas_NextGen_2024.
@@ -407,34 +381,33 @@ Differences with @Barciauskas_NextGen_2024.
 
 ## Authentication
 
-- Add an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
+-   Add an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
 
----
+------------------------------------------------------------------------
 
 ## Vector data visualization
 
-- [TiPg](https://github.com/developmentseed/tipg) is a service included in the eoAPI deployment that wasn't used, but should be integrated to visualize, for instance, supply chain datasets.
-
+-   [TiPg](https://github.com/developmentseed/tipg) is a service included in the eoAPI deployment that wasn't used, but should be integrated to visualize, for instance, supply chain datasets.
 
 # [6]{.circle} Conclusions
 
 ## [1]{.circle} Current state
 
-- Workflow at S11 is complex and time-consuming
-- Major inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.
-- A user-friendly data discovery service with integrated data visualization is needed
+-   Workflow at S11 is complex and time-consuming
+-   Major inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.
+-   A user-friendly data discovery service with integrated data visualization is needed
 
 ## [2]{.circle} Effective integration
 
-- Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.
-- We developed a methodology to effectively do the integration of multiple data formats and services. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)
+-   Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.
+-   We developed a methodology to effectively do the integration of multiple data formats and services. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)
 
 ## [3]{.circle} Data visualization
 
-- COG tiles are, on average, 2.53 times faster to request than Zarr tiles.
-- Future developments in Zarr could improve their performance (i.e. Improved pyramid generation).
+-   COG tiles are, on average, 2.53 times faster to request than Zarr tiles.
+-   Future developments in Zarr could improve their performance (i.e. Improved pyramid generation).
 
----
+------------------------------------------------------------------------
 
 ## References
 
@@ -443,44 +416,44 @@ Differences with @Barciauskas_NextGen_2024.
 
 ## Appendix
 
+---
 
-### [2]{.circle} Effective integration
+## Appendix {#sec-stac}
 
-#### (What do you mean queryable? Aren't all catalogs queryable?)
+### (What do you mean queryable? Aren't all catalogs queryable?)
 
-:::{layout-ncol=2}
-
+::: {layout-ncol="2"}
 ##### Static catalog
 
-- Series of json files with hierarchical structure.
-- Can be browse easily (Like a website)
+-   Series of json files with hierarchical structure.
+-   Can be browse easily (Like a website)
 
 ##### Dynamic catalog
 
-- Queryed through HTTP requests.
-
+-   Queryed through HTTP requests.
 :::
 
 How to go from one to the other? [eoAPI]{.box}
 
----
+------------------------------------------------------------------------
 
-### [3]{.circle} Comparison of visualization of different cloud-optimized formats {#sec-cog-zarr}
+## Appendix {#sec-cog-zarr}
+
+
+### [3]{.circle} Comparison of visualization of different cloud-optimized formats 
 
 #### (What are these weird "cloud-optimized" data formats?)
 
-:::{layout-ncol=2}
-
+::: {layout-ncol="2"}
 ##### COGs
 
-- Geotiffs
-- Contain overviews
-- Have internal tiling
+-   Geotiffs
+-   Contain overviews
+-   Have internal tiling
 
 ##### Zarrs
 
-- Divided in chunks
-- No overviews or pyramids
-- Work for storing multidimensional arrays
-
+-   Divided in chunks
+-   No overviews or pyramids
+-   Work for storing multidimensional arrays
 :::
