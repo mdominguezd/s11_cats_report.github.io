@@ -1218,18 +1218,30 @@ from a static to a dynamic catalog (i.e.~a STAC API) was needed. This
 shift was facilitated by the deployment of a STAC API within the eoAPI
 framework. The STAC API facilitated the querying capabilities of the
 datasets stored in the catalog by dynamically requesting datasets based
-on their metadata. This dynamic setup not only facilitated data
-discovery but also enabled the use of additional tools such as the STAC
-API QGIS plugin. The plugin could simplify the process of data discovery
-and its direct manipulation.
+on their metadata (See an interactive example on:
+{\url{https://mdominguezd.github.io/s11_cats_report.github.io/\#sec-query-dynamic}}
+). This dynamic setup not only facilitated data discovery but also
+enabled the use of additional tools such as the
+\href{https://plugins.qgis.org/plugins/qgis_stac/}{STAC API QGIS
+plugin}. The plugin could simplify the process of data discovery and its
+direct manipulation.
 
 For the visualization of Zarr datasets, it was necessary to customize
 the TiTiler-Xarray API to accommodate the new Zarr pyramid structure.
-This customization involved overwriting a series of functions in the
-main code of the application to align with the newly created Zarr
-pyramids. By adapting the API to handle the specific requirements of the
-Zarr format and its multi-resolution overviews, the visualization
-process was optimized.
+This customization involved overwriting two functions in the main code
+of the application to align with the newly created Zarr pyramids. One
+function
+(i.e.~\href{https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/reader.py}{titiler.xarray.reader})
+was modified to read the Zarr datasets in a different order (e.g., not
+in the typical zyx order but instead zxy). The other function was
+adjusted to generate the tiles differently by selecting and reading from
+different pyramids depending on the zoom of the map
+(i.e.~\href{https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/factory.py}{titiler.xarray.factory}).
+This allowed the application to dynamically adapt to varying zoom
+levels, ensuring efficient data rendering and improved performance. By
+adapting the API to handle the specific requirements of the Zarr format
+and its multi-resolution overviews, the visualization process was
+optimized.
 
 \subsubsection*{Deployment}\label{deployment}
 \addcontentsline{toc}{subsubsection}{Deployment}

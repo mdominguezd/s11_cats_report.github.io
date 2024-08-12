@@ -44,9 +44,71 @@ An essential step related to data formats was the edition of Zarr datasets to ac
 
 #### Leverage of APIs {.unnumbered}
 
-To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.
+To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e. a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata (See an interactive example on: [[https://mdominguezd.github.io/s11_cats_report.github.io/#sec-query-dynamic](https://mdominguezd.github.io/s11_cats_report.github.io/#sec-query-dynamic)]{.content-visible when-format="pdf"} [@sec-query-dynamic]{.content-visible when-format="html"}). This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the [STAC API QGIS plugin](https://plugins.qgis.org/plugins/qgis_stac/). The plugin could simplify the process of data discovery and its direct manipulation.
 
-For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.
+:::{.content-visible when-format="html"}
+##### Static vs. dynamic catalog {#sec-query-dynamic}
+
+:::: {.columns}
+
+::::: {.column width="50%"}
+
+###### Static catalog
+```{json}
+{
+  "type": "Catalog",
+  "id": "satelligence-stac-api",
+  "stac_version": "1.0.0",
+  "description": "Main Catalog for data stored by Satelligence B.V.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Elevation data/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Example ZARR vs. COG/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./FBLs/collection.json",
+      "type": "application/json"
+    }
+  ]
+}
+```
+:::::
+
+::::: {.column width="50%"}
+###### Dynamic catalog
+<div>
+  <label for="bbox">Enter bounding box (format: minLon,minLat,maxLon,maxLat):</label>
+  <input type="text" id="bbox" placeholder="e.g., -110,-50,34,25" oninput="updateIframe()" />
+</div>
+
+<iframe id="content-iframe" src="https://eoapi.satelligence.com/stac/search" width="100%" height="450px"></iframe>
+
+<script>
+  function updateIframe() {
+    var bboxInput = document.getElementById("bbox");
+    var iframe = document.getElementById("content-iframe");
+
+    var bboxValue = bboxInput.value ? "&bbox=" + bboxInput.value : "";
+    iframe.src = "https://eoapi.satelligence.com/stac/search?" + bboxValue;
+  }
+</script>
+:::::
+::::
+:::
+
+For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting two functions in the main code of the application to align with the newly created Zarr pyramids. One function (i.e. [titiler.xarray.reader](https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/reader.py)) was modified to read the Zarr datasets in a different order (e.g., not in the typical zyx order but instead zxy). The other function was adjusted to generate the tiles differently by selecting and reading from different pyramids depending on the zoom of the map (i.e. [titiler.xarray.factory](https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/factory.py)). This allowed the application to dynamically adapt to varying zoom levels, ensuring efficient data rendering and improved performance. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.
 
 #### Deployment {.unnumbered}
 

@@ -673,8 +673,64 @@ Figure&nbsp;3: Baseline workflow for data discovery and data visualization in Sa
 </section>
 <section id="leverage-of-apis" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="leverage-of-apis">Leverage of APIs</h4>
-<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata. This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the STAC API QGIS plugin. The plugin could simplify the process of data discovery and its direct manipulation.</p>
-<p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting a series of functions in the main code of the application to align with the newly created Zarr pyramids. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
+<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata (See an interactive example on: <span><a href="#sec-query-dynamic" class="quarto-xref">Section&nbsp;3.2.1.0.1</a></span>). This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the <a href="https://plugins.qgis.org/plugins/qgis_stac/">STAC API QGIS plugin</a>. The plugin could simplify the process of data discovery and its direct manipulation.</p>
+<section id="sec-query-dynamic" class="level5">
+<h5 class="anchored" data-anchor-id="sec-query-dynamic">Static vs.&nbsp;dynamic catalog</h5>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="static-catalog" class="level6">
+<h6 class="anchored" data-anchor-id="static-catalog">Static catalog</h6>
+<pre class="{json}"><code>{
+  "type": "Catalog",
+  "id": "satelligence-stac-api",
+  "stac_version": "1.0.0",
+  "description": "Main Catalog for data stored by Satelligence B.V.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Elevation data/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Example ZARR vs. COG/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./FBLs/collection.json",
+      "type": "application/json"
+    }
+  ]
+}</code></pre>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="dynamic-catalog" class="level6">
+<h6 class="anchored" data-anchor-id="dynamic-catalog">Dynamic catalog</h6>
+<div>
+<p><label for="bbox">Enter bounding box (format: minLon,minLat,maxLon,maxLat):</label> <input type="text" id="bbox" placeholder="e.g., -110,-50,34,25" oninput="updateIframe()"></p>
+</div>
+<iframe id="content-iframe" src="https://eoapi.satelligence.com/stac/search" width="100%" height="450px">
+</iframe>
+<script>
+  function updateIframe() {
+    var bboxInput = document.getElementById("bbox");
+    var iframe = document.getElementById("content-iframe");
+
+    var bboxValue = bboxInput.value ? "&bbox=" + bboxInput.value : "";
+    iframe.src = "https://eoapi.satelligence.com/stac/search?" + bboxValue;
+  }
+</script>
+</section>
+</div>
+</div>
+<p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting two functions in the main code of the application to align with the newly created Zarr pyramids. One function (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/reader.py">titiler.xarray.reader</a>) was modified to read the Zarr datasets in a different order (e.g., not in the typical zyx order but instead zxy). The other function was adjusted to generate the tiles differently by selecting and reading from different pyramids depending on the zoom of the map (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/factory.py">titiler.xarray.factory</a>). This allowed the application to dynamically adapt to varying zoom levels, ensuring efficient data rendering and improved performance. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
+</section>
 </section>
 <section id="deployment" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
@@ -708,7 +764,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <section id="interactive-comparison" class="level4">
 <h4 class="anchored" data-anchor-id="interactive-comparison">Interactive comparison</h4>
 <div id="cell-fig-int-comp" class="cell" data-execution_count="2">
-<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="2">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="32">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -738,7 +794,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_a7a1cf798412a08cc9b95e47680b9b66 {
+                #map_e89afe6813e01d9d7976101fdad99d7a {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -752,7 +808,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_e03b93702c558a8d30a56007438df48a {
+                #map_19ad9a0ef64137611200fbc766df5b6f {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -767,17 +823,17 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_a7a1cf798412a08cc9b95e47680b9b66&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_e89afe6813e01d9d7976101fdad99d7a&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_e03b93702c558a8d30a56007438df48a&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_19ad9a0ef64137611200fbc766df5b6f&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_a7a1cf798412a08cc9b95e47680b9b66 = L.map(
-                &quot;map_a7a1cf798412a08cc9b95e47680b9b66&quot;,
+            var map_e89afe6813e01d9d7976101fdad99d7a = L.map(
+                &quot;map_e89afe6813e01d9d7976101fdad99d7a&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -791,42 +847,42 @@ Figure&nbsp;4: New data discovery and visualization workflow
 
         
     
-            var tile_layer_c969c6ab6e6cf615709e3ee79a1abb51 = L.tileLayer(
+            var tile_layer_d9499ea4f8b3c5a77773ba4a147a9d6c = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_c969c6ab6e6cf615709e3ee79a1abb51.addTo(map_a7a1cf798412a08cc9b95e47680b9b66);
+            tile_layer_d9499ea4f8b3c5a77773ba4a147a9d6c.addTo(map_e89afe6813e01d9d7976101fdad99d7a);
         
     
-            var tile_layer_3de1b56aebcac18f65d2b5c4493bd04d = L.tileLayer(
+            var tile_layer_0a3c55033fedb8e5ad1d6a542488c1a7 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_3de1b56aebcac18f65d2b5c4493bd04d.addTo(map_a7a1cf798412a08cc9b95e47680b9b66);
+            tile_layer_0a3c55033fedb8e5ad1d6a542488c1a7.addTo(map_e89afe6813e01d9d7976101fdad99d7a);
         
     
-            var layer_control_4ef0ea7c81598dc189f9eac504c6babf_layers = {
+            var layer_control_219d8579efc2372b6c8f429001471c13_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_c969c6ab6e6cf615709e3ee79a1abb51,
+                    &quot;openstreetmap&quot; : tile_layer_d9499ea4f8b3c5a77773ba4a147a9d6c,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_3de1b56aebcac18f65d2b5c4493bd04d,
+                    &quot;COG tiles&quot; : tile_layer_0a3c55033fedb8e5ad1d6a542488c1a7,
                 },
             };
-            let layer_control_4ef0ea7c81598dc189f9eac504c6babf = L.control.layers(
-                layer_control_4ef0ea7c81598dc189f9eac504c6babf_layers.base_layers,
-                layer_control_4ef0ea7c81598dc189f9eac504c6babf_layers.overlays,
+            let layer_control_219d8579efc2372b6c8f429001471c13 = L.control.layers(
+                layer_control_219d8579efc2372b6c8f429001471c13_layers.base_layers,
+                layer_control_219d8579efc2372b6c8f429001471c13_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_a7a1cf798412a08cc9b95e47680b9b66);
+            ).addTo(map_e89afe6813e01d9d7976101fdad99d7a);
 
         
     
-            var map_e03b93702c558a8d30a56007438df48a = L.map(
-                &quot;map_e03b93702c558a8d30a56007438df48a&quot;,
+            var map_19ad9a0ef64137611200fbc766df5b6f = L.map(
+                &quot;map_19ad9a0ef64137611200fbc766df5b6f&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -840,42 +896,42 @@ Figure&nbsp;4: New data discovery and visualization workflow
 
         
     
-            var tile_layer_16907a8d0fa2adbfe1e5be8cb559a905 = L.tileLayer(
+            var tile_layer_05dc89c795451b90bb391571f1b41573 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_16907a8d0fa2adbfe1e5be8cb559a905.addTo(map_e03b93702c558a8d30a56007438df48a);
+            tile_layer_05dc89c795451b90bb391571f1b41573.addTo(map_19ad9a0ef64137611200fbc766df5b6f);
         
     
-            var tile_layer_0069fea51a142b4cbe5288d50333f3b6 = L.tileLayer(
+            var tile_layer_3b6f4118f75299654a30210ec200f70b = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_0069fea51a142b4cbe5288d50333f3b6.addTo(map_e03b93702c558a8d30a56007438df48a);
+            tile_layer_3b6f4118f75299654a30210ec200f70b.addTo(map_19ad9a0ef64137611200fbc766df5b6f);
         
     
-            var layer_control_625013e21376933795eb2e09fc105e8a_layers = {
+            var layer_control_0b50f31bf567264e5b48ee4c8e2a8c49_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_16907a8d0fa2adbfe1e5be8cb559a905,
+                    &quot;openstreetmap&quot; : tile_layer_05dc89c795451b90bb391571f1b41573,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_0069fea51a142b4cbe5288d50333f3b6,
+                    &quot;Zarr tiles&quot; : tile_layer_3b6f4118f75299654a30210ec200f70b,
                 },
             };
-            let layer_control_625013e21376933795eb2e09fc105e8a = L.control.layers(
-                layer_control_625013e21376933795eb2e09fc105e8a_layers.base_layers,
-                layer_control_625013e21376933795eb2e09fc105e8a_layers.overlays,
+            let layer_control_0b50f31bf567264e5b48ee4c8e2a8c49 = L.control.layers(
+                layer_control_0b50f31bf567264e5b48ee4c8e2a8c49_layers.base_layers,
+                layer_control_0b50f31bf567264e5b48ee4c8e2a8c49_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_e03b93702c558a8d30a56007438df48a);
+            ).addTo(map_19ad9a0ef64137611200fbc766df5b6f);
 
         
     
-            map_a7a1cf798412a08cc9b95e47680b9b66.sync(map_e03b93702c558a8d30a56007438df48a);
-            map_e03b93702c558a8d30a56007438df48a.sync(map_a7a1cf798412a08cc9b95e47680b9b66);
+            map_e89afe6813e01d9d7976101fdad99d7a.sync(map_19ad9a0ef64137611200fbc766df5b6f);
+            map_19ad9a0ef64137611200fbc766df5b6f.sync(map_e89afe6813e01d9d7976101fdad99d7a);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -1087,89 +1143,89 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="99b0a429" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">"13/6407/4075"</span>, <span class="st">"14/12817/8159"</span>, <span class="st">"15/25678/16271"</span>, <span class="st">"16/51268/32552"</span>, </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">"17/102503/65134"</span>, <span class="st">"18/205062/130211"</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiles are slightly modified to try to avoid getting cached tiles</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modify_tile(tile):</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> tile.split(<span class="st">'/'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">0</span>])</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">1</span>])</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">2</span>])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the range of change based on the value of z</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">7</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://localhost:8082/collections/"</span><span class="op">+\</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a65f4108" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tiles <span class="op">=</span> [<span class="st">"9/399/254"</span>, <span class="st">"10/800/505"</span>, <span class="st">"11/1603/1012"</span>,  <span class="st">"12/3209/2042"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">"13/6407/4075"</span>, <span class="st">"14/12817/8159"</span>, <span class="st">"15/25678/16271"</span>, <span class="st">"16/51268/32552"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"17/102503/65134"</span>, <span class="st">"18/205062/130211"</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Tiles are slightly modified to try to avoid getting cached tiles</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> modify_tile(tile):</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> tile.split(<span class="st">'/'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">0</span>])</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">1</span>])</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="bu">int</span>(parts[<span class="dv">2</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the range of change based on the value of z</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;=</span> <span class="dv">7</span>:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">9</span>:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">15</span>:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> z <span class="op">&lt;=</span> <span class="dv">18</span>:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        change_range <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Apply the change to x and y</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    x_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    y_change <span class="op">=</span> random.randint(<span class="op">-</span>change_range, change_range)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> x <span class="op">+</span> x_change</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    new_y <span class="op">=</span> y <span class="op">+</span> y_change</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the modified tile as a string</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_x<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>new_y<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>times_zarr <span class="op">=</span> []</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>times_cog <span class="op">=</span> []</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>z_level <span class="op">=</span> []</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>cmap_picked <span class="op">=</span> []</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># The colormaps picked can be either a customized one for S11</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Forest baseline or greens_r</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> [<span class="st">"_name=greens&amp;rescale=0,70"</span>,<span class="st">"_name=greens_r&amp;rescale=0,70"</span>,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=blues&amp;rescale=0,90"</span>, <span class="st">"_name=blues_r&amp;rescale=0,90"</span>,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=reds&amp;rescale=0,80"</span>, <span class="st">"_name=reds_r&amp;rescale=0,80"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=gray&amp;rescale=0,70"</span>,<span class="st">"_name=gray_r&amp;rescale=0,70"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=jet&amp;rescale=0,90"</span>, <span class="st">"_name=jet_r&amp;rescale=0,90"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"_name=hot&amp;rescale=0,80"</span>, <span class="st">"_name=hot_r&amp;rescale=0,80"</span>]</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cmap)):</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    mod_tiles <span class="op">=</span> [modify_tile(tile) <span class="cf">for</span> tile <span class="kw">in</span> tiles]</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> i</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tile <span class="kw">in</span> mod_tiles:</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        url_zarr <span class="op">=</span> <span class="st">"https://localhost:8084/tiles/WebMercatorQuad/"</span><span class="op">+\</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?url=gs://s11-tiles/zarr/separate&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">"variable=band_data&amp;reference=false&amp;decode_times=true&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"consolidated=true&amp;colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>        url_cog <span class="op">=</span> <span class="ss">f"https://localhost:8082/collections/"</span><span class="op">+\</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"Example%20FBL%20Riau/items/FBL_V5_2021_Riau_cog/tiles/"</span><span class="op">+\</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"WebMercatorQuad/</span><span class="sc">{</span>tile<span class="sc">}</span><span class="ss">%401x?bidx=1&amp;assets=data&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unscale=false&amp;resampling=nearest&amp;reproject=nearest&amp;"</span><span class="op">+\</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"colormap</span><span class="sc">{</span>cmap[k]<span class="sc">}</span><span class="ss">&amp;return_mask=true"</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_zarr)</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>        times_zarr.append(x.elapsed.total_seconds())</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> requests.get(url_cog)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>        times_cog.append(x.elapsed.total_seconds())</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>        z_level.append(<span class="bu">int</span>(tile.split(<span class="st">'/'</span>)[<span class="dv">0</span>]))</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>        cmap_picked.append(k)</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([cmap_picked, z_level, times_cog, times_zarr]).T</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'colormap'</span>,<span class="st">'zoom level'</span>,<span class="st">'COG'</span>, <span class="st">'ZARR'</span>]</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'request_time_results_6iter_k8.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

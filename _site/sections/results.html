@@ -23,7 +23,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -95,6 +98,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Report</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About the author</span></a>
   </li>  
@@ -115,10 +122,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#main-findings" id="toc-main-findings" class="nav-link active" data-scroll-target="#main-findings">Main findings</a></li>
+  <li><a href="#current-workflow" id="toc-current-workflow" class="nav-link active" data-scroll-target="#current-workflow">Current workflow</a></li>
+  <li><a href="#thematic-content-analysis" id="toc-thematic-content-analysis" class="nav-link" data-scroll-target="#thematic-content-analysis">Thematic Content Analysis</a></li>
   <li><a href="#service-integration" id="toc-service-integration" class="nav-link" data-scroll-target="#service-integration">Service integration</a>
   <ul class="collapse">
-  <li><a href="#data-discovery-improvement" id="toc-data-discovery-improvement" class="nav-link" data-scroll-target="#data-discovery-improvement">Data discovery improvement</a></li>
+  <li><a href="#effective-integration" id="toc-effective-integration" class="nav-link" data-scroll-target="#effective-integration">Effective integration</a></li>
+  <li><a href="#workflow-improvement" id="toc-workflow-improvement" class="nav-link" data-scroll-target="#workflow-improvement">Workflow improvement</a></li>
   </ul></li>
   <li><a href="#performance-of-multi-format-data-visualization" id="toc-performance-of-multi-format-data-visualization" class="nav-link" data-scroll-target="#performance-of-multi-format-data-visualization">Performance of multi-format data visualization</a>
   <ul class="collapse">
@@ -150,45 +159,319 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="main-findings" class="level3">
-<h3 class="anchored" data-anchor-id="main-findings">Main findings</h3>
-<p>The main finding of the interviews were the steps followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming the process of discovering and visualizing spatial data can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying out.</p>
+<section id="current-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="current-workflow">Current workflow</h3>
+<p>One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.</p>
 <div id="fig-baseline" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Baseline workflow
+Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Satelligence.
 </figcaption>
 </figure>
 </div>
-<p>The major pitfalls found on the process of data discovery in the company could be summarized in:</p>
+<p>According to <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a>, some of the most time-consuming tasks were searching for data on Google Cloud Storage and downloading it for visualization. Additionally, seeking advice from colleagues about the dataset’s location added a major uncertainty to the time estimates, as responses varied from very quick to considerably delayed or non existent.</p>
+</section>
+<section id="thematic-content-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="thematic-content-analysis">Thematic Content Analysis</h3>
+<p>When asked about the recurrent patterns on the interviews undertaken to define the baseline scenario, the large language model used in this research found four main topics:</p>
 <ul>
-<li>High dependency on colleagues.</li>
-<li>Disorganized structure of Google Storage Buckets.</li>
-<li>Experienced study subjects would find the data location faster.</li>
-<li>Data discovery also dependent on recurrent work with a specific dataset (Google Console highlighted links).</li>
-<li>Not intuitive naming of repositories.</li>
+<li>There is a high uncertainty on the location of datasets and a high dependency on colleagues to find them.</li>
+<li>Multiple sources and locations of data.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
+<li>Use of specific tools and methods for different datasets.</li>
 </ul>
+<p>After some refinement and a deeper analysis of the interviews, the major pitfalls found on the process of data discovery and visualization in the company were summarized as follows:</p>
+<ul>
+<li>High dependency on colleagues for dataset location.</li>
+<li>Disorganized structure of Google Storage Buckets.</li>
+<li>Data familiarity helps users locate data more quickly.</li>
+<li>Locating data is dependent on recurrent work with a specific dataset.</li>
+<li>Not intuitive naming of repositories with datasets.</li>
+<li>Understanding of diverse tools to access different data is currently necessary.</li>
+<li>Download of data is required in most cases to visualize it.</li>
+<li>Not one place where all existing data can be found.</li>
+</ul>
+<p>All of these pitfalls highlight the need for a simpler data discovery implementation, where data visualization can also be integrated seamlessly. Previous studies have found that key difficulties for earth observation data discovery include heterogeneous query interfaces, and use of diverse metadata models <span class="citation" data-cites="miranda_espinosa_reviewing_2020">[@miranda_espinosa_reviewing_2020]</span>. To address these challenges, the approach should enable easy access to datasets based on specific queries, ensuring that users can efficiently locate and utilize the data they need. By harmonizing metadata standards and query protocols through the use of STAC specifications, the process of data discovery can be greatly improved, making it more accessible and user-friendly.</p>
 </section>
 <section id="service-integration" class="level2">
 <h2 class="anchored" data-anchor-id="service-integration">Service integration</h2>
-<p><em>Explain here how eoAPI uses multiple services, how each of them helps S11 in their data discovery and vizz tasks, and how did I manage to deploy it</em></p>
-<p>Kubernetes</p>
-<p>STAC-API, pgSTAC, TiTiler</p>
-<section id="data-discovery-improvement" class="level3">
-<h3 class="anchored" data-anchor-id="data-discovery-improvement">Data discovery improvement</h3>
-<p>Flowchart with STAC</p>
+<p>The integration of the services deployed resulted in a version of STAC Browser including a STAC API (See <a href="https://eoapi.satelligence.com/stac/">https://eoapi.satelligence.com/stac</a>) with three different collections containing datasets related to the forest baseline created by the company, elevation data from third party organizations and a collection for the comparison of COG and Zarr data. Additionally, it utilizes different tile services based on the data format, optimizing performance for each type: <a href="https://eoapi.satelligence.com/zarr">https://eoapi.satelligence.com/zarr</a> for Zarrs and <a href="https://eoapi.satelligence.com/raster">https://eoapi.satelligence.com/raster</a> for COGs. The browser application can be accessed in <a href="https://eoapi.satelligence.com/browser/?.language=en">https://eoapi.satelligence.com/browser</a>.</p>
+<section id="effective-integration" class="level3">
+<h3 class="anchored" data-anchor-id="effective-integration">Effective integration</h3>
+<p>The effective integration was not an easy task and involved multiple aspects, ranging from editing data formats to facilitate their visualization, transitioning from a static to a dynamic catalog, customizing APIs, and finalizing with the correct deployment of the services.</p>
+<section id="data-formats" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="data-formats">Data formats</h4>
+<p>An essential step related to data formats was the edition of Zarr datasets to achieve their optimal visualization. This edition involved creating a series of overviews of the same dataset at different resolutions. Specifically, this was accomplished by converting COGs into multiple Zarr files resampled at various spatial resolutions. These resampled Zarr files, acting as overviews enhance visualization by allowing the appropriate resolution to be accessed based on the map scale, similar to the approach used when visualizing COGs <span class="citation" data-cites="lynnes_cloud_2020">[@lynnes_cloud_2020]</span>. Even though the approach followed in this study allowed for improved visualization of Zarr files, the creation of Zarr pyramids in a more optimized way is still necessary. Other researchers have been focusing their efforts on this task to enhance the efficiency and effectiveness of the process <span class="citation" data-cites="Barciauskas_NextGen_2024">[@Barciauskas_NextGen_2024]</span>.</p>
+</section>
+<section id="leverage-of-apis" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="leverage-of-apis">Leverage of APIs</h4>
+<p>To effectively query the datasets stored in the catalog, a transition from a static to a dynamic catalog (i.e.&nbsp;a STAC API) was needed. This shift was facilitated by the deployment of a STAC API within the eoAPI framework. The STAC API facilitated the querying capabilities of the datasets stored in the catalog by dynamically requesting datasets based on their metadata (See an interactive example on: <span><a href="#sec-query-dynamic" class="quarto-xref">Section&nbsp;1.1.0.1</a></span>). This dynamic setup not only facilitated data discovery but also enabled the use of additional tools such as the <a href="https://plugins.qgis.org/plugins/qgis_stac/">STAC API QGIS plugin</a>. The plugin could simplify the process of data discovery and its direct manipulation.</p>
+<section id="sec-query-dynamic" class="level5">
+<h5 class="anchored" data-anchor-id="sec-query-dynamic">Static vs.&nbsp;dynamic catalog</h5>
+<div class="columns">
+<div class="column" style="width:45%;">
+<pre class="{json}"><code>{
+  "type": "Catalog",
+  "id": "satelligence-stac-api",
+  "stac_version": "1.0.0",
+  "description": "Main Catalog for data stored by Satelligence B.V.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Elevation data/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Example ZARR vs. COG/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./FBLs/collection.json",
+      "type": "application/json"
+    }
+  ]
+}</code></pre>
+</div><div class="column" style="width:45%;">
+<div>
+<p><label for="bbox">Enter bounding box (format: minLon,minLat,maxLon,maxLat):</label> <input type="text" id="bbox" placeholder="e.g., -110,-50,34,25" oninput="updateIframe()"></p>
+</div>
+<iframe id="content-iframe" src="https://eoapi.satelligence.com/stac/search" width="100%" height="450px">
+</iframe>
+<script>
+  function updateIframe() {
+    var bboxInput = document.getElementById("bbox");
+    var iframe = document.getElementById("content-iframe");
+
+    var bboxValue = bboxInput.value ? "&bbox=" + bboxInput.value : "";
+    iframe.src = "https://eoapi.satelligence.com/stac/search?" + bboxValue;
+  }
+</script>
+</div>
+</div>
+<p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting two functions in the main code of the application to align with the newly created Zarr pyramids. One function (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/reader.py">titiler.xarray.reader</a>) was modified to read the Zarr datasets in a different order (e.g., not in the typical zyx order but instead zxy). The other function was adjusted to generate the tiles differently by selecting and reading from different pyramids depending on the zoom of the map (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/factory.py">titiler.xarray.factory</a>). This allowed the application to dynamically adapt to varying zoom levels, ensuring efficient data rendering and improved performance. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
+</section>
+</section>
+<section id="deployment" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="deployment">Deployment</h4>
+<p>As described on <strong>?@sec-eoapi</strong>, the deployment of both eoAPI and the additional services utilized was perform using Google Kubernetes Engine (GKE), which is K8s’ GCP service. In a GKE cluster, the setup of complex multi-service applications that connect to each other with an internal network is simplified <span class="citation" data-cites="gupta_deployment_2021">[@gupta_deployment_2021]</span>. Moreover, <a href="www.eoapi.dev">eoAPI</a> simplified the deployment by providing a guide for deployment that used a Helm chart (See <span class="citation" data-cites="noauthor_developmentseedeoapi-k8s_2024">[@noauthor_developmentseedeoapi-k8s_2024]</span>). A Helm chart is a collection of files that describe the K8s related resources needed to run a multi-service application and it can improve the speed of deployment by a factor of up to 6 times <span class="citation" data-cites="gokhale_creating_2021">[@gokhale_creating_2021]</span>. These factors greatly influenced the decision of deploying the whole suite of services in eoAPI.</p>
+<p>Moreover, the performance of some of the eoAPI services deployed using K8s had been already assessed by previous studies. For instance, <span class="citation" data-cites="munteanu_performance_2024">@munteanu_performance_2024</span> performed tests on a deployed version of STAC API that, like the deployment performed in this study, used PgSTAC as the backend. These authors deployed a dynamic STAC API loaded with the metadata of approximately 2.3 TB of spatial data on a K8s cluster and evaluated the performance by assessing both the response times and resources used in a hypothetical scenario where 7,000 users would perform requests simultaneously. Their results showed that these services are capable of supporting effectively a much larger amount of users than the estimated by Satelligence.</p>
+<p>Finally, additional to the already covered advantages, the deployment of <a href="www.eoapi.dev">eoAPI</a> and the fast community driven development of new tools brings with it benefits that could become very important for S11’s workflow. For instance, the visualization of vector data using <a href="https://github.com/developmentseed/tipg">TiPg</a> is a service included in the eoAPI deployment that wasn’t used during this internship, but should certainly be integrated in the near future by the company to visualize their supply chain datasets. Moroever, the community adopting STAC specifications has been growing fast. Due to this, a big series of STAC-extensions have been developed to fulfill the requirements of the users. During this internship, extensions to add additional metadata were included, however, due to time constraints other extensions that could prove beneficial for the company were not integrated. Specifically, the possibility of adding an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.</p>
+</section>
+</section>
+<section id="workflow-improvement" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-improvement">Workflow improvement</h3>
+<p>Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on <a href="#fig-new-workflow" class="quarto-xref">Figure&nbsp;2</a>. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.</p>
+<div id="fig-new-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/New_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: New data discovery and visualization workflow
+</figcaption>
+</figure>
+</div>
+<p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data.</p>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="performance-of-multi-format-data-visualization">Performance of multi-format data visualization</h2>
-<p>TiTiler-PgSTAC &amp; TiTiler-xarray</p>
+<p>The results of the experiments made with different cloud-optimized data formats are presented in two subsections. The first subsection evaluates the overall performance of the two data formats and the second subsection assesses the performance of these data formats based on different zoom levels.</p>
 <section id="raster-formats" class="level3">
 <h3 class="anchored" data-anchor-id="raster-formats">Raster formats</h3>
-<p>The comparison of visualization speeds with TiTiler-xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented on <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;2</a>. In the figure it can be obesrved that COG tiles are requested 2.38 times faster than the same file in ZARR format.</p>
-<div id="cell-fig-format-comp" class="cell" data-execution_count="2">
+<p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on <span><a href="#fig-int-comp" class="quarto-xref">Figure&nbsp;3</a></span> and summarized in <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be observed that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a> shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
+<section id="interactive-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="interactive-comparison">Interactive comparison</h4>
+<div id="cell-fig-int-comp" class="cell" data-execution_count="2">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="26">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_6bd08c11a406c0bd0c9c8e72621e58ef {
+                    position: absolute;
+                    width: 50.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_1d0f7aa6645a702f5637d6ebcb48b670 {
+                    position: absolute;
+                    width: 50.0%;
+                    height: 100.0%;
+                    left: 50.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src=&quot;https://cdn.jsdelivr.net/gh/jieter/Leaflet.Sync/L.Map.Sync.min.js&quot;></script>
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_6bd08c11a406c0bd0c9c8e72621e58ef&quot; ></div>
+        
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_1d0f7aa6645a702f5637d6ebcb48b670&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6bd08c11a406c0bd0c9c8e72621e58ef = L.map(
+                &quot;map_6bd08c11a406c0bd0c9c8e72621e58ef&quot;,
+                {
+                    center: [0.596093307985066, 101.79719686886921],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_736e6a5219631277239be50b7094bc68 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_736e6a5219631277239be50b7094bc68.addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+        
+    
+            var tile_layer_e79370de03b462dcf90fbc34232f2845 = L.tileLayer(
+                &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
+                {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_e79370de03b462dcf90fbc34232f2845.addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+        
+    
+            var layer_control_b8f488610939dd520a41f50f992c0fec_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_736e6a5219631277239be50b7094bc68,
+                },
+                overlays :  {
+                    &quot;COG tiles&quot; : tile_layer_e79370de03b462dcf90fbc34232f2845,
+                },
+            };
+            let layer_control_b8f488610939dd520a41f50f992c0fec = L.control.layers(
+                layer_control_b8f488610939dd520a41f50f992c0fec_layers.base_layers,
+                layer_control_b8f488610939dd520a41f50f992c0fec_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+
+        
+    
+            var map_1d0f7aa6645a702f5637d6ebcb48b670 = L.map(
+                &quot;map_1d0f7aa6645a702f5637d6ebcb48b670&quot;,
+                {
+                    center: [0.596093307985066, 101.79719686886921],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a296fc69e51d7e89fac10ccee998d1c4 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_a296fc69e51d7e89fac10ccee998d1c4.addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+        
+    
+            var tile_layer_9aba7beb142305bc6e09ebc36bdee332 = L.tileLayer(
+                &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
+                {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_9aba7beb142305bc6e09ebc36bdee332.addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+        
+    
+            var layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_a296fc69e51d7e89fac10ccee998d1c4,
+                },
+                overlays :  {
+                    &quot;Zarr tiles&quot; : tile_layer_9aba7beb142305bc6e09ebc36bdee332,
+                },
+            };
+            let layer_control_93274ad4c4e32abaae1dc85a46bb9142 = L.control.layers(
+                layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers.base_layers,
+                layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers.overlays,
+                {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
+            ).addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+
+        
+    
+            map_6bd08c11a406c0bd0c9c8e72621e58ef.sync(map_1d0f7aa6645a702f5637d6ebcb48b670);
+            map_1d0f7aa6645a702f5637d6ebcb48b670.sync(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Interactive comparison of rendering speed for COG and Zarr data formats
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="cell-fig-format-comp" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -196,31 +479,52 @@ Figure&nbsp;1: Baseline workflow
 <img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Request times depending on data format and zoom level
+Figure&nbsp;4: Response times for tile requests depending on data format
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>The results obtained are coherent to the ones previously shown by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where COGs’ rendering time was found to be lower than the one for Zarr files at different zoom levels. These results show that COGs, being specifically optimized for spatial data visualization, offer faster visualization compared to Zarr files. However, this does not take away from the fact that Zarr provides additional benefits, such as the ability to store n-dimensional arrays. Furthermore, recent advancements like GeoZarr and the creation of Zarr pyramids with new packages like <a href="https://github.com/carbonplan/ndpyramid">ndpyramid</a> could bring significant improvements to this data format <span class="citation" data-cites="pagan_current_2023">[@pagan_current_2023, @Barciauskas_NextGen_2024]</span>.</p>
+</section>
+<section id="fine-tuning-of-dataset" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="fine-tuning-of-dataset">Fine tuning of dataset</h4>
+<p>Even though COGs showed to be very performant, their performance could be further enhanced by tuning specific GDAL parameters. These adjustments could improve the speed of tiling services using COG <span class="citation" data-cites="nasa_impact_zarr_2023">[@nasa_impact_zarr_2023]</span>. Future considerations should include optimizing these parameters to maximize efficiency (See <a href="https://developmentseed.org/titiler/advanced/performance_tuning/">performance tuning section</a>).</p>
+</section>
 </section>
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
-<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;3</a>, the zoom level of the map will have an effect on the time spent requesting and getting a tile from a tile server. In this study, it was found that the request times decreased by a factor of -0.013 and -0.005 per zoom level for COGs and ZARRs respectively.</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="4">
+<p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by 0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (+ 0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="634" height="436" class="figure-img">
+<img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="643" height="325" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Request times depending on zoom level
+Figure&nbsp;5: Response times depending on zoom level and their respective trends for COG and Zarr data formats.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p>
+<p>Moreover, as seen on <a href="#fig-chunksize-zarr" class="quarto-xref">Figure&nbsp;6</a>, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a> for the two data formats.</p>
+<p>Finally, despite efforts to mitigate caching effects, tiles generated from the same overview might have been reused across different zoom levels, potentially contributing to the reduced times observed for COGs at higher zoom levels. The COG used in this study had a maximum zoom level of 14. Beyond this level, tiles are generated using the same overview (i.e.&nbsp;the one with the highest resolution), which could indicate caching. Although both tiling services used in the study implement caching, a more in-depth investigation is needed to fully understand its impact on performance for both data formats.</p>
+<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div id="fig-chunksize-zarr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results_files/figure-html/fig-chunksize-zarr-output-1.png" width="648" height="343" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
