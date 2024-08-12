@@ -1298,7 +1298,10 @@ Once the deployment of eoAPI and the extra services was done, a new
 workflow for both the new data discovery and visualization tasks was
 designed and is presented on Figure~\ref{fig-new-workflow}. This new
 workflow shows a clear improvement on the speed and the ease of use of
-the new methods employed.
+the new methods employed. While this represents one possible workflow,
+other ways to leverage these new methods include directly using Python
+or QGIS, offering flexibility depending on user preferences and project
+requirements.
 
 \begin{figure}[H]
 
@@ -1327,6 +1330,131 @@ the STAC Browser facilitates querying collections and visualizing items.
 Finally, the STAC catalog serves as the centralized location for all
 data used in S11 workflows, which favors long term usability of code
 that relies on this data.
+
+In addition to these improvements, examples or instructions of how to
+utilize the STAC API through various tools are provided below. They
+demonstrate how to interact with the catalog using STAC Browser, Python,
+and QGIS, offering users multiple options for querying the data.
+Regardless the preference of the S11 employees these examples will guide
+them in leveraging the full capabilities of the new system.
+
+\subsubsection{Usage examples}\label{usage-examples}
+
+\paragraph{Python}\label{python}
+
+Two examples to query the STAC API using python are presented below. The
+first one queries the STAC API based on a bounding box and the second
+one queries it based on the raster resolution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ pystac\_client }\ImportTok{import}\NormalTok{ Client}
+\ImportTok{import}\NormalTok{ warnings}
+\NormalTok{warnings.filterwarnings(}\StringTok{"ignore"}\NormalTok{)}
+
+\CommentTok{\# Connect to the STAC API}
+\NormalTok{stac\_url }\OperatorTok{=} \StringTok{"https://eoapi.satelligence.com/stac"}
+\NormalTok{client }\OperatorTok{=}\NormalTok{ Client.}\BuiltInTok{open}\NormalTok{(stac\_url)}
+
+\CommentTok{\# Define the collection name and bounding box}
+\NormalTok{collection\_name }\OperatorTok{=} \StringTok{"FBLs"}
+\NormalTok{bbox }\OperatorTok{=}\NormalTok{ [}\OperatorTok{{-}}\DecValTok{72}\NormalTok{, }\DecValTok{0}\NormalTok{, }\OperatorTok{{-}}\DecValTok{64}\NormalTok{, }\DecValTok{2}\NormalTok{] }
+
+\CommentTok{\# Search for items in the collection within the bounding box}
+\NormalTok{search }\OperatorTok{=}\NormalTok{ client.search(}
+\NormalTok{    collections}\OperatorTok{=}\NormalTok{[collection\_name],}
+\NormalTok{    bbox}\OperatorTok{=}\NormalTok{bbox}
+\NormalTok{)}
+
+\CommentTok{\# Get the results}
+\NormalTok{items }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(search.get\_items())}
+
+\CommentTok{\# Display the results}
+\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ items:}
+    \BuiltInTok{print}\NormalTok{(item.}\BuiltInTok{id}\NormalTok{, }\StringTok{\textquotesingle{}}\CharTok{\textbackslash{}n}\StringTok{Data location:}\CharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{, item.assets[}\StringTok{\textquotesingle{}data\textquotesingle{}}\NormalTok{].href)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+FBL_V5_2021_LATAM 
+Data location:
+ gs://s11-base-data/landcover/forest_baselines/FBL_2021_V5/FBL_V5_2021_LATAM.tif
+FBL_V5_2007_LATAM 
+Data location:
+ gs://s11-base-data/landcover/forest_baselines/FBL_2007_V5/FBL_V5_2007_LATAM.tif
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ pystac\_client }\ImportTok{import}\NormalTok{ Client}
+
+\CommentTok{\# Connect to the STAC API}
+\NormalTok{stac\_url }\OperatorTok{=} \StringTok{"https://eoapi.satelligence.com/stac"}
+\NormalTok{client }\OperatorTok{=}\NormalTok{ Client.}\BuiltInTok{open}\NormalTok{(stac\_url)}
+
+\CommentTok{\# Define the collection name and desired maximum spatial resolution }
+\NormalTok{collection\_name }\OperatorTok{=} \StringTok{"Elevation data"}
+\NormalTok{max\_resolution }\OperatorTok{=} \DecValTok{30}
+
+\CommentTok{\# Search for items in the collection}
+\NormalTok{search }\OperatorTok{=}\NormalTok{ client.search(}
+\NormalTok{    collections}\OperatorTok{=}\NormalTok{[collection\_name]}
+\NormalTok{)}
+
+\CommentTok{\# Get the results}
+\NormalTok{items }\OperatorTok{=} \BuiltInTok{list}\NormalTok{(search.get\_items())}
+
+\CommentTok{\# Filter items based on the asset\textquotesingle{}s spatial resolution}
+\NormalTok{filtered\_items }\OperatorTok{=}\NormalTok{ []}
+\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ items:}
+    \ControlFlowTok{for}\NormalTok{ asset\_key, asset }\KeywordTok{in}\NormalTok{ item.assets.items():}
+        \ControlFlowTok{if} \StringTok{\textquotesingle{}raster:bands\textquotesingle{}} \KeywordTok{in}\NormalTok{ asset.extra\_fields:}
+\NormalTok{            bands }\OperatorTok{=}\NormalTok{ asset.extra\_fields[}\StringTok{\textquotesingle{}raster:bands\textquotesingle{}}\NormalTok{]}
+            \ControlFlowTok{for}\NormalTok{ band }\KeywordTok{in}\NormalTok{ bands:}
+                \ControlFlowTok{if} \StringTok{\textquotesingle{}spatial\_resolution\textquotesingle{}} \KeywordTok{in}\NormalTok{ band }\KeywordTok{and}\OperatorTok{\textbackslash{}}
+\NormalTok{                    band[}\StringTok{\textquotesingle{}spatial\_resolution\textquotesingle{}}\NormalTok{] }\OperatorTok{\textless{}}\NormalTok{ max\_resolution:}
+\NormalTok{                    filtered\_items.append(item)}
+                    \ControlFlowTok{break} 
+
+\CommentTok{\# Display the filtered results}
+\ControlFlowTok{for}\NormalTok{ item }\KeywordTok{in}\NormalTok{ filtered\_items:}
+\NormalTok{    spatial\_resolutions }\OperatorTok{=}\NormalTok{ [band[}\StringTok{\textquotesingle{}spatial\_resolution\textquotesingle{}}\NormalTok{] }\ControlFlowTok{for}\NormalTok{ asset }\KeywordTok{in} \OperatorTok{\textbackslash{}}
+\NormalTok{        item.assets.values() }\ControlFlowTok{if} \StringTok{\textquotesingle{}raster:bands\textquotesingle{}} \KeywordTok{in}\NormalTok{ asset.extra\_fields}\OperatorTok{\textbackslash{}}
+             \ControlFlowTok{for}\NormalTok{ band }\KeywordTok{in}\NormalTok{ asset.extra\_fields[}\StringTok{\textquotesingle{}raster:bands\textquotesingle{}}\NormalTok{] }\ControlFlowTok{if} \OperatorTok{\textbackslash{}}
+                \StringTok{\textquotesingle{}spatial\_resolution\textquotesingle{}} \KeywordTok{in}\NormalTok{ band]}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Item ID: }\SpecialCharTok{\{}\NormalTok{item}\SpecialCharTok{.}\BuiltInTok{id}\SpecialCharTok{\}}\SpecialStringTok{, Spatial Resolutions: }\SpecialCharTok{\{}\NormalTok{spatial\_resolutions}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Item ID: srtmgl1, Spatial Resolutions: [19.92221624635881]
+Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]
+\end{verbatim}
+
+\paragraph{STAC Browser}\label{stac-browser}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open \url{https://eoapi.satelligence.com/browser}.
+\item
+  Navigate through the collections and select the one that fits the
+  thematic your searching for. (Tip: It is also possible to filter them
+  by keywords).
+\item
+  Click the \texttt{Show\ filters} button.
+\item
+  Select a temporal and spatial extent.
+\item
+  See the results and select the item that you were searching for.
+\end{enumerate}
+
+\paragraph{QGIS plugin}\label{qgis-plugin}
+
+A detailed step by step guide to use the QGIS plugin to query a STAC API
+can be found on
+\url{https://stacspec.org/en/tutorials/1-install-stac-api-browser-qgis-plugin/}.
 
 \section{Performance of multi-format data
 visualization}\label{performance-of-multi-format-data-visualization}

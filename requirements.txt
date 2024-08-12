@@ -9,3 +9,4 @@ dask
 folium
 rioxarray
 shapely
+pystac-client

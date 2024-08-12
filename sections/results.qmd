@@ -120,11 +120,99 @@ Finally, additional to the already covered advantages, the deployment of [eoAPI]
 
 ### Workflow improvement
 
-Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on @fig-new-workflow. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.
+Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on @fig-new-workflow. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed. While this represents one possible workflow, other ways to leverage these new methods include directly using Python or QGIS, offering flexibility depending on user preferences and project requirements.
 
 ![New data discovery and visualization workflow](img/New_data_discovery_workflow.png){#fig-new-workflow width="100%"}
 
 Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data.
+
+In addition to these improvements, examples or instructions of how to utilize the STAC API through various tools are provided below. They demonstrate how to interact with the catalog using STAC Browser, Python, and QGIS, offering users multiple options for querying the data. Regardless the preference of the S11 employees these examples will guide them in leveraging the full capabilities of the new system.
+
+#### Usage examples
+
+##### Python 
+
+Two examples to query the STAC API using python are presented below. The first one queries the STAC API based on a bounding box and the second one queries it based on the raster resolution.
+
+```{python}
+from pystac_client import Client
+import warnings
+warnings.filterwarnings("ignore")
+
+# Connect to the STAC API
+stac_url = "https://eoapi.satelligence.com/stac"
+client = Client.open(stac_url)
+
+# Define the collection name and bounding box
+collection_name = "FBLs"
+bbox = [-72, 0, -64, 2] 
+
+# Search for items in the collection within the bounding box
+search = client.search(
+    collections=[collection_name],
+    bbox=bbox
+)
+
+# Get the results
+items = list(search.get_items())
+
+# Display the results
+for item in items:
+    print(item.id, '\nData location:\n', item.assets['data'].href)
+```
+
+```{python}
+from pystac_client import Client
+
+# Connect to the STAC API
+stac_url = "https://eoapi.satelligence.com/stac"
+client = Client.open(stac_url)
+
+# Define the collection name and desired maximum spatial resolution 
+collection_name = "Elevation data"
+max_resolution = 30
+
+# Search for items in the collection
+search = client.search(
+    collections=[collection_name]
+)
+
+# Get the results
+items = list(search.get_items())
+
+# Filter items based on the asset's spatial resolution
+filtered_items = []
+for item in items:
+    for asset_key, asset in item.assets.items():
+        if 'raster:bands' in asset.extra_fields:
+            bands = asset.extra_fields['raster:bands']
+            for band in bands:
+                if 'spatial_resolution' in band and\
+                    band['spatial_resolution'] < max_resolution:
+                    filtered_items.append(item)
+                    break 
+
+# Display the filtered results
+for item in filtered_items:
+    spatial_resolutions = [band['spatial_resolution'] for asset in \
+        item.assets.values() if 'raster:bands' in asset.extra_fields\
+             for band in asset.extra_fields['raster:bands'] if \
+                'spatial_resolution' in band]
+    print(f"Item ID: {item.id}, Spatial Resolutions: {spatial_resolutions}")
+
+```
+
+##### STAC Browser 
+
+1. Open [https://eoapi.satelligence.com/browser](https://eoapi.satelligence.com/browser).
+2. Navigate through the collections and select the one that fits the thematic your searching for. (Tip: It is also possible to filter them by keywords).
+3. Click the `Show filters` button.
+4. Select a temporal and spatial extent.
+5. See the results and select the item that you were searching for.
+
+##### QGIS plugin
+
+A detailed step by step guide to use the QGIS plugin to query a STAC API can be found on [https://stacspec.org/en/tutorials/1-install-stac-api-browser-qgis-plugin/](https://stacspec.org/en/tutorials/1-install-stac-api-browser-qgis-plugin/).
 
 ## Performance of multi-format data visualization
 
