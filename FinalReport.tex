@@ -1172,10 +1172,16 @@ making it more accessible and user-friendly.
 \section{Service integration}\label{service-integration}
 
 The integration of the services deployed resulted in a version of STAC
-Browser including three different collections containing datasets
-related to the forest baseline created by the company, elevation data
-from third party organizations and a collection for the comparison of
-COG and Zarr data. The web application can be accessed in
+Browser including a STAC API (See
+\href{https://eoapi.satelligence.com/stac/}{https://eoapi.satelligence.com/stac})
+with three different collections containing datasets related to the
+forest baseline created by the company, elevation data from third party
+organizations and a collection for the comparison of COG and Zarr data.
+Additionally, it utilizes different tile services based on the data
+format, optimizing performance for each type:
+\url{https://eoapi.satelligence.com/zarr} for Zarrs and
+\url{https://eoapi.satelligence.com/raster} for COGs. The browser
+application can be accessed in
 \href{https://eoapi.satelligence.com/browser/?.language=en}{https://eoapi.satelligence.com/browser}.
 
 \subsection{Effective integration}\label{effective-integration}
