@@ -4,7 +4,7 @@ subtitle-image: slides/images/Satelligence_Logo_RGB_White_Negative.png
 institute-image: https://pbs.twimg.com/profile_images/1640350393/wur_400x400.png
 author: "Martín Domínguez Durán"
 institute: "Wageningen University & Research"
-date: today
+date: 08-08-2024
 title-slide-attributes:
   data-background-color: "#002966"
   data-background-size: 300px
@@ -177,6 +177,7 @@ execute:
 -   Made the catalog queryable (Dynamic) [^1]
 -   Deployed the services provided by [[eoAPI](https://eoapi.dev)]{.box} (Using GKE)
 -   Customized applications when needed.
+-   Created new workflow od DD and DV.
 
 [^1]: More info: @sec-stac
 
@@ -296,7 +297,7 @@ Datasets selected $\rightarrow$ [[S11-cats](https://gitlab.com/satelligence/s11-
 
 [TiTiler-PgSTAC]{.big-circle-blue}
 
-[TiTiler-xarray]{.big-circle-blue}
+[TiTiler-Xarray]{.big-circle-blue}
 :::
 
 <hr>
@@ -447,6 +448,8 @@ Differences with @Barciauskas_NextGen_2024.
 ## Authentication
 
 -   Add an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.
+-   Possible implementation: 
+    -   [https://github.com/radiantearth/stac-browser/pull/439](https://github.com/radiantearth/stac-browser/pull/439)
 
 ------------------------------------------------------------------------
 
@@ -492,10 +495,13 @@ Differences with @Barciauskas_NextGen_2024.
 
 -   Series of json files with hierarchical structure.
 -   Can be browse easily (Like a website)
+-   No OGC standard.
 
 ##### Dynamic catalog
 
 -   Queryed through HTTP requests.
+-   No OGC Standard, but adheres to OGC-API Features.
+
 :::
 
 How to go from one to the other? [eoAPI]{.box}

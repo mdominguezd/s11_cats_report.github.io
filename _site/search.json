@@ -648,7 +648,7 @@
     "href": "slides.html#new-developments-3",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "New developments",
-    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\nTypes\n\nStatic\nDynamic1\n\n\nNo OGC Standard, but adheres to OGC-API Features."
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\nTypes\n\nStatic\nDynamic"
   },
   {
     "objectID": "slides.html#new-developments-4",
@@ -683,7 +683,7 @@
     "href": "slides.html#authentication",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Authentication",
-    "text": "Authentication\n\nAdd an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data."
+    "text": "Authentication\n\nAdd an authentication layer to the catalog still needs to be done and should be the next step to ensure the privacy of the data.\nPossible implementation:\n\nhttps://github.com/radiantearth/stac-browser/pull/439"
   },
   {
     "objectID": "slides.html#vector-data-visualization",
@@ -760,7 +760,7 @@
     "href": "slides.html#the-step-towards-a-dynamic-catalog-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 The step towards a dynamic catalog",
-    "text": "2 The step towards a dynamic catalog\nMultiple services\n\n\n\n\n\n\nPgSTAC\n\n\nSTAC-fastAPI\n\n\nTiTiler-PgSTAC\n\n\nTiTiler-xarray\n\n\n\n\n\n🛞 Kubernetes 🛞"
+    "text": "2 The step towards a dynamic catalog\nMultiple services\n\n\n\n\n\n\nPgSTAC\n\n\nSTAC-fastAPI\n\n\nTiTiler-PgSTAC\n\n\nTiTiler-Xarray\n\n\n\n\n\n🛞 Kubernetes 🛞"
   },
   {
     "objectID": "slides.html#data-visualization-1",
@@ -837,7 +837,7 @@
     "href": "slides.html#sec-stac",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Appendix",
-    "text": "Appendix\n(What do you mean queryable? Aren’t all catalogs queryable?)\n\n\n\n\n\n\nStatic catalog\n\nSeries of json files with hierarchical structure.\nCan be browse easily (Like a website)\n\n\n\nDynamic catalog\n\nQueryed through HTTP requests.\n\n\n\n\nHow to go from one to the other? eoAPI"
+    "text": "Appendix\n(What do you mean queryable? Aren’t all catalogs queryable?)\n\n\n\n\n\n\nStatic catalog\n\nSeries of json files with hierarchical structure.\nCan be browse easily (Like a website)\nNo OGC standard.\n\n\n\nDynamic catalog\n\nQueryed through HTTP requests.\nNo OGC Standard, but adheres to OGC-API Features.\n\n\n\n\nHow to go from one to the other? eoAPI"
   },
   {
     "objectID": "slides/sections/TiTiler.html",
