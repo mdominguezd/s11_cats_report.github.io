@@ -95,28 +95,28 @@
     "href": "slides.html#spatial-data-is-big-data",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data is big data",
-    "text": "Spatial data is big data\n\n\n\n\n\n\n\nHundreds of satellites gather information on a weekly to daily basis\nHigh Velocity/Variety/Volume\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites orbiting the earth.Taken from: miro.medium.com"
+    "text": "Spatial data is big data\n\n\n\n\n\n\n\nHundreds of different satellites gather information (Variety)\nWeekly to daily basis (Velocity)\nAt higher and higher resolutions (Volume)\n\n\n\n\n\n\n\n\n\nFigure 1: Satellites orbiting the earth.Taken from: miro.medium.com"
   },
   {
     "objectID": "slides.html#spatial-data-challenges",
     "href": "slides.html#spatial-data-challenges",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data challenges",
-    "text": "Spatial data challenges\n\nHow to process it?\nHow to store it?\nHow to easily acces it?\nHow to interact with it?"
+    "text": "Spatial data challenges\n\nHow to process it?\nHow to store it?\nHow to easily access it?\nHow to interact with it?"
   },
   {
     "objectID": "slides.html#spatial-data-challenges-1",
     "href": "slides.html#spatial-data-challenges-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data challenges",
-    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accessibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
   },
   {
     "objectID": "slides.html#spatial-data-challenges-2",
     "href": "slides.html#spatial-data-challenges-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Spatial data challenges",
-    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accesibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
+    "text": "Spatial data challenges\n\nThis makes Spatial Data Infrastructures (SDIs) a necessity.\nTraditional SDI focus: preservation &gt; accessibility. (Durbha et al. 2023)\nNew developments can help change this.\n\n\n\n\n\n\n\nCloud storage\n\n\nData discovery (e.g. STAC)\n\n\nVisualization interfaces (e.g. TiTiler)"
   },
   {
     "objectID": "slides.html#new-developments",
@@ -144,7 +144,7 @@
     "href": "slides.html#new-developments-3",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "New developments",
-    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\nTypes\n\nStatic\nDynamic"
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\nTypes\n\nStatic\nDynamic1\n\n\nNo OGC Standard, but adheres to OGC-API Features."
   },
   {
     "objectID": "slides.html#new-developments-4",
@@ -179,7 +179,7 @@
     "href": "slides.html#s11-works-with-big-data-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "S11 works with big data",
-    "text": "S11 works with big data\nWhen it comes to finding the data ❌\n\n\n\n\n\n\n\nGoogle Storage buckets\nGitlab repositories\nClickUp tasks\nThe almighty"
+    "text": "S11 works with big data\nWhen it comes to finding the data ❌\n\n\n\n\n\n\n\nGoogle Storage buckets\nGitlab repositories\nThe almighty"
   },
   {
     "objectID": "slides.html#research-questions",
@@ -207,14 +207,14 @@
     "href": "slides.html#the-current-state-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "1 The current state",
-    "text": "1 The current state\nTCA:\n\n\n\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure1 of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming\\(^1\\) of repositories with datasets.\nUnderstanding of diverse tools\\(^1\\) to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place where all existing data can be found.\n\n\n\n\nSimilarly Miranda Espinosa, Giuliani, and Ray (2020) proposed that the main challenges are: “Different query interfaces and diverse metadata models”."
+    "text": "1 The current state\nTCA:\n\n\n\n\n\n\n\nHigh dependency on colleagues for dataset location.\nDisorganized structure1 of Google Storage Buckets.\nData familiarity helps users locate data more quickly.\nLocating data is dependent on recurrent work with a specific dataset.\nNot intuitive naming\\(^1\\) of repositories with datasets.\nUnderstanding of diverse tools\\(^1\\) to access different data is currently necessary.\nDownload of data is required in most cases to visualize it.\nNot one place\\(^1\\) where all existing data can be found.\n\n\n\n\nSimilarly Miranda Espinosa, Giuliani, and Ray (2020) proposed that the main challenges are: “Different query interfaces and diverse metadata models”."
   },
   {
     "objectID": "slides.html#tools-to-create-an-s11-catalog",
     "href": "slides.html#tools-to-create-an-s11-catalog",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 Tools to create an S11 catalog",
-    "text": "2 Tools to create an S11 catalog\n\nDatasets selected \\(\\rightarrow\\) S11-cats \\(\\rightarrow\\) Static catalog\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: s11-cats repository"
+    "text": "2 Tools to create an S11 catalog\n\nDatasets selected \\(\\rightarrow\\) S11-cats \\(\\rightarrow\\) Static catalog\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: s11-cats repository\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: S11-cats main function overview"
   },
   {
     "objectID": "slides.html#the-step-towards-a-dynamic-catalog",
@@ -256,21 +256,21 @@
     "href": "slides.html#effective-integration-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 Effective integration",
-    "text": "2 Effective integration\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: New data discovery and visualization workflow"
+    "text": "2 Effective integration\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6: New data discovery and visualization workflow"
   },
   {
     "objectID": "slides.html#data-visualization",
     "href": "slides.html#data-visualization",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "3 Data visualization",
-    "text": "3 Data visualization\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 6: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 7: Response times for tile requests depending on data format\n\n\n\n\n\n\nAlignment with Barciauskas et al. (2024)."
+    "text": "3 Data visualization\n\n\n\n\n\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nFigure 7: Interactive comparison of rendering speed for COG and Zarr data formats\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 8: Response times for tile requests depending on data format\n\n\n\n\n\n\nAlignment with Barciauskas et al. (2024)."
   },
   {
     "objectID": "slides.html#data-visualization-1",
     "href": "slides.html#data-visualization-1",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "3 Data visualization",
-    "text": "3 Data visualization\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 8: Response times depending on zoom level and their respective trends for COG and Zarr data formats.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 9: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.\n\n\n\n\n\n\n\nDifferences with Barciauskas et al. (2024)."
+    "text": "3 Data visualization\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 9: Response times depending on zoom level and their respective trends for COG and Zarr data formats.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 10: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.\n\n\n\n\n\n\n\nDifferences with Barciauskas et al. (2024)."
   },
   {
     "objectID": "slides.html#authentication",
@@ -291,21 +291,21 @@
     "href": "slides.html#current-state",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "1 Current state",
-    "text": "1 Current state\n\nWorkflow at S11 is complex and time-consuming\nMajor inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.\nA user-friendly data discovery service with integrated data visualization is needed"
+    "text": "1 Current state\n\nData discovery/visualization workflow at S11 is complex and time-consuming.\nMajor inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.\nA user-friendly data discovery service with integrated data visualization is needed"
   },
   {
     "objectID": "slides.html#effective-integration-2",
     "href": "slides.html#effective-integration-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 Effective integration",
-    "text": "2 Effective integration\n\nIntegration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.\nWe developed a methodology to effectively do the integration of multiple data formats and services. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)"
+    "text": "2 Effective integration\n\nIntegration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.\nI built upon eoAPI and developed a methodology to effectively do the integration of multiple data formats and services at S11. (i.e. COGs, Zarrs, eoAPI, TiTilers, etc.)"
   },
   {
     "objectID": "slides.html#data-visualization-2",
     "href": "slides.html#data-visualization-2",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "3 Data visualization",
-    "text": "3 Data visualization\n\nCOG tiles are, on average, 2.53 times faster to request than Zarr tiles.\nFuture developments in Zarr could improve their performance (i.e. Improved pyramid generation)."
+    "text": "3 Data visualization\n\nCOG tiles are, on average, 2.53 times faster to request than Zarr tiles.\nFindings are in line with literature for data format comparison.\nFuture developments in Zarr could improve their performance (i.e. Improved pyramid generation).\nCaching effect should be studied further."
   },
   {
     "objectID": "slides.html#references",
@@ -313,13 +313,6 @@
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "References",
     "text": "References\n\n\nBarciauskas, Aimee, Max Jones, Kata Martin, Sean Harkins, and Vincent Sarago. 2024. “Next-Gen Zarr Web Map Visualization.” In EGU General Assembly Conference Abstracts, 11805. EGU General Assembly Conference Abstracts. https://doi.org/10.5194/egusphere-egu24-11805.\n\n\nDurbha, Surya S, Jibonananda Sanyal, Lexie Yang, Sangita S Chaudhari, Ujwala Bhangale, Ujwala Bharambe, and Kuldeep Kurte. 2023. Advances in Scalable and Intelligent Geospatial Analytics: Challenges and Applications. 1st ed. Boca Raton: CRC Press. https://doi.org/10.1201/9781003270928.\n\n\nMiranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. “Reviewing the Discoverability and Accessibility to Data and Information Products Linked to Essential Climate Variables.” International Journal of Digital Earth 13 (2): 236–52. https://doi.org/10.1080/17538947.2019.1620882."
-  },
-  {
-    "objectID": "slides.html#appendix",
-    "href": "slides.html#appendix",
-    "title": "Cataloguing and Visualizing  Big Geodata",
-    "section": "Appendix",
-    "text": "Appendix"
   },
   {
     "objectID": "slides.html#sec-stac",
@@ -333,7 +326,7 @@
     "href": "slides.html#sec-cog-zarr",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "Appendix",
-    "text": "Appendix\n3 Comparison of visualization of different cloud-optimized formats\n(What are these weird “cloud-optimized” data formats?)\n\n\n\n\n\n\nCOGs\n\nGeotiffs\nContain overviews\nHave internal tiling\n\n\n\nZarrs\n\nDivided in chunks\nNo overviews or pyramids\nWork for storing multidimensional arrays"
+    "text": "Appendix\n(What are these weird “cloud-optimized” data formats?)\n\n\n\n\n\n\nCOGs\n\nGeotiffs\nContain overviews\nHave internal tiling\n\n\n\nZarrs\n\nDivided in chunks\nNo overviews or pyramids\nWork for storing multidimensional arrays"
   },
   {
     "objectID": "slides/sections/STAC_definition.html",
@@ -368,7 +361,14 @@
     "href": "slides/sections/STAC_definition.html#new-developments-3",
     "title": "S11-CATS Report",
     "section": "New developments",
-    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\n\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\n\n\nTypes\n\nStatic\nDynamic"
+    "text": "New developments\n\n\nData discovery (e.g. STAC)\n\n\nDefiniton\nCommon structure for describing and cataloging spatiotemporal assets.\n\n\n\nComponents\n\nCatalogs\nCollections\nItems\nAssets\n\n\n\n\nTypes\n\nStatic\nDynamic1"
+  },
+  {
+    "objectID": "slides/sections/STAC_definition.html#footnotes",
+    "href": "slides/sections/STAC_definition.html#footnotes",
+    "title": "S11-CATS Report",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nNo OGC Standard, but adheres to OGC-API Features.↩︎"
   },
   {
     "objectID": "slides/sections/TiTiler.html",
