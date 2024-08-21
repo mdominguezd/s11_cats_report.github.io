@@ -328,7 +328,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <section id="python" class="level5">
 <h5 class="anchored" data-anchor-id="python">Python</h5>
 <p>Two examples to query the STAC API using python are presented below. The first one queries the STAC API based on a bounding box and the second one queries it based on the raster resolution.</p>
-<div id="4644a63c" class="cell" data-execution_count="1">
+<div id="feb86fa0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
@@ -362,7 +362,7 @@ Data location:
  gs://s11-base-data/landcover/forest_baselines/FBL_2007_V5/FBL_V5_2007_LATAM.tif</code></pre>
 </div>
 </div>
-<div id="8e1f70ad" class="cell" data-execution_count="2">
+<div id="33821b7d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the STAC API</span></span>
@@ -462,7 +462,7 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_15c3eac15ce168b94fdeff460d36219d {
+                #map_3af1a54e140633bd7269a9b258b9230a {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -476,7 +476,7 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_c8b67805443b4b3795a342fc911f45a6 {
+                #map_e578e0653122b4f195407f85eef9a036 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -491,17 +491,17 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_15c3eac15ce168b94fdeff460d36219d&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_3af1a54e140633bd7269a9b258b9230a&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_c8b67805443b4b3795a342fc911f45a6&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_e578e0653122b4f195407f85eef9a036&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_15c3eac15ce168b94fdeff460d36219d = L.map(
-                &quot;map_15c3eac15ce168b94fdeff460d36219d&quot;,
+            var map_3af1a54e140633bd7269a9b258b9230a = L.map(
+                &quot;map_3af1a54e140633bd7269a9b258b9230a&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -515,42 +515,42 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 
         
     
-            var tile_layer_e6c08ac16b44f752e9ebccc45eb7ef8c = L.tileLayer(
+            var tile_layer_deb444da48944ece5444042a24336a1d = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_e6c08ac16b44f752e9ebccc45eb7ef8c.addTo(map_15c3eac15ce168b94fdeff460d36219d);
+            tile_layer_deb444da48944ece5444042a24336a1d.addTo(map_3af1a54e140633bd7269a9b258b9230a);
         
     
-            var tile_layer_c831bca05c68f8a7af20b404e015bff3 = L.tileLayer(
+            var tile_layer_6828a7945eb2e653c887d328b16aff91 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_c831bca05c68f8a7af20b404e015bff3.addTo(map_15c3eac15ce168b94fdeff460d36219d);
+            tile_layer_6828a7945eb2e653c887d328b16aff91.addTo(map_3af1a54e140633bd7269a9b258b9230a);
         
     
-            var layer_control_41e6ece53f835473a77a04e5a9f263f8_layers = {
+            var layer_control_cb16a5e3f49311838cd7f866c8f73b22_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_e6c08ac16b44f752e9ebccc45eb7ef8c,
+                    &quot;openstreetmap&quot; : tile_layer_deb444da48944ece5444042a24336a1d,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_c831bca05c68f8a7af20b404e015bff3,
+                    &quot;COG tiles&quot; : tile_layer_6828a7945eb2e653c887d328b16aff91,
                 },
             };
-            let layer_control_41e6ece53f835473a77a04e5a9f263f8 = L.control.layers(
-                layer_control_41e6ece53f835473a77a04e5a9f263f8_layers.base_layers,
-                layer_control_41e6ece53f835473a77a04e5a9f263f8_layers.overlays,
+            let layer_control_cb16a5e3f49311838cd7f866c8f73b22 = L.control.layers(
+                layer_control_cb16a5e3f49311838cd7f866c8f73b22_layers.base_layers,
+                layer_control_cb16a5e3f49311838cd7f866c8f73b22_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_15c3eac15ce168b94fdeff460d36219d);
+            ).addTo(map_3af1a54e140633bd7269a9b258b9230a);
 
         
     
-            var map_c8b67805443b4b3795a342fc911f45a6 = L.map(
-                &quot;map_c8b67805443b4b3795a342fc911f45a6&quot;,
+            var map_e578e0653122b4f195407f85eef9a036 = L.map(
+                &quot;map_e578e0653122b4f195407f85eef9a036&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -564,42 +564,42 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 
         
     
-            var tile_layer_935ee5fa7958f0b4689d3aee78bd26f0 = L.tileLayer(
+            var tile_layer_6314461d1c928131e04db12d23fe3b1d = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_935ee5fa7958f0b4689d3aee78bd26f0.addTo(map_c8b67805443b4b3795a342fc911f45a6);
+            tile_layer_6314461d1c928131e04db12d23fe3b1d.addTo(map_e578e0653122b4f195407f85eef9a036);
         
     
-            var tile_layer_983adb382389e0ab48ed0b457f2e7130 = L.tileLayer(
+            var tile_layer_4223db5ab93a55c363e0a14831383e86 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_983adb382389e0ab48ed0b457f2e7130.addTo(map_c8b67805443b4b3795a342fc911f45a6);
+            tile_layer_4223db5ab93a55c363e0a14831383e86.addTo(map_e578e0653122b4f195407f85eef9a036);
         
     
-            var layer_control_b1a9b775c330ab20c9e68711cb8e4c16_layers = {
+            var layer_control_e6e6befbbcc36490ded877e0b74c09d4_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_935ee5fa7958f0b4689d3aee78bd26f0,
+                    &quot;openstreetmap&quot; : tile_layer_6314461d1c928131e04db12d23fe3b1d,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_983adb382389e0ab48ed0b457f2e7130,
+                    &quot;Zarr tiles&quot; : tile_layer_4223db5ab93a55c363e0a14831383e86,
                 },
             };
-            let layer_control_b1a9b775c330ab20c9e68711cb8e4c16 = L.control.layers(
-                layer_control_b1a9b775c330ab20c9e68711cb8e4c16_layers.base_layers,
-                layer_control_b1a9b775c330ab20c9e68711cb8e4c16_layers.overlays,
+            let layer_control_e6e6befbbcc36490ded877e0b74c09d4 = L.control.layers(
+                layer_control_e6e6befbbcc36490ded877e0b74c09d4_layers.base_layers,
+                layer_control_e6e6befbbcc36490ded877e0b74c09d4_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_c8b67805443b4b3795a342fc911f45a6);
+            ).addTo(map_e578e0653122b4f195407f85eef9a036);
 
         
     
-            map_15c3eac15ce168b94fdeff460d36219d.sync(map_c8b67805443b4b3795a342fc911f45a6);
-            map_c8b67805443b4b3795a342fc911f45a6.sync(map_15c3eac15ce168b94fdeff460d36219d);
+            map_3af1a54e140633bd7269a9b258b9230a.sync(map_e578e0653122b4f195407f85eef9a036);
+            map_e578e0653122b4f195407f85eef9a036.sync(map_3af1a54e140633bd7269a9b258b9230a);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
