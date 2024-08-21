@@ -108,8 +108,12 @@ Common structure for describing and cataloging spatiotemporal assets.
 #### Types
 
 - Static
-- Dynamic
+- Dynamic[^*]
+
+[^*]: No OGC Standard, but adheres to OGC-API Features.
 
 ::::
 :::
+
+
 

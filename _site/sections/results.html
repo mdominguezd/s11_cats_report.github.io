@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>S11-CATS Report</title>
+<title>results – S11-CATS Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -88,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -107,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -162,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="current-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="current-workflow">Current workflow</h3>
 <p>One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;1</a> and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.</p>
-<div id="fig-baseline" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
@@ -212,7 +246,9 @@ Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Sa
 <section id="sec-query-dynamic" class="level5">
 <h5 class="anchored" data-anchor-id="sec-query-dynamic">Static vs.&nbsp;dynamic catalog</h5>
 <div class="columns">
-<div class="column" style="width:45%;">
+<div class="column" style="width:50%;">
+<section id="static-catalog" class="level6">
+<h6 class="anchored" data-anchor-id="static-catalog">Static catalog</h6>
 <pre class="{json}"><code>{
   "type": "Catalog",
   "id": "satelligence-stac-api",
@@ -241,7 +277,10 @@ Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Sa
     }
   ]
 }</code></pre>
-</div><div class="column" style="width:45%;">
+</section>
+</div><div class="column" style="width:50%;">
+<section id="dynamic-catalog" class="level6">
+<h6 class="anchored" data-anchor-id="dynamic-catalog">Dynamic catalog</h6>
 <div>
 <p><label for="bbox">Enter bounding box (format: minLon,minLat,maxLon,maxLat):</label> <input type="text" id="bbox" placeholder="e.g., -110,-50,34,25" oninput="updateIframe()"></p>
 </div>
@@ -256,6 +295,7 @@ Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Sa
     iframe.src = "https://eoapi.satelligence.com/stac/search?" + bboxValue;
   }
 </script>
+</section>
 </div>
 </div>
 <p>For the visualization of Zarr datasets, it was necessary to customize the TiTiler-Xarray API to accommodate the new Zarr pyramid structure. This customization involved overwriting two functions in the main code of the application to align with the newly created Zarr pyramids. One function (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/reader.py">titiler.xarray.reader</a>) was modified to read the Zarr datasets in a different order (e.g., not in the typical zyx order but instead zxy). The other function was adjusted to generate the tiles differently by selecting and reading from different pyramids depending on the zoom of the map (i.e.&nbsp;<a href="https://github.com/developmentseed/titiler-xarray/blob/dev/titiler/xarray/factory.py">titiler.xarray.factory</a>). This allowed the application to dynamically adapt to varying zoom levels, ensuring efficient data rendering and improved performance. By adapting the API to handle the specific requirements of the Zarr format and its multi-resolution overviews, the visualization process was optimized.</p>
@@ -270,8 +310,8 @@ Figure&nbsp;1: Baseline workflow for data discovery and data visualization in Sa
 </section>
 <section id="workflow-improvement" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-improvement">Workflow improvement</h3>
-<p>Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on <a href="#fig-new-workflow" class="quarto-xref">Figure&nbsp;2</a>. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed.</p>
-<div id="fig-new-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<p>Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on <a href="#fig-new-workflow" class="quarto-xref">Figure&nbsp;2</a>. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed. While this represents one possible workflow, other ways to leverage these new methods include directly using Python or QGIS, offering flexibility depending on user preferences and project requirements.</p>
+<div id="fig-new-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/New_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
@@ -282,6 +322,105 @@ Figure&nbsp;2: New data discovery and visualization workflow
 </figure>
 </div>
 <p>Moreover, it can be seen that with the new implementation most of the issues identified on the TCA were addressed. There is no longer a dependency on colleagues for locating datasets, as all data is now consolidated in one place. The disorganized structure of Google Storage Buckets is no longer a concern since the catalog can integrate data stored in multiple buckets into a single, cohesive STAC collection. The previous issue of non-intuitive naming conventions for data repositories, is resolved because it is unnecessary to know the data source once it is included in the STAC catalog. Furthermore, there is no longer a need to understand diverse tools for accessing different data; the STAC Browser facilitates querying collections and visualizing items. Finally, the STAC catalog serves as the centralized location for all data used in S11 workflows, which favors long term usability of code that relies on this data.</p>
+<p>In addition to these improvements, examples or instructions of how to utilize the STAC API through various tools are provided below. They demonstrate how to interact with the catalog using STAC Browser, Python, and QGIS, offering users multiple options for querying the data. Regardless the preference of the S11 employees these examples will guide them in leveraging the full capabilities of the new system.</p>
+<section id="usage-examples" class="level4">
+<h4 class="anchored" data-anchor-id="usage-examples">Usage examples</h4>
+<section id="python" class="level5">
+<h5 class="anchored" data-anchor-id="python">Python</h5>
+<p>Two examples to query the STAC API using python are presented below. The first one queries the STAC API based on a bounding box and the second one queries it based on the raster resolution.</p>
+<div id="bd3402da" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the STAC API</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>stac_url <span class="op">=</span> <span class="st">"https://eoapi.satelligence.com/stac"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client.<span class="bu">open</span>(stac_url)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the collection name and bounding box</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>collection_name <span class="op">=</span> <span class="st">"FBLs"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>bbox <span class="op">=</span> [<span class="op">-</span><span class="dv">72</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">64</span>, <span class="dv">2</span>] </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for items in the collection within the bounding box</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> client.search(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[collection_name],</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    bbox<span class="op">=</span>bbox</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the results</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(search.get_items())</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.<span class="bu">id</span>, <span class="st">'</span><span class="ch">\n</span><span class="st">Data location:</span><span class="ch">\n</span><span class="st">'</span>, item.assets[<span class="st">'data'</span>].href)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>FBL_V5_2021_LATAM 
+Data location:
+ gs://s11-base-data/landcover/forest_baselines/FBL_2021_V5/FBL_V5_2021_LATAM.tif
+FBL_V5_2007_LATAM 
+Data location:
+ gs://s11-base-data/landcover/forest_baselines/FBL_2007_V5/FBL_V5_2007_LATAM.tif</code></pre>
+</div>
+</div>
+<div id="dad8d509" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the STAC API</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>stac_url <span class="op">=</span> <span class="st">"https://eoapi.satelligence.com/stac"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client.<span class="bu">open</span>(stac_url)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the collection name and desired maximum spatial resolution </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>collection_name <span class="op">=</span> <span class="st">"Elevation data"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>max_resolution <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for items in the collection</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> client.search(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    collections<span class="op">=</span>[collection_name]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the results</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> <span class="bu">list</span>(search.get_items())</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter items based on the asset's spatial resolution</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>filtered_items <span class="op">=</span> []</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> items:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> asset_key, asset <span class="kw">in</span> item.assets.items():</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">'raster:bands'</span> <span class="kw">in</span> asset.extra_fields:</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>            bands <span class="op">=</span> asset.extra_fields[<span class="st">'raster:bands'</span>]</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> band <span class="kw">in</span> bands:</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="st">'spatial_resolution'</span> <span class="kw">in</span> band <span class="kw">and</span><span class="op">\</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                    band[<span class="st">'spatial_resolution'</span>] <span class="op">&lt;</span> max_resolution:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                    filtered_items.append(item)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span> </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the filtered results</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> filtered_items:</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    spatial_resolutions <span class="op">=</span> [band[<span class="st">'spatial_resolution'</span>] <span class="cf">for</span> asset <span class="kw">in</span> <span class="op">\</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        item.assets.values() <span class="cf">if</span> <span class="st">'raster:bands'</span> <span class="kw">in</span> asset.extra_fields<span class="op">\</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>             <span class="cf">for</span> band <span class="kw">in</span> asset.extra_fields[<span class="st">'raster:bands'</span>] <span class="cf">if</span> <span class="op">\</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                <span class="st">'spatial_resolution'</span> <span class="kw">in</span> band]</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Item ID: </span><span class="sc">{</span>item<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">, Spatial Resolutions: </span><span class="sc">{</span>spatial_resolutions<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Item ID: srtmgl1, Spatial Resolutions: [19.92221624635881]
+Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></pre>
+</div>
+</div>
+</section>
+<section id="stac-browser" class="level5">
+<h5 class="anchored" data-anchor-id="stac-browser">STAC Browser</h5>
+<ol type="1">
+<li>Open <a href="https://eoapi.satelligence.com/browser">https://eoapi.satelligence.com/browser</a>.</li>
+<li>Navigate through the collections and select the one that fits the thematic your searching for. (Tip: It is also possible to filter them by keywords).</li>
+<li>Click the <code>Show filters</code> button.</li>
+<li>Select a temporal and spatial extent.</li>
+<li>See the results and select the item that you were searching for.</li>
+</ol>
+</section>
+<section id="qgis-plugin" class="level5">
+<h5 class="anchored" data-anchor-id="qgis-plugin">QGIS plugin</h5>
+<p>A detailed step by step guide to use the QGIS plugin to query a STAC API can be found on <a href="https://stacspec.org/en/tutorials/1-install-stac-api-browser-qgis-plugin/">https://stacspec.org/en/tutorials/1-install-stac-api-browser-qgis-plugin/</a>.</p>
+</section>
+</section>
 </section>
 </section>
 <section id="performance-of-multi-format-data-visualization" class="level2">
@@ -292,8 +431,8 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <p>The comparison of visualization speeds with TiTiler-Xarray for Zarr datasets and TiTiler-PgSTAC for COGs are presented interactively on <span><a href="#fig-int-comp" class="quarto-xref">Figure&nbsp;3</a></span> and summarized in <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a>. In the figure it can be observed that on average the response for requests of COG tiles was 2.53 times faster than the one for the same file in ZARR format. Moreover, <a href="#fig-format-comp" class="quarto-xref">Figure&nbsp;4</a> shows that the response times for tiles created from data stored as Zarr showed a considerable wider range than the ones generated from data in the COG format, which indicates more variability in the performance for Zarr.</p>
 <section id="interactive-comparison" class="level4">
 <h4 class="anchored" data-anchor-id="interactive-comparison">Interactive comparison</h4>
-<div id="cell-fig-int-comp" class="cell" data-execution_count="2">
-<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="26">
+<div id="cell-fig-int-comp" class="cell" data-execution_count="4">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -323,7 +462,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_6bd08c11a406c0bd0c9c8e72621e58ef {
+                #map_975316eb988474a99abba7f22ee30308 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -337,7 +476,7 @@ Figure&nbsp;2: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_1d0f7aa6645a702f5637d6ebcb48b670 {
+                #map_301c6d6dca6a52ceaa02a7db06698976 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -352,17 +491,17 @@ Figure&nbsp;2: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_6bd08c11a406c0bd0c9c8e72621e58ef&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_975316eb988474a99abba7f22ee30308&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_1d0f7aa6645a702f5637d6ebcb48b670&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_301c6d6dca6a52ceaa02a7db06698976&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_6bd08c11a406c0bd0c9c8e72621e58ef = L.map(
-                &quot;map_6bd08c11a406c0bd0c9c8e72621e58ef&quot;,
+            var map_975316eb988474a99abba7f22ee30308 = L.map(
+                &quot;map_975316eb988474a99abba7f22ee30308&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -376,42 +515,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_736e6a5219631277239be50b7094bc68 = L.tileLayer(
+            var tile_layer_dc58676fee432ec3545f8e4cdf93892a = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_736e6a5219631277239be50b7094bc68.addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+            tile_layer_dc58676fee432ec3545f8e4cdf93892a.addTo(map_975316eb988474a99abba7f22ee30308);
         
     
-            var tile_layer_e79370de03b462dcf90fbc34232f2845 = L.tileLayer(
+            var tile_layer_5e49a4007eccbb4e89ed02db77c619da = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_e79370de03b462dcf90fbc34232f2845.addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+            tile_layer_5e49a4007eccbb4e89ed02db77c619da.addTo(map_975316eb988474a99abba7f22ee30308);
         
     
-            var layer_control_b8f488610939dd520a41f50f992c0fec_layers = {
+            var layer_control_394b9b54aa17ecfe852a33fa31bd3b17_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_736e6a5219631277239be50b7094bc68,
+                    &quot;openstreetmap&quot; : tile_layer_dc58676fee432ec3545f8e4cdf93892a,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_e79370de03b462dcf90fbc34232f2845,
+                    &quot;COG tiles&quot; : tile_layer_5e49a4007eccbb4e89ed02db77c619da,
                 },
             };
-            let layer_control_b8f488610939dd520a41f50f992c0fec = L.control.layers(
-                layer_control_b8f488610939dd520a41f50f992c0fec_layers.base_layers,
-                layer_control_b8f488610939dd520a41f50f992c0fec_layers.overlays,
+            let layer_control_394b9b54aa17ecfe852a33fa31bd3b17 = L.control.layers(
+                layer_control_394b9b54aa17ecfe852a33fa31bd3b17_layers.base_layers,
+                layer_control_394b9b54aa17ecfe852a33fa31bd3b17_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+            ).addTo(map_975316eb988474a99abba7f22ee30308);
 
         
     
-            var map_1d0f7aa6645a702f5637d6ebcb48b670 = L.map(
-                &quot;map_1d0f7aa6645a702f5637d6ebcb48b670&quot;,
+            var map_301c6d6dca6a52ceaa02a7db06698976 = L.map(
+                &quot;map_301c6d6dca6a52ceaa02a7db06698976&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -425,42 +564,42 @@ Figure&nbsp;2: New data discovery and visualization workflow
 
         
     
-            var tile_layer_a296fc69e51d7e89fac10ccee998d1c4 = L.tileLayer(
+            var tile_layer_481e1e1dd9be36ff7dcc5336661407ba = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_a296fc69e51d7e89fac10ccee998d1c4.addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+            tile_layer_481e1e1dd9be36ff7dcc5336661407ba.addTo(map_301c6d6dca6a52ceaa02a7db06698976);
         
     
-            var tile_layer_9aba7beb142305bc6e09ebc36bdee332 = L.tileLayer(
+            var tile_layer_450fc54c368384ff9effe834049b2c40 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_9aba7beb142305bc6e09ebc36bdee332.addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+            tile_layer_450fc54c368384ff9effe834049b2c40.addTo(map_301c6d6dca6a52ceaa02a7db06698976);
         
     
-            var layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers = {
+            var layer_control_f287d7700fc917992882825a8d4b234b_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_a296fc69e51d7e89fac10ccee998d1c4,
+                    &quot;openstreetmap&quot; : tile_layer_481e1e1dd9be36ff7dcc5336661407ba,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_9aba7beb142305bc6e09ebc36bdee332,
+                    &quot;Zarr tiles&quot; : tile_layer_450fc54c368384ff9effe834049b2c40,
                 },
             };
-            let layer_control_93274ad4c4e32abaae1dc85a46bb9142 = L.control.layers(
-                layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers.base_layers,
-                layer_control_93274ad4c4e32abaae1dc85a46bb9142_layers.overlays,
+            let layer_control_f287d7700fc917992882825a8d4b234b = L.control.layers(
+                layer_control_f287d7700fc917992882825a8d4b234b_layers.base_layers,
+                layer_control_f287d7700fc917992882825a8d4b234b_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_1d0f7aa6645a702f5637d6ebcb48b670);
+            ).addTo(map_301c6d6dca6a52ceaa02a7db06698976);
 
         
     
-            map_6bd08c11a406c0bd0c9c8e72621e58ef.sync(map_1d0f7aa6645a702f5637d6ebcb48b670);
-            map_1d0f7aa6645a702f5637d6ebcb48b670.sync(map_6bd08c11a406c0bd0c9c8e72621e58ef);
+            map_975316eb988474a99abba7f22ee30308.sync(map_301c6d6dca6a52ceaa02a7db06698976);
+            map_301c6d6dca6a52ceaa02a7db06698976.sync(map_975316eb988474a99abba7f22ee30308);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -471,9 +610,9 @@ Figure&nbsp;3: Interactive comparison of rendering speed for COG and Zarr data f
 </figure>
 </div>
 </div>
-<div id="cell-fig-format-comp" class="cell" data-execution_count="3">
+<div id="cell-fig-format-comp" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
-<div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="results_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
@@ -495,9 +634,9 @@ Figure&nbsp;4: Response times for tile requests depending on data format
 <section id="effects-of-zoom-level" class="level3">
 <h3 class="anchored" data-anchor-id="effects-of-zoom-level">Effects of zoom level</h3>
 <p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by 0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (+ 0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">@nasa_impact_zarr_2023</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
-<div id="cell-fig-comp-zoom" class="cell" data-execution_count="5">
+<div id="cell-fig-comp-zoom" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
-<div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="results_files/figure-html/fig-comp-zoom-output-1.png" width="643" height="325" class="figure-img">
@@ -511,9 +650,9 @@ Figure&nbsp;5: Response times depending on zoom level and their respective trend
 </div>
 <p>Moreover, as seen on <a href="#fig-chunksize-zarr" class="quarto-xref">Figure&nbsp;6</a>, while the size of blocks remain constant throughout all of the overviews in the COG file, the sizes of the Zarr chunks varied in the pyramids created. Due to this, the tiles requested at higher zoom levels were larger than the ones requested at lower zoom levels which could explain the difference between the trends observed in <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;5</a> for the two data formats.</p>
 <p>Finally, despite efforts to mitigate caching effects, tiles generated from the same overview might have been reused across different zoom levels, potentially contributing to the reduced times observed for COGs at higher zoom levels. The COG used in this study had a maximum zoom level of 14. Beyond this level, tiles are generated using the same overview (i.e.&nbsp;the one with the highest resolution), which could indicate caching. Although both tiling services used in the study implement caching, a more in-depth investigation is needed to fully understand its impact on performance for both data formats.</p>
-<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="7">
+<div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
-<div id="fig-chunksize-zarr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="results_files/figure-html/fig-chunksize-zarr-output-1.png" width="648" height="343" class="figure-img">
@@ -710,18 +849,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -753,7 +881,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -761,7 +911,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

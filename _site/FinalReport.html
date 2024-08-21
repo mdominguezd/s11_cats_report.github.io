@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Martín Domínguez Durán">
 
-<title>S11-CATS Report - Cataloguing and visualizing big Geodata</title>
+<title>Cataloguing and visualizing big Geodata – S11-CATS Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -127,7 +127,7 @@ div.csl-indent {
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -172,7 +172,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -191,7 +191,7 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -311,7 +311,7 @@ window.Quarto = {
 </section>
 <section id="list-of-abbreviations" class="level1 unnumbered">
 <h1 class="unnumbered">List of abbreviations</h1>
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <caption>Abbreviation list</caption>
 <thead>
 <tr class="header">
@@ -419,13 +419,13 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="data-discovery-services">Data discovery services</h4>
 <p>A discovery service that recently has become widely used for the exploration of big geo-data is Spatio-Temporal Asset Catalog (STAC). Through the standardization of spatio-temporal metadata, STAC simplifies the management and discovery of big geo-data <span class="citation" data-cites="brodeur_geographic_2019">(<a href="#ref-brodeur_geographic_2019" role="doc-biblioref">Brodeur et al., 2019</a>)</span>. This service works by organizing the data into catalogs, collections, items, and assets stored as lightweight JSON formats (See <a href="#tbl-stac-comps" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="durbha_advances_2023">(<a href="#ref-durbha_advances_2023" role="doc-biblioref">Durbha et al., 2023</a>)</span>.</p>
 <p>Moreover, there are two types of STAC catalogs: static and dynamic. Static catalogs are pre-generated and stored as static JSON files on a cloud storage. Static catalogs follow sensible hierarchical relationships between STAC components and this feature makes it easy to be browsed and/or crawled by. Nevertheless, these catalogs cannot be queried. On the other hand, dynamic catalogs are generated as applications that respond to queries dynamically. Notably, dynamic catalogs will show different views of the same catalog depending on queries which usually focus on the spatio-temporal aspect of the data <span class="citation" data-cites="noauthor_stac-specbest-practicesmd_nodate">(<a href="#ref-noauthor_stac-specbest-practicesmd_nodate" role="doc-biblioref">RadiantEarth, 2024</a>)</span>.</p>
-<div id="tbl-stac-comps" class="striped hover quarto-float anchored">
+<div id="tbl-stac-comps" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stac-comps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: STAC components
 </figcaption>
 <div aria-describedby="tbl-stac-comps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-striped table-hover table">
+<table class="table-striped table-hover caption-top table">
 <colgroup>
 <col style="width: 55%">
 <col style="width: 44%">
@@ -520,7 +520,7 @@ Table&nbsp;1: STAC components
 <section id="proposed-catalog-structure" class="level3">
 <h3 class="anchored" data-anchor-id="proposed-catalog-structure">Proposed Catalog structure</h3>
 <p>The structure of the STAC catalog proposed can be seen on <a href="#fig-stac-str" class="quarto-xref">Figure&nbsp;1</a>. In it, a selection of datasets that should be referenced in the catalog is presented and a hierarchical structure composed of thematic collections is suggested. This structure was not followed in the creation of the proof-of-concept catalog, as the purpose of this catalog was only to demonstrate the process of creating it. The final version of the structure will be determined by the company.</p>
-<div id="fig-stac-str" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-stac-str" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-stac-str-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/STAC_Satelligence_structure.png" class="img-fluid figure-img" style="width:90.0%">
@@ -534,13 +534,13 @@ Figure&nbsp;1: Proposed STAC structure for S11 data
 <section id="s11-cats-repository" class="level3">
 <h3 class="anchored" data-anchor-id="s11-cats-repository">S11-cats repository</h3>
 <p>The s11-cats repository includes a module named <code>cats</code>, which consists of five sub-modules as described in <a href="#tbl-cats-modules" class="quarto-xref">Table&nbsp;2</a>. Additionally, an overview of the main workflow, which includes the creation of a new catalog each time the <code>main</code> function is run, is presented in <a href="#fig-s11-cats" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<div id="tbl-cats-modules" class="quarto-float anchored">
+<div id="tbl-cats-modules" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Description of cats submodules
 </figcaption>
 <div aria-describedby="tbl-cats-modules-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 47%">
 <col style="width: 52%">
@@ -577,7 +577,7 @@ Table&nbsp;2: Description of cats submodules
 </div>
 </figure>
 </div>
-<div id="fig-s11-cats" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-s11-cats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/s11-cats.png" class="img-fluid figure-img">
@@ -626,7 +626,7 @@ Figure&nbsp;2: S11-cats main function overview
 <section id="current-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="current-workflow">Current workflow</h3>
 <p>One of the main findings of the interviews was the process followed currently to discover, retrieve and visualize data. These steps are summarized on <a href="#fig-baseline" class="quarto-xref">Figure&nbsp;3</a> and show how complex and time consuming these tasks can be for a Satelligence employee nowadays. Moreover, the steps followed were categorized in four classes depending on how much time is generally spent carrying it out.</p>
-<div id="fig-baseline" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/Baseline_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
@@ -742,7 +742,7 @@ Figure&nbsp;3: Baseline workflow for data discovery and data visualization in Sa
 <section id="workflow-improvement" class="level3">
 <h3 class="anchored" data-anchor-id="workflow-improvement">Workflow improvement</h3>
 <p>Once the deployment of eoAPI and the extra services was done, a new workflow for both the new data discovery and visualization tasks was designed and is presented on <a href="#fig-new-workflow" class="quarto-xref">Figure&nbsp;4</a>. This new workflow shows a clear improvement on the speed and the ease of use of the new methods employed. While this represents one possible workflow, other ways to leverage these new methods include directly using Python or QGIS, offering flexibility depending on user preferences and project requirements.</p>
-<div id="fig-new-workflow" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-new-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="img/New_data_discovery_workflow.png" class="img-fluid figure-img" style="width:100.0%">
@@ -759,7 +759,7 @@ Figure&nbsp;4: New data discovery and visualization workflow
 <section id="python" class="level5">
 <h5 class="anchored" data-anchor-id="python">Python</h5>
 <p>Two examples to query the STAC API using python are presented below. The first one queries the STAC API based on a bounding box and the second one queries it based on the raster resolution.</p>
-<div id="42a11abb" class="cell" data-execution_count="1">
+<div id="0344395f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
@@ -793,7 +793,7 @@ Data location:
  gs://s11-base-data/landcover/forest_baselines/FBL_2007_V5/FBL_V5_2007_LATAM.tif</code></pre>
 </div>
 </div>
-<div id="189d51e1" class="cell" data-execution_count="2">
+<div id="1093546f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pystac_client <span class="im">import</span> Client</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the STAC API</span></span>
@@ -863,7 +863,7 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 <section id="interactive-comparison" class="level4">
 <h4 class="anchored" data-anchor-id="interactive-comparison">Interactive comparison</h4>
 <div id="cell-fig-int-comp" class="cell" data-execution_count="4">
-<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="4">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -893,7 +893,7 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_881e58f80af6262b8832b37c2cee6075 {
+                #map_d79cc774b0970b896b3e1ac086c5838a {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -907,7 +907,7 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_9a52b00e906885c61c54fb861692ac67 {
+                #map_4b379591647204489ec6b179372cf530 {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -922,17 +922,17 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_881e58f80af6262b8832b37c2cee6075&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_d79cc774b0970b896b3e1ac086c5838a&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_9a52b00e906885c61c54fb861692ac67&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_4b379591647204489ec6b179372cf530&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_881e58f80af6262b8832b37c2cee6075 = L.map(
-                &quot;map_881e58f80af6262b8832b37c2cee6075&quot;,
+            var map_d79cc774b0970b896b3e1ac086c5838a = L.map(
+                &quot;map_d79cc774b0970b896b3e1ac086c5838a&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -946,42 +946,42 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 
         
     
-            var tile_layer_0b04229d42b969c861d3f14655755080 = L.tileLayer(
+            var tile_layer_7efd9b02d89eb64378e566d5c0e678d2 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_0b04229d42b969c861d3f14655755080.addTo(map_881e58f80af6262b8832b37c2cee6075);
+            tile_layer_7efd9b02d89eb64378e566d5c0e678d2.addTo(map_d79cc774b0970b896b3e1ac086c5838a);
         
     
-            var tile_layer_6a20627f6791df44577115f54bf97ff6 = L.tileLayer(
+            var tile_layer_84070ddf34b90beb930752398ed80dff = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_6a20627f6791df44577115f54bf97ff6.addTo(map_881e58f80af6262b8832b37c2cee6075);
+            tile_layer_84070ddf34b90beb930752398ed80dff.addTo(map_d79cc774b0970b896b3e1ac086c5838a);
         
     
-            var layer_control_52d14b1dcf1f75913860e5e02d68dec0_layers = {
+            var layer_control_eb679a6b29ea5ff7b6ae57ecd7dfe096_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_0b04229d42b969c861d3f14655755080,
+                    &quot;openstreetmap&quot; : tile_layer_7efd9b02d89eb64378e566d5c0e678d2,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_6a20627f6791df44577115f54bf97ff6,
+                    &quot;COG tiles&quot; : tile_layer_84070ddf34b90beb930752398ed80dff,
                 },
             };
-            let layer_control_52d14b1dcf1f75913860e5e02d68dec0 = L.control.layers(
-                layer_control_52d14b1dcf1f75913860e5e02d68dec0_layers.base_layers,
-                layer_control_52d14b1dcf1f75913860e5e02d68dec0_layers.overlays,
+            let layer_control_eb679a6b29ea5ff7b6ae57ecd7dfe096 = L.control.layers(
+                layer_control_eb679a6b29ea5ff7b6ae57ecd7dfe096_layers.base_layers,
+                layer_control_eb679a6b29ea5ff7b6ae57ecd7dfe096_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_881e58f80af6262b8832b37c2cee6075);
+            ).addTo(map_d79cc774b0970b896b3e1ac086c5838a);
 
         
     
-            var map_9a52b00e906885c61c54fb861692ac67 = L.map(
-                &quot;map_9a52b00e906885c61c54fb861692ac67&quot;,
+            var map_4b379591647204489ec6b179372cf530 = L.map(
+                &quot;map_4b379591647204489ec6b179372cf530&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -995,42 +995,42 @@ Item ID: CopernicusDSM_slope, Spatial Resolutions: [21.588280353607725]</code></
 
         
     
-            var tile_layer_10b9530b5cb4e4d46ccbbe3e07d61391 = L.tileLayer(
+            var tile_layer_3419cf552bcb8510fb59c18ef9cf2ef7 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_10b9530b5cb4e4d46ccbbe3e07d61391.addTo(map_9a52b00e906885c61c54fb861692ac67);
+            tile_layer_3419cf552bcb8510fb59c18ef9cf2ef7.addTo(map_4b379591647204489ec6b179372cf530);
         
     
-            var tile_layer_31d1f681a12f8f9f1f10c3cab016fd0e = L.tileLayer(
+            var tile_layer_d344582ff51ca9643d93c794c9a7ff36 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;Example Tile Server&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_31d1f681a12f8f9f1f10c3cab016fd0e.addTo(map_9a52b00e906885c61c54fb861692ac67);
+            tile_layer_d344582ff51ca9643d93c794c9a7ff36.addTo(map_4b379591647204489ec6b179372cf530);
         
     
-            var layer_control_663c877870904423373252daaecea8d7_layers = {
+            var layer_control_db23a0134f41060fbad0728aef9554a6_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_10b9530b5cb4e4d46ccbbe3e07d61391,
+                    &quot;openstreetmap&quot; : tile_layer_3419cf552bcb8510fb59c18ef9cf2ef7,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_31d1f681a12f8f9f1f10c3cab016fd0e,
+                    &quot;Zarr tiles&quot; : tile_layer_d344582ff51ca9643d93c794c9a7ff36,
                 },
             };
-            let layer_control_663c877870904423373252daaecea8d7 = L.control.layers(
-                layer_control_663c877870904423373252daaecea8d7_layers.base_layers,
-                layer_control_663c877870904423373252daaecea8d7_layers.overlays,
+            let layer_control_db23a0134f41060fbad0728aef9554a6 = L.control.layers(
+                layer_control_db23a0134f41060fbad0728aef9554a6_layers.base_layers,
+                layer_control_db23a0134f41060fbad0728aef9554a6_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_9a52b00e906885c61c54fb861692ac67);
+            ).addTo(map_4b379591647204489ec6b179372cf530);
 
         
     
-            map_881e58f80af6262b8832b37c2cee6075.sync(map_9a52b00e906885c61c54fb861692ac67);
-            map_9a52b00e906885c61c54fb861692ac67.sync(map_881e58f80af6262b8832b37c2cee6075);
+            map_d79cc774b0970b896b3e1ac086c5838a.sync(map_4b379591647204489ec6b179372cf530);
+            map_4b379591647204489ec6b179372cf530.sync(map_d79cc774b0970b896b3e1ac086c5838a);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
@@ -1043,7 +1043,7 @@ Figure&nbsp;5: Interactive comparison of rendering speed for COG and Zarr data f
 </div>
 <div id="cell-fig-format-comp" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
-<div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="FinalReport_files/figure-html/fig-format-comp-output-1.png" width="634" height="436" class="figure-img">
@@ -1067,7 +1067,7 @@ Figure&nbsp;6: Response times for tile requests depending on data format
 <p>As seen on <a href="#fig-comp-zoom" class="quarto-xref">Figure&nbsp;7</a>, the zoom level of the map showed an effect on the time spent requesting and getting a tile from a tiling service for the COG format. In this study, it was found that the request times decreased by 0.01 seconds per zoom level for COGs, and didn’t show a notable change for Zarrs (+ 0.002 seconds per zoom level). The behavior presented here for COGs differs from the one observed by <span class="citation" data-cites="nasa_impact_zarr_2023">IMPACT (<a href="#ref-nasa_impact_zarr_2023" role="doc-biblioref">2023</a>)</span>, where no difference in rendering time was observed as a function of the zoom level. This difference could be explained by the fact that in their study, only the lowest zoom levels were considered, while in this study only the highest zoom levels were taken into account, however, to verify this hypothesis a broader study of the response times at more zoom levels should be performed. This was not done in this study because the limited size of the study area that the raster images covered only allowed visualization of the data at high zoom levels (i.e., above 8).</p>
 <div id="cell-fig-comp-zoom" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
-<div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="FinalReport_files/figure-html/fig-comp-zoom-output-1.png" width="643" height="325" class="figure-img">
@@ -1083,7 +1083,7 @@ Figure&nbsp;7: Response times depending on zoom level and their respective trend
 <p>Finally, despite efforts to mitigate caching effects, tiles generated from the same overview might have been reused across different zoom levels, potentially contributing to the reduced times observed for COGs at higher zoom levels. The COG used in this study had a maximum zoom level of 14. Beyond this level, tiles are generated using the same overview (i.e.&nbsp;the one with the highest resolution), which could indicate caching. Although both tiling services used in the study implement caching, a more in-depth investigation is needed to fully understand its impact on performance for both data formats.</p>
 <div id="cell-fig-chunksize-zarr" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
-<div id="fig-chunksize-zarr" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="FinalReport_files/figure-html/fig-chunksize-zarr-output-1.png" width="648" height="343" class="figure-img">
@@ -1242,7 +1242,7 @@ Content Analysis of the interviews.</code></pre>
 <section id="sec-request-code" class="level2">
 <h2 class="anchored" data-anchor-id="sec-request-code">Code to evaluate request times</h2>
 <p><strong>Disclaimer:</strong> In order to run the code presented below, the user must have authenticated their Google account and have the TiTiler-PgSTAC and the TiTiler-Xarray services running on <code>localhost:8082</code> and <code>localhost:8084</code> respectively.</p>
-<div id="f728ee53" class="cell" data-execution_count="10">
+<div id="c1351cd4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -1511,18 +1511,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1554,7 +1543,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1562,7 +1573,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

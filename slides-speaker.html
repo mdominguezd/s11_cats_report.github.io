@@ -8,11 +8,11 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.553">
+  <meta name="generator" content="quarto-1.5.56">
 
   <meta name="author" content="Martín Domínguez Durán">
-  <meta name="dcterms.date" content="2024-08-08">
-  <title>S11-CATS Report - Cataloguing and Visualizing  Big Geodata</title>
+  <meta name="dcterms.date" content="2024-08-21">
+  <title>S11-CATS Report – Cataloguing and Visualizing  Big Geodata</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -356,13 +356,13 @@
       <p class="author">Martín Domínguez Durán</p>
         <p class="date">Wageningen University &amp; Research</p>
         <p class="date"><img src="https://pbs.twimg.com/profile_images/1640350393/wur_400x400.png" alt="Institute Image" width="75px"><img src="slides/images/Satelligence_Logo_RGB_White_Negative.png" alt="Subtitle Image" width="300px"></p>
-        <p class="date">2024-08-08</p>
+        <p class="date">2024-08-21</p>
     </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/what-is-the-problem" id="/toc-what-is-the-problem"><span class="circle">1</span> What is the problem?</a></li>
-<li><a href="#/why-do-we-care" id="/toc-why-do-we-care"><span class="circle">2</span> Why do we care?</a></li>
+<li><a href="#/why-does-satelligence-care" id="/toc-why-does-satelligence-care"><span class="circle">2</span> Why does Satelligence care?</a></li>
 <li><a href="#/how-did-i-plan-to-help-fix-it" id="/toc-how-did-i-plan-to-help-fix-it"><span class="circle">3</span> How did I plan to help fix it?</a></li>
 <li><a href="#/what-did-i-find" id="/toc-what-did-i-find"><span class="circle">4</span> What did I find?</a></li>
 <li><a href="#/what-is-next" id="/toc-what-is-next"><span class="circle">5</span> What is next?</a></li>
@@ -377,16 +377,20 @@
 </section>
 <section id="spatial-data-is-big-data" class="slide level2">
 <h2>Spatial data is big data</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li>Hundreds of satellites gather information on a weekly to daily basis</li>
-<li>High Velocity/Variety/Volume</li>
+<li>Hundreds of different satellites gather information (Variety)</li>
+<li>Weekly to daily basis (Velocity)</li>
+<li>At higher and higher resolutions (Volume)</li>
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-sats" class="quarto-figure quarto-figure-center quarto-float" data-fig-align="center" data-fig-scap="Taken from medium">
+<div id="fig-sats" class="quarto-float quarto-figure quarto-figure-center" data-fig-scap="Taken from medium" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-sats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*IBnmTwrT3F8Qdyb5.gif" class="quarto-figure quarto-figure-center" style="width:70.0%" data-fig-scap="Taken from medium">
@@ -403,19 +407,22 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 <section id="spatial-data-challenges" class="slide level2">
 <h2>Spatial data challenges</h2>
 <ul>
-<li>How to process it?</li>
-<li>How to store it?</li>
-<li>How to easily acces it?</li>
-<li>How to interact with it?</li>
+<li>How to <strong>process</strong> it?</li>
+<li>How to <strong>store</strong> it?</li>
+<li>How to easily <strong>access</strong> it?</li>
+<li>How to <strong>interact</strong> with it?</li>
 </ul>
 </section>
 <section id="spatial-data-challenges-1" class="slide level2">
 <h2>Spatial data challenges</h2>
 <ul>
 <li>This makes <span class="box">Spatial Data Infrastructures (SDIs)</span> a necessity.</li>
-<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
+<li>Traditional SDI focus: <span class="box">preservation &gt; accessibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
 <li><strong>New developments</strong> can help change this.</li>
 </ul>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
@@ -434,9 +441,12 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 <h2>Spatial data challenges</h2>
 <ul>
 <li>This makes <span class="box">Spatial Data Infrastructures (SDIs)</span> a necessity.</li>
-<li>Traditional SDI focus: <span class="box">preservation &gt; accesibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
+<li>Traditional SDI focus: <span class="box">preservation &gt; accessibility</span>. <span class="citation" data-cites="durbha_advances_2023">(<a href="#/references" role="doc-biblioref" onclick="">Durbha et al. 2023</a>)</span></li>
 <li><strong>New developments</strong> can help change this.</li>
 </ul>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
@@ -462,8 +472,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section>
 <section id="new-developments-1" class="slide level2">
 <h2>New developments</h2>
@@ -477,8 +486,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section>
 <section id="new-developments-2" class="slide level2">
 <h2>New developments</h2>
@@ -498,8 +506,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 </ul>
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section>
 <section id="new-developments-3" class="slide level2">
 <h2>New developments</h2>
@@ -521,11 +528,10 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 <h4 id="types">Types</h4>
 <ul>
 <li>Static</li>
-<li>Dynamic</li>
+<li>Dynamic<sup>1</sup></li>
 </ul>
-</div>
-</div>
-</section>
+</div></div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>No OGC Standard, but adheres to OGC-API Features.</p></li></ol></aside></section>
 <section id="new-developments-4" class="slide level2">
 <h2>New developments</h2>
 <div class="columns">
@@ -537,8 +543,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section>
 <section id="new-developments-5" class="slide level2">
 <h2>New developments</h2>
@@ -552,8 +557,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section>
 <section id="new-developments-6" class="slide level2">
 <h2>New developments</h2>
@@ -571,17 +575,19 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 </ul>
 </div><div class="column" data-incremental="true" style="width:19%;">
 
-</div>
-</div>
+</div></div>
 </section></section>
 <section>
-<section id="why-do-we-care" class="title-slide slide level1 center">
-<h1><span class="circle">2</span> Why do we care?</h1>
+<section id="why-does-satelligence-care" class="title-slide slide level1 center">
+<h1><span class="circle">2</span> Why does Satelligence care?</h1>
 
 </section>
 <section id="s11-works-with-big-data" class="slide level2">
 <h2>S11 works with big data</h2>
 <h3 id="processing-of-the-data">Processing of the data <span class="emoji" data-emoji="white_check_mark">✅</span></h3>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -592,7 +598,7 @@ Figure&nbsp;1: Satellites orbiting the earth.<br>Taken from: miro.medium.com
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-s11-area" class="quarto-figure quarto-figure-center quarto-float" data-fig-align="center" data-fig-scap="Taken from ESA">
+<div id="fig-s11-area" class="quarto-float quarto-figure quarto-figure-center" data-fig-scap="Taken from ESA" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-s11-area-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="slides/images/area_monitored_s11.png" class="quarto-figure quarto-figure-center" style="width:100.0%" data-fig-scap="Taken from ESA">
@@ -609,20 +615,22 @@ Figure&nbsp;2: Estimate of area monitored by S11
 <section id="s11-works-with-big-data-1" class="slide level2">
 <h2>S11 works with big data</h2>
 <h3 id="when-it-comes-to-finding-the-data">When it comes to finding the data <span class="emoji" data-emoji="x">❌</span></h3>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
 <li>Google Storage buckets</li>
 <li>Gitlab repositories</li>
-<li>ClickUp tasks</li>
 <li>The almighty</li>
 </ul>
 </div>
 <div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="slides/images/GS_buckets.png" class="fragment quarto-figure quarto-figure-center" style="width:90.0%"></p>
+<p><img data-src="slides/images/GS_buckets.png" class="fragment quarto-figure quarto-figure-center"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -658,29 +666,29 @@ Figure&nbsp;2: Estimate of area monitored by S11
 <ul>
 <li>Carried out interviews to define the baseline scenario</li>
 <li>Created a flowchart representing current workflow</li>
-<li>Thematic Content Analysis</li>
+<li>Thematic Content Analysis (Use of LLMs)</li>
 </ul>
 </section>
 <section class="slide level2">
 
 <h3 id="effective-integration"><span class="circle">2</span> Effective integration</h3>
 <ul>
-<li>Worked with a limited dataset for developing a POC</li>
+<li>Worked with a limited dataset for developing a proof of concept</li>
 <li>Developed <span class="box"><a href="https://gitlab.com/satelligence/s11-cats">s11-cats</a></span> for creating the STAC</li>
 <li>Made the catalog queryable (Dynamic) <sup>1</sup></li>
-<li>Customized applications when needed.</li>
 <li>Deployed the services provided by <span class="box"><a href="https://eoapi.dev">eoAPI</a></span> (Using GKE)</li>
+<li>Customized applications when needed.</li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>More info: <a href="#/sec-stac" class="quarto-xref">Section&nbsp;6.6</a></p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>More info: <a href="#/sec-stac" class="quarto-xref">Section&nbsp;6.5</a></p></li></ol></aside></section>
 <section class="slide level2">
 
 <h3 id="comparison-of-visualization-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization different cloud-optimized formats</h3>
 <ul>
 <li>Used two dynamic tiling services for COGs and Zarrs <sup>1</sup></li>
 <li>Assessed the performance by measuring the response times of requesting tiles on both services</li>
-<li>Different colormaps and zoom levels</li>
+<li>Different colormaps and zoom levels to try to avoid caching.</li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>More info: <a href="#/sec-cog-zarr" class="quarto-xref">Section&nbsp;6.7</a></p></li></ol></aside></section></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>More info: <a href="#/sec-cog-zarr" class="quarto-xref">Section&nbsp;6.6</a></p></li></ol></aside></section></section>
 <section>
 <section id="what-did-i-find" class="title-slide slide level1 center">
 <h1><span class="circle">4</span> What did I find?</h1>
@@ -688,10 +696,13 @@ Figure&nbsp;2: Estimate of area monitored by S11
 </section>
 <section id="the-current-state" class="slide level2">
 <h2><span class="circle">1</span> The current state</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-baseline" class="quarto-figure quarto-figure-center quarto-float" data-fig-align="center">
+<div id="fig-baseline" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-baseline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="img/Baseline_data_discovery_workflow.png" class="quarto-figure quarto-figure-center" style="width:80.0%">
@@ -708,7 +719,10 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 <section id="the-current-state-1" class="slide level2">
 <h2><span class="circle">1</span> The current state</h2>
 <p><strong>TCA:</strong></p>
-<div class="quarto-layout-panel" data-layout-ncol="1" style="font-size: 75%;">
+<div>
+
+</div>
+<div class="quarto-layout-panel" style="font-size: 75%;" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <ul>
@@ -728,7 +742,10 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 <section id="the-current-state-2" class="slide level2">
 <h2><span class="circle">1</span> The current state</h2>
 <p><strong>TCA:</strong></p>
-<div class="quarto-layout-panel" data-layout-ncol="1" style="font-size: 75%;">
+<div>
+
+</div>
+<div class="quarto-layout-panel" style="font-size: 75%;" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <ul>
@@ -739,21 +756,24 @@ Figure&nbsp;3: Workflow of current steps followed for data discovery and data vi
 <li><strong>Not intuitive naming</strong><span class="math inline">\(^1\)</span> of repositories with datasets.</li>
 <li><strong>Understanding of diverse tools</strong><span class="math inline">\(^1\)</span> to access different data is currently necessary.</li>
 <li>Download of data is required in most cases to visualize it.</li>
-<li>Not one place where all existing data can be found.</li>
+<li><strong>Not one place</strong><span class="math inline">\(^1\)</span> where all existing data can be found.</li>
 </ul>
 </div>
 </div>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn3"><p>Similarly <span class="citation" data-cites="miranda_espinosa_reviewing_2020">Miranda Espinosa, Giuliani, and Ray (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> proposed that the main challenges are: “Different query interfaces and diverse metadata models”.</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn4"><p>Similarly <span class="citation" data-cites="miranda_espinosa_reviewing_2020">Miranda Espinosa, Giuliani, and Ray (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span> proposed that the main challenges are: “Different query interfaces and diverse metadata models”.</p></li></ol></aside></section>
 <section id="tools-to-create-an-s11-catalog" class="slide level2">
 <h2><span class="circle">2</span> Tools to create an S11 catalog</h2>
 <div style="text-align: center;">
-<p>Datasets selected <span class="math inline">\(\rightarrow\)</span> <span class="box">S11-cats</span> <span class="math inline">\(\rightarrow\)</span> Static catalog</p>
+<p>Datasets selected <span class="math inline">\(\rightarrow\)</span> <span class="box"><a href="https://gitlab.com/satelligence/s11-cats">S11-cats</a></span> <span class="math inline">\(\rightarrow\)</span> Static catalog</p>
+</div>
+<div>
+
 </div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-s11-cats" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-s11-cats" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="slides/images/CATS_repo.png" style="width:100.0%">
@@ -765,9 +785,19 @@ Figure&nbsp;4: s11-cats repository
 </div>
 </div>
 <div class="r-stack quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-s11-cats" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="img/s11-cats.png">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-s11-cats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: S11-cats main function overview
+</figcaption>
+</figure>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="https://yegvet.ca/wp-content/uploads/2024/02/Scared-Cats-What-to-Know-and-What-to-Do.webp" class="fragment quarto-figure quarto-figure-center" style="width:50.0%"></p>
+<p><img data-src="https://www.litter-robot.com/media/wysiwyg/exotic-shorthair_1.png" class="fragment quarto-figure quarto-figure-center" width="450"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -787,6 +817,9 @@ Figure&nbsp;4: s11-cats repository
 <section id="the-step-towards-a-dynamic-catalog-1" class="slide level2">
 <h2><span class="circle">2</span> The step towards a dynamic catalog</h2>
 <h3 id="multiple-services">Multiple services</h3>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
@@ -807,6 +840,9 @@ Figure&nbsp;4: s11-cats repository
 <section id="the-step-towards-a-dynamic-catalog-2" class="slide level2">
 <h2><span class="circle">2</span> The step towards a dynamic catalog</h2>
 <h3 id="multiple-services-1">Multiple services</h3>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
@@ -854,16 +890,19 @@ Figure&nbsp;4: s11-cats repository
 </section>
 <section id="effective-integration-1" class="slide level2">
 <h2><span class="circle">2</span> Effective integration</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-new-workflow" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-new-workflow" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="img/New_data_discovery_workflow.png" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: New data discovery and visualization workflow
+Figure&nbsp;6: New data discovery and visualization workflow
 </figcaption>
 </figure>
 </div>
@@ -876,7 +915,7 @@ Figure&nbsp;5: New data discovery and visualization workflow
 <div class="columns">
 <div class="column" style="width:55%;">
 <div id="cell-fig-int-comp" class="cell" data-fig-width="150%" data-execution_count="1">
-<div id="fig-int-comp" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float">
+<div id="fig-int-comp" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
@@ -906,7 +945,7 @@ Figure&nbsp;5: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_3e28e8271a1ec335351ad51a2dd36b9e {
+                #map_db58215d7329e3a2e5e4e4777c5eb14a {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -920,7 +959,7 @@ Figure&nbsp;5: New data discovery and visualization workflow
             <meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
             <style>
-                #map_a5cc8316acb50e843fd6e0c7d25f9ebe {
+                #map_811714c84bc4da10e8ef2a1b442e057e {
                     position: absolute;
                     width: 50.0%;
                     height: 100.0%;
@@ -935,17 +974,17 @@ Figure&nbsp;5: New data discovery and visualization workflow
 <body>
     
     
-            <div class=&quot;folium-map&quot; id=&quot;map_3e28e8271a1ec335351ad51a2dd36b9e&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_db58215d7329e3a2e5e4e4777c5eb14a&quot; ></div>
         
     
-            <div class=&quot;folium-map&quot; id=&quot;map_a5cc8316acb50e843fd6e0c7d25f9ebe&quot; ></div>
+            <div class=&quot;folium-map&quot; id=&quot;map_811714c84bc4da10e8ef2a1b442e057e&quot; ></div>
         
 </body>
 <script>
     
     
-            var map_3e28e8271a1ec335351ad51a2dd36b9e = L.map(
-                &quot;map_3e28e8271a1ec335351ad51a2dd36b9e&quot;,
+            var map_db58215d7329e3a2e5e4e4777c5eb14a = L.map(
+                &quot;map_db58215d7329e3a2e5e4e4777c5eb14a&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -959,42 +998,42 @@ Figure&nbsp;5: New data discovery and visualization workflow
 
         
     
-            var tile_layer_8f9729763edc8a57d3ff25f73ffca5c4 = L.tileLayer(
+            var tile_layer_b5abb4bc43e711335978a89f46c570b1 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_8f9729763edc8a57d3ff25f73ffca5c4.addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
+            tile_layer_b5abb4bc43e711335978a89f46c570b1.addTo(map_db58215d7329e3a2e5e4e4777c5eb14a);
         
     
-            var tile_layer_359bfbc4122eff01e895920ba2f0ef51 = L.tileLayer(
+            var tile_layer_ecdeb41580af836e6084c18464b24f51 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/raster/collections/Example ZARR vs. COG/items/FBL_V5_2021_Riau_cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?bidx=1\u0026assets=data\u0026unscale=false\u0026resampling=nearest\u0026reproject=nearest\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;eoapi.satelligence.com/raster&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_359bfbc4122eff01e895920ba2f0ef51.addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
+            tile_layer_ecdeb41580af836e6084c18464b24f51.addTo(map_db58215d7329e3a2e5e4e4777c5eb14a);
         
     
-            var layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers = {
+            var layer_control_3d2e3ea8fcae817b89d78b2f855b6e22_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_8f9729763edc8a57d3ff25f73ffca5c4,
+                    &quot;openstreetmap&quot; : tile_layer_b5abb4bc43e711335978a89f46c570b1,
                 },
                 overlays :  {
-                    &quot;COG tiles&quot; : tile_layer_359bfbc4122eff01e895920ba2f0ef51,
+                    &quot;COG tiles&quot; : tile_layer_ecdeb41580af836e6084c18464b24f51,
                 },
             };
-            let layer_control_2a18a1a20fc5b36f609dacb481f1ca52 = L.control.layers(
-                layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers.base_layers,
-                layer_control_2a18a1a20fc5b36f609dacb481f1ca52_layers.overlays,
+            let layer_control_3d2e3ea8fcae817b89d78b2f855b6e22 = L.control.layers(
+                layer_control_3d2e3ea8fcae817b89d78b2f855b6e22_layers.base_layers,
+                layer_control_3d2e3ea8fcae817b89d78b2f855b6e22_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_3e28e8271a1ec335351ad51a2dd36b9e);
+            ).addTo(map_db58215d7329e3a2e5e4e4777c5eb14a);
 
         
     
-            var map_a5cc8316acb50e843fd6e0c7d25f9ebe = L.map(
-                &quot;map_a5cc8316acb50e843fd6e0c7d25f9ebe&quot;,
+            var map_811714c84bc4da10e8ef2a1b442e057e = L.map(
+                &quot;map_811714c84bc4da10e8ef2a1b442e057e&quot;,
                 {
                     center: [0.596093307985066, 101.79719686886921],
                     crs: L.CRS.EPSG3857,
@@ -1008,48 +1047,48 @@ Figure&nbsp;5: New data discovery and visualization workflow
 
         
     
-            var tile_layer_0dab8c5724a7d91f57233c525ced0890 = L.tileLayer(
+            var tile_layer_86e2d0fe5a4854d5be83cd84870f84f2 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_0dab8c5724a7d91f57233c525ced0890.addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
+            tile_layer_86e2d0fe5a4854d5be83cd84870f84f2.addTo(map_811714c84bc4da10e8ef2a1b442e057e);
         
     
-            var tile_layer_531baff0993ce3369197cbed7d35e48c = L.tileLayer(
+            var tile_layer_a354f0292e0eec1b6ce9b1bd7f552e98 = L.tileLayer(
                 &quot;https://eoapi.satelligence.com/zarr/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=gs://s11-tiles/zarr/separate\u0026variable=band_data\u0026reference=false\u0026decode_times=true\u0026consolidated=true\u0026colormap=[[[1.0,1.1],[0,47,0,255]],[[2.0,2.1],[55,76,33,255]],[[3.0,3.1],[105,140,60,255]],[[4.0,4.1],[178,199,140,255]],[[5.0,5.1],[164,198,121,255]],[[6.0,6.1],[198,112,85,255]],[[7.0,7.1],[170,219,167,255]],[[8.0,8.1],[87,162,164,255]],[[50.0,50.1],[255,183,1,255]],[[52.0,52.1],[238,223,201,255]],[[53.0,53.1],[185,120,119,255]],[[54.0,54.1],[218,170,241,255]],[[55.0,55.1],[40,205,167,255]],[[60.0,60.1],[208,227,243,255]],[[66.0,66.1],[166,219,204,255]],[[70.0,70.1],[255,255,255,255]],[[71.0,71.1],[185,136,94,255]],[[72.0,72.1],[125,165,142,255]],[[74.0,74.1],[188,85,123,255]],[[90.0,90.1],[241,195,132,255]]]\u0026return_mask=true&quot;,
                 {&quot;attribution&quot;: &quot;eoapi.satelligence.com/zarr&quot;, &quot;detectRetina&quot;: false, &quot;maxZoom&quot;: 18, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
             );
         
     
-            tile_layer_531baff0993ce3369197cbed7d35e48c.addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
+            tile_layer_a354f0292e0eec1b6ce9b1bd7f552e98.addTo(map_811714c84bc4da10e8ef2a1b442e057e);
         
     
-            var layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers = {
+            var layer_control_60df971de9e7c37eb54b9d7bfb1e206d_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_0dab8c5724a7d91f57233c525ced0890,
+                    &quot;openstreetmap&quot; : tile_layer_86e2d0fe5a4854d5be83cd84870f84f2,
                 },
                 overlays :  {
-                    &quot;Zarr tiles&quot; : tile_layer_531baff0993ce3369197cbed7d35e48c,
+                    &quot;Zarr tiles&quot; : tile_layer_a354f0292e0eec1b6ce9b1bd7f552e98,
                 },
             };
-            let layer_control_518fa2fa31db00d1aa74c98179ac34ed = L.control.layers(
-                layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers.base_layers,
-                layer_control_518fa2fa31db00d1aa74c98179ac34ed_layers.overlays,
+            let layer_control_60df971de9e7c37eb54b9d7bfb1e206d = L.control.layers(
+                layer_control_60df971de9e7c37eb54b9d7bfb1e206d_layers.base_layers,
+                layer_control_60df971de9e7c37eb54b9d7bfb1e206d_layers.overlays,
                 {&quot;autoZIndex&quot;: true, &quot;collapsed&quot;: false, &quot;position&quot;: &quot;topright&quot;}
-            ).addTo(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
+            ).addTo(map_811714c84bc4da10e8ef2a1b442e057e);
 
         
     
-            map_3e28e8271a1ec335351ad51a2dd36b9e.sync(map_a5cc8316acb50e843fd6e0c7d25f9ebe);
-            map_a5cc8316acb50e843fd6e0c7d25f9ebe.sync(map_3e28e8271a1ec335351ad51a2dd36b9e);
+            map_db58215d7329e3a2e5e4e4777c5eb14a.sync(map_811714c84bc4da10e8ef2a1b442e057e);
+            map_811714c84bc4da10e8ef2a1b442e057e.sync(map_db58215d7329e3a2e5e4e4777c5eb14a);
         
 </script>
 </html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-int-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Interactive comparison of rendering speed for COG and Zarr data formats
+Figure&nbsp;7: Interactive comparison of rendering speed for COG and Zarr data formats
 </figcaption>
 </figure>
 </div>
@@ -1057,35 +1096,37 @@ Figure&nbsp;6: Interactive comparison of rendering speed for COG and Zarr data f
 </div><div class="column" style="width:45%;">
 <div id="cell-fig-format-comp" class="cell" width="50%" data-execution_count="2">
 <div class="cell-output cell-output-display">
-<div id="fig-format-comp" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-format-comp" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="slides_files/figure-revealjs/fig-format-comp-output-1.png" width="634" height="362">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-format-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Response times for tile requests depending on data format
+Figure&nbsp;8: Response times for tile requests depending on data format
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-</div>
+</div></div>
 <p>Alignment with <span class="citation" data-cites="Barciauskas_NextGen_2024">Barciauskas et al. (<a href="#/references" role="doc-biblioref" onclick="">2024</a>)</span>.</p>
 </section>
 <section id="data-visualization-1" class="slide level2">
 <h2><span class="circle">3</span> Data visualization</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div id="cell-fig-comp-zoom" class="cell quarto-layout-cell" data-execution_count="3" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output cell-output-display">
-<div id="fig-comp-zoom" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-comp-zoom" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="slides_files/figure-revealjs/fig-comp-zoom-output-1.png" width="643" height="325">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-comp-zoom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Response times depending on zoom level and their respective trends for COG and Zarr data formats.
+Figure&nbsp;9: Response times depending on zoom level and their respective trends for COG and Zarr data formats.
 </figcaption>
 </figure>
 </div>
@@ -1093,13 +1134,13 @@ Figure&nbsp;8: Response times depending on zoom level and their respective trend
 </div>
 <div id="cell-fig-chunksize-zarr" class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output cell-output-display">
-<div id="fig-chunksize-zarr" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-chunksize-zarr" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img data-src="slides_files/figure-revealjs/fig-chunksize-zarr-output-1.png" width="648" height="343">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chunksize-zarr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.
+Figure&nbsp;10: Variation of chunk sizes in Zarr file depending on zoom level compared to a constant block size for COG data format.
 </figcaption>
 </figure>
 </div>
@@ -1134,23 +1175,25 @@ Figure&nbsp;9: Variation of chunk sizes in Zarr file depending on zoom level com
 <section id="current-state" class="slide level2">
 <h2><span class="circle">1</span> Current state</h2>
 <ul>
-<li>Workflow at S11 is complex and time-consuming</li>
+<li>Data discovery/visualization workflow at S11 is <strong>complex</strong> and <strong>time-consuming</strong>.</li>
 <li>Major inefficiencies found were: High dependency on colleagues, disorganized Google Storage Buckets, and the need to download entire datasets for visualization.</li>
-<li>A user-friendly data discovery service with integrated data visualization is needed</li>
+<li>A <strong>user-friendly data discovery service</strong> with integrated data visualization is <strong>needed</strong></li>
 </ul>
 </section>
 <section id="effective-integration-2" class="slide level2">
 <h2><span class="circle">2</span> Effective integration</h2>
 <ul>
 <li>Integration of cloud-optimized data formats, cloud services, and STAC specifications has the potential to improve data discovery and visualization at Satelligence.</li>
-<li>We developed a methodology to effectively do the integration of multiple data formats and services. (i.e.&nbsp;COGs, Zarrs, eoAPI, TiTilers, etc.)</li>
+<li>I built upon eoAPI and developed a methodology to effectively do the integration of multiple data formats and services at S11. (i.e.&nbsp;COGs, Zarrs, eoAPI, TiTilers, etc.)</li>
 </ul>
 </section>
 <section id="data-visualization-2" class="slide level2">
 <h2><span class="circle">3</span> Data visualization</h2>
 <ul>
 <li>COG tiles are, on average, 2.53 times faster to request than Zarr tiles.</li>
+<li>Findings are in line with literature for data format comparison.</li>
 <li>Future developments in Zarr could improve their performance (i.e.&nbsp;Improved pyramid generation).</li>
+<li>Caching effect should be studied further.</li>
 </ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
@@ -1167,12 +1210,12 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
 </div>
 </div>
 </section>
-<section id="appendix" class="slide level2">
-<h2>Appendix</h2>
-</section>
 <section id="sec-stac" class="slide level2">
 <h2>Appendix</h2>
 <h3 id="what-do-you-mean-queryable-arent-all-catalogs-queryable">(What do you mean queryable? Aren’t all catalogs queryable?)</h3>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1194,8 +1237,10 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
 </section>
 <section id="sec-cog-zarr" class="slide level2">
 <h2>Appendix</h2>
-<h3 id="comparison-of-visualization-of-different-cloud-optimized-formats"><span class="circle">3</span> Comparison of visualization of different cloud-optimized formats</h3>
 <h4 id="what-are-these-weird-cloud-optimized-data-formats">(What are these weird “cloud-optimized” data formats?)</h4>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1470,18 +1515,7 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1513,7 +1547,29 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1521,7 +1577,7 @@ Miranda Espinosa, Maria Teresa, Gregory Giuliani, and Nicolas Ray. 2020. <span>�
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
