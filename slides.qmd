@@ -309,7 +309,69 @@ Datasets selected $\rightarrow$ [[S11-cats](https://gitlab.com/satelligence/s11-
 
 ## [2]{.circle} The importance of a dynamic catalog
 
-{{< include slides/sections/check_interactive_api.md >}}
+<!-- {{< include slides/sections/check_interactive_api.md >}} -->
+
+:::{.content-visible when-format="html"}
+##### Static vs. dynamic catalog {#sec-query-dynamic}
+
+:::: {.columns}
+
+::::: {.column width="50%"}
+
+###### Static catalog
+```{json}
+{
+  "type": "Catalog",
+  "id": "satelligence-stac-api",
+  "stac_version": "1.0.0",
+  "description": "Main Catalog for data stored by Satelligence B.V.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Elevation data/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./Example ZARR vs. COG/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "child",
+      "href": "./FBLs/collection.json",
+      "type": "application/json"
+    }
+  ]
+}
+```
+:::::
+
+::::: {.column width="50%"}
+###### Dynamic catalog
+<div>
+  <label for="bbox">Enter bounding box:</label>
+  <input type="text" id="bbox" placeholder="e.g., -72,0,-70,6" oninput="updateIframe()" />
+</div>
+
+<iframe id="content-iframe" src="https://eoapi.satelligence.com/stac/search" width="100%" height="450px"></iframe>
+
+<script>
+  function updateIframe() {
+    var bboxInput = document.getElementById("bbox");
+    var iframe = document.getElementById("content-iframe");
+
+    var bboxValue = bboxInput.value ? "&bbox=" + bboxInput.value : "";
+    iframe.src = "https://eoapi.satelligence.com/stac/search?" + bboxValue;
+  }
+</script>
+:::::
+::::
+:::
 
 ------------------------------------------------------------------------
 

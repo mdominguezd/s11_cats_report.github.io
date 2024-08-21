@@ -711,7 +711,7 @@
     "href": "slides.html#the-importance-of-a-dynamic-catalog",
     "title": "Cataloguing and Visualizing  Big Geodata",
     "section": "2 The importance of a dynamic catalog",
-    "text": "2 The importance of a dynamic catalog\n\nGet items from this collection:  All collections FBLs Elevation data \n\n\nGet items in this AOI:  Any Africa SEA LAC"
+    "text": "2 The importance of a dynamic catalog\n\nStatic vs. dynamic catalog\n\n\nStatic catalog\n{\n  \"type\": \"Catalog\",\n  \"id\": \"satelligence-stac-api\",\n  \"stac_version\": \"1.0.0\",\n  \"description\": \"Main Catalog for data stored by Satelligence B.V.\",\n  \"links\": [\n    {\n      \"rel\": \"root\",\n      \"href\": \"./catalog.json\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"./Elevation data/collection.json\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"./Example ZARR vs. COG/collection.json\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"rel\": \"child\",\n      \"href\": \"./FBLs/collection.json\",\n      \"type\": \"application/json\"\n    }\n  ]\n}\n\nDynamic catalog\n\nEnter bounding box:"
   },
   {
     "objectID": "slides.html#tools-to-create-an-s11-catalog",
