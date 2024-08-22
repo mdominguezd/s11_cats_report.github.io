@@ -177,7 +177,7 @@ execute:
 -   Made the catalog queryable (Dynamic) [^1]
 -   Deployed the services provided by [[eoAPI](https://eoapi.dev)]{.box} (Using GKE)
 -   Customized applications when needed.
--   Created new workflow od DD and DV.
+-   Created new workflow of DD and DV.
 
 [^1]: More info: @sec-stac
 
